@@ -47,6 +47,10 @@ void mover::move_left()
 		{
 			h_speed( desired_speed );
 		}
+		else
+		{
+			h_speed( -h_speed_max() );
+		}
 	}
 }
 
@@ -59,6 +63,10 @@ void mover::move_right()
 		if ( desired_speed <= h_speed_max() )
 		{
 			h_speed( desired_speed );
+		}
+		else
+		{
+			h_speed( h_speed_max() );
 		}
 	}
 }
