@@ -4,12 +4,12 @@
 #include "collide_functions.h"
 
 collider::collider()
-	:movable(), box()
+	:vel_accel(), box()
 {
 }
 
 collider::collider( object* obj )
-	:movable()
+	:vel_accel()
 {
 	set_collision_object(obj);
 }

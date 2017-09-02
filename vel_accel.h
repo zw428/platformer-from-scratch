@@ -1,10 +1,10 @@
-#ifndef MOVABLE_H
-#define MOVABLE_H
+#ifndef VEL_ACCEL_H
+#define VEL_ACCEL_H
 
-class movable
+class vel_accel
 {
 public:
-	movable();
+	vel_accel();
 	void h_speed(float h_speed);
 	void v_speed(float v_speed);
 	float h_speed();

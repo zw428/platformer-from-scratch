@@ -1,13 +1,13 @@
 #ifndef COLLIDER_H
 #define COLLIDER_H
 
-#include "movable.h"
+#include "vel_accel.h"
 #include "box.h"
 #include <vector>
 
 class object;
 
-class collider : public movable, public box
+class collider : public vel_accel, public box
 {
 public:
 	collider();
