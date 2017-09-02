@@ -49,10 +49,12 @@ bool npc::think()
 
 			if ( _x_dest < x() )
 			{
-				x_diff *= -1;
+				move_left();
 			}
-
-			h_speed( x_diff );
+			else
+			{
+				move_right();
+			}
 		}
 	}
 	else

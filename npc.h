@@ -9,7 +9,7 @@
 #include "alive.h"
 #include "object.h"
 #include "image.h"
-#include "gravity_affected.h"
+#include "mover.h"
 
 class npc : public alive, public object
 {
