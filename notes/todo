@@ -1,0 +1,14 @@
+make a text class -> make damage numbers
+
+acceleration
+
+trigger for death if falling off stage
+
+make a class that handles "if moving left, if jumping etc" that npc and player
+both INHERIT from. so they can both call something like
+"set_image_walking_left()", etc. probably make a "image* current" that's drawn,
+soon to be "anim* current"
+
+viewport
+
+maybe tests at some point
