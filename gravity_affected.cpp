@@ -20,6 +20,6 @@ void gravity_affected::handle_gravity()
 {
 	if ( !colliding(2) && !weightless() )
 	{
-		v_speed( v_speed() + GRAVITY_ACCEL );
+		v_accel( GRAVITY_ACCEL );
 	}
 }

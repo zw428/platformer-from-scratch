@@ -134,6 +134,9 @@ void collider::handle_speeds()
 {
 	move_phys(h_speed(),v_speed());
 
+	h_speed( h_speed() + h_accel() );
+	v_speed( v_speed() + v_accel() );
+
 	if ( colliding(2) )
 	{
 		v_speed(0);
