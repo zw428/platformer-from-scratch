@@ -8,6 +8,7 @@
 #include "attack_box.h"
 #include "anim.h"
 #include "object.h"
+#include "mover.h"
 
 #include <SDL2/SDL.h>
 #include <string>

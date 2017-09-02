@@ -1,6 +1,8 @@
 make a text class -> make damage numbers
 
-acceleration
+friction
+
+class that handles handle_movement( bool up, bool right, bool down, bool left)
 
 trigger for death if falling off stage
 

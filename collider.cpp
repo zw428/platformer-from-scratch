@@ -4,12 +4,12 @@
 #include "collide_functions.h"
 
 collider::collider()
-	:vel_accel(), box()
+	:mover(), box()
 {
 }
 
 collider::collider( object* obj )
-	:vel_accel()
+	:mover(), box()
 {
 	set_collision_object(obj);
 }
@@ -142,12 +142,17 @@ void collider::handle_speeds()
 		v_speed(0);
 	}
 
-	if ( colliding(0) )
+	if ( colliding(0) && v_speed() < 0 )
 	{
-		v_speed(1);
+		v_speed(0);
 	}
 
-	if ( colliding(1) || colliding(3) )
+	if ( colliding(1) && h_speed() > 0 )
+	{
+		h_speed(0);
+	}
+
+	if ( colliding(3) && h_speed() < 0 )
 	{
 		h_speed(0);
 	}

@@ -1,5 +1,4 @@
 #include "player.h"
-
 #include "manager.h"
 #include "keys.h"
 #include <cmath>
@@ -29,11 +28,6 @@ bool player::think()
 		_attack_counter--;
 	}
 
-	short x_add = 0;
-	short y_add = 0;
-
-	const short speed = 10;
-
 	bool up        = keys::instance()->key_pressed(SDLK_w) && !keys::instance()->key_pressed(SDLK_s);
 	bool down      = keys::instance()->key_pressed(SDLK_s) && !keys::instance()->key_pressed(SDLK_w);
 	bool left      = keys::instance()->key_pressed(SDLK_a) && !keys::instance()->key_pressed(SDLK_d);
@@ -42,7 +36,7 @@ bool player::think()
 
 	if ( up && colliding(2) )
 	{
-		v_speed(-10);
+		jump();
 	}
 
 	if ( down )
@@ -52,21 +46,15 @@ bool player::think()
 
 	if ( left )
 	{
-		x_add = -speed;
+		move_left();
 	}
-
-	if ( right )
+	else if ( right )
 	{
-		x_add = speed;
+		move_right();
 	}
-
-	if ( !move_phys(x_add,y_add) )
+	else
 	{
-		if ( !move_phys(0,y_add ) )
-		{
-			move_phys(x_add,0);
-		}
-
+		apply_friction();
 	}
 
 	if ( attacking && _attack_counter == 0 )
