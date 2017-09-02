@@ -2,8 +2,9 @@
 #define MOVER_H
 
 #include "vel_accel.h"
+#include "friction.h"
 
-class mover : public vel_accel
+class mover : public friction
 {
 public:
 	mover();

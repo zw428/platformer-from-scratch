@@ -24,10 +24,22 @@ bool npc::think()
 
 	static unsigned short think_delay = 0;
 
-	std::vector<object*> objs = manager::instance()->get_map()->objects_considered( dynamic_cast<object*>(this) );
+	if ( x() != _x_dest)
+	{
+		if ( _x_dest < x() )
+		{
+			move_left();
+		}
+		else
+		{
+			move_right();
+		}
+	}
 
 	if ( think_delay == 0 )
 	{
+		std::vector<object*> objs = manager::instance()->get_map()->objects_considered( dynamic_cast<object*>(this) );
+
 		think_delay = 10;
 
 		for ( unsigned i=0; i < objs.size(); i++ )
@@ -40,20 +52,6 @@ bool npc::think()
 				dest(player_x, player_y);
 
 				break;
-			}
-		}
-
-		if ( x() != _x_dest)
-		{
-			short x_diff = 5;
-
-			if ( _x_dest < x() )
-			{
-				move_left();
-			}
-			else
-			{
-				move_right();
 			}
 		}
 	}
