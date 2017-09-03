@@ -8,6 +8,7 @@ player::player()
 {
 	weightless(false);
 	set_collision_object( dynamic_cast<object*>(this) );
+	jump_vel(8);
 
 	_attack_delay = 30;
 
