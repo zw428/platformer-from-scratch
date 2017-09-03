@@ -55,7 +55,7 @@ private:
 
 	SDL_Window* _win;
 	SDL_Renderer* _ren;
-	SDL_Event ev;
+	SDL_Event _ev;
 
 	std::map<std::string, texture_store> _textures;
 	std::map<std::string, Mix_Chunk*> _sounds;

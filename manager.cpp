@@ -182,16 +182,16 @@ bool manager::main_loop()
 
 	while( !quit )
 	{
-		while( SDL_PollEvent( &ev ) != 0 )
+		while( SDL_PollEvent( &_ev ) != 0 )
 		{
-			if ( ev.type == SDL_QUIT )
+			if ( _ev.type == SDL_QUIT )
 			{
 				quit = true;
 			}
 
-			if ( ev.type == SDL_MOUSEMOTION || ev.type == SDL_KEYDOWN || ev.type == SDL_KEYUP || ev.type == SDL_MOUSEBUTTONDOWN || ev.type == SDL_MOUSEBUTTONUP )
+			if ( _ev.type == SDL_MOUSEMOTION || _ev.type == SDL_KEYDOWN || _ev.type == SDL_KEYUP || _ev.type == SDL_MOUSEBUTTONDOWN || _ev.type == SDL_MOUSEBUTTONUP )
 			{
-				keys::instance()->think(&ev);
+				keys::instance()->think(&_ev);
 			}
 		}
 
