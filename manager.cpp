@@ -11,6 +11,9 @@ manager::manager()
 {
 	_map.init(1024,768);
 
+	set_camera( 100, 100 );
+	resize_camera( 1024, 768 );
+
 	data_path("./data/");
 }
 

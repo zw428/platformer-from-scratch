@@ -3,7 +3,7 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 CC =g++ -g
 
-BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o
+BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 TEST_OBJECTS = $(BASE_OBJECTS) build/test.o
@@ -96,6 +96,9 @@ build/resource_manager.o: resource_manager.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/level_loader.o: level_loader.cpp
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/camera.o: camera.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/test.o: tests/test.cpp

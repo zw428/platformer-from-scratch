@@ -10,8 +10,11 @@ anim::anim()
 void anim::draw()
 {
 	SDL_Rect rect;
-	rect.x = x();
-	rect.y = y();
+
+	SDL_Point adjusted_coords = manager::instance()->camera_coords( x(), y() );
+
+	rect.x = adjusted_coords.x;
+	rect.y = adjusted_coords.y;
 	rect.w = w();
 	rect.h = h();
 
@@ -24,7 +27,10 @@ void anim::draw()
 	clip.w = clip_width();
 	clip.h = tex_store().orig_h;
 
-	SDL_RenderCopy(manager::instance()->renderer(), tex_store().tex, &clip, &rect);
+	if ( manager::instance()->should_draw( x(), y(), w(), h() ) )
+	{
+		SDL_RenderCopy(manager::instance()->renderer(), tex_store().tex, &clip, &rect);
+	}
 }
 
 void anim::clip_width( unsigned short width )

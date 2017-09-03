@@ -1,4 +1,5 @@
 #include "image.h"
+#include "camera.h"
 
 image::image()
 {
@@ -10,14 +11,20 @@ image::image()
 void image::draw()
 {
 	SDL_Rect rect;
-	rect.x = x();
-	rect.y = y();
+
+	SDL_Point adjusted_coords = manager::instance()->camera_coords( x(), y() );
+
+	rect.x = adjusted_coords.x;
+	rect.y = adjusted_coords.y;
 	rect.w = w();
 	rect.h = h();
 
 	SDL_Renderer* ren = manager::instance()->renderer();
 
-	SDL_RenderCopy(ren, _tex_store.tex, NULL, &rect);
+	if ( manager::instance()->should_draw( x(), y(), w(), h() ) )
+	{
+		SDL_RenderCopy(ren, _tex_store.tex, NULL, &rect);
+	}
 }
 
 void image::texture( texture_store tex_store )
