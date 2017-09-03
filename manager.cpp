@@ -18,9 +18,7 @@ manager::manager()
 	 _window_w(1024),
 	 _window_h(768)
 {
-	manager::_instance = this;
-
-	_map.init(1024,768);
+	_map.init(_window_w,_window_h);
 }
 
 manager* manager::instance()
