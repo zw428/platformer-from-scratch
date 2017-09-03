@@ -10,9 +10,8 @@ manager::manager()
 	 _window_w(1024),
 	 _window_h(768)
 {
-	_map.init(_window_w,_window_h);
-
 	set_viewport( 0, 0, _window_w, _window_h );
+	_map.init(2048,2048);
 
 	data_path("./data/");
 }
@@ -138,7 +137,6 @@ bool manager::main_loop()
 		}
 
 		SDL_Rect vp = get_viewport();
-
 		SDL_RenderSetViewport( _ren, &vp );
 
 		SDL_RenderClear( _ren );
