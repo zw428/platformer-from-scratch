@@ -26,22 +26,22 @@ bool collider::move_phys( short x_add, short y_add )
 
 	if ( int(x()) + x_add < 0 )
 	{
-		return move_phys(1-x(),y_add);
+		x_add = -x();
 	}
 
 	if ( int(x()) + x_add + w() > map_size_x )
 	{
-		return move_phys(map_size_x - x() - w() - 1,y_add);
+		x_add = map_size_x - x() - w();
 	}
 
 	if ( int(y()) + y_add < 0 )
 	{
-		return move_phys(x_add,1-y());
+		y_add = -y();
 	}
 
 	if ( int(y()) + y_add + h() > map_size_y )
 	{
-		return move_phys(x_add,map_size_y - y() - h() - 1);
+		y_add = map_size_y - y() - h();
 	}
 
 	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( dynamic_cast<object*>( collision_object() ) );
