@@ -87,57 +87,65 @@ bool collider::move_phys( short x_add, short y_add )
 
 bool collider::colliding(unsigned short dir)
 {
+	int temp_x = x();
+	int temp_y = y();
+	int temp_w = w();
+	int temp_h = h();
+
 	switch(dir)
 	{
 	case 0:
-		for ( unsigned i=0; i < _adjacents.size(); i++ )
+		if ( temp_y != 0 )
 		{
-			if ( _adjacents[i]->y() + _adjacents[i]->h() == y() )
-			{
-				return true;
-			}
+			temp_y -= 1;
+			temp_h += 1;
 		}
+
 		break;
 	case 1:
-		for ( unsigned i=0; i < _adjacents.size(); i++ )
-		{
-			if ( _adjacents[i]->x() + _adjacents[i]->w() == x() )
-			{
-				return true;
-			}
-		}
+		temp_w += 1;
+
 		break;
 	case 2:
-		for ( unsigned i=0; i < _adjacents.size(); i++ )
-		{
-			if ( _adjacents[i]->y() == y() + h() )
-			{
-				return true;
-			}
-		}
+		temp_h += 1;
+
 		break;
 	case 3:
-		for ( unsigned i=0; i < _adjacents.size(); i++ )
+		if ( temp_x != 0 )
 		{
-			if ( _adjacents[i]->x() == x() + w() )
-			{
-				return true;
-			}
+			temp_x -= 1;
+			temp_w += 1;
 		}
+
 		break;
 	}
 
+	for ( unsigned i=0; i < _adjacents.size(); i++ )
+	{
+		const object* adj = _adjacents[i];
+
+		if ( box_in_box( temp_x, temp_y, temp_w, temp_h, adj->x(), adj->y(), adj->w(), adj->h() ) )
+		{
+			return true;
+		}
+	}
 	return false;
 }
 
 void collider::handle_speeds()
 {
-	move_phys(h_speed(),v_speed());
+	if ( !move_phys(h_speed(),v_speed()) )
+	{
+		if ( !move_phys(h_speed(),0) )
+		{
+			move_phys(0,v_speed());
+		}
+	}
 
 	h_speed( h_speed() + h_accel() );
 	v_speed( v_speed() + v_accel() );
 
-	if ( colliding(2) )
+	if ( colliding(2) && v_speed() > 0 )
 	{
 		v_speed(0);
 	}
