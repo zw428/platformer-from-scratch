@@ -1,7 +1,5 @@
 #include "image.h"
 
-SDL_Renderer* image::_ren = 0;
-
 image::image()
 {
 	_tex_store.tex = 0;
@@ -17,7 +15,9 @@ void image::draw()
 	rect.w = w();
 	rect.h = h();
 
-	SDL_RenderCopy(_ren, _tex_store.tex, NULL, &rect);
+	SDL_Renderer* ren = manager::instance()->renderer();
+
+	SDL_RenderCopy(ren, _tex_store.tex, NULL, &rect);
 }
 
 void image::texture( texture_store tex_store )
@@ -28,9 +28,4 @@ void image::texture( texture_store tex_store )
 texture_store image::tex_store()
 {
 	return _tex_store;
-}
-
-void image::set_renderer( SDL_Renderer* renderer )
-{
-	_ren = renderer;
 }

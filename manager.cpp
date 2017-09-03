@@ -1,7 +1,6 @@
 #include "manager.h"
 
 #include "keys.h"
-#include "image.h"
 
 manager* manager::_instance = 0;
 
@@ -94,8 +93,6 @@ bool manager::init()
 		printf( "sdl ttf Error" );
 		return false;
 	}
-
-	image::set_renderer(_ren);
 
 	keys::instance();
 
