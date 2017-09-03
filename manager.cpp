@@ -19,6 +19,8 @@ manager::manager()
 	 _window_h(768)
 {
 	_map.init(_window_w,_window_h);
+
+	set_viewport( 0, 0, _window_w, _window_h );
 }
 
 manager* manager::instance()
@@ -192,6 +194,10 @@ bool manager::main_loop()
 				keys::instance()->think(&_ev);
 			}
 		}
+
+		SDL_Rect vp = get_viewport();
+
+		SDL_RenderSetViewport( _ren, &vp );
 
 		SDL_RenderClear( _ren );
 

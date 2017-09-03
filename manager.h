@@ -10,6 +10,7 @@
 #include <map>
 #include <vector>
 #include "map.h"
+#include "viewport.h"
 
 class object;
 
@@ -19,7 +20,7 @@ struct texture_store {
 	unsigned short orig_h;
 };
 
-class manager
+class manager : public viewport
 {
 public:
 	bool init();
