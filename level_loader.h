@@ -15,7 +15,6 @@ public:
 	bool process_character_str(std::string str);
 	bool process_sound_str(std::string str);
 	bool process_block_str(std::string str);
-	bool process_viewport_str(std::string str);
 };
 
 #endif

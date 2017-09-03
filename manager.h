@@ -3,13 +3,12 @@
 
 #include <stdio.h>
 #include "map.h"
-#include "viewport.h"
 #include "resource_manager.h"
 #include "level_loader.h"
 
 class object;
 
-class manager : public viewport, public resource_manager, public level_loader
+class manager : public resource_manager, public level_loader
 {
 public:
 	bool init();

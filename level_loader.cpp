@@ -48,12 +48,6 @@ bool level_loader::load_level(std::string path)
 			std::getline(ifs,buf);
 			process_font_str(buf.c_str());
 		}
-
-		if ( buf == "viewport" )
-		{
-			std::getline(ifs,buf);
-			process_viewport_str(buf.c_str());
-		}
 	}
 
 	ifs.close();
@@ -153,26 +147,6 @@ bool level_loader::process_character_str(std::string str)
 		manager::instance()->get_map()->add_object(dynamic_cast<object*>(temp));
 	}
 
-
-	return true;
-}
-
-bool level_loader::process_viewport_str( std::string str )
-{
-	std::stringstream ss(str);
-	std::string x, y, w, h;
-
-	ss >> x;
-	ss >> y;
-	ss >> w;
-	ss >> h;
-
-	unsigned short x_num = std::stoi(x);
-	unsigned short y_num = std::stoi(y);
-	unsigned short w_num = std::stoi(w);
-	unsigned short h_num = std::stoi(h);
-
-	manager::instance()->set_viewport(x_num, y_num, w_num, h_num);
 
 	return true;
 }
