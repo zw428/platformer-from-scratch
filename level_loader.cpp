@@ -6,6 +6,7 @@
 #include "player.h"
 #include "npc.h"
 #include "teleport_box.h"
+#include "death_box.h"
 
 level_loader::level_loader()
 {
@@ -62,10 +63,10 @@ bool level_loader::load_level(std::string path)
 			process_camera_str(buf.c_str());
 		}
 
-		if ( buf == "teleporter" )
+		if ( buf == "trigger" )
 		{
 			std::getline(ifs,buf);
-			process_teleporter_str(buf.c_str());
+			process_trigger_str(buf.c_str());
 		}
 	}
 
@@ -210,11 +211,12 @@ bool level_loader::process_camera_str(std::string str)
 	return true;
 }
 
-bool level_loader::process_teleporter_str(std::string str)
+bool level_loader::process_trigger_str(std::string str)
 {
 	std::stringstream ss(str);
-	std::string x, y, w, h, x_dest, y_dest;
+	std::string type, x, y, w, h, x_dest, y_dest;
 
+	ss >> type;
 	ss >> x;
 	ss >> y;
 	ss >> w;
@@ -229,14 +231,22 @@ bool level_loader::process_teleporter_str(std::string str)
 	int x_dest_num = std::stoi(x_dest);
 	int y_dest_num = std::stoi(y_dest);
 
-	teleport_box* t = new teleport_box;
+	trigger* t = 0;
+
+	if ( type == "teleporter" )
+	{
+		t = new teleport_box;
+		dynamic_cast<teleport_box*>(t)->set_dest( x_dest_num, y_dest_num );
+	}
+	else if ( type == "death" )
+	{
+		t = new death_box;
+	}
 
 	t->x(x_num);
 	t->y(y_num);
 	t->w(w_num);
 	t->h(h_num);
-
-	t->set_dest( x_dest_num, y_dest_num );
 
 	manager::instance()->get_map()->add_trigger( dynamic_cast<trigger*>(t) );
 
