@@ -44,10 +44,10 @@ bool trigger::think()
 
 	std::vector<object*> objects_vec;
 
-	for ( unsigned i = cp.x; i < (x() + w()) / CHUNK_SIZE; i++ )
+	for ( unsigned i = cp.x; i <= (x() + w()) / CHUNK_SIZE; i++ )
 	{
 		cp.x = i;
-		for ( unsigned j = cp.y; j < (y() + h()) / CHUNK_SIZE; j++ )
+		for ( unsigned j = cp.y; j <= (y() + h()) / CHUNK_SIZE; j++ )
 		{
 			cp.y = j;
 			std::vector<object*> tmp = manager::instance()->get_map()->objects_at( cp );
