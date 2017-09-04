@@ -214,27 +214,30 @@ bool level_loader::process_camera_str(std::string str)
 bool level_loader::process_trigger_str(std::string str)
 {
 	std::stringstream ss(str);
-	std::string type, x, y, w, h, x_dest, y_dest;
+	std::string type, x, y, w, h;
 
 	ss >> type;
 	ss >> x;
 	ss >> y;
 	ss >> w;
 	ss >> h;
-	ss >> x_dest;
-	ss >> y_dest;
 
 	int x_num = std::stoi(x);
 	int y_num = std::stoi(y);
 	unsigned w_num = std::stoi(w);
 	unsigned h_num = std::stoi(h);
-	int x_dest_num = std::stoi(x_dest);
-	int y_dest_num = std::stoi(y_dest);
 
 	trigger* t = 0;
 
 	if ( type == "teleporter" )
 	{
+		std::string x_dest, y_dest;
+
+		ss >> x_dest;
+		ss >> y_dest;
+		int x_dest_num = std::stoi(x_dest);
+		int y_dest_num = std::stoi(y_dest);
+
 		t = new teleport_box;
 		dynamic_cast<teleport_box*>(t)->set_dest( x_dest_num, y_dest_num );
 	}
