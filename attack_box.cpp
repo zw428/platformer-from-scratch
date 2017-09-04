@@ -24,14 +24,14 @@ bool attack_box::action(object* obj)
 		perform( al );
 	}
 
-	unsigned short temp_x = x() + (w() / 2);
-	unsigned short temp_y = y() + (h() / 2);
+	float temp_x = float(x()) + (float(w()) / 2);
+	float temp_y = float(y()) + (float(h()) / 2);
 
-	double x_diff = obj->x() - temp_x;
-	double y_diff = obj->y() - temp_y;
+	float x_diff = float(obj->x()) - temp_x;
+	float y_diff = float(obj->y()) - temp_y;
 
-	float x_frac = x_diff / (x_diff + y_diff);
-	float y_frac = y_diff / (x_diff + y_diff);
+	float x_frac = 1 - x_diff / (std::abs(x_diff) + std::abs(y_diff));
+	float y_frac = 1 - y_diff / (std::abs(x_diff) + std::abs(y_diff));
 
 	float mult = 1;
 

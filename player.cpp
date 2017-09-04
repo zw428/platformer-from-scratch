@@ -89,7 +89,7 @@ void player::start_attack()
 	b->h( h() );
 
 	b->x( x() + w() );
-	b->w( 100 );
+	b->w( 3 );
 
 	trigger* tr = dynamic_cast<trigger*>(b);
 
