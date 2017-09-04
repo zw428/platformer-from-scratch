@@ -3,7 +3,6 @@
 
 #include "trigger.h"
 #include "attack.h"
-#include "image.h"
 
 class attack_box : public trigger, public attack
 {
