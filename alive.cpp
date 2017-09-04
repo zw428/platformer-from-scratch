@@ -7,7 +7,7 @@ alive::alive()
 
 void alive::receive_attack( const attack& att )
 {
-	short health_diff = int(att.damage()) - _armor;
+	short health_diff = int(att.damage());
 
 	if ( health_diff > _health )
 	{
