@@ -46,7 +46,7 @@ private:
 
 	std::vector<std::shared_ptr<object>> _objects;
 
-	std::vector<trigger*> _triggers;
+	std::vector<std::shared_ptr<trigger>> _triggers;
 
 	unsigned short _chunk_x_size;
 	unsigned short _chunk_y_size;

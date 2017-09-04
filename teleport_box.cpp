@@ -2,7 +2,8 @@
 #include "object.h"
 
 teleport_box::teleport_box()
-	:_x_dest(0),
+	:trigger(),
+	 _x_dest(0),
 	 _y_dest(0)
 {
 	lifespan(0);

@@ -9,7 +9,7 @@ class object;
 class trigger : public box
 {
 public:
-	trigger( unsigned short lifespan = 0 );
+	trigger();
 	virtual ~trigger();
 
 	bool think();

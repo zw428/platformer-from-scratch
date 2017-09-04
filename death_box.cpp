@@ -3,6 +3,7 @@
 #include "object.h"
 
 death_box::death_box()
+	:trigger()
 {
 	lifespan(0);
 	interval(0);

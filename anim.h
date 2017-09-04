@@ -25,6 +25,8 @@ private:
 	unsigned short _frame_dur;
 
 	unsigned short _frame_counter;
+
+	unsigned short _index;
 };
 
 #endif

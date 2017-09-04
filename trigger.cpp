@@ -2,12 +2,13 @@
 #include "manager.h"
 #include "object.h"
 #include "collide_functions.h"
+#include <SDL2/SDL.h>
 
-trigger::trigger( unsigned short lifespan )
-	:_time_left(1),
+trigger::trigger()
+	:_lifespan(0),
+	 _time_left(1),
 	 _interval(30)
 {
-	_lifespan = lifespan;
 }
 
 trigger::~trigger()
@@ -16,13 +17,11 @@ trigger::~trigger()
 
 bool trigger::think()
 {
-	static unsigned short time_left = ( _lifespan ? _lifespan : 1 );
-
 	if ( _lifespan )
 	{
-		if ( time_left > 0 )
+		if ( _time_left > 0 )
 		{
-			time_left -= 1;
+			_time_left -= 1;
 		}
 	}
 
@@ -39,15 +38,13 @@ bool trigger::think()
 	}
 
 	chunk_prop cp;
-	cp.x = x() / CHUNK_SIZE;
-	cp.y = y() / CHUNK_SIZE;
 
 	std::vector<object*> objects_vec;
 
-	for ( unsigned i = cp.x; i <= (x() + w()) / CHUNK_SIZE; i++ )
+	for ( unsigned i = x() / CHUNK_SIZE; i <= (x() + w()) / CHUNK_SIZE; i++ )
 	{
 		cp.x = i;
-		for ( unsigned j = cp.y; j <= (y() + h()) / CHUNK_SIZE; j++ )
+		for ( unsigned j = y() / CHUNK_SIZE; j <= (y() + h()) / CHUNK_SIZE; j++ )
 		{
 			cp.y = j;
 			std::vector<object*> tmp = manager::instance()->get_map()->objects_at( cp );
@@ -93,7 +90,7 @@ bool trigger::think()
 		}
 	}
 
-	if ( time_left == 0 )
+	if ( _time_left == 0 )
 	{
 		return true;
 	}

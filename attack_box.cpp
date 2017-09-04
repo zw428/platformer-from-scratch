@@ -5,6 +5,7 @@
 #include "npc.h"
 
 attack_box::attack_box()
+	:trigger()
 {
 	lifespan(20);
 	interval(20);

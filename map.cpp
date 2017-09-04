@@ -43,7 +43,11 @@ bool map::add_object(object* obj)
 
 bool map::add_trigger(trigger* tr)
 {
-	_triggers.push_back(tr);
+	std::shared_ptr<trigger> shared_trigger;
+
+	shared_trigger.reset(tr);
+
+	_triggers.push_back(shared_trigger);
 
 	return true;
 }
@@ -85,10 +89,12 @@ void map::think()
 
 	for ( unsigned i=0; i < _triggers.size(); i++ )
 	{
-		if ( _triggers[i]->think() )
+		std::shared_ptr<trigger> shared_trigger = _triggers[i];
+		trigger* tr = shared_trigger.get();
+
+		if ( tr->think() )
 		{
-			delete _triggers[i];
-			_triggers.erase( _triggers.begin() + i );
+			_triggers.erase( _triggers.begin() + i-- );
 		}
 	}
 }

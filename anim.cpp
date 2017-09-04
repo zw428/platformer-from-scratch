@@ -3,7 +3,8 @@
 anim::anim()
 	:image(),
 	 _clip_offset(0),
-	 _frame_counter(0)
+	 _frame_counter(0),
+	 _index(0)
 {
 }
 
@@ -65,9 +66,7 @@ unsigned short anim::frame_dur()
 
 void anim::handle_frame_count()
 {
-	static unsigned short index = 0;
-
-	clip_offset( ( index )*clip_width() );
+	clip_offset( ( _index )*clip_width() );
 
 	if ( _frame_counter < _frame_dur )
 	{
@@ -77,9 +76,9 @@ void anim::handle_frame_count()
 	{
 		_frame_counter = 0;
 
-		if ( ++index >= tex_store().orig_w / _clip_width )
+		if ( ++_index >= tex_store().orig_w / _clip_width )
 		{
-			index = 0;
+			_index = 0;
 		}
 	}
 }
