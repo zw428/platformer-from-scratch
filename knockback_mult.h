@@ -8,6 +8,7 @@ class knockback_mult : public alive
 {
 public:
 	knockback_mult();
+	~knockback_mult();
 	void receive_attack( const attack& att );
 	void set_knockback_mult( float mult );
 	float get_knockback_mult();

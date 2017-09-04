@@ -15,6 +15,7 @@ class npc : public knockback_mult, public object
 {
 public:
 	npc();
+	~npc();
 	bool think();
 	void dest( unsigned short x, unsigned short y );
 	bool can_move();

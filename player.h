@@ -18,6 +18,7 @@ class player : public alive, public object
 {
 public:
 	player();
+	~player();
 	bool think();
 	void start_attack();
 private:

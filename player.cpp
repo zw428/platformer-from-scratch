@@ -20,6 +20,10 @@ player::player()
 	_anm.frame_dur(1);
 }
 
+player::~player()
+{
+}
+
 bool player::think()
 {
 	handle_speeds();

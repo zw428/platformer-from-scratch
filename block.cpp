@@ -10,6 +10,10 @@ block::block()
 	weightless(true);
 }
 
+block::~block()
+{
+}
+
 bool block::think()
 {
 	if ( _type != empty )

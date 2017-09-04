@@ -17,6 +17,10 @@ npc::npc()
 	_img.h(h());
 }
 
+npc::~npc()
+{
+}
+
 bool npc::think()
 {
 	handle_speeds();

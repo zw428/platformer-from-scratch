@@ -5,6 +5,10 @@ alive::alive()
 {
 }
 
+alive::~alive()
+{
+}
+
 void alive::receive_attack( const attack& att )
 {
 	short health_diff = int(att.damage());

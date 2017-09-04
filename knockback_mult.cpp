@@ -7,6 +7,10 @@ knockback_mult::knockback_mult()
 	health(1);
 }
 
+knockback_mult::~knockback_mult()
+{
+}
+
 void knockback_mult::receive_attack( const attack& att )
 {
 	_mult += float(att.damage()) / 100;

@@ -11,6 +11,10 @@ object::object()
 	_id = _id_counter++;
 }
 
+object::~object()
+{
+}
+
 bool object::operator==(const object& obj)
 {
 	return _id == obj._id;

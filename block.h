@@ -13,6 +13,7 @@ class block : public object
 {
 public:
 	block();
+	~block();
 	bool think();
 	void handle_keys( SDL_Event* ev );
 

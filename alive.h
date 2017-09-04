@@ -7,6 +7,7 @@ class alive
 {
 public:
 	alive();
+	virtual ~alive();
 
 	virtual void receive_attack( const attack& att );
 
