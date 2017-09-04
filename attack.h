@@ -1,11 +1,11 @@
 #ifndef ATTACK_H
 #define ATTACK_H
 
-#include <SDL2/SDL_mixer.h>
+#include "sound_player.h"
 
 class alive;
 
-class attack
+class attack : public sound_player
 {
 public:
 	attack();
@@ -20,16 +20,12 @@ public:
 	void owner( alive* own );
 
 	void perform( alive* al );
-
-	void play_sound();
-	void sound( const char* sound_name );
 private:
 	void reset_delay();
 
 	unsigned short _damage;
 	unsigned short _knockback;
 
-	Mix_Chunk* _sound;
 	alive* _owner;
 };
 

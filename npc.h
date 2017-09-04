@@ -11,8 +11,9 @@
 #include "image.h"
 #include "mover.h"
 #include "death.h"
+#include "disabled.h"
 
-class npc : public knockback_mult, public object, public death
+class npc : public knockback_mult, public object, public death, public disabled
 {
 public:
 	npc();

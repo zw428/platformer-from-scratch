@@ -27,10 +27,11 @@ bool npc::think()
 {
 	handle_speeds();
 	handle_gravity();
+	handle_disabled();
 
 	static unsigned short think_delay = 0;
 
-	if ( x() != _x_dest)
+	if ( !is_disabled() && x() != _x_dest)
 	{
 		if ( _x_dest < x() )
 		{

@@ -3,7 +3,7 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 CC =g++ -g
 
-BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o build/teleporter.o build/teleport_box.o build/death_box.o build/knockback_mult.o build/death.o
+BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o build/teleporter.o build/teleport_box.o build/death_box.o build/knockback_mult.o build/death.o build/disabled.o build/sound_player.o
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 TEST_OBJECTS = $(BASE_OBJECTS) build/test.o
@@ -114,6 +114,12 @@ build/knockback_mult.o: knockback_mult.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/death.o: death.cpp
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/disabled.o: disabled.cpp
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/sound_player.o: sound_player.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/test.o: tests/test.cpp

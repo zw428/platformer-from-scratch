@@ -2,6 +2,7 @@
 #include "alive.h"
 #include "object.h"
 #include "knockback_mult.h"
+#include "npc.h"
 
 attack_box::attack_box()
 {
