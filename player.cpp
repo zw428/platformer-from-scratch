@@ -4,7 +4,8 @@
 #include <cmath>
 
 player::player()
-	 :alive()
+	 :alive(),
+	  object()
 {
 	weightless(false);
 	set_collision_object( dynamic_cast<object*>(this) );

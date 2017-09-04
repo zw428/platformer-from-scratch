@@ -10,13 +10,15 @@
 #include "object.h"
 #include "image.h"
 #include "mover.h"
+#include "death.h"
 
-class npc : public knockback_mult, public object
+class npc : public knockback_mult, public object, public death
 {
 public:
 	npc();
 	~npc();
 	bool think();
+	bool on_death();
 	void dest( unsigned short x, unsigned short y );
 	bool can_move();
 private:

@@ -1,12 +1,8 @@
-death/spawn mechanism
-	(death class that has on_death overloadable function)
-		on_death (teleport, health = blah)
+spawn mechanism
+	"disable_movement" timer
 
-	spawning:
-		"disable_movement" timer
-
-		levitate and draw platform under until move disable timer over
-			just make weightless and draw platform under
+	levitate and draw platform under until move disable timer over
+		just make weightless and draw platform under
 
 
 jumper class that allows double jump, etc

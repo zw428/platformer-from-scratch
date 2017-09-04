@@ -6,6 +6,8 @@
 
 npc::npc()
 	 :knockback_mult(),
+	  object(),
+	  death(),
 	  _x_dest(0),
 	  _y_dest(0)
 {
@@ -66,12 +68,20 @@ bool npc::think()
 
 	if ( health() == 0 )
 	{
-		return true;
+		return on_death();
 	}
 
 	_img.x(x());
 	_img.y(y());
 	_img.draw();
+
+	return false;
+}
+
+bool npc::on_death()
+{
+	health(10);
+	teleport(500,300);
 
 	return false;
 }
