@@ -245,6 +245,10 @@ bool level_loader::process_trigger_str(std::string str)
 	{
 		t = new death_box;
 	}
+	else
+	{
+		return false;
+	}
 
 	t->x(x_num);
 	t->y(y_num);
