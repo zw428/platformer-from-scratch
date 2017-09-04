@@ -141,6 +141,11 @@ std::vector<object*> map::objects_at( chunk_prop cp, object* ignore )
 {
 	std::vector<object*> ret;
 
+	if ( cp.x >= chunk_x_size() || cp.y >= chunk_y_size() )
+	{
+		return ret;
+	}
+
 	std::vector<object*>& vec = _objects_grid[cp.x][cp.y];
 
 	for ( unsigned i=0; i < vec.size(); i++ )
