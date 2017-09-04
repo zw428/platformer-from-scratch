@@ -2,7 +2,7 @@
 #include "consts.h"
 
 gravity_affected::gravity_affected()
-	:collider()
+	:teleporter()
 {
 }
 

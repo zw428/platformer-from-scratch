@@ -2,8 +2,9 @@
 #define GRAVITY_AFFECTED_H
 
 #include "collider.h"
+#include "teleporter.h"
 
-class gravity_affected : public collider
+class gravity_affected : public teleporter
 {
 public:
 	gravity_affected();
