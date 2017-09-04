@@ -9,11 +9,6 @@ manager::manager()
 	 _window_w(1024),
 	 _window_h(768)
 {
-	_map.init(1024,768);
-
-	set_camera( 100, 100 );
-	resize_camera( 1024, 768 );
-
 	data_path("./data/");
 }
 
@@ -136,22 +131,6 @@ bool manager::main_loop()
 		}
 
 		SDL_RenderClear( _ren );
-
-		//draw grid
-
-		SDL_SetRenderDrawColor( _ren, 32, 32, 32, 32 );
-
-		for ( unsigned i=0; i < _window_w / CHUNK_SIZE; i++ )
-		{
-			SDL_RenderDrawLine( _ren, i*CHUNK_SIZE, 0, i*CHUNK_SIZE, _window_h );
-		}
-
-		for ( unsigned j=0; j < _window_h / CHUNK_SIZE; j++ )
-		{
-			SDL_RenderDrawLine( _ren, 0, j*CHUNK_SIZE, _window_w, j*CHUNK_SIZE );
-		}
-
-		SDL_SetRenderDrawColor( _ren, 0, 0, 0, 0);
 
 		//objects think
 

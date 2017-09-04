@@ -48,6 +48,18 @@ bool level_loader::load_level(std::string path)
 			std::getline(ifs,buf);
 			process_font_str(buf.c_str());
 		}
+
+		if ( buf == "map" )
+		{
+			std::getline(ifs,buf);
+			process_map_str(buf.c_str());
+		}
+
+		if ( buf == "camera" )
+		{
+			std::getline(ifs,buf);
+			process_camera_str(buf.c_str());
+		}
 	}
 
 	ifs.close();
@@ -146,6 +158,46 @@ bool level_loader::process_character_str(std::string str)
 		temp->y(y_num);
 		manager::instance()->get_map()->add_object(dynamic_cast<object*>(temp));
 	}
+
+
+	return true;
+}
+
+bool level_loader::process_map_str(std::string str)
+{
+	std::stringstream ss(str);
+	std::string x, y;
+
+	ss >> x;
+	ss >> y;
+
+	unsigned x_num = std::stoi(x);
+	unsigned y_num = std::stoi(y);
+
+	manager::instance()->get_map()->init(x_num,y_num);
+
+
+	return true;
+}
+
+bool level_loader::process_camera_str(std::string str)
+{
+	std::stringstream ss(str);
+	std::string x, y, w, h;
+
+	ss >> x;
+	ss >> y;
+	ss >> w;
+	ss >> h;
+
+	SDL_Rect r;
+
+	r.x = std::stoi(x);
+	r.y = std::stoi(y);
+	r.w = std::stoi(w);
+	r.h = std::stoi(h);
+
+	manager::instance()->set_camera( r );
 
 
 	return true;
