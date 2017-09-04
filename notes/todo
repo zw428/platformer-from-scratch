@@ -1,6 +1,5 @@
 spawn mechanism
-	"disable_movement" timer
-
+	(on spawn)
 	levitate and draw platform under until move disable timer over
 		just make weightless and draw platform under
 
