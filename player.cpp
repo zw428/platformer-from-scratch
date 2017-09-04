@@ -11,6 +11,7 @@ player::player()
 	jump_vel(8);
 
 	_attack_delay = 30;
+	_attack_counter = _attack_delay;
 
 	_anm.texture(manager::instance()->textures("sheet"));
 	_anm.w(w());
@@ -77,7 +78,7 @@ void player::start_attack()
 	b->sound("test");
 	b->damage(5);
 	b->knockback(20);
-	b->owner(this);
+	b->owner( dynamic_cast<alive*>(this));
 
 	b->y( y() );
 	b->h( h() );
