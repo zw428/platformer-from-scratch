@@ -1,4 +1,5 @@
 #include "vel_accel.h"
+#include <cmath>
 
 vel_accel::vel_accel()
 	:_h_speed(0),
@@ -10,12 +11,12 @@ vel_accel::vel_accel()
 
 void vel_accel::h_speed(float h_speed)
 {
-	_h_speed = h_speed;
+	_h_speed = limit_speed(h_speed);
 }
 
 void vel_accel::v_speed(float v_speed)
 {
-	_v_speed = v_speed;
+	_v_speed = limit_speed(v_speed);
 }
 
 float vel_accel::h_speed()
@@ -46,4 +47,18 @@ float vel_accel::h_accel()
 float vel_accel::v_accel()
 {
 	return _v_accel;
+}
+
+float vel_accel::limit_speed( float speed )
+{
+	if ( speed > SPEED_MAX )
+	{
+		return SPEED_MAX;
+	}
+	else if ( speed < -SPEED_MAX )
+	{
+		return -SPEED_MAX;
+	}
+
+	return speed;
 }

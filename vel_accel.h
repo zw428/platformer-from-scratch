@@ -1,6 +1,8 @@
 #ifndef VEL_ACCEL_H
 #define VEL_ACCEL_H
 
+const float SPEED_MAX = 15;
+
 class vel_accel
 {
 public:
@@ -15,6 +17,7 @@ public:
 	float h_accel();
 	float v_accel();
 private:
+	float limit_speed( float speed );
 	float _h_speed;
 	float _v_speed;
 
