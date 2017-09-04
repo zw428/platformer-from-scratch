@@ -1,5 +1,3 @@
-trigger for death
-
 make another class like alive that has damage instead of health, handles knockback (more knockback the more damage it has)
 	overload attack perform() to accept that class too
 	probably do alive inherited with 1 health so it can still be killed
