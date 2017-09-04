@@ -71,11 +71,14 @@ bool trigger::think()
 				return true;
 			}
 
-			object_interval tmp;
-			tmp.counter = interval();
-			tmp.obj = objects_vec[i];
+			if ( interval() )
+			{
+				object_interval tmp;
+				tmp.counter = interval();
+				tmp.obj = objects_vec[i];
 
-			_ignores.push_back(tmp);
+				_ignores.push_back(tmp);
+			}
 		}
 	}
 

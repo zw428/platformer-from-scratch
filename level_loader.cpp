@@ -5,6 +5,7 @@
 #include "block.h"
 #include "player.h"
 #include "npc.h"
+#include "teleport_box.h"
 
 level_loader::level_loader()
 {
@@ -59,6 +60,12 @@ bool level_loader::load_level(std::string path)
 		{
 			std::getline(ifs,buf);
 			process_camera_str(buf.c_str());
+		}
+
+		if ( buf == "teleporter" )
+		{
+			std::getline(ifs,buf);
+			process_teleporter_str(buf.c_str());
 		}
 	}
 
@@ -199,6 +206,39 @@ bool level_loader::process_camera_str(std::string str)
 
 	manager::instance()->set_camera( r );
 
+
+	return true;
+}
+
+bool level_loader::process_teleporter_str(std::string str)
+{
+	std::stringstream ss(str);
+	std::string x, y, w, h, x_dest, y_dest;
+
+	ss >> x;
+	ss >> y;
+	ss >> w;
+	ss >> h;
+	ss >> x_dest;
+	ss >> y_dest;
+
+	int x_num = std::stoi(x);
+	int y_num = std::stoi(y);
+	unsigned w_num = std::stoi(w);
+	unsigned h_num = std::stoi(h);
+	int x_dest_num = std::stoi(x_dest);
+	int y_dest_num = std::stoi(y_dest);
+
+	teleport_box* t = new teleport_box;
+
+	t->x(x_num);
+	t->y(y_num);
+	t->w(w_num);
+	t->h(h_num);
+
+	t->set_dest( x_dest_num, y_dest_num );
+
+	manager::instance()->get_map()->add_trigger( dynamic_cast<trigger*>(t) );
 
 	return true;
 }

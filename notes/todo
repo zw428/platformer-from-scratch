@@ -1,4 +1,22 @@
-triggers for teleport and death (level loader too)
+trigger for death
+
+make another class like alive that has damage instead of health, handles knockback (more knockback the more damage it has)
+	overload attack perform() to accept that class too
+
+death/spawn mechanism
+	(death class that has on_death overloadable function)
+		on_death (teleport, health = blah)
+
+	spawning:
+		"disable_movement" timer
+
+		levitate and draw platform under until move disable timer over
+			just make weightless and draw platform under
+
+
+jumper class that allows double jump, etc
+
+ledge grabbing
 
 make a class that handles "if moving left, if jumping etc" that npc and player
 both INHERIT from. so they can both call something like
