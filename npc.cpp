@@ -29,42 +29,9 @@ bool npc::think()
 	handle_gravity();
 	handle_disabled();
 
-	static unsigned short think_delay = 0;
-
-	if ( !is_disabled() && x() != _x_dest)
+	if ( colliding(2) )
 	{
-		if ( _x_dest < x() )
-		{
-			move_left();
-		}
-		else
-		{
-			move_right();
-		}
-	}
-
-	if ( think_delay == 0 )
-	{
-		std::vector<object*> objs = manager::instance()->get_map()->objects_considered( dynamic_cast<object*>(this) );
-
-		think_delay = 10;
-
-		for ( unsigned i=0; i < objs.size(); i++ )
-		{
-			player* pl = dynamic_cast<player*>(objs[i]);
-			if ( pl )
-			{
-				unsigned short player_x = pl->x();
-				unsigned short player_y = pl->y();
-				dest(player_x, player_y);
-
-				break;
-			}
-		}
-	}
-	else
-	{
-		think_delay--;
+		apply_friction();
 	}
 
 	if ( health() == 0 )
