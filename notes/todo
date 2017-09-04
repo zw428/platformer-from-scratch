@@ -1,6 +1,4 @@
-camera
-
-trigger for death if falling off stage
+triggers for teleport and death (level loader too)
 
 make a class that handles "if moving left, if jumping etc" that npc and player
 both INHERIT from. so they can both call something like
