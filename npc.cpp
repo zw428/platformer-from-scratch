@@ -5,7 +5,7 @@
 #include "player.h"
 
 npc::npc()
-	 :alive(),
+	 :knockback_mult(),
 	  _x_dest(0),
 	  _y_dest(0)
 {

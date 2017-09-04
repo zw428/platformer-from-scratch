@@ -8,7 +8,7 @@ class alive
 public:
 	alive();
 
-	void receive_attack( const attack& att );
+	virtual void receive_attack( const attack& att );
 
 	void health( unsigned short health );
 	unsigned short health() const;

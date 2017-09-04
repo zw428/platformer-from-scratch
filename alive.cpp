@@ -1,8 +1,8 @@
 #include "alive.h"
 
 alive::alive()
+	:_health(1)
 {
-	_health = 1;
 }
 
 void alive::receive_attack( const attack& att )

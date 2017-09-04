@@ -6,12 +6,12 @@
 #include <queue>
 #include <memory>
 
-#include "alive.h"
+#include "knockback_mult.h"
 #include "object.h"
 #include "image.h"
 #include "mover.h"
 
-class npc : public alive, public object
+class npc : public knockback_mult, public object
 {
 public:
 	npc();
