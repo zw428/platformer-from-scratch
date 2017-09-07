@@ -4,13 +4,6 @@
 
 TEST_CASE( "alive setters and getters work", "[alive]" )
 {
-	SECTION( "constructor" )
-	{
-		alive a;
-
-		REQUIRE( a.health() == 1 );
-	}
-
 	SECTION( "setters" )
 	{
 		alive a;
@@ -28,6 +21,14 @@ TEST_CASE( "alive setters and getters work", "[alive]" )
 		REQUIRE( a.health() == 5 );
 	}
 
+	SECTION( "non-const getters" )
+	{
+		alive a;
+		a.health(5);
+
+		REQUIRE( a.health() == 5 );
+	}
+
 	SECTION( "health doesn't drop below 0" )
 	{
 		alive a;
@@ -40,4 +41,10 @@ TEST_CASE( "alive setters and getters work", "[alive]" )
 
 		REQUIRE( a.health() == 0 );
 	}
+}
+
+TEST_CASE( "alive constructor initializes health to 1" )
+{
+	alive a;
+	REQUIRE( a.health() == 1 );
 }
