@@ -6,6 +6,7 @@
 class sound_player
 {
 public:
+	sound_player();
 	void play_sound();
 	void sound( const char* sound_name );
 private:
