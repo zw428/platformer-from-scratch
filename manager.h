@@ -13,6 +13,7 @@ class manager : public resource_manager, public level_loader, public camera
 {
 public:
 	bool init();
+	bool main_loop();
         static manager* instance();
 
 	std::string data_path();
@@ -22,8 +23,6 @@ public:
 	map* get_map();
 private:
 	manager();
-
-	bool main_loop();
 
 	const char* _game_title;
 	std::string _data_path_prefix;

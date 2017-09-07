@@ -94,8 +94,6 @@ bool manager::init()
 
 	keys::instance();
 
-	main_loop();
-
 	return true;
 }
 
