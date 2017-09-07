@@ -6,13 +6,15 @@ CC =g++ -g
 BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o build/teleporter.o build/teleport_box.o build/death_box.o build/knockback_mult.o build/death.o build/disabled.o build/sound_player.o
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
-TEST_OBJECTS = $(BASE_OBJECTS) build/test.o
+
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
 
 test: $(TEST_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/test
+	build/test
 
 clean:
 	rm build/*.o
@@ -122,5 +124,14 @@ build/disabled.o: disabled.cpp
 build/sound_player.o: sound_player.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/test.o: tests/test.cpp
+
+#TEST OBJECTS
+
+build/test_main.o: test/test_main.cpp
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/box_test.o: test/box_test.cpp
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/alive_test.o: test/alive_test.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
