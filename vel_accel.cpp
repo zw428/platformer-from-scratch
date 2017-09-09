@@ -19,12 +19,12 @@ void vel_accel::v_speed(float v_speed)
 	_v_speed = limit_speed(v_speed);
 }
 
-float vel_accel::h_speed()
+float vel_accel::h_speed() const
 {
 	return _h_speed;
 }
 
-float vel_accel::v_speed()
+float vel_accel::v_speed() const
 {
 	return _v_speed;
 }
@@ -39,12 +39,12 @@ void vel_accel::v_accel(float v_accel)
 	_v_accel = v_accel;
 }
 
-float vel_accel::h_accel()
+float vel_accel::h_accel() const
 {
 	return _h_accel;
 }
 
-float vel_accel::v_accel()
+float vel_accel::v_accel() const
 {
 	return _v_accel;
 }

@@ -73,22 +73,22 @@ build/box.o: box.cpp box.h
 build/trigger.o: trigger.cpp trigger.h box.cpp box.h manager.cpp manager.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/attack_box.o: attack_box.cpp attack_box.h trigger.cpp trigger.h attack.cpp attack.h knockback_mult.cpp knockback_mult.h
+build/attack_box.o: attack_box.cpp attack_box.h trigger.cpp trigger.h attack.cpp attack.h knockback_mult.cpp knockback_mult.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/anim.o: anim.cpp anim.h image.cpp image.h camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/collider.o: collider.cpp collider.h mover.cpp mover.h box.cpp box.h map.cpp map.h
+build/collider.o: collider.cpp collider.h mover.cpp mover.h box.cpp box.h map.cpp map.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/gravity_affected.o: gravity_affected.cpp gravity_affected.h collider.cpp collider.h teleporter.cpp teleporter.h
+build/gravity_affected.o: gravity_affected.cpp gravity_affected.h collider.cpp collider.h teleporter.cpp teleporter.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/vel_accel.o: vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/mover.o: mover.cpp mover.h friction.cpp friction.h
+build/mover.o: mover.cpp mover.h friction.cpp friction.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/friction.o: friction.cpp friction.h vel_accel.cpp vel_accel.h
@@ -139,7 +139,7 @@ build/box_test.o: test/box_test.cpp box.cpp box.h
 build/alive_test.o: test/alive_test.cpp alive.cpp alive.h attack.cpp attack.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/attack_box_test.o: test/attack_box_test.cpp alive.h alive.cpp object.h object.cpp
+build/attack_box_test.o: test/attack_box_test.cpp alive.h alive.cpp object.h object.cpp vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/attack_test.o: test/attack_test.cpp attack.cpp attack.h sound_player.cpp sound_player.h attackable.cpp attackable.h
@@ -160,7 +160,7 @@ build/chunk_prop_test.o: test/chunk_prop_test.cpp chunk_prop.cpp chunk_prop.h
 build/collide_functions_test.o: test/collide_functions_test.cpp collide_functions.cpp collide_functions.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/collider_test.o: test/collider_test.cpp collider.cpp collider.h manager.cpp manager.h object.cpp object.h collide_functions.cpp collide_functions.h map.cpp map.h
+build/collider_test.o: test/collider_test.cpp collider.cpp collider.h manager.cpp manager.h object.cpp object.h collide_functions.cpp collide_functions.h map.cpp map.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/death_box_test.o: test/death_box_test.cpp death_box.cpp death_box.h trigger.cpp trigger.h death.cpp death.h object.cpp object.h
@@ -175,7 +175,7 @@ build/disabled_test.o: test/disabled_test.cpp disabled.cpp disabled.h
 build/friction_test.o: test/friction_test.cpp friction.cpp friction.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/gravity_affected_test.o: test/gravity_affected_test.cpp gravity_affected.cpp gravity_affected.h collider.cpp collider.h teleporter.cpp teleporter.h
+build/gravity_affected_test.o: test/gravity_affected_test.cpp gravity_affected.cpp gravity_affected.h collider.cpp collider.h teleporter.cpp teleporter.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/image_test.o: test/image_test.cpp image.cpp image.h box.cpp box.h camera.cpp camera.h
@@ -196,7 +196,7 @@ build/manager_test.o: test/manager_test.cpp manager.cpp manager.h map.cpp map.h 
 build/map_test.o: test/map_test.cpp map.cpp map.h chunk_prop.cpp chunk_prop.h trigger.cpp trigger.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/mover_test.o: test/mover_test.cpp mover.cpp mover.h friction.cpp friction.h 
+build/mover_test.o: test/mover_test.cpp mover.cpp mover.h friction.cpp friction.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/npc_test.o: test/npc_test.cpp npc.cpp npc.h manager.cpp manager.h alive.cpp alive.h object.cpp object.h death.cpp death.h disabled.cpp disabled.h knockback_mult.cpp knockback_mult.h image.cpp image.h
@@ -226,5 +226,8 @@ build/teleporter_test.o: test/teleporter_test.cpp teleporter.cpp collider.cpp co
 build/text_test.o: test/text_test.cpp text.cpp text.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/trigger_test.o: test/trigger_test.cpp text.cpp text.h box.cpp box.h object.cpp object.h manager.cpp manager.h
+build/trigger_test.o: test/trigger_test.cpp trigger.cpp trigger.h text.cpp text.h box.cpp box.h object.cpp object.h manager.cpp manager.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/vel_accel_test.o: test/vel_accel_test.cpp vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
