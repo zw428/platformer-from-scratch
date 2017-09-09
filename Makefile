@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -134,4 +134,7 @@ build/box_test.o: test/box_test.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/alive_test.o: test/alive_test.cpp
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/attack_box_test.o: test/attack_box_test.cpp
 	$(CC) $(FLAGS) -c -o $@ $<

@@ -1,3 +1,6 @@
+finish writing tests
+	catch can do fixtures so you can access private methods
+
 spawn mechanism
 	on_spawn() (and spawn()? object not deleted but can still spawn?)
 
