@@ -37,7 +37,7 @@ build/object.o: object.cpp object.h gravity_affected.cpp gravity_affected.h
 build/player.o: player.cpp player.h alive.cpp alive.h object.cpp object.h anim.cpp anim.h keys.cpp keys.h manager.cpp manager.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/map.o: map.cpp map.h
+build/map.o: map.cpp map.h chunk_prop.cpp chunk_prop.h trigger.cpp trigger.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/main.o: main.cpp
