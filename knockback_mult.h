@@ -11,7 +11,7 @@ public:
 	~knockback_mult();
 	void receive_attack( const attack& att );
 	void set_knockback_mult( float mult );
-	float get_knockback_mult();
+	float get_knockback_mult() const;
 private:
 	float _mult;
 };

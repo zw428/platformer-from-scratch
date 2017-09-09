@@ -20,7 +20,7 @@ void knockback_mult::set_knockback_mult( float mult )
 	_mult = mult;
 }
 
-float knockback_mult::get_knockback_mult()
+float knockback_mult::get_knockback_mult() const
 {
 	return _mult;
 }
