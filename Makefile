@@ -97,7 +97,7 @@ build/friction.o: friction.cpp friction.h vel_accel.cpp vel_accel.h
 build/resource_manager.o: resource_manager.cpp resource_manager.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/level_loader.o: level_loader.cpp level_loader.h
+build/level_loader.o: level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/camera.o: camera.cpp camera.h
