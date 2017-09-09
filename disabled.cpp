@@ -13,7 +13,7 @@ void disabled::handle_disabled()
 	}
 }
 
-bool disabled::is_disabled()
+bool disabled::is_disabled() const
 {
 	return _timer;
 }
