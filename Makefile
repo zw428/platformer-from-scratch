@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -152,4 +152,7 @@ build/block_test.o: test/block_test.cpp block.cpp block.h object.cpp object.h im
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/camera_test.o: test/camera_test.cpp camera.cpp camera.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/chunk_prop_test.o: test/chunk_prop_test.cpp chunk_prop.cpp chunk_prop.h
 	$(CC) $(FLAGS) -c -o $@ $<
