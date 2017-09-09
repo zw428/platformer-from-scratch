@@ -32,7 +32,7 @@ void image::texture( texture_store tex_store )
 	_tex_store = tex_store;
 }
 
-texture_store image::tex_store()
+texture_store image::tex_store() const
 {
 	return _tex_store;
 }

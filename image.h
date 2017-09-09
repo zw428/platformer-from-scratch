@@ -13,7 +13,7 @@ public:
 
 	void draw();
 	void texture( texture_store tex_store );
-	texture_store tex_store();
+	texture_store tex_store() const;
 private:
 	texture_store _tex_store;
 
