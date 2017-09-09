@@ -7,7 +7,7 @@ mover::mover()
 {
 }
 
-unsigned short mover::h_speed_max()
+unsigned short mover::h_speed_max() const
 {
 	return _h_speed_max;
 }
@@ -17,7 +17,7 @@ void mover::h_speed_max( unsigned short speed )
 	_h_speed_max = speed;
 }
 
-unsigned short mover::jump_vel()
+unsigned short mover::jump_vel() const
 {
 	return _jump_vel;
 }
@@ -27,7 +27,7 @@ void mover::jump_vel( unsigned short speed )
 	_jump_vel = speed;
 }
 
-float mover::h_accel_rate()
+float mover::h_accel_rate() const
 {
 	return _h_accel_rate;
 }
