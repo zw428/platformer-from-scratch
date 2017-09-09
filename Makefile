@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -40,7 +40,7 @@ build/player.o: player.cpp player.h alive.cpp alive.h object.cpp object.h anim.c
 build/map.o: map.cpp map.h chunk_prop.cpp chunk_prop.h trigger.cpp trigger.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/main.o: main.cpp
+build/main.o: main.cpp manager.cpp manager.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/chunk_prop.o: chunk_prop.cpp chunk_prop.h
@@ -185,4 +185,7 @@ build/keys_test.o: test/keys_test.cpp keys.cpp keys.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/knockback_mult_test.o: test/knockback_mult_test.cpp knockback_mult.cpp knockback_mult.h attackable.cpp attackable.h attack.cpp attack.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/level_loader_test.o: test/level_loader_test.cpp level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h
 	$(CC) $(FLAGS) -c -o $@ $<
