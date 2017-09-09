@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -94,7 +94,7 @@ build/mover.o: mover.cpp mover.h friction.cpp friction.h
 build/friction.o: friction.cpp friction.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/resource_manager.o: resource_manager.cpp resource_manager.h
+build/resource_manager.o: resource_manager.cpp resource_manager.h manager.cpp manager.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/level_loader.o: level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h
@@ -188,4 +188,7 @@ build/knockback_mult_test.o: test/knockback_mult_test.cpp knockback_mult.cpp kno
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/level_loader_test.o: test/level_loader_test.cpp level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/manager_test.o: test/manager_test.cpp manager.cpp manager.h map.cpp map.h resource_manager.cpp resource_manager.h level_loader.cpp level_loader.h camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<

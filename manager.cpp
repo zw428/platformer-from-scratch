@@ -28,7 +28,7 @@ void manager::destroy()
 	_instance = 0;
 }
 
-std::string manager::data_path()
+std::string manager::data_path() const
 {
 	return _data_path_prefix;
 }

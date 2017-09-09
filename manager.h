@@ -17,7 +17,7 @@ public:
         static manager* instance();
         static void destroy();
 
-	std::string data_path();
+	std::string data_path() const;
 	void data_path( std::string path );
 
 	SDL_Renderer* renderer();
