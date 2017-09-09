@@ -16,7 +16,7 @@ public:
 	~block();
 	bool think();
 
-	bool is_solid();
+	bool is_solid() const;
 
 	void type( block_type type );
 private:

@@ -2,7 +2,8 @@
 #include "manager.h"
 
 block::block()
-	 :object()
+	 :object(),
+	  _type(solid)
 {
 	_img.w(w());
 	_img.h(h());
@@ -28,7 +29,7 @@ bool block::think()
 	return false;
 }
 
-bool block::is_solid()
+bool block::is_solid() const
 {
 	return ( _type != block_type::empty );
 }
