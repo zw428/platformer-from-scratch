@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 
 class camera
 {
@@ -12,11 +12,11 @@ public:
 	void set_camera( int x, int y );
 	void resize_camera( int w, int h );
 
-	SDL_Point camera_coords( int x, int y );
+	SDL_Point camera_coords( int x, int y ) const;
 
-	bool should_draw( int x, int y, int w, int h );
+	bool should_draw( int x, int y, int w, int h ) const;
 
-	SDL_Rect camera_rect();
+	SDL_Rect camera_rect() const;
 private:
 	SDL_Rect _cam;
 };

@@ -24,7 +24,7 @@ void camera::resize_camera( int w, int h )
 	_cam.h = h;
 }
 
-SDL_Point camera::camera_coords( int x, int y )
+SDL_Point camera::camera_coords( int x, int y ) const
 {
 	SDL_Point p;
 
@@ -34,7 +34,7 @@ SDL_Point camera::camera_coords( int x, int y )
 	return p;
 }
 
-bool camera::should_draw( int x, int y, int w, int h )
+bool camera::should_draw( int x, int y, int w, int h ) const
 {
 	if ( x + w < _cam.x ||
 	     x > _cam.x + _cam.w ||
@@ -47,7 +47,7 @@ bool camera::should_draw( int x, int y, int w, int h )
 	return true;
 }
 
-SDL_Rect camera::camera_rect()
+SDL_Rect camera::camera_rect() const
 {
 	return _cam;
 }

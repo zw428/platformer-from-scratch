@@ -7,8 +7,8 @@ TEST_CASE( "constructor initializes values", "[attack]" )
 {
 	attack att;
 
-	REQUIRE( att.damage() == 0 );
-	REQUIRE( att.knockback() == 0 );
+	CHECK( att.damage() == 0 );
+	CHECK( att.knockback() == 0 );
 }
 
 TEST_CASE( "attack setters and getters work", "[attack]" )
@@ -19,21 +19,9 @@ TEST_CASE( "attack setters and getters work", "[attack]" )
 		att.damage(5);
 		att.knockback(5);
 		att.owner(0);
-		REQUIRE( att.damage() == 5 );
-		REQUIRE( att.knockback() == 5 );
-		REQUIRE( att.owner() == 0 );
-	}
-
-	SECTION( "const" )
-	{
-		attack att;
-		att.damage(5);
-		att.knockback(5);
-		att.owner(0);
-		const attack& const_att = att;
-		REQUIRE( const_att.damage() == 5 );
-		REQUIRE( const_att.knockback() == 5 );
-		REQUIRE( const_att.owner() == 0 );
+		CHECK( att.damage() == 5 );
+		CHECK( att.knockback() == 5 );
+		CHECK( att.owner() == 0 );
 	}
 }
 

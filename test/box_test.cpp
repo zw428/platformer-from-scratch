@@ -10,23 +10,8 @@ TEST_CASE( "box setters and getters work", "[box]" )
 	b.w(3);
 	b.h(4);
 
-	SECTION( "non-const box" )
-	{
-		box& b_nonconst = b;
-
-		REQUIRE( b_nonconst.x() == 1 );
-		REQUIRE( b_nonconst.y() == 2 );
-		REQUIRE( b_nonconst.w() == 3 );
-		REQUIRE( b_nonconst.h() == 4 );
-	}
-
-	SECTION( "const box" )
-	{
-		const box& b_const = b;
-
-		REQUIRE( b_const.x() == 1 );
-		REQUIRE( b_const.y() == 2 );
-		REQUIRE( b_const.w() == 3 );
-		REQUIRE( b_const.h() == 4 );
-	}
+	CHECK( b.x() == 1 );
+	CHECK( b.y() == 2 );
+	CHECK( b.w() == 3 );
+	CHECK( b.h() == 4 );
 }

@@ -12,16 +12,7 @@ TEST_CASE( "alive setters and getters work", "[alive]" )
 		REQUIRE( a.health() == 5 );
 	}
 
-	SECTION( "const getters" )
-	{
-		alive a;
-		a.health(5);
-		const alive& a_const = a;
-
-		REQUIRE( a.health() == 5 );
-	}
-
-	SECTION( "non-const getters" )
+	SECTION( "getters" )
 	{
 		alive a;
 		a.health(5);

@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -52,7 +52,7 @@ build/alive.o: alive.cpp alive.h attackable.cpp attackable.h
 build/attack.o: attack.cpp attack.h sound_player.cpp sound_player.h attackable.cpp attackable.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/image.o: image.cpp image.h box.cpp box.h
+build/image.o: image.cpp image.h box.cpp box.h camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/keys.o: keys.cpp keys.h
@@ -76,7 +76,7 @@ build/trigger.o: trigger.cpp trigger.h box.cpp box.h
 build/attack_box.o: attack_box.cpp attack_box.h trigger.cpp trigger.h attack.cpp attack.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/anim.o: anim.cpp anim.h image.cpp image.h
+build/anim.o: anim.cpp anim.h image.cpp image.h camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/collider.o: collider.cpp collider.h mover.cpp mover.h box.cpp box.h
@@ -149,4 +149,7 @@ build/attackable_test.o: test/attackable_test.cpp attackable.cpp attackable.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/block_test.o: test/block_test.cpp block.cpp block.h object.cpp object.h image.cpp image.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/camera_test.o: test/camera_test.cpp camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<
