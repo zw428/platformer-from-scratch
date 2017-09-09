@@ -2,11 +2,12 @@
 #include "consts.h"
 
 gravity_affected::gravity_affected()
-	:teleporter()
+	:teleporter(),
+	 _weightless(false)
 {
 }
 
-bool gravity_affected::weightless()
+bool gravity_affected::weightless() const
 {
 	return _weightless;
 }

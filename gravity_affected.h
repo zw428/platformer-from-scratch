@@ -8,7 +8,7 @@ class gravity_affected : public teleporter
 {
 public:
 	gravity_affected();
-	bool weightless();
+	bool weightless() const;
 	void weightless(bool weightless);
 	void handle_gravity();
 private:
