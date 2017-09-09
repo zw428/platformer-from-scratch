@@ -14,11 +14,7 @@ public:
 	~npc();
 	bool think();
 	bool on_death();
-	void dest( unsigned short x, unsigned short y );
 private:
-	unsigned short _x_dest;
-	unsigned short _y_dest;
-
 	image _img;
 };
 

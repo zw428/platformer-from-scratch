@@ -161,7 +161,6 @@ bool level_loader::process_character_str(std::string str)
 	else if ( type == "npc" )
 	{
 		npc* temp = new npc;
-		temp->dest(x_num,y_num);
 		temp->x(x_num);
 		temp->y(y_num);
 		manager::instance()->get_map()->add_object(dynamic_cast<object*>(temp));

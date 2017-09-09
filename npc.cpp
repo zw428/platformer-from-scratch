@@ -5,9 +5,7 @@
 npc::npc()
 	 :knockback_mult(),
 	  object(),
-	  death(),
-	  _x_dest(0),
-	  _y_dest(0)
+	  death()
 {
 	set_collision_object( dynamic_cast<object*>(this) );
 
@@ -43,10 +41,4 @@ bool npc::on_death()
 	teleport(500,300);
 
 	return false;
-}
-
-void npc::dest( unsigned short x, unsigned short y )
-{
-	_x_dest = x;
-	_y_dest = y;
 }
