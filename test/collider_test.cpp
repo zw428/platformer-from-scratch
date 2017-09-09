@@ -3,10 +3,10 @@
 #include "../object.h"
 #include "../manager.h"
 
-class tmp : public object
+class collider_tmp : public object
 {
 public:
-	tmp() :object() {};
+	collider_tmp() :object() {};
 	bool think() { return false; };
 };
 
@@ -20,7 +20,7 @@ TEST_CASE( "collider constructors initialize things", "[collider]" )
 
 	SECTION( "collider( object* obj )" )
 	{
-		tmp t;
+		collider_tmp t;
 		collider c( dynamic_cast<object*>(&t) );
 		CHECK( c.collision_object() == &t );
 	}
@@ -28,14 +28,14 @@ TEST_CASE( "collider constructors initialize things", "[collider]" )
 
 TEST_CASE( "collider::move_phys collides with stuff", "[collider]" )
 {
-	tmp* still = new tmp;
+	collider_tmp* still = new collider_tmp;
 
 	still->x(100);
 	still->y(100);
 	still->w(20);
 	still->h(20);
 
-	tmp* moving = new tmp;
+	collider_tmp* moving = new collider_tmp;
 
 	moving->x(80);
 	moving->y(80);
@@ -54,14 +54,14 @@ TEST_CASE( "collider::move_phys collides with stuff", "[collider]" )
 
 TEST_CASE( "collider::move_phys doesn't collide with stuff not in the way", "[collider]" )
 {
-	tmp* still = new tmp;
+	collider_tmp* still = new collider_tmp;
 
 	still->x(200);
 	still->y(200);
 	still->w(20);
 	still->h(20);
 
-	tmp* moving = new tmp;
+	collider_tmp* moving = new collider_tmp;
 
 	moving->x(80);
 	moving->y(80);
@@ -81,14 +81,14 @@ TEST_CASE( "collider::move_phys doesn't collide with stuff not in the way", "[co
 
 TEST_CASE( "collider::colliding() tells if colliding in direction", "[collider]" )
 {
-	tmp* still = new tmp;
+	collider_tmp* still = new collider_tmp;
 
 	still->x(100);
 	still->y(100);
 	still->w(20);
 	still->h(20);
 
-	tmp* moving = new tmp;
+	collider_tmp* moving = new collider_tmp;
 
 	moving->x(100);
 	moving->y(121);
@@ -125,7 +125,7 @@ TEST_CASE( "collider::colliding() tells if colliding in direction", "[collider]"
 
 TEST_CASE( "collider::set_collision_object works", "[collider]" )
 {
-	tmp t;
+	collider_tmp t;
 
 	object* obj;
 
@@ -136,7 +136,7 @@ TEST_CASE( "collider::set_collision_object works", "[collider]" )
 
 TEST_CASE( "collider::handle_speeds moves the collider", "[collider]" )
 {
-	tmp* test = new tmp;
+	collider_tmp* test = new collider_tmp;
 
 	test->x(100);
 	test->y(100);
@@ -157,7 +157,7 @@ TEST_CASE( "collider::handle_speeds moves the collider", "[collider]" )
 
 TEST_CASE( "collider::handle_speeds handles acceleration", "[collider]" )
 {
-	tmp* test = new tmp;
+	collider_tmp* test = new collider_tmp;
 
 	test->x(100);
 	test->y(100);
