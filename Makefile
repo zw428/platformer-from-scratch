@@ -3,11 +3,11 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 CC =g++ -g
 
-BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o build/teleporter.o build/teleport_box.o build/death_box.o build/knockback_mult.o build/death.o build/disabled.o build/sound_player.o build/attackable.o
+BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o build/teleporter.o build/teleport_box.o build/death_box.o build/knockback_mult.o build/death.o build/disabled.o build/sound_player.o build/attackable.o build/spawnable.o
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o build/map_test.o build/mover_test.o build/npc_test.o build/object_test.o build/player_test.o build/resource_manager_test.o build/shared_texture_test.o build/sound_player_test.o build/teleport_box_test.o build/teleporter_test.o build/text_test.o build/trigger_test.o build/vel_accel_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o build/map_test.o build/mover_test.o build/npc_test.o build/object_test.o build/player_test.o build/resource_manager_test.o build/shared_texture_test.o build/sound_player_test.o build/teleport_box_test.o build/teleporter_test.o build/text_test.o build/trigger_test.o build/vel_accel_test.o build/spawnable_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -127,6 +127,9 @@ build/sound_player.o: sound_player.cpp sound_player.h
 build/attackable.o: attackable.cpp attackable.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
+build/spawnable.o: spawnable.cpp spawnable.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
 
 #TEST OBJECTS
 
@@ -230,4 +233,7 @@ build/trigger_test.o: test/trigger_test.cpp trigger.cpp trigger.h text.cpp text.
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/vel_accel_test.o: test/vel_accel_test.cpp vel_accel.cpp vel_accel.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/spawnable_test.o: test/spawnable_test.cpp spawnable.cpp spawnable.h
 	$(CC) $(FLAGS) -c -o $@ $<

@@ -1,13 +1,3 @@
-finish writing tests
-	catch can do fixtures so you can access private methods
-
-spawn mechanism
-	on_spawn() (and spawn()? object not deleted but can still spawn?)
-
-	levitate and draw platform under until move disable timer over
-		just make weightless and draw platform under
-
-
 jumper class that allows double jump, etc
 
 up/down and left/right attack
