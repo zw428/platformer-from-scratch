@@ -5,6 +5,8 @@
 #include "object.h"
 
 map::map()
+	:_x_size(0),
+	 _y_size(0)
 {
 }
 
@@ -16,16 +18,18 @@ map::map( unsigned x_size, unsigned y_size )
 void map::init( unsigned x_size, unsigned y_size )
 {
 	empty();
+
+	x_size -= x_size % CHUNK_SIZE;
+	y_size -= y_size % CHUNK_SIZE;
+
 	_x_size = x_size;
 	_y_size = y_size;
-	_chunk_x_size = x_size / CHUNK_SIZE;
-	_chunk_y_size = y_size / CHUNK_SIZE;
 
-	_objects_grid.resize(_chunk_x_size);
+	_objects_grid.resize(chunk_x_size());
 
-	for ( unsigned i=0; i < _chunk_x_size; i++ )
+	for ( unsigned i=0; i < chunk_x_size(); i++ )
 	{
-		_objects_grid[i].resize(_chunk_y_size);
+		_objects_grid[i].resize(chunk_y_size());
 	}
 }
 
@@ -124,22 +128,22 @@ void map::update_object_chunk( object* obj )
 	}
 }
 
-unsigned short map::chunk_x_size()
+unsigned short map::chunk_x_size() const
 {
-	return _chunk_x_size;
+	return x_size() / CHUNK_SIZE;
 }
 
-unsigned short map::chunk_y_size()
+unsigned short map::chunk_y_size() const
 {
-	return _chunk_y_size;
+	return y_size() / CHUNK_SIZE;
 }
 
-unsigned map::x_size()
+unsigned map::x_size() const
 {
 	return _x_size;
 }
 
-unsigned map::y_size()
+unsigned map::y_size() const
 {
 	return _y_size;
 }
@@ -149,6 +153,8 @@ void map::empty()
 	_objects.clear();
 	_objects_grid.clear();
 	_triggers.clear();
+	_x_size = 0;
+	_y_size = 0;
 }
 
 std::vector<object*> map::objects_at( chunk_prop cp, object* ignore )
@@ -177,14 +183,14 @@ std::vector<object*> map::objects_considered( object* obj )
 {
 	chunk_prop cp = obj_chunk_prop(obj);
 
-	if ( cp.x >= _chunk_x_size )
+	if ( cp.x >= chunk_x_size() )
 	{
-		cp.x = _chunk_x_size - 1;
+		cp.x = chunk_x_size() - 1;
 	}
 
-	if ( cp.y >= _chunk_x_size )
+	if ( cp.y >= chunk_x_size() )
 	{
-		cp.y = _chunk_y_size - 1;
+		cp.y = chunk_y_size() - 1;
 	}
 
 	std::vector<object*> ret;
@@ -198,7 +204,7 @@ std::vector<object*> map::objects_considered( object* obj )
 			temp_cp.x += x;
 			temp_cp.y += y;
 
-			if ( temp_cp.x >= 0 && temp_cp.x < _chunk_x_size && temp_cp.y >= 0 && temp_cp.y < _chunk_y_size )
+			if ( temp_cp.x >= 0 && temp_cp.x < chunk_x_size() && temp_cp.y >= 0 && temp_cp.y < chunk_y_size() )
 			{
 				std::vector<object*> tmp = objects_at( temp_cp, obj );
 				ret.insert( ret.end(), tmp.begin(), tmp.end() );

@@ -30,10 +30,10 @@ public:
 
 	void think();
 
-	unsigned short chunk_x_size();
-	unsigned short chunk_y_size();
-	unsigned x_size();
-	unsigned y_size();
+	unsigned short chunk_x_size() const;
+	unsigned short chunk_y_size() const;
+	unsigned x_size() const;
+	unsigned y_size() const;
 
 	void empty();
 
@@ -48,9 +48,6 @@ private:
 	std::vector<std::shared_ptr<object>> _objects;
 
 	std::vector<std::shared_ptr<trigger>> _triggers;
-
-	unsigned short _chunk_x_size;
-	unsigned short _chunk_y_size;
 
 	unsigned _x_size;
 	unsigned _y_size;
