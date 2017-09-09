@@ -12,9 +12,10 @@ class object;
 class manager : public resource_manager, public level_loader, public camera
 {
 public:
-	bool init();
+	bool init( bool no_window = false );
 	bool main_loop();
         static manager* instance();
+        static void destroy();
 
 	std::string data_path();
 	void data_path( std::string path );

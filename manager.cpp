@@ -21,6 +21,13 @@ manager* manager::instance()
 
 	return _instance;
 }
+
+void manager::destroy()
+{
+	delete _instance;
+	_instance = 0;
+}
+
 std::string manager::data_path()
 {
 	return _data_path_prefix;
@@ -31,7 +38,7 @@ void manager::data_path( std::string path )
 	_data_path_prefix = path;
 }
 
-bool manager::init()
+bool manager::init( bool no_window )
 {
 	if ( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
@@ -44,7 +51,9 @@ bool manager::init()
 		printf( "no linear texture filturing\n" );
 	}
 
-	_win = SDL_CreateWindow( _game_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _window_w, _window_h, SDL_WINDOW_SHOWN );
+	Uint32 window_flags = ( no_window ) ? SDL_WINDOW_HIDDEN : SDL_WINDOW_SHOWN;
+
+	_win = SDL_CreateWindow( _game_title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, _window_w, _window_h, window_flags );
 
 	if ( !_win )
 	{
