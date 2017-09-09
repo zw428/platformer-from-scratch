@@ -11,9 +11,10 @@ public:
 	shared_texture( SDL_Texture* tex );
 	~shared_texture();
 	shared_texture( const shared_texture& shr );
-	shared_texture* operator=( const shared_texture& shr );
-	SDL_Texture* tex();
+	shared_texture operator=( const shared_texture& shr );
+	SDL_Texture* tex() const;
 	void tex( SDL_Texture* tex );
+	unsigned short count() const;
 private:
 	void create( SDL_Texture* tex );
 	void destroy();
