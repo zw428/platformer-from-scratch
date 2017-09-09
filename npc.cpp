@@ -50,8 +50,3 @@ void npc::dest( unsigned short x, unsigned short y )
 	_x_dest = x;
 	_y_dest = y;
 }
-
-bool npc::can_move()
-{
-	return _can_move;
-}

@@ -15,9 +15,7 @@ public:
 	bool think();
 	bool on_death();
 	void dest( unsigned short x, unsigned short y );
-	bool can_move();
 private:
-	bool _can_move;
 	unsigned short _x_dest;
 	unsigned short _y_dest;
 
