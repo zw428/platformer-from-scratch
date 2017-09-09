@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -164,4 +164,7 @@ build/collider_test.o: test/collider_test.cpp collider.cpp collider.h manager.cp
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/death_box_test.o: test/death_box_test.cpp death_box.cpp death_box.h trigger.cpp trigger.h death.cpp death.h object.cpp object.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/death_test.o: test/death_test.cpp death.cpp death.h
 	$(CC) $(FLAGS) -c -o $@ $<
