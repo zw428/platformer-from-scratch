@@ -28,8 +28,6 @@ public:
 	bool add_object( object* obj );
 	bool add_trigger( trigger* tr );
 
-	void erase_object_from_grid( object* obj );
-
 	void think();
 
 	unsigned short chunk_x_size();
@@ -42,6 +40,7 @@ public:
         std::vector<object*> objects_at( chunk_prop cp, object* ignore = 0 );
 	std::vector<object*> objects_considered( object* obj );
 private:
+	void erase_object_from_grid( object* obj );
 	void update_object_chunk( object* obj );
 
 	std::vector<std::vector<std::vector<object*>>> _objects_grid;
