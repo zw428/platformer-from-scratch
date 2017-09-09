@@ -2,14 +2,14 @@
 #define ALIVE_H
 
 #include "attack.h"
+#include "attackable.h"
 
-class alive
+class alive : public attackable
 {
 public:
 	alive();
-	virtual ~alive();
-
-	virtual void receive_attack( const attack& att );
+	~alive();
+	void receive_attack( const attack& att );
 
 	void health( unsigned short health );
 	unsigned short health() const;

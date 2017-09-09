@@ -1,10 +1,10 @@
 #ifndef KNOCKBACK_MULT_H
 #define KNOCKBACK_MULT_H
 
-#include "alive.h"
+#include "attackable.h"
 #include "attack.h"
 
-class knockback_mult : public alive
+class knockback_mult : public attackable
 {
 public:
 	knockback_mult();

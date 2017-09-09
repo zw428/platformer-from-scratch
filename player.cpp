@@ -1,6 +1,7 @@
 #include "player.h"
 #include "manager.h"
 #include "keys.h"
+#include "attackable.h"
 #include <cmath>
 
 player::player()
@@ -83,7 +84,7 @@ void player::start_attack()
 	b->sound("test");
 	b->damage(5);
 	b->knockback(20);
-	b->owner( dynamic_cast<alive*>(this));
+	b->owner( dynamic_cast<attackable*>(this));
 
 	b->y( y() );
 	b->h( h() );

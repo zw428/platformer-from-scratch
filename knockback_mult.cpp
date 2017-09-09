@@ -1,10 +1,9 @@
 #include "knockback_mult.h"
 
 knockback_mult::knockback_mult()
-	:alive(),
+	:attackable(),
 	 _mult(1)
 {
-	health(1);
 }
 
 knockback_mult::~knockback_mult()

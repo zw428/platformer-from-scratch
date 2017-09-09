@@ -3,7 +3,7 @@
 
 #include "sound_player.h"
 
-class alive;
+class attackable;
 
 class attack : public sound_player
 {
@@ -16,17 +16,17 @@ public:
 	void knockback( unsigned short knockback );
 	unsigned short knockback() const;
 
-	alive* owner();
-	void owner( alive* own );
+	attackable* owner() const;
+	void owner( attackable* own );
 
-	void perform( alive* al );
+	void perform( attackable* a );
 private:
 	void reset_delay();
 
 	unsigned short _damage;
 	unsigned short _knockback;
 
-	alive* _owner;
+	attackable* _owner;
 };
 
 #endif

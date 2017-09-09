@@ -1,8 +1,6 @@
 #include "npc.h"
-
 #include "manager.h"
-#include "collide_functions.h"
-#include "player.h"
+#include "alive.h"
 
 npc::npc()
 	 :knockback_mult(),
@@ -12,7 +10,6 @@ npc::npc()
 	  _y_dest(0)
 {
 	set_collision_object( dynamic_cast<object*>(this) );
-	health(10);
 
 	_img.texture(manager::instance()->textures("test"));
 	_img.w(w());
@@ -34,11 +31,6 @@ bool npc::think()
 		apply_friction();
 	}
 
-	if ( health() == 0 )
-	{
-		return on_death();
-	}
-
 	_img.x(x());
 	_img.y(y());
 	_img.draw();
@@ -48,7 +40,6 @@ bool npc::think()
 
 bool npc::on_death()
 {
-	health(10);
 	teleport(500,300);
 
 	return false;

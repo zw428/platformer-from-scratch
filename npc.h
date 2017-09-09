@@ -1,17 +1,11 @@
 #ifndef NPC_H
 #define NPC_H
 
-
-#include <SDL2/SDL.h>
-#include <queue>
-#include <memory>
-
 #include "knockback_mult.h"
 #include "object.h"
-#include "image.h"
-#include "mover.h"
 #include "death.h"
 #include "disabled.h"
+#include "image.h"
 
 class npc : public knockback_mult, public object, public death, public disabled
 {

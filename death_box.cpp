@@ -1,6 +1,6 @@
 #include "death_box.h"
-#include "alive.h"
 #include "object.h"
+#include "death.h"
 
 death_box::death_box()
 	:trigger()
@@ -15,11 +15,11 @@ death_box::~death_box()
 
 bool death_box::action( object* obj )
 {
-	alive* al = dynamic_cast<alive*>(obj);
+	death* d = dynamic_cast<death*>(obj);
 
-	if ( al )
+	if ( d )
 	{
-		al->health(0);
+		d->on_death();
 	}
 
 	return false;

@@ -1,6 +1,6 @@
 #include "attack.h"
 #include "manager.h"
-#include "alive.h"
+#include "attackable.h"
 
 attack::attack()
 	:_damage(0),
@@ -28,18 +28,18 @@ unsigned short attack::knockback() const
 	return _knockback;
 }
 
-alive* attack::owner()
+attackable* attack::owner() const
 {
 	return _owner;
 }
 
-void attack::owner( alive* own )
+void attack::owner( attackable* own )
 {
 	_owner = own;
 }
 
-void attack::perform( alive* al )
+void attack::perform( attackable* a )
 {
-	al->receive_attack( *this );
+	a->receive_attack( *this );
 	play_sound();
 }

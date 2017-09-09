@@ -1,7 +1,8 @@
 #include "alive.h"
 
 alive::alive()
-	:_health(1)
+	:attackable(),
+	 _health(1)
 {
 }
 
