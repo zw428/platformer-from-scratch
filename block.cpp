@@ -28,10 +28,6 @@ bool block::think()
 	return false;
 }
 
-void block::handle_keys( SDL_Event* ev )
-{
-}
-
 bool block::is_solid()
 {
 	return ( _type != block_type::empty );

@@ -15,7 +15,6 @@ public:
 	block();
 	~block();
 	bool think();
-	void handle_keys( SDL_Event* ev );
 
 	bool is_solid();
 
