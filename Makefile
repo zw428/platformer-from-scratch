@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o build/map_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -79,7 +79,7 @@ build/attack_box.o: attack_box.cpp attack_box.h trigger.cpp trigger.h attack.cpp
 build/anim.o: anim.cpp anim.h image.cpp image.h camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/collider.o: collider.cpp collider.h mover.cpp mover.h box.cpp box.h
+build/collider.o: collider.cpp collider.h mover.cpp mover.h box.cpp box.h map.cpp map.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/gravity_affected.o: gravity_affected.cpp gravity_affected.h collider.cpp collider.h teleporter.cpp teleporter.h
@@ -97,7 +97,7 @@ build/friction.o: friction.cpp friction.h vel_accel.cpp vel_accel.h
 build/resource_manager.o: resource_manager.cpp resource_manager.h manager.cpp manager.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/level_loader.o: level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h
+build/level_loader.o: level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h map.cpp map.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/camera.o: camera.cpp camera.h
@@ -160,7 +160,7 @@ build/chunk_prop_test.o: test/chunk_prop_test.cpp chunk_prop.cpp chunk_prop.h
 build/collide_functions_test.o: test/collide_functions_test.cpp collide_functions.cpp collide_functions.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/collider_test.o: test/collider_test.cpp collider.cpp collider.h manager.cpp manager.h object.cpp object.h collide_functions.cpp collide_functions.h
+build/collider_test.o: test/collider_test.cpp collider.cpp collider.h manager.cpp manager.h object.cpp object.h collide_functions.cpp collide_functions.h map.cpp map.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/death_box_test.o: test/death_box_test.cpp death_box.cpp death_box.h trigger.cpp trigger.h death.cpp death.h object.cpp object.h
@@ -187,8 +187,11 @@ build/keys_test.o: test/keys_test.cpp keys.cpp keys.h
 build/knockback_mult_test.o: test/knockback_mult_test.cpp knockback_mult.cpp knockback_mult.h attackable.cpp attackable.h attack.cpp attack.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/level_loader_test.o: test/level_loader_test.cpp level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h
+build/level_loader_test.o: test/level_loader_test.cpp level_loader.cpp level_loader.h manager.cpp manager.h block.cpp block.h player.cpp player.h npc.cpp npc.h teleport_box.cpp teleport_box.h death_box.cpp death_box.h map.cpp map.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/manager_test.o: test/manager_test.cpp manager.cpp manager.h map.cpp map.h resource_manager.cpp resource_manager.h level_loader.cpp level_loader.h camera.cpp camera.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/map_test.o: test/map_test.cpp map.cpp map.h chunk_prop.cpp chunk_prop.h trigger.cpp trigger.h
 	$(CC) $(FLAGS) -c -o $@ $<
