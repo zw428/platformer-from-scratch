@@ -22,7 +22,7 @@ clean:
 build/block.o: block.cpp block.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/collide_functions.o: collide_functions.cpp
+build/collide_functions.o: collide_functions.cpp collide_functions.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/manager.o: manager.cpp manager.h
@@ -43,85 +43,85 @@ build/map.o: map.cpp map.h
 build/main.o: main.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/chunk_prop.o: chunk_prop.cpp
+build/chunk_prop.o: chunk_prop.cpp chunk_prop.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/alive.o: alive.cpp
+build/alive.o: alive.cpp alive.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/attack.o: attack.cpp
+build/attack.o: attack.cpp attack.h sound_player.cpp sound_player.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/image.o: image.cpp
+build/image.o: image.cpp image.h box.cpp box.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/keys.o: keys.cpp
+build/keys.o: keys.cpp keys.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/text.o: text.cpp
+build/text.o: text.cpp text.h shared_texture.cpp shared_texture.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/shared_texture.o: shared_texture.cpp
+build/shared_texture.o: shared_texture.cpp shared_texture.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/consts.o: consts.cpp
+build/consts.o: consts.cpp consts.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/box.o: box.cpp
+build/box.o: box.cpp box.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/trigger.o: trigger.cpp
+build/trigger.o: trigger.cpp trigger.h box.cpp box.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/attack_box.o: attack_box.cpp
+build/attack_box.o: attack_box.cpp attack_box.h trigger.cpp trigger.h attack.cpp attack.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/anim.o: anim.cpp
+build/anim.o: anim.cpp anim.h image.cpp image.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/collider.o: collider.cpp
+build/collider.o: collider.cpp collider.h mover.cpp mover.h box.cpp box.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/gravity_affected.o: gravity_affected.cpp
+build/gravity_affected.o: gravity_affected.cpp gravity_affected.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/vel_accel.o: vel_accel.cpp
+build/vel_accel.o: vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/mover.o: mover.cpp
+build/mover.o: mover.cpp mover.h friction.cpp friction.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/friction.o: friction.cpp
+build/friction.o: friction.cpp friction.h vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/resource_manager.o: resource_manager.cpp
+build/resource_manager.o: resource_manager.cpp resource_manager.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/level_loader.o: level_loader.cpp
+build/level_loader.o: level_loader.cpp level_loader.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/camera.o: camera.cpp
+build/camera.o: camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/teleporter.o: teleporter.cpp
+build/teleporter.o: teleporter.cpp teleporter.h collider.cpp collider.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/teleport_box.o: teleport_box.cpp
+build/teleport_box.o: teleport_box.cpp teleport_box.h trigger.cpp trigger.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/death_box.o: death_box.cpp
+build/death_box.o: death_box.cpp death_box.h trigger.cpp trigger.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/knockback_mult.o: knockback_mult.cpp
+build/knockback_mult.o: knockback_mult.cpp knockback_mult.h alive.cpp alive.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/death.o: death.cpp
+build/death.o: death.cpp death.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/disabled.o: disabled.cpp
+build/disabled.o: disabled.cpp disabled.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/sound_player.o: sound_player.cpp
+build/sound_player.o: sound_player.cpp sound_player.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 
@@ -130,11 +130,11 @@ build/sound_player.o: sound_player.cpp
 build/test_main.o: test/test_main.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/box_test.o: test/box_test.cpp
+build/box_test.o: test/box_test.cpp box.cpp box.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/alive_test.o: test/alive_test.cpp
+build/alive_test.o: test/alive_test.cpp alive.cpp alive.h attack.cpp attack.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/attack_box_test.o: test/attack_box_test.cpp
+build/attack_box_test.o: test/attack_box_test.cpp alive.h alive.cpp object.h object.cpp
 	$(CC) $(FLAGS) -c -o $@ $<
