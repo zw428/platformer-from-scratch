@@ -15,6 +15,7 @@ map::map( unsigned x_size, unsigned y_size )
 
 void map::init( unsigned x_size, unsigned y_size )
 {
+	empty();
 	_x_size = x_size;
 	_y_size = y_size;
 	_chunk_x_size = x_size / CHUNK_SIZE;
@@ -141,6 +142,13 @@ unsigned map::x_size()
 unsigned map::y_size()
 {
 	return _y_size;
+}
+
+void map::empty()
+{
+	_objects.clear();
+	_objects_grid.clear();
+	_triggers.clear();
 }
 
 std::vector<object*> map::objects_at( chunk_prop cp, object* ignore )

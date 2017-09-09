@@ -37,6 +37,8 @@ public:
 	unsigned x_size();
 	unsigned y_size();
 
+	void empty();
+
         std::vector<object*> objects_at( chunk_prop cp, object* ignore = 0 );
 	std::vector<object*> objects_considered( object* obj );
 private:

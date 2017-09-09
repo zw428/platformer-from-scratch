@@ -4,12 +4,15 @@
 #include "collide_functions.h"
 
 collider::collider()
-	:mover(), box()
+	:mover(),
+	 box(),
+	 _collision_obj(0)
 {
 }
 
 collider::collider( object* obj )
-	:mover(), box()
+	:mover(),
+	 box()
 {
 	set_collision_object(obj);
 }
@@ -129,6 +132,7 @@ bool collider::colliding(unsigned short dir)
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -171,7 +175,7 @@ void collider::set_collision_object( object* obj )
 	_collision_obj = obj;
 }
 
-object* collider::collision_object()
+object* collider::collision_object() const
 {
 	return _collision_obj;
 }

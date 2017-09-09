@@ -18,7 +18,7 @@ public:
 	void handle_speeds();
 
 	void set_collision_object( object* self );
-	object* collision_object();
+	object* collision_object() const;
 private:
 	object* _collision_obj;
 	std::vector<object*> _adjacents;
