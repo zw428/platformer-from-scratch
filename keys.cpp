@@ -13,7 +13,7 @@ bool keys::key_pressed( SDL_Keycode code )
 
 }
 
-bool keys::mouse_pressed( unsigned short button )
+bool keys::mouse_pressed( unsigned short button ) const
 {
 	if ( button == 0 )
 	{
@@ -23,12 +23,12 @@ bool keys::mouse_pressed( unsigned short button )
 	return _mouse_pressed[1];
 }
 
-unsigned keys::mouse_x()
+unsigned keys::mouse_x() const
 {
 	return _mouse_x;
 }
 
-unsigned keys::mouse_y()
+unsigned keys::mouse_y() const
 {
 	return _mouse_y;
 }
@@ -67,6 +67,12 @@ void keys::think( SDL_Event* ev )
 		_keys_pressed[ev->key.keysym.sym] = false;
 		break;
 	}
+}
+
+void keys::reset()
+{
+	delete _instance;
+	_instance = 0;
 }
 
 keys::keys()

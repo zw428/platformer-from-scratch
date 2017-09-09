@@ -9,11 +9,13 @@ class keys
 public:
 	void think( SDL_Event* ev );
 
-	bool key_pressed( SDL_Keycode code );
-	bool mouse_pressed( unsigned short button );
+	static void reset();
 
-	unsigned mouse_x();
-	unsigned mouse_y();
+	bool key_pressed( SDL_Keycode code );
+	bool mouse_pressed( unsigned short button ) const;
+
+	unsigned mouse_x() const;
+	unsigned mouse_y() const;
 
 	static keys* instance();
 private:
