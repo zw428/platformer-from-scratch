@@ -18,10 +18,10 @@ public:
 
 	const std::vector<object*> ignores();
 
-	unsigned short lifespan();
+	unsigned short lifespan() const;
 	void lifespan( unsigned short lifespan );
 
-	unsigned short interval();
+	unsigned short interval() const;
 	void interval( unsigned short interval );
 private:
 	unsigned short _lifespan;

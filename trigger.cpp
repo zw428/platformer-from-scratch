@@ -82,7 +82,15 @@ bool trigger::think()
 			if ( interval() )
 			{
 				object_interval tmp;
-				tmp.counter = interval();
+
+				unsigned short tmp_interval = 0;
+
+				if ( interval() > 0 )
+				{
+					tmp_interval = interval() - 1;
+				}
+
+				tmp.counter = tmp_interval;
 				tmp.obj = objects_vec[i];
 
 				_ignores.push_back(tmp);
@@ -98,7 +106,7 @@ bool trigger::think()
 	return false;
 }
 
-unsigned short trigger::lifespan()
+unsigned short trigger::lifespan() const
 {
 	return _lifespan;
 }
@@ -108,7 +116,7 @@ void trigger::lifespan( unsigned short lifespan )
 	_lifespan = lifespan;
 }
 
-unsigned short trigger::interval()
+unsigned short trigger::interval() const
 {
 	return _interval;
 }
