@@ -2,7 +2,6 @@
 #include "../attack_box.h"
 #include "../object.h"
 #include "../alive.h"
-#include <iostream>
 
 TEST_CASE( "attack_box damages object", "[attack_box]" )
 {
