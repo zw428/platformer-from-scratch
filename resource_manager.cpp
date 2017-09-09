@@ -144,6 +144,8 @@ void resource_manager::destroy_textures()
 	{
 		SDL_DestroyTexture(i->second.tex);
 	}
+
+	_textures.clear();
 }
 
 void resource_manager::destroy_musics()
@@ -152,6 +154,8 @@ void resource_manager::destroy_musics()
 	{
 		Mix_FreeMusic(i->second);
 	}
+
+	_musics.clear();
 }
 
 void resource_manager::destroy_sounds()
@@ -160,6 +164,8 @@ void resource_manager::destroy_sounds()
 	{
 		Mix_FreeChunk(i->second);
 	}
+
+	_sounds.clear();
 }
 
 void resource_manager::destroy_fonts()
@@ -168,4 +174,6 @@ void resource_manager::destroy_fonts()
 	{
 		TTF_CloseFont(i->second);
 	}
+
+	_fonts.clear();
 }
