@@ -2,7 +2,8 @@
 
 mover::mover()
 	:_h_speed_max(5),
-	 _h_accel_rate(1)
+	 _h_accel_rate(1),
+	 _facing_right(true)
 {
 }
 
@@ -41,10 +42,14 @@ void mover::move_left()
 			h_speed( -h_speed_max() );
 		}
 	}
+
+	_facing_right = false;
 }
 
 void mover::move_right()
 {
+	_facing_right = true;
+
 	if ( h_speed() < h_speed_max() )
 	{
 		float desired_speed = h_speed() + h_accel_rate();
@@ -58,4 +63,14 @@ void mover::move_right()
 			h_speed( h_speed_max() );
 		}
 	}
+}
+
+bool mover::facing_left() const
+{
+	return !_facing_right;
+}
+
+bool mover::facing_right() const
+{
+	return _facing_right;
 }

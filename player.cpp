@@ -68,6 +68,7 @@ bool player::think()
 
 	_anm.x(x());
 	_anm.y(y());
+	_anm.flip_h(facing_left());
 	_anm.draw();
 
 	return false;

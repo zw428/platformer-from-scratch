@@ -14,13 +14,13 @@ public:
 	void draw();
 	void texture( texture_store tex_store );
 	texture_store tex_store() const;
+
+	void flip_h( bool flipped );
+	bool flip_h() const;
 private:
 	texture_store _tex_store;
 
-	unsigned short _x;
-	unsigned short _y;
-	unsigned short _w;
-	unsigned short _h;
+	bool _flip_h;
 };
 
 #endif

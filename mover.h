@@ -16,9 +16,13 @@ public:
 
 	void move_left();
 	void move_right();
+
+	bool facing_left() const;
+	bool facing_right() const;
 private:
 	unsigned short _h_speed_max;
 	float _h_accel_rate;
+	bool _facing_right;
 };
 
 #endif

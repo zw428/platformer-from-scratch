@@ -30,7 +30,8 @@ void anim::draw()
 
 	if ( manager::instance()->should_draw( x(), y(), w(), h() ) )
 	{
-		SDL_RenderCopy(manager::instance()->renderer(), tex_store().tex, &clip, &rect);
+		SDL_RendererFlip f = (flip_h()) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+		SDL_RenderCopyEx(manager::instance()->renderer(), tex_store().tex, &clip, &rect, 0, 0, f );
 	}
 }
 

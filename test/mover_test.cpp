@@ -7,6 +7,7 @@ TEST_CASE( "mover constructor initializes stuff", "[mover]" )
 
 	CHECK( m.h_speed_max() == 5 );
 	CHECK( m.h_accel_rate() == 1 );
+	CHECK( m.facing_right() == true );
 }
 
 TEST_CASE( "mover setters/getters work", "[mover]" )
@@ -66,4 +67,17 @@ TEST_CASE( "mover::move_* changes h_speed", "[mover]" )
 	m.h_speed(0);
 	m.move_right();
 	CHECK( m.h_speed() > 0 );
+}
+
+TEST_CASE( "mover::move_* changes direction facing", "[mover]" )
+{
+	mover m;
+
+	m.move_left();
+	CHECK( m.facing_left() == true );
+	CHECK( m.facing_right() == false );
+
+	m.move_right();
+	CHECK( m.facing_right() == true );
+	CHECK( m.facing_left() == false );
 }
