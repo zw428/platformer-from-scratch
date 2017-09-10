@@ -7,7 +7,7 @@ BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o build/map_test.o build/mover_test.o build/npc_test.o build/object_test.o build/player_test.o build/resource_manager_test.o build/shared_texture_test.o build/sound_player_test.o build/teleport_box_test.o build/teleporter_test.o build/text_test.o build/trigger_test.o build/vel_accel_test.o build/spawnable_test.o build/jumper_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o build/map_test.o build/mover_test.o build/npc_test.o build/object_test.o build/player_test.o build/resource_manager_test.o build/shared_texture_test.o build/sound_player_test.o build/teleport_box_test.o build/teleporter_test.o build/text_test.o build/trigger_test.o build/vel_accel_test.o build/spawnable_test.o build/jumper_test.o build/anim_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -242,4 +242,7 @@ build/spawnable_test.o: test/spawnable_test.cpp spawnable.cpp spawnable.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/jumper_test.o: test/jumper_test.cpp jumper.cpp jumper.h mover.cpp mover.h manager.cpp manager.h object.cpp object.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/anim_test.o: test/anim_test.cpp anim.cpp anim.h image.cpp image.h camera.cpp camera.h
 	$(CC) $(FLAGS) -c -o $@ $<
