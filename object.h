@@ -1,9 +1,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "gravity_affected.h"
+#include "jumper.h"
 
-class object : public gravity_affected
+class object : public jumper
 {
 public:
 	object();

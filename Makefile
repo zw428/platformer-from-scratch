@@ -3,11 +3,11 @@ LIBS = -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 
 CC =g++ -g
 
-BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o build/teleporter.o build/teleport_box.o build/death_box.o build/knockback_mult.o build/death.o build/disabled.o build/sound_player.o build/attackable.o build/spawnable.o
+BASE_OBJECTS = build/block.o build/collide_functions.o build/manager.o build/npc.o build/object.o build/player.o build/map.o build/chunk_prop.o build/alive.o build/attack.o build/image.o build/keys.o build/text.o build/shared_texture.o build/consts.o build/box.o build/trigger.o build/attack_box.o build/anim.o build/collider.o build/gravity_affected.o build/vel_accel.o build/mover.o build/friction.o build/resource_manager.o build/level_loader.o build/camera.o build/teleporter.o build/teleport_box.o build/death_box.o build/knockback_mult.o build/death.o build/disabled.o build/sound_player.o build/attackable.o build/spawnable.o build/jumper.o
 
 MAIN_OBJECTS = $(BASE_OBJECTS) build/main.o
 
-TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o build/map_test.o build/mover_test.o build/npc_test.o build/object_test.o build/player_test.o build/resource_manager_test.o build/shared_texture_test.o build/sound_player_test.o build/teleport_box_test.o build/teleporter_test.o build/text_test.o build/trigger_test.o build/vel_accel_test.o build/spawnable_test.o
+TEST_OBJECTS = $(BASE_OBJECTS) build/test_main.o build/box_test.o build/alive_test.o build/attack_box_test.o build/attack_test.o build/attackable_test.o build/block_test.o build/camera_test.o build/chunk_prop_test.o build/collide_functions_test.o build/collider_test.o build/death_box_test.o build/death_test.o build/disabled_test.o build/friction_test.o build/gravity_affected_test.o build/image_test.o build/keys_test.o build/knockback_mult_test.o build/level_loader_test.o build/manager_test.o build/map_test.o build/mover_test.o build/npc_test.o build/object_test.o build/player_test.o build/resource_manager_test.o build/shared_texture_test.o build/sound_player_test.o build/teleport_box_test.o build/teleporter_test.o build/text_test.o build/trigger_test.o build/vel_accel_test.o build/spawnable_test.o build/jumper_test.o
 
 unknown: $(MAIN_OBJECTS)
 	$(CC) $^ $(LIBS) -o build/unknown
@@ -34,7 +34,7 @@ build/npc.o: npc.cpp npc.h manager.cpp manager.h alive.cpp alive.h object.cpp ob
 build/object.o: object.cpp object.h gravity_affected.cpp gravity_affected.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/player.o: player.cpp player.h alive.cpp alive.h object.cpp object.h anim.cpp anim.h keys.cpp keys.h manager.cpp manager.h
+build/player.o: player.cpp player.h alive.cpp alive.h object.cpp object.h anim.cpp anim.h keys.cpp keys.h manager.cpp manager.h mover.cpp mover.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/map.o: map.cpp map.h chunk_prop.cpp chunk_prop.h trigger.cpp trigger.h
@@ -130,6 +130,9 @@ build/attackable.o: attackable.cpp attackable.h
 build/spawnable.o: spawnable.cpp spawnable.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
+build/jumper.o: jumper.cpp jumper.h mover.cpp mover.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
 
 #TEST OBJECTS
 
@@ -163,7 +166,7 @@ build/chunk_prop_test.o: test/chunk_prop_test.cpp chunk_prop.cpp chunk_prop.h
 build/collide_functions_test.o: test/collide_functions_test.cpp collide_functions.cpp collide_functions.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/collider_test.o: test/collider_test.cpp collider.cpp collider.h manager.cpp manager.h object.cpp object.h collide_functions.cpp collide_functions.h map.cpp map.h vel_accel.cpp vel_accel.h
+build/collider_test.o: test/collider_test.cpp collider.cpp collider.h manager.cpp manager.h object.cpp object.h collide_functions.cpp collide_functions.h map.cpp map.h vel_accel.cpp vel_accel.h mover.cpp mover.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/death_box_test.o: test/death_box_test.cpp death_box.cpp death_box.h trigger.cpp trigger.h death.cpp death.h object.cpp object.h
@@ -208,7 +211,7 @@ build/npc_test.o: test/npc_test.cpp npc.cpp npc.h manager.cpp manager.h alive.cp
 build/object_test.o: test/object_test.cpp object.cpp object.h gravity_affected.cpp gravity_affected.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/player_test.o: test/player_test.cpp player.cpp player.h alive.cpp alive.h object.cpp object.h anim.cpp anim.h keys.cpp keys.h manager.cpp manager.h 
+build/player_test.o: test/player_test.cpp player.cpp player.h alive.cpp alive.h object.cpp object.h anim.cpp anim.h keys.cpp keys.h manager.cpp manager.h mover.cpp mover.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/resource_manager_test.o: test/resource_manager_test.cpp resource_manager.cpp resource_manager.h manager.cpp manager.h 
@@ -236,4 +239,7 @@ build/vel_accel_test.o: test/vel_accel_test.cpp vel_accel.cpp vel_accel.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/spawnable_test.o: test/spawnable_test.cpp spawnable.cpp spawnable.h
+	$(CC) $(FLAGS) -c -o $@ $<
+
+build/jumper_test.o: test/jumper_test.cpp jumper.cpp jumper.h mover.cpp mover.h manager.cpp manager.h object.cpp object.h
 	$(CC) $(FLAGS) -c -o $@ $<

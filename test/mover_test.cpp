@@ -7,7 +7,6 @@ TEST_CASE( "mover constructor initializes stuff", "[mover]" )
 
 	CHECK( m.h_speed_max() == 5 );
 	CHECK( m.h_accel_rate() == 1 );
-	CHECK( m.jump_vel() == 5 );
 }
 
 TEST_CASE( "mover setters/getters work", "[mover]" )
@@ -15,11 +14,9 @@ TEST_CASE( "mover setters/getters work", "[mover]" )
 	mover m;
 
 	m.h_speed_max(1);
-	m.jump_vel(2);
 	m.h_accel_rate(2.7);
 
 	CHECK( m.h_speed_max() == 1 );
-	CHECK( m.jump_vel() == 2 );
 	CHECK( m.h_accel_rate() == float(2.7) );
 }
 
@@ -69,15 +66,4 @@ TEST_CASE( "mover::move_* changes h_speed", "[mover]" )
 	m.h_speed(0);
 	m.move_right();
 	CHECK( m.h_speed() > 0 );
-}
-
-TEST_CASE( "mover::jump changes v_speed", "[mover]" )
-{
-	mover m;
-
-	m.v_speed(0);
-
-	m.jump();
-
-	CHECK( m.v_speed() < 0 );
 }

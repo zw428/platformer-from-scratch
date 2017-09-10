@@ -10,7 +10,6 @@ player::player()
 {
 	weightless(false);
 	set_collision_object( dynamic_cast<object*>(this) );
-	jump_vel(8);
 
 	_attack_delay = 30;
 	_attack_counter = _attack_delay;
@@ -42,10 +41,7 @@ bool player::think()
 	bool right     = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 
-	if ( up && colliding(2) )
-	{
-		jump();
-	}
+	handle_jumping(up);
 
 	if ( down )
 	{

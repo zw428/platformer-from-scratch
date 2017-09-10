@@ -5,7 +5,7 @@
 unsigned long object::_id_counter = 0;
 
 object::object()
-	:gravity_affected()
+	:jumper()
 {
 	set_collision_object(this);
 	_id = _id_counter++;
