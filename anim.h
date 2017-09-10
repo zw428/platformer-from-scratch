@@ -12,11 +12,11 @@ public:
 
 	void clip_width( unsigned short width );
 	void clip_offset( unsigned short offset );
-	unsigned short clip_offset();
-	unsigned short clip_width();
-
 	void frame_dur( unsigned short t );
-	unsigned short frame_dur();
+
+	unsigned short clip_offset() const;
+	unsigned short clip_width() const;
+	unsigned short frame_dur() const;
 private:
 	void handle_frame_count();
 

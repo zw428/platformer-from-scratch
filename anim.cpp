@@ -3,6 +3,8 @@
 anim::anim()
 	:image(),
 	 _clip_offset(0),
+	 _clip_width(0),
+	 _frame_dur(5),
 	 _frame_counter(0),
 	 _index(0)
 {
@@ -45,31 +47,34 @@ void anim::clip_offset( unsigned short offset )
 	_clip_offset = offset;
 }
 
-unsigned short anim::clip_offset()
+void anim::frame_dur( unsigned short t )
+{
+	if ( t == 0 )
+	{
+		t = 1;
+	}
+
+	_frame_dur = t;
+}
+
+unsigned short anim::clip_offset() const
 {
 	return _clip_offset;
 }
 
-unsigned short anim::clip_width()
+unsigned short anim::clip_width() const
 {
 	return _clip_width;
 }
 
-void anim::frame_dur( unsigned short t )
-{
-	_frame_dur = t;
-}
-
-unsigned short anim::frame_dur()
+unsigned short anim::frame_dur() const
 {
 	return _frame_dur;
 }
 
 void anim::handle_frame_count()
 {
-	clip_offset( ( _index )*clip_width() );
-
-	if ( _frame_counter < _frame_dur )
+	if ( _frame_counter < _frame_dur - 1 )
 	{
 		_frame_counter++;
 	}
@@ -82,4 +87,6 @@ void anim::handle_frame_count()
 			_index = 0;
 		}
 	}
+
+	clip_offset( ( _index )*clip_width() );
 }
