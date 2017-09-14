@@ -1,23 +1,14 @@
 #include "collider.h"
 #include "manager.h"
 #include "object.h"
+#include "vel_accel.h"
 #include "collide_functions.h"
 
 collider::collider()
-	:mover(),
-	 box(),
-	 _collision_obj(0)
 {
 }
 
-collider::collider( object* obj )
-	:mover(),
-	 box()
-{
-	set_collision_object(obj);
-}
-
-bool collider::move_phys( short x_add, short y_add )
+bool collider::move_phys( object* obj, short x_add, short y_add )
 {
 	if ( x_add == 0 && y_add == 0 )
 	{
@@ -27,73 +18,70 @@ bool collider::move_phys( short x_add, short y_add )
 	int map_size_x = manager::instance()->get_map()->x_size();
 	int map_size_y = manager::instance()->get_map()->y_size();
 
-	if ( int(x()) + x_add < 0 )
+	if ( int(obj->x()) + x_add < 0 )
 	{
-		x_add = -x();
+		x_add = -obj->x();
 	}
 
-	if ( int(x()) + x_add + w() > map_size_x )
+	if ( int(obj->x()) + x_add + obj->w() > map_size_x )
 	{
-		x_add = map_size_x - x() - w();
+		x_add = map_size_x - obj->x() - obj->w();
 	}
 
-	if ( int(y()) + y_add < 0 )
+	if ( int(obj->y()) + y_add < 0 )
 	{
-		y_add = -y();
+		y_add = -obj->y();
 	}
 
-	if ( int(y()) + y_add + h() > map_size_y )
+	if ( int(obj->y()) + y_add + obj->h() > map_size_y )
 	{
-		y_add = map_size_y - y() - h();
+		y_add = map_size_y - obj->y() - obj->h();
 	}
 
-	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( dynamic_cast<object*>( collision_object() ) );
+	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( obj );
 
 	for ( unsigned i=0; i < objects_vec.size(); i++ )
 	{
-		const object* obj = objects_vec.at(i);
+		const object* other_obj = objects_vec.at(i);
 
-		if ( obj != collision_object() )
+		bool colliding = true;
+
+		while ( colliding )
 		{
-			bool colliding = true;
+			colliding = box_in_box( obj->x() + x_add, obj->y() + y_add, obj->w(), obj->h(), other_obj->x(), other_obj->y(), other_obj->w(), other_obj->h() );
 
-			while ( colliding )
+			if ( !colliding )
 			{
-				colliding = box_in_box( x() + x_add, y() + y_add, w(), h(), obj->x(), obj->y(), obj->w(), obj->h() );
+				break;
+			}
+			else
+			{
+				x_add /= 2;
+				y_add /= 2;
+				i=0;
 
-				if ( !colliding )
+				if ( x_add == 0 && y_add == 0 )
 				{
-					break;
-				}
-				else
-				{
-					x_add /= 2;
-					y_add /= 2;
-					i=0;
-
-					if ( x_add == 0 && y_add == 0 )
-					{
-						return false;
-					}
+					return false;
 				}
 			}
-        	}
+		}
 	}
 
-	x(x() + x_add);
-	y(y() + y_add);
+	obj->x(obj->x() + + x_add);
+	obj->y(obj->y() + y_add);
 
-	get_adjacents( true );
+	get_adjacents( obj, true );
 
 	return true;
 }
 
-bool collider::colliding(unsigned short dir)
+bool collider::colliding( object* obj, unsigned short dir)
 {
-	int temp_x = x();
-	int temp_y = y();
-	int temp_w = w();
-	int temp_h = h();
+	int temp_x = obj->x();
+	int temp_y = obj->y();
+	int temp_w = obj->w();
+	int temp_h = obj->h();
 
 	switch(dir)
 	{
@@ -136,60 +124,57 @@ bool collider::colliding(unsigned short dir)
 	return false;
 }
 
-void collider::handle_speeds()
+void collider::handle_speeds( object* obj )
 {
-	if ( !move_phys(h_speed(),v_speed()) )
+	vel_accel* va = dynamic_cast<vel_accel*>(obj);
+
+	if ( !va )
 	{
-		if ( !move_phys(h_speed(),0) )
+		return;
+	}
+
+	if ( !move_phys(obj, va->h_speed(), va->v_speed()) )
+	{
+		if ( !move_phys(obj, va->h_speed(),0) )
 		{
-			move_phys(0,v_speed());
+			move_phys(obj, 0,va->v_speed());
 		}
 	}
 
-	h_speed( h_speed() + h_accel() );
-	v_speed( v_speed() + v_accel() );
+	va->h_speed( va->h_speed() + va->h_accel() );
+	va->v_speed( va->v_speed() + va->v_accel() );
 
-	if ( colliding(2) && v_speed() > 0 )
+	if ( colliding(obj,2) && va->v_speed() > 0 )
 	{
-		v_speed(0);
+		va->v_speed(0);
 	}
 
-	if ( colliding(0) && v_speed() < 0 )
+	if ( colliding(obj,0) && va->v_speed() < 0 )
 	{
-		v_speed(0);
+		va->v_speed(0);
 	}
 
-	if ( colliding(1) && h_speed() > 0 )
+	if ( colliding(obj,1) && va->h_speed() > 0 )
 	{
-		h_speed(0);
+		va->h_speed(0);
 	}
 
-	if ( colliding(3) && h_speed() < 0 )
+	if ( colliding(obj,3) && va->h_speed() < 0 )
 	{
-		h_speed(0);
+		va->h_speed(0);
 	}
 }
 
-void collider::set_collision_object( object* obj )
-{
-	_collision_obj = obj;
-}
-
-object* collider::collision_object() const
-{
-	return _collision_obj;
-}
-
-void collider::get_adjacents( bool chain )
+void collider::get_adjacents( object* obj, bool chain )
 {
 	_adjacents.clear();
 
-	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( collision_object() );
+	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( obj );
 
-	unsigned temp_x = x();
-	unsigned temp_y = y();
-	unsigned temp_w = w();
-	unsigned temp_h = h();
+	unsigned temp_x = obj->x();
+	unsigned temp_y = obj->y();
+	unsigned temp_w = obj->w();
+	unsigned temp_h = obj->h();
 
 	if ( temp_x != 0 )
 	{
@@ -213,19 +198,21 @@ void collider::get_adjacents( bool chain )
 
 	for ( unsigned i=0; i < objects_vec.size(); i++ )
 	{
-		object* obj = objects_vec.at(i);
+		object* other_obj = objects_vec.at(i);
 
-		if ( obj != collision_object() )
+		if ( box_in_box( temp_x, temp_y, temp_w, temp_h, other_obj->x(), other_obj->y(), other_obj->w(), other_obj->h() ) )
 		{
-			if ( box_in_box( temp_x, temp_y, temp_w, temp_h, obj->x(), obj->y(), obj->w(), obj->h() ) )
-			{
-				_adjacents.push_back(obj);
+			_adjacents.push_back(other_obj);
 
-				if ( chain )
+			if ( chain )
+			{
+				collider* other_collider = dynamic_cast<collider*>(other_obj);
+
+				if ( other_collider )
 				{
-					obj->get_adjacents( false );
+					other_collider->get_adjacents( other_obj, false );
 				}
 			}
-        	}
+		}
 	}
 }

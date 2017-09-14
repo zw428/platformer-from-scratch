@@ -1,9 +1,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "jumper.h"
+#include "box.h"
 
-class object : public jumper
+class object : public box
 {
 public:
 	object();

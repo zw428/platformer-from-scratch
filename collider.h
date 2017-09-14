@@ -1,29 +1,22 @@
 #ifndef COLLIDER_H
 #define COLLIDER_H
 
-#include "mover.h"
-#include "box.h"
 #include <vector>
 
 class object;
 
-class collider : public mover, public box
+class collider
 {
 public:
 	collider();
-	collider( object* obj );
-	bool colliding(unsigned short dir);
-	bool move_phys( short x_add, short y_add );
+	bool colliding(object* obj, unsigned short dir);
+	bool move_phys( object* obj, short x_add, short y_add );
 
-	void handle_speeds();
-
-	void set_collision_object( object* self );
-	object* collision_object() const;
+	void handle_speeds( object* obj );
 private:
-	object* _collision_obj;
 	std::vector<object*> _adjacents;
 
-	void get_adjacents( bool chain );
+	void get_adjacents( object* obj, bool chain );
 };
 
 #endif

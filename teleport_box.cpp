@@ -1,4 +1,5 @@
 #include "teleport_box.h"
+#include "teleporter.h"
 #include "object.h"
 
 teleport_box::teleport_box()
@@ -22,6 +23,6 @@ void teleport_box::set_dest( int x, int y )
 
 bool teleport_box::action( object* obj )
 {
-	obj->teleport( _x_dest, _y_dest );
+	teleport( obj, _x_dest, _y_dest );
 	return false;
 }

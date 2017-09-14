@@ -2,8 +2,7 @@
 #include "consts.h"
 
 gravity_affected::gravity_affected()
-	:teleporter(),
-	 _weightless(false)
+	:_weightless(false)
 {
 }
 
@@ -17,10 +16,12 @@ void gravity_affected::weightless(bool weightless)
 	_weightless = weightless;
 }
 
-void gravity_affected::handle_gravity()
+double gravity_affected::gravity_accel( bool on_ground )
 {
-	if ( !colliding(2) && !weightless() )
+	if ( !weightless() && !on_ground )
 	{
-		v_accel( GRAVITY_ACCEL );
+		return GRAVITY_ACCEL;
 	}
+
+	return 0;
 }

@@ -1,9 +1,7 @@
 #ifndef JUMPER_H
 #define JUMPER_H
 
-#include "gravity_affected.h"
-
-class jumper : public gravity_affected
+class jumper
 {
 public:
 	jumper();
@@ -15,9 +13,9 @@ public:
 
 	unsigned short times_jumped() const;
 
-	void handle_jumping( bool jumping ); //jumping == jump key is pressed
+	short handle_jumping( bool on_ground, bool jumping ); //jumping == jump key is pressed
 private:
-	void jump( bool first );
+	short jump( bool first );
 	unsigned short _jump_vel_1;
 	unsigned short _jump_vel_2;
 

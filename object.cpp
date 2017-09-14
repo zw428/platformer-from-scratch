@@ -5,9 +5,8 @@
 unsigned long object::_id_counter = 0;
 
 object::object()
-	:jumper()
+	:box()
 {
-	set_collision_object(this);
 	_id = _id_counter++;
 }
 

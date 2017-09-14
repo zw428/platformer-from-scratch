@@ -1,14 +1,13 @@
 #include "npc.h"
 #include "manager.h"
 #include "alive.h"
+#include "teleporter.h"
 
 npc::npc()
 	 :knockback_mult(),
 	  object(),
 	  death()
 {
-	set_collision_object( dynamic_cast<object*>(this) );
-
 	_img.texture(manager::instance()->textures("test"));
 	_img.w(w());
 	_img.h(h());
@@ -20,13 +19,18 @@ npc::~npc()
 
 bool npc::think()
 {
-	handle_speeds();
-	handle_gravity();
+	handle_speeds(this);
 	handle_disabled();
 
-	if ( colliding(2) )
+	bool on_ground = colliding(this,2);
+
+	if ( on_ground )
 	{
 		apply_friction();
+	}
+	else
+	{
+		v_accel( gravity_accel(false) );
 	}
 
 	_img.x(x());
@@ -38,7 +42,7 @@ bool npc::think()
 
 bool npc::on_death()
 {
-	teleport(500,300);
+	teleport(this,500,300);
 
 	return false;
 }

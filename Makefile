@@ -34,7 +34,7 @@ build/npc.o: npc.cpp npc.h manager.cpp manager.h alive.cpp alive.h object.cpp ob
 build/object.o: object.cpp object.h gravity_affected.cpp gravity_affected.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
-build/player.o: player.cpp player.h alive.cpp alive.h object.cpp object.h anim.cpp anim.h keys.cpp keys.h manager.cpp manager.h mover.cpp mover.h
+build/player.o: player.cpp player.h alive.cpp alive.h object.cpp object.h anim.cpp anim.h keys.cpp keys.h manager.cpp manager.h mover.cpp mover.h gravity_affected.cpp gravity_affected.h jumper.cpp jumper.h
 	$(CC) $(FLAGS) -c -o $@ $<
 
 build/map.o: map.cpp map.h chunk_prop.cpp chunk_prop.h trigger.cpp trigger.h

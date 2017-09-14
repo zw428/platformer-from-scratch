@@ -1,8 +1,7 @@
 #include "jumper.h"
 
 jumper::jumper()
-	:gravity_affected(),
-	 _jump_vel_1(9),
+	:_jump_vel_1(9),
 	 _jump_vel_2(8),
 	 _times_jumped(0),
 	 _jump_released(true)
@@ -35,31 +34,29 @@ unsigned short jumper::times_jumped() const
 	return _times_jumped;
 }
 
-void jumper::jump( bool first )
+short jumper::jump( bool first )
 {
 	if ( _times_jumped == 2 || !_jump_released )
 	{
-		return;
+		return 0;
 	}
 
 	_jump_released = false;
 
 	if ( first )
 	{
-		v_speed( -jump_vel_1() );
+		return -jump_vel_1();
 		_times_jumped = 1;
 	}
 	else
 	{
-		v_speed( -jump_vel_2() );
+		return -jump_vel_2();
 		_times_jumped = 2;
 	}
 }
 
-void jumper::handle_jumping( bool jumping )
+short jumper::handle_jumping( bool on_ground, bool jumping )
 {
-	bool on_ground = colliding(2);
-
 	if ( !jumping )
 	{
 		_jump_released = true;
@@ -67,7 +64,7 @@ void jumper::handle_jumping( bool jumping )
 
 	if ( jumping )
 	{
-		jump( on_ground );
+		return jump( on_ground );
 	}
 	else if ( on_ground )
 	{
@@ -77,4 +74,6 @@ void jumper::handle_jumping( bool jumping )
 	{
 		_times_jumped = 1;
 	}
+
+	return 0;
 }

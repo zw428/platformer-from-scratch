@@ -3,26 +3,22 @@
 #include "object.h"
 #include "collide_functions.h"
 
-teleporter::teleporter()
+bool teleport( object* obj, int x, int y )
 {
-}
-
-bool teleporter::teleport( int x, int y )
-{
-	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( dynamic_cast<object*>( collision_object() ) );
+	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( obj );
 
 	for ( unsigned i=0; i < objects_vec.size(); i++ )
 	{
-		const object* obj = objects_vec.at(i);
+		const object* other_obj = objects_vec.at(i);
 
-		if ( box_in_box( x, y, w(), h(), obj->x(), obj->y(), obj->w(), obj->h() ) )
+		if ( box_in_box( x, y, obj->w(), obj->h(), other_obj->x(), other_obj->y(), other_obj->w(), other_obj->h() ) )
 		{
 			return false;
 		}
 	}
 
-	box::x(x);
-	box::y(y);
+	obj->x(x);
+	obj->y(y);
 
 	return true;
 }

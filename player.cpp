@@ -2,6 +2,7 @@
 #include "manager.h"
 #include "keys.h"
 #include "attackable.h"
+#include "attack_box.h"
 #include <cmath>
 
 player::player()
@@ -9,7 +10,6 @@ player::player()
 	  object()
 {
 	weightless(false);
-	set_collision_object( dynamic_cast<object*>(this) );
 
 	_attack_delay = 30;
 	_attack_counter = _attack_delay;
@@ -27,8 +27,9 @@ player::~player()
 
 bool player::think()
 {
-	handle_speeds();
-	handle_gravity();
+	handle_speeds(this);
+
+	bool on_ground = colliding(this,2);
 
 	if ( _attack_counter > 0 )
 	{
@@ -41,7 +42,7 @@ bool player::think()
 	bool right     = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 
-	handle_jumping(up);
+	v_speed( v_speed() + handle_jumping(on_ground,up) );
 
 	if ( down )
 	{
@@ -56,9 +57,14 @@ bool player::think()
 	{
 		move_right();
 	}
-	else
+	else if ( on_ground )
 	{
 		apply_friction();
+	}
+
+	if ( !on_ground )
+	{
+		v_accel( gravity_accel(on_ground) );
 	}
 
 	if ( attacking && _attack_counter == 0 )

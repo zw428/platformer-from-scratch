@@ -5,9 +5,12 @@
 #include "object.h"
 #include "death.h"
 #include "disabled.h"
+#include "gravity_affected.h"
 #include "image.h"
+#include "collider.h"
+#include "friction.h"
 
-class npc : public knockback_mult, public object, public death, public disabled
+class npc : public knockback_mult, public object, public death, public disabled, public collider, public friction, public gravity_affected
 {
 public:
 	npc();

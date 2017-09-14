@@ -3,6 +3,7 @@
 #include "object.h"
 #include "knockback_mult.h"
 #include "npc.h"
+#include "vel_accel.h"
 
 attack_box::attack_box()
 	:trigger()
@@ -42,8 +43,10 @@ bool attack_box::action(object* obj)
 		mult = k->get_knockback_mult();
 	}
 
-	obj->h_speed( knockback() * x_frac * mult );
-	obj->v_speed( knockback() * y_frac * mult );
+	vel_accel* va = dynamic_cast<vel_accel*>( obj );
+
+	va->h_speed( knockback() * x_frac * mult );
+	va->v_speed( knockback() * y_frac * mult );
 
 	return false;
 }

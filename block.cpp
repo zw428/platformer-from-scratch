@@ -7,8 +7,6 @@ block::block()
 {
 	_img.w(w());
 	_img.h(h());
-
-	weightless(true);
 }
 
 block::~block()
