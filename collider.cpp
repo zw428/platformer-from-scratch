@@ -4,11 +4,7 @@
 #include "vel_accel.h"
 #include "collide_functions.h"
 
-collider::collider()
-{
-}
-
-bool collider::move_phys( object* obj, short x_add, short y_add )
+bool move_phys( object* obj, short x_add, short y_add )
 {
 	if ( x_add == 0 && y_add == 0 )
 	{
@@ -71,12 +67,10 @@ bool collider::move_phys( object* obj, short x_add, short y_add )
 	obj->x(obj->x() + + x_add);
 	obj->y(obj->y() + y_add);
 
-	get_adjacents( obj, true );
-
 	return true;
 }
 
-bool collider::colliding( object* obj, unsigned short dir)
+bool colliding( object* obj, unsigned short dir)
 {
 	int temp_x = obj->x();
 	int temp_y = obj->y();
@@ -111,9 +105,11 @@ bool collider::colliding( object* obj, unsigned short dir)
 		break;
 	}
 
-	for ( unsigned i=0; i < _adjacents.size(); i++ )
+	std::vector<object*> tmp = get_adjacents(obj);
+
+	for ( unsigned i=0; i < tmp.size(); i++ )
 	{
-		const object* adj = _adjacents[i];
+		const object* adj = tmp[i];
 
 		if ( box_in_box( temp_x, temp_y, temp_w, temp_h, adj->x(), adj->y(), adj->w(), adj->h() ) )
 		{
@@ -124,7 +120,7 @@ bool collider::colliding( object* obj, unsigned short dir)
 	return false;
 }
 
-void collider::handle_speeds( object* obj )
+void handle_speeds( object* obj )
 {
 	vel_accel* va = dynamic_cast<vel_accel*>(obj);
 
@@ -165,10 +161,9 @@ void collider::handle_speeds( object* obj )
 	}
 }
 
-void collider::get_adjacents( object* obj, bool chain )
+std::vector<object*> get_adjacents( object* obj )
 {
-	_adjacents.clear();
-
+	std::vector<object*> ret;
 	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( obj );
 
 	unsigned temp_x = obj->x();
@@ -202,17 +197,9 @@ void collider::get_adjacents( object* obj, bool chain )
 
 		if ( box_in_box( temp_x, temp_y, temp_w, temp_h, other_obj->x(), other_obj->y(), other_obj->w(), other_obj->h() ) )
 		{
-			_adjacents.push_back(other_obj);
-
-			if ( chain )
-			{
-				collider* other_collider = dynamic_cast<collider*>(other_obj);
-
-				if ( other_collider )
-				{
-					other_collider->get_adjacents( other_obj, false );
-				}
-			}
+			ret.push_back(other_obj);
 		}
 	}
+
+	return ret;
 }

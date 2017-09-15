@@ -45,13 +45,13 @@ short jumper::jump( bool first )
 
 	if ( first )
 	{
-		return -jump_vel_1();
 		_times_jumped = 1;
+		return -jump_vel_1();
 	}
 	else
 	{
-		return -jump_vel_2();
 		_times_jumped = 2;
+		return -jump_vel_2();
 	}
 }
 

@@ -2,8 +2,9 @@
 #include "../attack_box.h"
 #include "../object.h"
 #include "../alive.h"
+#include "../vel_accel.h"
 	
-class attack_box_tmp : public object, public alive
+class attack_box_tmp : public object, public alive, public vel_accel
 {
 	bool think() { return false; };
 };

@@ -42,7 +42,12 @@ bool player::think()
 	bool right     = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 
-	v_speed( v_speed() + handle_jumping(on_ground,up) );
+	short jump_vel = handle_jumping(on_ground, up);
+
+	if ( jump_vel )
+	{
+		v_speed( jump_vel );
+	}
 
 	if ( down )
 	{

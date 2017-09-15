@@ -10,7 +10,7 @@
 #include "collider.h"
 #include "friction.h"
 
-class npc : public knockback_mult, public object, public death, public disabled, public collider, public friction, public gravity_affected
+class npc : public knockback_mult, public object, public death, public disabled, public friction, public gravity_affected
 {
 public:
 	npc();

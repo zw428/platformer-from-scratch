@@ -1,14 +1,5 @@
 #include "catch.hpp"
 #include "../jumper.h"
-#include "../object.h"
-#include "../manager.h"
-#include "../block.h"
-
-class jumper_tmp : public object
-{
-public:
-	bool think() { return false; };
-};
 
 TEST_CASE( "jumper constructor initializes stuff", "[jumper]" )
 {
@@ -32,85 +23,41 @@ TEST_CASE( "jumper setters/getters work", "[jumper]" )
 
 TEST_CASE( "jumper correctly handles jumping from the ground", "[jumper]" )
 {
-	manager::instance()->get_map()->init(512,512);
+	jumper j;
 
-	block* b = new block;
+	CHECK( j.times_jumped() == 0 );
+	
+	j.handle_jumping(true,true);
+	CHECK( j.times_jumped() == 1 );
 
-	b->x(0);
-	b->y(100);
-	b->w(200);
-	b->h(50);
+	j.handle_jumping(false,true);
 
-	manager::instance()->get_map()->add_object(b);
+	CHECK( j.times_jumped() == 1 );
 
-	jumper_tmp* obj = new jumper_tmp;
+	j.handle_jumping(false,false);
+	
+	CHECK( j.times_jumped() == 1 );
+	
+	j.handle_jumping(false,true);
 
-	obj->x(0);
-	obj->y(79);
-	obj->w(20);
-	obj->h(20);
+	CHECK( j.times_jumped() == 2 );
 
-	manager::instance()->get_map()->add_object(obj);
+	j.handle_jumping(false,true);
 
-	obj->move_phys(0,1); //because move_phys is what calls get_adjacents()
-	CHECK( obj->times_jumped() == 0 );
-
-	obj->handle_jumping(false);
-	obj->handle_jumping(true);
-	obj->handle_speeds();
-
-	CHECK( obj->times_jumped() == 1 );
-
-	obj->handle_jumping(true);
-	obj->handle_speeds();
-
-	CHECK( obj->times_jumped() == 1 );
-
-	obj->handle_jumping(false);
-	obj->handle_jumping(true);
-	obj->handle_speeds();
-
-	CHECK( obj->times_jumped() == 2 );
-
-	obj->handle_jumping(false);
-	obj->handle_jumping(true);
-	obj->handle_speeds();
-
-	CHECK( obj->times_jumped() == 2 );
-
-	manager::destroy();
+	CHECK( j.times_jumped() == 2 );
+	
+	j.handle_jumping(true,false);
+	
+	CHECK( j.times_jumped() == 0 );
 }
 
 TEST_CASE( "jumper correctly handles jumping after falling", "[jumper]" )
 {
-	manager::instance()->get_map()->init(512,512);
+	jumper j;
 
-	block* b = new block;
+	j.handle_jumping(false,false);
+	CHECK( j.times_jumped() == 1 );
 
-	b->x(0);
-	b->y(100);
-	b->w(200);
-	b->h(50);
-
-	manager::instance()->get_map()->add_object(b);
-
-	jumper_tmp* obj = new jumper_tmp;
-
-	obj->x(199);
-	obj->y(80);
-	obj->w(20);
-	obj->h(20);
-
-	manager::instance()->get_map()->add_object(obj);
-
-	obj->move_phys(30,0); //because move_phys is what calls get_adjacents()
-	obj->handle_speeds();
-	obj->handle_jumping(false);
-	CHECK( obj->times_jumped() == 1 );
-
-	obj->handle_jumping(true);
-	obj->handle_speeds();
-	CHECK( obj->times_jumped() == 2 );
-
-	manager::destroy();
+	j.handle_jumping(false,true);
+	CHECK( j.times_jumped() == 2 );
 }

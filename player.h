@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 
-class player : public alive, public object, public jumper, public gravity_affected, public collider, public mover
+class player : public alive, public object, public jumper, public gravity_affected, public mover
 {
 public:
 	player();

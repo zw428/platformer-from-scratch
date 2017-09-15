@@ -2,29 +2,15 @@
 #include "../collider.h"
 #include "../object.h"
 #include "../manager.h"
+#include "../teleporter.h"
+#include "../vel_accel.h"
 
-class collider_tmp : public object
+class collider_tmp : public object, public vel_accel
 {
 public:
 	collider_tmp() :object() {};
 	bool think() { return false; };
 };
-
-TEST_CASE( "collider constructors initialize things", "[collider]" )
-{
-	SECTION( "collider()" )
-	{
-		collider c;
-		CHECK( c.collision_object() == 0 );
-	}
-
-	SECTION( "collider( object* obj )" )
-	{
-		collider_tmp t;
-		collider c( dynamic_cast<object*>(&t) );
-		CHECK( c.collision_object() == &t );
-	}
-}
 
 TEST_CASE( "collider::move_phys collides with stuff", "[collider]" )
 {
@@ -46,7 +32,7 @@ TEST_CASE( "collider::move_phys collides with stuff", "[collider]" )
 	manager::instance()->get_map()->add_object(still);
 	manager::instance()->get_map()->add_object(moving);
 
-	moving->move_phys(20,20);
+	move_phys(moving,20,20);
 
 	CHECK( moving->x() == 90 );
 	CHECK( moving->y() == 90 );
@@ -73,7 +59,7 @@ TEST_CASE( "collider::move_phys doesn't collide with stuff not in the way", "[co
 	manager::instance()->get_map()->add_object(still);
 	manager::instance()->get_map()->add_object(moving);
 
-	moving->move_phys(20,20);
+	move_phys(moving,20,20);
 
 	CHECK( moving->x() == 100 );
 	CHECK( moving->y() == 100 );
@@ -99,39 +85,28 @@ TEST_CASE( "collider::colliding() tells if colliding in direction", "[collider]"
 	manager::instance()->get_map()->add_object(still);
 	manager::instance()->get_map()->add_object(moving);
 
-	moving->move_phys(0,-1);
+	move_phys(moving,0,-1);
 
 	CHECK( moving->y() == 120 );
-	CHECK( moving->colliding(0) == true );
+	CHECK( colliding(moving,0) == true );
 
-	moving->teleport(100,79);
-	moving->move_phys(0,1);
+	teleport(moving,100,79);
+	move_phys(moving,0,1);
 
 	CHECK( moving->y() == 80 );
-	CHECK( moving->colliding(2) == true );
+	CHECK( colliding(moving,2) == true );
 
-	moving->teleport(79,100);
-	moving->move_phys(1,0);
+	teleport(moving,79,100);
+	move_phys(moving,1,0);
 
 	CHECK( moving->x() == 80 );
-	CHECK( moving->colliding(1) == true );
+	CHECK( colliding(moving,1) == true );
 
-	moving->teleport(121,100);
-	moving->move_phys(-1,0);
+	teleport(moving,121,100);
+	move_phys(moving,-1,0);
 
 	CHECK( moving->x() == 120 );
-	CHECK( moving->colliding(3) == true );
-}
-
-TEST_CASE( "collider::set_collision_object works", "[collider]" )
-{
-	collider_tmp t;
-
-	object* obj;
-
-	t.set_collision_object(obj);
-
-	CHECK( t.collision_object() == obj );
+	CHECK( colliding(moving,3) == true );
 }
 
 TEST_CASE( "collider::handle_speeds moves the collider", "[collider]" )
@@ -149,7 +124,7 @@ TEST_CASE( "collider::handle_speeds moves the collider", "[collider]" )
 	test->h_speed(5);
 	test->v_speed(5);
 
-	test->handle_speeds();
+	handle_speeds(test);
 
 	CHECK( test->x() == 105 );
 	CHECK( test->y() == 105 );
@@ -170,12 +145,12 @@ TEST_CASE( "collider::handle_speeds handles acceleration", "[collider]" )
 	test->h_accel(5);
 	test->v_accel(5);
 
-	test->handle_speeds();
+	handle_speeds(test);
 
 	CHECK( test->h_speed() == 5 );
 	CHECK( test->v_speed() == 5 );
 
-	test->handle_speeds();
+	handle_speeds(test);
 
 	CHECK( test->h_speed() == 10 );
 	CHECK( test->v_speed() == 10 );

@@ -21,7 +21,7 @@ TEST_CASE( "teleporter teleports things when nothing is in the way", "[teleporte
 
 	manager::instance()->get_map()->add_object(obj);
 
-	obj->teleport(12,12);
+	teleport(obj,12,12);
 
 	CHECK( obj->x() == 12 );
 	CHECK( obj->y() == 12 );
@@ -52,7 +52,7 @@ TEST_CASE( "teleporter doesn't teleports things when something is in the way", "
 
 	manager::instance()->get_map()->add_object(obj2);
 
-	obj->teleport(100,100);
+	teleport(obj,100,100);
 
 	CHECK( obj->x() == 5 );
 	CHECK( obj->y() == 5 );
