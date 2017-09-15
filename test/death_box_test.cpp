@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../death_box.h"
 #include "../death.h"
 #include "../object.h"

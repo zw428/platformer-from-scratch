@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../attack_box.h"
 #include "../object.h"
 #include "../alive.h"

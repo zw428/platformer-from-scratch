@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../camera.h"
 
 TEST_CASE( "camera constructor initializes", "[camera]" )

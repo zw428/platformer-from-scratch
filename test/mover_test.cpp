@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../mover.h"
 
 TEST_CASE( "mover constructor initializes stuff", "[mover]" )

@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../vel_accel.h"
 
 TEST_CASE( "vel_accel setters/getters work", "[vel_accel]" )

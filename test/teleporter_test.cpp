@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../teleporter.h"
 #include "../object.h"
 #include "../manager.h"

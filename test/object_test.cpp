@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../object.h"
 
 class object_tmp : public object

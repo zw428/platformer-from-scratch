@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../jumper.h"
 
 TEST_CASE( "jumper constructor initializes stuff", "[jumper]" )

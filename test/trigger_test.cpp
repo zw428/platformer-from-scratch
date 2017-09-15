@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../trigger.h"
 #include "../object.h"
 #include "../manager.h"

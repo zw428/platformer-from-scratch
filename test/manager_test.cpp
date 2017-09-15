@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../manager.h"
 
 TEST_CASE( "manager setters/getters work", "[manager]" )

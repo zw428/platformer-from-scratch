@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../npc.h"
 
 //does nothing

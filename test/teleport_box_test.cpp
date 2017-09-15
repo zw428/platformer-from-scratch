@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../teleport_box.h"
 #include "../object.h"
 

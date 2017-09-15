@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../resource_manager.h"
 #include "../manager.h"
 

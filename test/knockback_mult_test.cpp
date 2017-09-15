@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../knockback_mult.h"
 
 TEST_CASE( "knockback_mult constructor initializes stuff", "[knockback_mult]" )

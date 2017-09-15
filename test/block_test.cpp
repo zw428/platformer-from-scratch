@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../block.h"
 
 TEST_CASE( "block can be made solid/empty", "[block]" )

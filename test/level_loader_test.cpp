@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../level_loader.h"
 #include "../manager.h"
 #include "../chunk_prop.h"

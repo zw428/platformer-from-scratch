@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../box.h"
 
 TEST_CASE( "box setters and getters work", "[box]" )

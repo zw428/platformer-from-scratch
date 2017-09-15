@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../friction.h"
 
 TEST_CASE( "friction constructor initializes correctly", "[friction]" )

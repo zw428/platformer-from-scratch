@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../shared_texture.h"
 
 TEST_CASE( "shared_texture keeps track of how many there are", "[shared_texture]" )

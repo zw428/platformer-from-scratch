@@ -3248,7 +3248,7 @@ namespace Catch {
 #include <string>
 
 // NB. Any general catch headers included here must be included
-// in catch.hpp first to make sure they are included by the single
+// in catch.h first to make sure they are included by the single
 // header for non obj-usage
 
 ///////////////////////////////////////////////////////////////////////////////

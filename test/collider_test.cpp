@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../collider.h"
 #include "../object.h"
 #include "../manager.h"

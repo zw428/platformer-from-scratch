@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../spawnable.h"
 
 class spawnable_tmp : public spawnable

@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../image.h"
 
 TEST_CASE( "image constructor initializes stuff", "[image]" )

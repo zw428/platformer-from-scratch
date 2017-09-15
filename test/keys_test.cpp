@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../keys.h"
 #include <SDL2/SDL.h>
 

@@ -1,4 +1,4 @@
-#include "catch.hpp"
+#include "catch.h"
 #include "../gravity_affected.h"
 #include "../consts.h"
 
