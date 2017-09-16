@@ -15,23 +15,23 @@ float friction::coefficient()
 	return _coeff;
 }
 
-void friction::apply_friction()
+float friction::friction_reduction( float h_speed )
 {
-	float target_speed = h_speed();
+	float target_speed = h_speed;
 
-	if ( h_speed() > 0 )
+	if ( h_speed > 0 )
 	{
 		target_speed -= coefficient();
 	}
-	else if ( h_speed() < 0 )
+	else if ( h_speed < 0 )
 	{
 		target_speed += coefficient();
 	}
 
-	if ( target_speed * h_speed() < 0 )
+	if ( target_speed * h_speed < 0 )
 	{
 		target_speed = 0;
 	}
 
-	h_speed( target_speed );
+	return h_speed - target_speed;
 }

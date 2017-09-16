@@ -27,42 +27,50 @@ void mover::h_accel_rate( float rate )
 	_h_accel_rate = rate;
 }
 
-void mover::move_left()
+float mover::move_left( float h_speed )
 {
-	if ( h_speed() > -h_speed_max() )
+	_facing_right = false;
+
+	float new_speed = h_speed;
+
+	if ( h_speed > -h_speed_max() )
 	{
-		float desired_speed = h_speed() - h_accel_rate();
+		float desired_speed = h_speed - h_accel_rate();
 
 		if ( desired_speed >= -h_speed_max() )
 		{
-			h_speed( desired_speed );
+			new_speed = desired_speed;
 		}
 		else
 		{
-			h_speed( -h_speed_max() );
+			new_speed = -h_speed_max();
 		}
 	}
 
-	_facing_right = false;
+	return new_speed;
 }
 
-void mover::move_right()
+float mover::move_right( float h_speed )
 {
 	_facing_right = true;
+	
+	float new_speed = h_speed;
 
-	if ( h_speed() < h_speed_max() )
+	if ( h_speed < h_speed_max() )
 	{
-		float desired_speed = h_speed() + h_accel_rate();
+		float desired_speed = h_speed + h_accel_rate();
 
 		if ( desired_speed <= h_speed_max() )
 		{
-			h_speed( desired_speed );
+			new_speed = desired_speed;
 		}
 		else
 		{
-			h_speed( h_speed_max() );
+			new_speed = h_speed_max();
 		}
 	}
+	
+	return new_speed;
 }
 
 bool mover::facing_left() const

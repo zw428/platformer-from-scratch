@@ -1,9 +1,7 @@
 #ifndef MOVER_H
 #define MOVER_H
 
-#include "friction.h"
-
-class mover : public friction
+class mover
 {
 public:
 	mover();
@@ -14,8 +12,8 @@ public:
 	float h_accel_rate() const;
 	void h_accel_rate( float rate );
 
-	void move_left();
-	void move_right();
+	float move_left( float h_speed );
+	float move_right( float h_speed );
 
 	bool facing_left() const;
 	bool facing_right() const;

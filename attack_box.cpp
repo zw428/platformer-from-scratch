@@ -1,9 +1,10 @@
 #include "attack_box.h"
 #include "alive.h"
-#include "object.h"
 #include "knockback_mult.h"
-#include "npc.h"
+#include "object.h"
 #include "vel_accel.h"
+
+class object;
 
 attack_box::attack_box()
 	:trigger()

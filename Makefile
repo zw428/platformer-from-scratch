@@ -17,14 +17,13 @@ unknown: $(BASE_OBJS)
 
 test: $(TEST_OBJS) $(filter-out build/main.o,$(BASE_OBJS))
 	$(CC) $^ $(LIBS) -o build/test
+	build/test
 
 build/%.d_src: %.cpp
-	$(CC) -MM $< | sed -e 's/\([^ ]*\)\.h/\1.h \1.cpp/g' | sed -e 's/\(^.*\.o\)/build\/\1/g' > build/$*.d_src
-		echo -e \\t $(CC) $(FLAGS) -c -o build/$*.o $< >> build/$*.d_src
+	./get_dependencies.sh $< > build/$*.d_src
 
 build/%.d_test: test/%.cpp
-	$(CC) -MM $< | sed -e 's/\([^ ]*\)\.h/\1.h \1.cpp/g' | sed -e 's/\(^.*\.o\)/build\/\1/g' | sed -e 's/test\/catch\.cpp//g' | sed -e 's/test\/catch\.h//g' > build/$*.d_test
-		echo -e \\t $(CC) $(FLAGS) -c -o build/$*.o $< >> build/$*.d_test
+	./get_dependencies.sh $< > build/$*.d_test
 
 include $(BASE_DEPS)
 include $(TEST_DEPS)

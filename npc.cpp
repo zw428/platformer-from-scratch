@@ -1,7 +1,7 @@
 #include "npc.h"
 #include "manager.h"
-#include "alive.h"
 #include "teleporter.h"
+#include "collider.h"
 
 npc::npc()
 	 :knockback_mult(),
@@ -26,7 +26,7 @@ bool npc::think()
 
 	if ( on_ground )
 	{
-		apply_friction();
+		h_speed( h_speed() - friction_reduction( h_speed() ) );
 	}
 	else
 	{

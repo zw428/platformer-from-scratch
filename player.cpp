@@ -3,6 +3,7 @@
 #include "keys.h"
 #include "attackable.h"
 #include "attack_box.h"
+#include "collider.h"
 #include <cmath>
 
 player::player()
@@ -18,7 +19,7 @@ player::player()
 	_anm.w(w());
 	_anm.h(h());
 	_anm.clip_width(100);
-	_anm.frame_dur(1);
+	_anm.frame_dur(3);
 }
 
 player::~player()
@@ -56,15 +57,15 @@ bool player::think()
 
 	if ( left )
 	{
-		move_left();
+		h_speed(move_left(h_speed()));
 	}
 	else if ( right )
 	{
-		move_right();
+		h_speed(move_right(h_speed()));
 	}
 	else if ( on_ground )
 	{
-		apply_friction();
+		h_speed(h_speed() - friction_reduction( h_speed()));
 	}
 
 	if ( !on_ground )

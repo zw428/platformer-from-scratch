@@ -1,5 +1,6 @@
 #include "image.h"
 #include "camera.h"
+#include "manager.h"
 
 image::image()
 	:_flip_h(0)

@@ -1,5 +1,4 @@
 #include "manager.h"
-
 #include "keys.h"
 
 manager* manager::_instance = 0;

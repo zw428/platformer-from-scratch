@@ -1,4 +1,5 @@
 #include "anim.h"
+#include "manager.h"
 
 anim::anim()
 	:image(),

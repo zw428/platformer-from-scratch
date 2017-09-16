@@ -3,8 +3,8 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "manager.h"
 #include "box.h"
+#include "texture_store.h"
 
 class image : public box
 {

@@ -9,11 +9,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
 
-struct texture_store {
-	SDL_Texture* tex;
-	unsigned short orig_w;
-	unsigned short orig_h;
-};
+#include "texture_store.h"
 
 class resource_manager
 {

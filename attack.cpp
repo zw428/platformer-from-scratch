@@ -1,5 +1,4 @@
 #include "attack.h"
-#include "manager.h"
 #include "attackable.h"
 
 attack::attack()

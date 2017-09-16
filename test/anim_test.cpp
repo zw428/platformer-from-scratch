@@ -1,4 +1,5 @@
 #include "catch.h"
+#include "../manager.h"
 #include "../anim.h"
 
 TEST_CASE( "anim constructor initializes stuff", "[anim]" )
