@@ -51,8 +51,11 @@ bool attack_box::action(object* obj)
 
 	vel_accel* va = dynamic_cast<vel_accel*>( obj );
 
-	va->h_speed( _attack.knockback() * x_frac * mult );
-	va->v_speed( _attack.knockback() * y_frac * mult );
+	if ( va )
+	{
+		va->h_speed( _attack.knockback() * x_frac * mult );
+		va->v_speed( _attack.knockback() * y_frac * mult );
+	}
 
 	return false;
 }
