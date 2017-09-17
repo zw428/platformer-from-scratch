@@ -23,7 +23,7 @@ TEST_CASE( "chunk_prop can be compared for equality", "[chunk_prop]" )
 	cp2.y = 6;
 
 	CHECK( cp1 != cp2 );
-	
+
 	cp2.x = cp1.x;
 	cp2.y = cp1.y;
 

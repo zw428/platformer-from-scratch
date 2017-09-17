@@ -15,6 +15,14 @@ public:
 	unsigned short y() const;
 	unsigned short w() const;
 	unsigned short h() const;
+
+	unsigned short x_center() const;
+	unsigned short y_center() const;
+
+	unsigned short top() const;
+	unsigned short bottom() const;
+	unsigned short left() const;
+	unsigned short right() const;
 private:
 	unsigned short _x;
 	unsigned short _y;

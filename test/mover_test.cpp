@@ -29,12 +29,12 @@ TEST_CASE( "mover::move_* limited by h_speed_max", "[mover]" )
 		m.h_speed_max(10);
 		m.h_accel_rate(2);
 
-		
+
 		CHECK( m.move_right(9) == 10 );
 
 		CHECK( m.move_left(10) == 8 );
 	}
-	
+
 	SECTION( "left" )
 	{
 		mover m;

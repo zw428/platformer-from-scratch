@@ -14,7 +14,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 
 		CHECK( manager::instance()->textures("test").tex != 0 );
 	}
-	
+
 	SECTION( "sound" )
 	{
 		level_loader l;
@@ -38,7 +38,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 
 			CHECK( manager::instance()->get_map()->objects_at( tmp ).size() == 1 );
 		}
-		
+
 		SECTION( "npc" )
 		{
 			level_loader l;
@@ -108,12 +108,12 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 		{
 			CHECK( l.process_trigger_str( "teleporter 0 0 100 100 200 200" ) == true );
 		}
-		
+
 		SECTION( "death" )
 		{
 			CHECK( l.process_trigger_str( "death 0 0 100 100" ) == true );
 		}
-		
+
 		SECTION( "fail" )
 		{
 			CHECK( l.process_trigger_str( "aaaa 1 1 1 1" ) == false );

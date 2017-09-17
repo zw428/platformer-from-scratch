@@ -53,7 +53,7 @@ float mover::move_left( float h_speed )
 float mover::move_right( float h_speed )
 {
 	_facing_right = true;
-	
+
 	float new_speed = h_speed;
 
 	if ( h_speed < h_speed_max() )
@@ -69,7 +69,7 @@ float mover::move_right( float h_speed )
 			new_speed = h_speed_max();
 		}
 	}
-	
+
 	return new_speed;
 }
 

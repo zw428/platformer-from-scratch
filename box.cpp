@@ -47,3 +47,33 @@ unsigned short box::h() const
 {
 	return _h;
 }
+
+unsigned short box::x_center() const
+{
+	return _x + _w / 2;
+}
+
+unsigned short box::y_center() const
+{
+	return _y + _h / 2;
+}
+
+unsigned short box::top() const
+{
+	return _y;
+}
+
+unsigned short box::bottom() const
+{
+	return _y + _h;
+}
+
+unsigned short box::left() const
+{
+	return _x;
+}
+
+unsigned short box::right() const
+{
+	return _x + _w;
+}

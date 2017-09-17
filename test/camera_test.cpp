@@ -34,7 +34,7 @@ TEST_CASE( "camera can have dimensions set/get", "[camera]" )
 	{
 		camera c;
 		c.set_camera( 5, 6 );
-		
+
 		CHECK( c.camera_rect().x == 5 );
 		CHECK( c.camera_rect().y == 6 );
 	}

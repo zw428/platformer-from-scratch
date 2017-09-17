@@ -1,4 +1,5 @@
 #include "knockback_mult.h"
+#include "vel_accel.h"
 
 knockback_mult::knockback_mult()
 	:attackable(),

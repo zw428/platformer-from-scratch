@@ -4,6 +4,7 @@
 #include "attackable.h"
 #include "attack_box.h"
 #include "collider.h"
+#include "directed_attack.h"
 #include <cmath>
 
 player::player()
@@ -88,27 +89,22 @@ bool player::think()
 
 void player::start_attack()
 {
+	attack att;
+	att.sound("test");
+	att.damage(10);
+	att.knockback(5);
+	att.owner( this );
+
+	directed_attack da;
+
+	if ( facing_left() )
+	{
+		da.attack_left( att, this, 20, h() );
+	}
+	else if ( facing_right() )
+	{
+		da.attack_right( att, this, 20, h() );
+	}
+
 	_attack_counter = _attack_delay;
-	attack_box* b = new attack_box();
-	b->sound("test");
-	b->damage(5);
-	b->knockback(20);
-	b->owner( dynamic_cast<attackable*>(this));
-
-	b->y( y() );
-	b->h( h() );
-
-	b->x( x() + w() );
-	b->w( 3 );
-
-	trigger* tr = dynamic_cast<trigger*>(b);
-
-	if ( tr )
-	{
-		manager::instance()->get_map()->add_trigger( tr );
-	}
-	else
-	{
-		delete tr;
-	}
 }

@@ -7,12 +7,12 @@ TEST_CASE( "shared_texture keeps track of how many there are", "[shared_texture]
 	CHECK( t.count() == 1 );
 
 	shared_texture t2 = t;
-	
+
 	CHECK( t2.count() == 2 );
 	CHECK( t.count() == 2 );
 
 	shared_texture t3(t);
-	
+
 	CHECK( t3.count() == 3 );
 	CHECK( t2.count() == 3 );
 	CHECK( t.count() == 3 );

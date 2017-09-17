@@ -1,4 +1,8 @@
-up/down and left/right attack (directed_attack class)
+write tests for directed_attack
+
+move knocking back out of attack_box? and fix it to knock back to right
+
+get rid of dynamic casts that you probably don't need
 
 ledge grabbing
 

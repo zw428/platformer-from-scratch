@@ -39,6 +39,9 @@ void attack::owner( attackable* own )
 
 void attack::perform( attackable* a )
 {
-	a->receive_attack( *this );
-	play_sound();
+	if ( a != owner() )
+	{
+		a->receive_attack( *this );
+		play_sound();
+	}
 }

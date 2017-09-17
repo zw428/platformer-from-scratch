@@ -40,9 +40,9 @@ TEST_CASE( "teleporter doesn't teleports things when something is in the way", "
 	obj->y(5);
 	obj->w(5);
 	obj->h(5);
-	
+
 	manager::instance()->get_map()->add_object(obj);
-	
+
 	teleporter_tmp* obj2 = new teleporter_tmp;
 
 	obj2->x(100);

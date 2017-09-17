@@ -3,6 +3,17 @@
 #include "../attack.h"
 #include "../attackable.h"
 	
+class attack_test_tmp : public attackable
+{
+public:
+	bool received = false;
+
+	void receive_attack( const attack& att )
+	{
+		received = true;
+	}
+};
+
 TEST_CASE( "constructor initializes values", "[attack]" )
 {
 	attack att;
@@ -27,23 +38,27 @@ TEST_CASE( "attack setters and getters work", "[attack]" )
 
 TEST_CASE( "attack can perform on something", "[attack]" )
 {
-	class performed_on : public attackable
-	{
-	public:
-		bool received = false;
-
-		void receive_attack( const attack& att )
-		{
-			received = true;
-		}
-	};
 
 	attack att;
 	att.damage(5);
 
-	performed_on tmp;
+	attack_test_tmp tmp;
 
-	att.perform(dynamic_cast<attackable*>(&tmp));
+	att.perform(&tmp);
 
 	REQUIRE( tmp.received == true );
+}
+
+TEST_CASE( "attack will not perform on owner", "[attack]" )
+{
+	attack att;
+	att.damage(5);
+
+	attack_test_tmp tmp;
+
+	att.owner(&tmp);
+
+	att.perform(&tmp);
+
+	REQUIRE( tmp.received == false );
 }

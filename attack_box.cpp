@@ -1,5 +1,5 @@
 #include "attack_box.h"
-#include "alive.h"
+#include "attackable.h"
 #include "knockback_mult.h"
 #include "object.h"
 #include "vel_accel.h"
@@ -17,13 +17,18 @@ attack_box::~attack_box()
 {
 }
 
+void attack_box::set_attack( attack att )
+{
+	_attack = att;
+}
+
 bool attack_box::action(object* obj)
 {
-	alive* al = dynamic_cast<alive*>(obj);
+	attackable* at = dynamic_cast<attackable*>(obj);
 
-	if ( al && al != owner() )
+	if ( at )
 	{
-		perform( al );
+		_attack.perform( at );
 	}
 
 	float temp_x = float(x()) + (float(w()) / 2);
@@ -46,8 +51,8 @@ bool attack_box::action(object* obj)
 
 	vel_accel* va = dynamic_cast<vel_accel*>( obj );
 
-	va->h_speed( knockback() * x_frac * mult );
-	va->v_speed( knockback() * y_frac * mult );
+	va->h_speed( _attack.knockback() * x_frac * mult );
+	va->v_speed( _attack.knockback() * y_frac * mult );
 
 	return false;
 }

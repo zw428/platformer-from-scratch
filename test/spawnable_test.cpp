@@ -11,7 +11,7 @@ public:
 TEST_CASE( "spawnable constructor initializes stuff", "[spawnable]" )
 {
 	spawnable_tmp s;
-	
+
 	CHECK( s.spawn_delay() == 0 );
 	CHECK( s.spawning() == false );
 
@@ -40,7 +40,7 @@ TEST_CASE( "spawnable knows when it's spawning and triggers the callback", "[spa
 	{
 		s.handle_spawning();
 	}
-	
+
 	CHECK( s.spawning() == false );
 	CHECK( s.spawned == true );
 }
