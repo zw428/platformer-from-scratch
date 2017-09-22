@@ -23,6 +23,11 @@ bool attack_box::action(object* obj)
 {
 	attackable* a = dynamic_cast<attackable*>(obj);
 
+	if ( !a )
+	{
+		return;
+	}
+
 	_attack.perform( a );
 
 	box* b = dynamic_cast<box*>(_attack.owner());

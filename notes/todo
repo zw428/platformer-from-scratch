@@ -1,10 +1,1 @@
-get rid of dynamic casts that you probably don't need
-
 ledge grabbing
-
-make a class that handles "if moving left, if jumping etc" that npc and player
-both INHERIT from. so they can both call something like
-"set_image_walking_left()", etc. probably make a "image* current" that's drawn,
-soon to be "anim* current"
-
-maybe tests at some point
