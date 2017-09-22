@@ -1,9 +1,11 @@
 #include "attack.h"
 #include "attackable.h"
+#include "object.h"
 
 attack::attack()
 	:_damage(0),
-	 _knockback(0)
+	 _knockback(0),
+	 _owner(0)
 {
 }
 
@@ -39,7 +41,7 @@ void attack::owner( attackable* own )
 
 void attack::perform( attackable* a )
 {
-	if ( a != owner() )
+	if ( a && a != owner() )
 	{
 		a->receive_attack( *this );
 		play_sound();

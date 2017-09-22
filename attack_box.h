@@ -4,6 +4,8 @@
 #include "trigger.h"
 #include "attack.h"
 
+class object;
+
 class attack_box : public trigger
 {
 public:
@@ -12,7 +14,7 @@ public:
 
 	void set_attack( attack att );
 
-	bool action(object* obj);
+	bool action( object* obj );
 private:
 	attack _attack;
 	object* _owner;

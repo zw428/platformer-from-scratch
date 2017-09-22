@@ -21,11 +21,9 @@ TEST_CASE( "attack_box setters/getters work", "[attack_box]" )
 	att.damage(17);
 	att_b.set_attack(att);
 
-	object* obj = dynamic_cast<object*>(&t);
+	att_b.action( &t );
 
-	att_b.action( obj );
-
-	REQUIRE( t.health() == 3 );
+	CHECK( t.health() == 3 );
 }
 
 TEST_CASE( "attack_box damages object", "[attack_box]" )
@@ -40,11 +38,9 @@ TEST_CASE( "attack_box damages object", "[attack_box]" )
 	att.damage(1);
 	att_b.set_attack(att);
 
-	object* obj = dynamic_cast<object*>(&t);
+	att_b.action( &t );
 
-	att_b.action( obj );
-
-	REQUIRE( t.health() < 5 );
+	CHECK( t.health() < 5 );
 }
 
 TEST_CASE( "attack_box knocks back object", "[attack_box]" )
@@ -60,10 +56,8 @@ TEST_CASE( "attack_box knocks back object", "[attack_box]" )
 	att.knockback(1);
 	att_b.set_attack(att);
 
-	object* obj = dynamic_cast<object*>(&t);
+	att_b.action( &t );
 
-	att_b.action( obj );
-
-	REQUIRE( t.h_speed() != 0 );
-	REQUIRE( t.v_speed() != 0 );
+	CHECK( t.h_speed() != 0 );
+	CHECK( t.v_speed() != 0 );
 }
