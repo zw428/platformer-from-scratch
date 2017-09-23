@@ -58,11 +58,30 @@ bool player::think()
 
 	if ( left )
 	{
-		h_speed(move_left(h_speed()));
+		bool colliding_left = colliding(this,3);
+
+		if ( !colliding_left )
+		{
+			h_speed(move_left(h_speed()));
+		}
+		else if ( v_speed() > 0 )
+		{
+			v_speed(v_speed() - friction_reduction( v_speed()));
+		}
 	}
 	else if ( right )
 	{
-		h_speed(move_right(h_speed()));
+
+		bool colliding_right = colliding(this,1);
+
+		if ( !colliding_right )
+		{
+			h_speed(move_right(h_speed()));
+		}
+		else if ( v_speed() > 0 )
+		{
+			v_speed(v_speed() - friction_reduction( v_speed()));
+		}
 	}
 	else if ( on_ground )
 	{
