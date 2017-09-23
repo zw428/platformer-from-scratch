@@ -181,6 +181,58 @@ TEST_CASE( "map::objects_in_chunk ignores the ignore", "[map]" )
 	CHECK( m.objects_in_chunk( cp, mt ).size() == 0 );
 }
 
+TEST_CASE( "map::objects_in_box gives objects in the given box", "[map]" )
+{
+	map m;
+	m.init(1024,1024);
+
+	map_tmp* mt = new map_tmp;
+	mt->x(400);
+	mt->y(400);
+
+	m.add_object( mt );
+
+	box b;
+
+	b.x(380);
+	b.y(380);
+
+	b.w(30);
+	b.h(30);
+
+	CHECK( m.objects_in_box(&b).size() == 1 );
+}
+
+TEST_CASE( "map::objects_in_box can span multiple chunks", "[map]" )
+{
+	map m;
+	m.init(2048,2048);
+
+	map_tmp* mt = new map_tmp;
+	mt->x(100);
+	mt->y(100);
+
+	m.add_object( mt );
+
+	map_tmp* mt2 = new map_tmp;
+	mt->x(1500);
+	mt->y(1500);
+
+	m.add_object( mt2 );
+
+	box b;
+
+	b.x(10);
+	b.y(10);
+
+	b.w(1600);
+	b.h(1600);
+
+	CHECK(1500 > CHUNK_SIZE);
+
+	CHECK( m.objects_in_box(&b).size() == 2 );
+}
+
 TEST_CASE( "map::objects_considered gets objects in and around chunk", "[map]" )
 {
 	map m;

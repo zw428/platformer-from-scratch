@@ -3,6 +3,7 @@
 #include <vector>
 #include "manager.h"
 #include "object.h"
+#include "collide_functions.h"
 
 map::map()
 	:_x_size(0),
@@ -155,6 +156,39 @@ void map::empty()
 	_triggers.clear();
 	_x_size = 0;
 	_y_size = 0;
+}
+
+std::vector<object*> map::objects_in_box( box* b, object* ignore )
+{
+	std::vector<object*> ret;
+
+	if ( !b )
+	{
+		return ret;
+	}
+
+	chunk_prop cp;
+
+	for ( unsigned i = b->left() / CHUNK_SIZE; i <= b->right() / CHUNK_SIZE; i++ )
+	{
+		cp.x = i;
+
+		for ( unsigned j = b->top() / CHUNK_SIZE; j <= b->bottom() / CHUNK_SIZE; j++ )
+		{
+			cp.y = j;
+			std::vector<object*> tmp = objects_in_chunk( cp );
+
+			for ( unsigned k=0; k < tmp.size(); k++ )
+			{
+				if ( box_in_box( tmp[k], b ) && tmp[k] != ignore )
+				{
+					ret.push_back(tmp[k]);
+				}
+			}
+		}
+	}
+
+	return ret;
 }
 
 std::vector<object*> map::objects_in_chunk( chunk_prop cp, object* ignore )

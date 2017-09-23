@@ -37,20 +37,7 @@ bool trigger::think()
 		}
 	}
 
-	chunk_prop cp;
-
-	std::vector<object*> objects_vec;
-
-	for ( unsigned i = x() / CHUNK_SIZE; i <= (x() + w()) / CHUNK_SIZE; i++ )
-	{
-		cp.x = i;
-		for ( unsigned j = y() / CHUNK_SIZE; j <= (y() + h()) / CHUNK_SIZE; j++ )
-		{
-			cp.y = j;
-			std::vector<object*> tmp = manager::instance()->get_map()->objects_in_chunk( cp );
-			objects_vec.insert( objects_vec.end(), tmp.begin(), tmp.end() );
-		}
-	}
+	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_in_box(this);
 
 	for ( unsigned i=0; i < objects_vec.size(); i++ )
 	{

@@ -37,6 +37,7 @@ public:
 
 	void empty();
 
+        std::vector<object*> objects_in_box( box* b, object* ignore = 0 );
         std::vector<object*> objects_in_chunk( chunk_prop cp, object* ignore = 0 );
 	std::vector<object*> objects_considered( object* obj );
 private:
