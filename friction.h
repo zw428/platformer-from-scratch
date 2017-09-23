@@ -9,7 +9,7 @@ public:
 	void coefficient( float coeff );
 	float coefficient();
 
-	float friction_reduction( float h_speed );
+	float friction_reduction( float speed );
 private:
 	float _coeff;
 };
