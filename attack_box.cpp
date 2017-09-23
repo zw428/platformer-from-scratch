@@ -25,7 +25,7 @@ bool attack_box::action(object* obj)
 
 	if ( !a )
 	{
-		return;
+		return false;
 	}
 
 	_attack.perform( a );

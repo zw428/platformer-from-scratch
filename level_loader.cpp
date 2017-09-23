@@ -238,7 +238,7 @@ bool level_loader::process_trigger_str(std::string str)
 		int y_dest_num = std::stoi(y_dest);
 
 		t = new teleport_box;
-		dynamic_cast<teleport_box*>(t)->set_dest( x_dest_num, y_dest_num )
+		dynamic_cast<teleport_box*>(t)->set_dest( x_dest_num, y_dest_num );
 	}
 	else if ( type == "death" )
 	{
