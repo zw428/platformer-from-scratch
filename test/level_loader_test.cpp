@@ -36,7 +36,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			tmp.x = 0;
 			tmp.y = 0;
 
-			CHECK( manager::instance()->get_map()->objects_at( tmp ).size() == 1 );
+			CHECK( manager::instance()->get_map()->objects_in_chunk( tmp ).size() == 1 );
 		}
 
 		SECTION( "npc" )
@@ -50,7 +50,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			tmp.x = 0;
 			tmp.y = 0;
 
-			CHECK( manager::instance()->get_map()->objects_at( tmp ).size() == 1 );
+			CHECK( manager::instance()->get_map()->objects_in_chunk( tmp ).size() == 1 );
 		}
 	}
 
@@ -66,7 +66,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			tmp.x = 0;
 			tmp.y = 0;
 
-			CHECK( manager::instance()->get_map()->objects_at( tmp ).size() == 1 );
+			CHECK( manager::instance()->get_map()->objects_in_chunk( tmp ).size() == 1 );
 	}
 
 	SECTION( "font" )

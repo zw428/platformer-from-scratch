@@ -58,7 +58,7 @@ TEST_CASE( "map::add_object adds objects", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_at( cp ).size() == 1 );
+	CHECK( m.objects_in_chunk( cp ).size() == 1 );
 }
 
 TEST_CASE( "map::add_trigger adds triggers", "[map]" )
@@ -103,14 +103,14 @@ TEST_CASE( "map::empty empties everything", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_at( cp ).size() == 1 );
+	CHECK( m.objects_in_chunk( cp ).size() == 1 );
 
 	m.empty();
 
-	CHECK( m.objects_at( cp ).size() == 0 );
+	CHECK( m.objects_in_chunk( cp ).size() == 0 );
 }
 
-TEST_CASE( "map::objects_at gives all objects in a chunk", "[map]" )
+TEST_CASE( "map::objects_in_chunk gives all objects in a chunk", "[map]" )
 {
 	map m;
 	m.init(512,512);
@@ -130,10 +130,10 @@ TEST_CASE( "map::objects_at gives all objects in a chunk", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_at( cp ).size() == 2 );
+	CHECK( m.objects_in_chunk( cp ).size() == 2 );
 }
 
-TEST_CASE( "map::objects_at doesn't give objects from different chunks", "[map]" )
+TEST_CASE( "map::objects_in_chunk doesn't give objects from different chunks", "[map]" )
 {
 	map m;
 	m.init(1024,1024);
@@ -152,18 +152,18 @@ TEST_CASE( "map::objects_at doesn't give objects from different chunks", "[map]"
 	chunk_prop cp;
 	cp.x = 0;
 	cp.y = 0;
-	CHECK( m.objects_at( cp ).size() == 1 );
+	CHECK( m.objects_in_chunk( cp ).size() == 1 );
 
 	cp.x = 1;
 	cp.y = 1;
-	CHECK( m.objects_at( cp ).size() == 1 );
+	CHECK( m.objects_in_chunk( cp ).size() == 1 );
 
 	cp.x = 2;
 	cp.y = 2;
-	CHECK( m.objects_at( cp ).size() == 0 );
+	CHECK( m.objects_in_chunk( cp ).size() == 0 );
 }
 
-TEST_CASE( "map::objects_at ignores the ignore", "[map]" )
+TEST_CASE( "map::objects_in_chunk ignores the ignore", "[map]" )
 {
 	map m;
 	m.init(1024,1024);
@@ -178,7 +178,7 @@ TEST_CASE( "map::objects_at ignores the ignore", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_at( cp, mt ).size() == 0 );
+	CHECK( m.objects_in_chunk( cp, mt ).size() == 0 );
 }
 
 TEST_CASE( "map::objects_considered gets objects in and around chunk", "[map]" )

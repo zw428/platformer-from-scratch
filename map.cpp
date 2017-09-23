@@ -157,7 +157,7 @@ void map::empty()
 	_y_size = 0;
 }
 
-std::vector<object*> map::objects_at( chunk_prop cp, object* ignore )
+std::vector<object*> map::objects_in_chunk( chunk_prop cp, object* ignore )
 {
 	std::vector<object*> ret;
 
@@ -206,7 +206,7 @@ std::vector<object*> map::objects_considered( object* obj )
 
 			if ( temp_cp.x >= 0 && temp_cp.x < chunk_x_size() && temp_cp.y >= 0 && temp_cp.y < chunk_y_size() )
 			{
-				std::vector<object*> tmp = objects_at( temp_cp, obj );
+				std::vector<object*> tmp = objects_in_chunk( temp_cp, obj );
 				ret.insert( ret.end(), tmp.begin(), tmp.end() );
 			}
 

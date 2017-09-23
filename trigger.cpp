@@ -47,7 +47,7 @@ bool trigger::think()
 		for ( unsigned j = y() / CHUNK_SIZE; j <= (y() + h()) / CHUNK_SIZE; j++ )
 		{
 			cp.y = j;
-			std::vector<object*> tmp = manager::instance()->get_map()->objects_at( cp );
+			std::vector<object*> tmp = manager::instance()->get_map()->objects_in_chunk( cp );
 			objects_vec.insert( objects_vec.end(), tmp.begin(), tmp.end() );
 		}
 	}
