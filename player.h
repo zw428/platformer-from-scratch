@@ -9,12 +9,13 @@
 #include "friction.h"
 #include "vel_accel.h"
 #include "anim.h"
+#include "ledge_grabber.h"
 
 #include <SDL2/SDL.h>
 #include <string>
 #include <vector>
 
-class player : public alive, public object, public jumper, public gravity_affected, public mover, public friction, public vel_accel
+class player : public alive, public object, public jumper, public gravity_affected, public mover, public friction, public vel_accel, public ledge_grabber
 {
 public:
 	player();
