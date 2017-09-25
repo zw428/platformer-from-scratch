@@ -17,10 +17,17 @@ public:
 
 	void flip_h( bool flipped );
 	bool flip_h() const;
+
+	bool tiled() const;
+	void tiled( bool tiled );
 private:
 	texture_store _tex_store;
 
+	void draw_stretched();
+	void draw_tiled();
+
 	bool _flip_h;
+	bool _tiled;
 };
 
 #endif

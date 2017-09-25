@@ -20,9 +20,11 @@ TEST_CASE( "image setters and getters work", "[image]" )
 
 	i.texture( t );
 	i.flip_h( true );
+	i.tiled( true );
 
 	CHECK( i.tex_store().tex == 0 );
 	CHECK( i.tex_store().orig_w == 5 );
 	CHECK( i.tex_store().orig_h == 6 );
 	CHECK( i.flip_h() == true );
+	CHECK( i.tiled() == true );
 }
