@@ -48,7 +48,8 @@ player::player()
 	_am.set_jumping_anim(jumping);
 	_am.set_idle_anim(idle);
 
-	h_accel_rate(0.5);
+	h_accel_rate(0.3);
+	h_speed_max(3);
 }
 
 player::~player()
