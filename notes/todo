@@ -1,1 +1,5 @@
-ledge grabbing
+delayed attack / cooldown attack
+
+animation handling ( if running, jumping, disabled, etc. )
+
+slim down player class (think function is too big)
