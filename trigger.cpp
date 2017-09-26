@@ -7,7 +7,8 @@
 trigger::trigger()
 	:_lifespan(0),
 	 _time_left(1),
-	 _interval(30)
+	 _interval(30),
+	 _enabled(true)
 {
 }
 
@@ -17,6 +18,11 @@ trigger::~trigger()
 
 bool trigger::think()
 {
+	if ( !enabled() )
+	{
+		return false;
+	}
+
 	if ( _lifespan )
 	{
 		if ( _time_left > 0 )
@@ -111,4 +117,14 @@ unsigned short trigger::interval() const
 void trigger::interval( unsigned short interval )
 {
 	_interval = interval;
+}
+
+bool trigger::enabled() const
+{
+	return _enabled;
+}
+
+void trigger::enabled( bool enabled )
+{
+	_enabled = enabled;
 }

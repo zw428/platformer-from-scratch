@@ -22,6 +22,7 @@ TEST_CASE( "trigger initializes stuff", "[trigger]" )
 
 	CHECK( t.interval() == 30 );
 	CHECK( t.lifespan() == 0 );
+	CHECK( t.enabled() == true );
 }
 
 TEST_CASE( "trigger setters/getters work", "[trigger]" )
@@ -30,9 +31,11 @@ TEST_CASE( "trigger setters/getters work", "[trigger]" )
 
 	t.lifespan(5);
 	t.interval(6);
+	t.enabled(true);
 
 	CHECK( t.lifespan() == 5);
 	CHECK( t.interval() == 6);
+	CHECK( t.enabled() == true);
 }
 
 TEST_CASE( "trigger dies (returns true) when lifespan is over", "[trigger]" )

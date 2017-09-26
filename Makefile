@@ -15,7 +15,6 @@ unknown: $(BASE_OBJS)
 
 test: $(TEST_OBJS) $(filter-out build/main.o,$(BASE_OBJS))
 	g++ $^ $(LIBS) -o build/test
-	build/test
 
 build/%.d_src: %.cpp
 	./get_dependencies.sh $< > build/$*.d_src

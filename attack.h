@@ -21,8 +21,6 @@ public:
 
 	void perform( attackable* a );
 private:
-	void reset_delay();
-
 	unsigned short _damage;
 	unsigned short _knockback;
 

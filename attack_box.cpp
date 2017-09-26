@@ -8,6 +8,7 @@ attack_box::attack_box()
 {
 	lifespan(20);
 	interval(20);
+	enabled(true);
 }
 
 attack_box::~attack_box()

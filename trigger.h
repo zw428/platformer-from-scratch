@@ -23,10 +23,15 @@ public:
 
 	unsigned short interval() const;
 	void interval( unsigned short interval );
+
+	bool enabled() const;
+	void enabled( bool enabled );
 private:
 	unsigned short _lifespan;
 	unsigned short _time_left;
 	unsigned short _interval;
+
+	bool _enabled;
 
 	struct object_interval {
 		unsigned short counter;
