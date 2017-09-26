@@ -5,9 +5,11 @@
 #include "../vel_accel.h"
 #include "../knockback.h"
 
-class knockback_tmp : public object, public vel_accel
+class knockback_tmp : public object, public vel_accel, public attackable
 {
+public:
 	bool think() { return false; };
+	void receive_attack( const attack& att ) { };
 };
 
 TEST_CASE( "knockback() will move object", "[knockback]" )
@@ -138,4 +140,28 @@ TEST_CASE( "knockback() will knockback object in a certain direction", "[knockba
 
 		CHECK( t.v_speed() < 0 );
 	}
+}
+
+TEST_CASE( "knockback() will not affect owner", "[knockback]" )
+{
+	knockback_tmp t;
+
+	t.h_speed(3);
+	t.v_speed(3);
+
+	attack a;
+	a.owner(&t);
+	a.knockback(5);
+
+	box b;
+
+	b.x( t.x() + 1 );
+	b.y( t.y() + 1 );
+	b.w( t.w() + 1 );
+	b.h( t.h() + 1 );
+
+	knockback( dynamic_cast<object*>(&t), &b, a );
+
+	CHECK( t.h_speed() == 3 );
+	CHECK( t.v_speed() == 3 );
 }

@@ -6,6 +6,11 @@
 
 void knockback( object* obj, box* source, const attack& att )
 {
+	if ( dynamic_cast<attackable*>(obj) == att.owner() )
+	{
+		return;
+	}
+
 	vel_accel* va = dynamic_cast<vel_accel*>( obj );
 
 	if ( !va )
