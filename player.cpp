@@ -17,7 +17,12 @@ player::player()
 	_anm.w(w());
 	_anm.h(h());
 	_anm.clip_width(100);
-	_anm.frame_dur(3);
+
+	for ( unsigned i=0; i < 5; i++ )
+	{
+		_anm.add_frame_dur(3);
+	}
+
 	h_accel_rate(0.5);
 }
 

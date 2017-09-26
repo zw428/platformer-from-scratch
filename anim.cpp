@@ -5,7 +5,6 @@ anim::anim()
 	:image(),
 	 _clip_offset(0),
 	 _clip_width(0),
-	 _frame_dur(5),
 	 _frame_counter(0),
 	 _index(0)
 {
@@ -48,14 +47,16 @@ void anim::clip_offset( unsigned short offset )
 	_clip_offset = offset;
 }
 
-void anim::frame_dur( unsigned short t )
+void anim::add_frame_dur( unsigned short t )
 {
+	unsigned short frame_dur = t;
+
 	if ( t == 0 )
 	{
-		t = 1;
+		frame_dur = 1;
 	}
 
-	_frame_dur = t;
+	_frame_durs.push_back(frame_dur);
 }
 
 unsigned short anim::clip_offset() const
@@ -68,14 +69,14 @@ unsigned short anim::clip_width() const
 	return _clip_width;
 }
 
-unsigned short anim::frame_dur() const
-{
-	return _frame_dur;
-}
-
 void anim::handle_frame_count()
 {
-	if ( _frame_counter < _frame_dur - 1 )
+	if ( _frame_durs.size() != tex_store().orig_w / _clip_width )
+	{
+		throw( "not enough frames for animation" );
+	}
+
+	if ( _frame_counter < _frame_durs[_index] - 1 )
 	{
 		_frame_counter++;
 	}
