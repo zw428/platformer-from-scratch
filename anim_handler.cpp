@@ -10,29 +10,39 @@ void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool di
 	if ( disabled )
 	{
 		_current_anim = &_disabled_anim;
+		_current_anim->flip_h( facing_left );
 		return;
 	}
 
 	if ( on_ground && !moving )
 	{
 		_current_anim = &_idle_anim;
+		_current_anim->flip_h( facing_left );
 		return;
 	}
 
 	if ( on_ground && moving )
 	{
 		_current_anim = &_running_anim;
+		_current_anim->flip_h( facing_left );
 		return;
 	}
 
 	if ( !on_ground && moving )
 	{
 		_current_anim = &_jumping_anim;
+		_current_anim->flip_h( facing_left );
 		return;
+	}
+
+	if ( !_current_anim )
+	{
+		_current_anim = &_idle_anim;
+		_current_anim->flip_h( facing_left );
 	}
 }
 
-anim* anim_handler::current_anim() const
+anim* anim_handler::current_anim()
 {
 	return _current_anim;
 }

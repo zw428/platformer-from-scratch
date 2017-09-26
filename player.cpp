@@ -12,16 +12,33 @@ player::player()
 	  object()
 {
 	weightless(false);
+	
+	anim running;
 
-	_anm.texture(manager::instance()->textures("sheet"));
-	_anm.w(w());
-	_anm.h(h());
-	_anm.clip_width(100);
-
-	for ( unsigned i=0; i < 5; i++ )
+	running.texture(manager::instance()->textures("spaceman_running"));
+	running.clip_width(12);
+	running.w(12);
+	running.h(34);
+	
+	for ( unsigned i=0; i < 6; i++ )
 	{
-		_anm.add_frame_dur(3);
+		running.add_frame_dur(5);
 	}
+	
+	anim idle;
+	idle.texture(manager::instance()->textures("spaceman_standing"));
+	idle.clip_width(15);
+	idle.w(15);
+	idle.h(36);
+	idle.add_frame_dur(90);
+	idle.add_frame_dur(5);
+	idle.add_frame_dur(85);
+	idle.add_frame_dur(4);
+
+	_am.set_running_anim(running);
+	_am.set_disabled_anim(running);
+	_am.set_jumping_anim(running);
+	_am.set_idle_anim(idle);
 
 	h_accel_rate(0.5);
 }
@@ -43,6 +60,9 @@ bool player::think()
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 
 	_attack1.think(attacking);
+	_am.think( on_ground, facing_left(), (h_speed() != 0), false );
+	w( _am.current_anim()->w() );
+	h( _am.current_anim()->h() );
 
 	if ( _attack1.ready() )
 	{
@@ -89,8 +109,6 @@ bool player::think()
 		{
 			v_speed(v_speed() - friction_reduction( v_speed()));
 		}
-
-		_anm.flip_h(facing_left());
 	}
 	else if ( right )
 	{
@@ -103,8 +121,6 @@ bool player::think()
 		{
 			v_speed(v_speed() - friction_reduction( v_speed()));
 		}
-
-		_anm.flip_h(facing_left());
 	}
 	else if ( on_ground )
 	{
@@ -130,9 +146,9 @@ bool player::think()
 
 	handle_speeds(this);
 
-	_anm.x(x());
-	_anm.y(y());
-	_anm.draw();
+	_am.current_anim()->x(x());
+	_am.current_anim()->y(y());
+	_am.current_anim()->draw();
 
 	return false;
 }

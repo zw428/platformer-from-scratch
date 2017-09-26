@@ -8,7 +8,7 @@ class anim_handler
 public:
 	anim_handler();
 	void think( bool on_ground, bool facing_left, bool moving, bool disabled );
-	anim* current_anim() const;
+	anim* current_anim();
 
 	void set_running_anim( anim a );
 	void set_idle_anim( anim a );
