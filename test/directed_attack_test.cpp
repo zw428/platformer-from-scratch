@@ -26,7 +26,7 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 	directed_attack d;
 
 	box b;
-	
+
 	b.x(200);
 	b.y(200);
 	b.w(50);

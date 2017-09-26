@@ -12,19 +12,19 @@ player::player()
 	  object()
 {
 	weightless(false);
-	
+
 	anim running;
 
 	running.texture(manager::instance()->textures("spaceman_running"));
 	running.clip_width(12);
 	running.w(12);
 	running.h(34);
-	
+
 	for ( unsigned i=0; i < 6; i++ )
 	{
 		running.add_frame_dur(5);
 	}
-	
+
 	anim idle;
 	idle.texture(manager::instance()->textures("spaceman_standing"));
 	idle.clip_width(15);

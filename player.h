@@ -29,7 +29,7 @@ private:
 	unsigned short _attack_delay;
 
 	delayed_action _attack1;
-	
+
 	anim_handler _am;
 };
 
