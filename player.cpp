@@ -13,9 +13,6 @@ player::player()
 {
 	weightless(false);
 
-	_attack_delay = 30;
-	_attack_counter = _attack_delay;
-
 	_anm.texture(manager::instance()->textures("sheet"));
 	_anm.w(w());
 	_anm.h(h());
@@ -40,9 +37,11 @@ bool player::think()
 	bool right     = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 
-	if ( _attack_counter > 0 )
+	_attack1.think(attacking);
+
+	if ( _attack1.ready() )
 	{
-		_attack_counter--;
+		start_attack();
 	}
 
 	if ( v_speed() > 0 && !on_ground )
@@ -124,11 +123,6 @@ bool player::think()
 		v_speed( jump_vel );
 	}
 
-	if ( attacking && _attack_counter == 0 )
-	{
-		start_attack();
-	}
-
 	handle_speeds(this);
 
 	_anm.x(x());
@@ -156,6 +150,4 @@ void player::start_attack()
 	{
 		da.attack_right( att, this, 20, h() );
 	}
-
-	_attack_counter = _attack_delay;
 }

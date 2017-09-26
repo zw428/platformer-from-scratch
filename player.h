@@ -10,6 +10,7 @@
 #include "vel_accel.h"
 #include "anim.h"
 #include "ledge_grabber.h"
+#include "delayed_action.h"
 
 #include <SDL2/SDL.h>
 #include <string>
@@ -25,6 +26,8 @@ public:
 private:
 	unsigned short _attack_counter;
 	unsigned short _attack_delay;
+
+	delayed_action _attack1;
 
 	anim _anm;
 };
