@@ -1,3 +1,5 @@
-animation handling ( if running, jumping, disabled, etc. )
+finish animation handling
+	don't change player::object::w or h when changing anims, implement image origins or offsets
+	draw for hanging / jumping / disabled / attacking
 
 slim down player class (think function is too big)
