@@ -52,8 +52,23 @@ bool move_phys( object* obj, short x_add, short y_add )
 			}
 			else
 			{
-				x_add /= 2;
-				y_add /= 2;
+				bool colliding_horiz = box_in_box( obj->x() + x_add, obj->y(), obj->w(), obj->h(), other_obj->x(), other_obj->y(), other_obj->w(), other_obj->h() );
+				bool colliding_vert = box_in_box( obj->x(), obj->y() + y_add, obj->w(), obj->h(), other_obj->x(), other_obj->y(), other_obj->w(), other_obj->h() );
+
+				if ( colliding_horiz && !colliding_vert )
+				{
+					x_add /= 2;
+				}
+				else if ( colliding_vert && !colliding_horiz )
+				{
+					y_add /= 2;
+				}
+				else
+				{
+					x_add /= 2;
+					y_add /= 2;
+				}
+
 				i=0;
 
 				if ( x_add == 0 && y_add == 0 )
