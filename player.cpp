@@ -20,6 +20,9 @@ player::player()
 	running.w(12);
 	running.h(34);
 
+	w(14);
+	h(36);
+
 	for ( unsigned i=0; i < 6; i++ )
 	{
 		running.add_frame_dur(5);
@@ -61,8 +64,6 @@ bool player::think()
 
 	_attack1.think(attacking);
 	_am.think( on_ground, facing_left(), (h_speed() != 0), false );
-	w( _am.current_anim()->w() );
-	h( _am.current_anim()->h() );
 
 	if ( _attack1.ready() )
 	{
@@ -132,10 +133,7 @@ bool player::think()
 		let_go();
 	}
 
-	if ( !on_ground )
-	{
-		v_accel( gravity_accel(on_ground) );
-	}
+	v_accel( gravity_accel(on_ground) );
 
 	short jump_vel = handle_jumping(on_ground, up);
 
@@ -145,10 +143,7 @@ bool player::think()
 	}
 
 	handle_speeds(this);
-
-	_am.current_anim()->x(x());
-	_am.current_anim()->y(y());
-	_am.current_anim()->draw();
+	_am.draw(this);
 
 	return false;
 }
