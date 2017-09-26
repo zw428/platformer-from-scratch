@@ -28,7 +28,7 @@ void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool di
 		return;
 	}
 
-	if ( !on_ground && moving )
+	if ( !on_ground )
 	{
 		_current_anim = &_jumping_anim;
 		return;

@@ -23,18 +23,27 @@ void anim::draw()
 
 	handle_frame_count();
 
-	SDL_Rect clip;
-
-	clip.x = clip_offset();
-	clip.y = 0;
-	clip.w = clip_width();
-	clip.h = tex_store().orig_h;
-
-	if ( manager::instance()->should_draw( x(), y(), w(), h() ) )
+	if ( !manager::instance()->should_draw( x(), y(), w(), h() ) )
 	{
-		SDL_RendererFlip f = (flip_h()) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+		return;
+	}
+
+	SDL_RendererFlip f = (flip_h()) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+
+	if ( num_frames() > 1 )
+	{
+		SDL_Rect clip;
+		clip.x = clip_offset();
+		clip.y = 0;
+		clip.w = clip_width();
+		clip.h = tex_store().orig_h;
 		SDL_RenderCopyEx(manager::instance()->renderer(), tex_store().tex, &clip, &rect, 0, 0, f );
 	}
+	else
+	{
+		SDL_RenderCopyEx(manager::instance()->renderer(), tex_store().tex, 0, &rect, 0, 0, f );
+	}
+
 }
 
 void anim::clip_width( unsigned short width )
@@ -69,9 +78,24 @@ unsigned short anim::clip_width() const
 	return _clip_width;
 }
 
+unsigned short anim::num_frames() const
+{
+	if ( clip_width() == 0 )
+	{
+		return 1;
+	}
+
+	return tex_store().orig_w / clip_width();
+}
+
 void anim::handle_frame_count()
 {
-	if ( _frame_durs.size() != tex_store().orig_w / _clip_width )
+	if ( num_frames() == 1 )
+	{
+		return;
+	}
+
+	if ( _frame_durs.size() != num_frames() )
 	{
 		throw( "not enough frames for animation" );
 	}
@@ -84,7 +108,7 @@ void anim::handle_frame_count()
 	{
 		_frame_counter = 0;
 
-		if ( ++_index >= tex_store().orig_w / _clip_width )
+		if ( ++_index >= num_frames() )
 		{
 			_index = 0;
 		}

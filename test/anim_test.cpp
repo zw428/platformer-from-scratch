@@ -10,6 +10,13 @@ TEST_CASE( "anim constructor initializes stuff", "[anim]" )
 	CHECK( a.clip_width() == 0 );
 }
 
+TEST_CASE( "anim acts as image when no frames are added", "[anim]" )
+{
+	anim a;
+
+	CHECK( a.num_frames() == 1 );
+}
+
 TEST_CASE( "anim setters/getters work", "[anim]" )
 {
 	anim a;

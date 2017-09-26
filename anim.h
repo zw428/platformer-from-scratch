@@ -10,12 +10,14 @@ public:
 	anim();
 	void draw();
 
+	unsigned short clip_width() const;
 	void clip_width( unsigned short width );
+	unsigned short clip_offset() const;
 	void clip_offset( unsigned short offset );
+
 	void add_frame_dur( unsigned short t );
 
-	unsigned short clip_offset() const;
-	unsigned short clip_width() const;
+	unsigned short num_frames() const;
 private:
 	void handle_frame_count();
 

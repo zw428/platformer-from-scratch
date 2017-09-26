@@ -38,9 +38,14 @@ player::player()
 	idle.add_frame_dur(85);
 	idle.add_frame_dur(4);
 
+	anim jumping;
+	jumping.texture(manager::instance()->textures("spaceman_jumping"));
+	jumping.w(15);
+	jumping.h(33);
+
 	_am.set_running_anim(running);
 	_am.set_disabled_anim(running);
-	_am.set_jumping_anim(running);
+	_am.set_jumping_anim(jumping);
 	_am.set_idle_anim(idle);
 
 	h_accel_rate(0.5);
