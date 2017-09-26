@@ -1,4 +1,4 @@
 finish animation handling
-	draw for hanging / jumping / disabled / attacking
+	draw for hanging / disabled / attacking
 
 slim down player class (think function is too big)
