@@ -58,6 +58,16 @@ bool map::add_trigger(trigger* tr)
 	return true;
 }
 
+unsigned map::object_count() const
+{
+	return _objects.size();
+}
+
+unsigned map::trigger_count() const
+{
+	return _triggers.size();
+}
+
 void map::erase_object_from_grid( object* obj )
 {
 	chunk_prop cp = _chunk_props[ obj->id() ];

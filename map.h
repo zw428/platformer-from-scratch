@@ -28,6 +28,9 @@ public:
 	bool add_object( object* obj );
 	bool add_trigger( trigger* tr );
 
+	unsigned object_count() const;
+	unsigned trigger_count() const;
+
 	void think();
 
 	unsigned short chunk_x_size() const;

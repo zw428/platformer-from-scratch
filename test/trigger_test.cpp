@@ -52,6 +52,7 @@ TEST_CASE( "trigger dies (returns true) when lifespan is over", "[trigger]" )
 	}
 
 	CHECK( t.think() == true );
+	CHECK( manager::instance()->get_map()->trigger_count() == 0 );
 
 	manager::destroy();
 }

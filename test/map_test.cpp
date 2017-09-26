@@ -61,6 +61,44 @@ TEST_CASE( "map::add_object adds objects", "[map]" )
 	CHECK( m.objects_in_chunk( cp ).size() == 1 );
 }
 
+TEST_CASE( "map::object_count works correctly", "[map]" )
+{
+	map m;
+	m.init(512,512);
+
+	map_tmp* mt = new map_tmp;
+	mt->x(0);
+	mt->y(0);
+
+	m.add_object(mt);
+
+	CHECK( m.object_count() == 1 );
+
+	m.empty();
+	
+	CHECK( m.object_count() == 0 );
+}
+
+TEST_CASE( "map::trigger_count works correctly", "[map]" )
+{
+	map m;
+
+	m.init(1000,1000);
+
+	map_tmp2* mt = new map_tmp2;
+
+	mt->x(0);
+	mt->y(0);
+
+	m.add_trigger(mt);
+
+	CHECK( m.trigger_count() == 1 );
+	
+	m.empty();
+	
+	CHECK( m.trigger_count() == 0 );
+}
+
 TEST_CASE( "map::add_trigger adds triggers", "[map]" )
 {
 	map m;
