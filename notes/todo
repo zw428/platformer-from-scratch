@@ -1,4 +1,9 @@
-finish animation handling
-	draw for hanging / disabled / attacking
-
 slim down player class (think function is too big)
+
+implement attacking animations
+	should probably add animation override to anim handler
+
+more advanced attacks
+	attacks where you can't move
+	charged attacks
+	hold-down attacks

@@ -6,9 +6,15 @@ anim_handler::anim_handler()
 {
 }
 
-void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool disabled )
+void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool hanging, bool disabled )
 {
 	_flipped = facing_left;
+
+	if ( hanging )
+	{
+		_current_anim = &_hanging_anim;
+		return;
+	}
 
 	if ( disabled )
 	{
@@ -106,6 +112,11 @@ void anim_handler::set_jumping_anim( anim a )
 void anim_handler::set_disabled_anim( anim a )
 {
 	_disabled_anim = a;
+}
+
+void anim_handler::set_hanging_anim( anim a )
+{
+	_hanging_anim = a;
 }
 
 unsigned short anim_handler::origin() const

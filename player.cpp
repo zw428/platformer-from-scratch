@@ -43,13 +43,21 @@ player::player()
 	jumping.w(15);
 	jumping.h(33);
 
+	anim hanging;
+	hanging.texture(manager::instance()->textures("spaceman_hanging"));
+	hanging.w(15);
+	hanging.h(33);
+
 	_am.set_running_anim(running);
 	_am.set_disabled_anim(running);
 	_am.set_jumping_anim(jumping);
+	_am.set_hanging_anim(hanging);
 	_am.set_idle_anim(idle);
 
-	h_accel_rate(0.3);
-	h_speed_max(3);
+	h_accel_rate(0.2);
+	h_speed_max(2);
+	jump_vel_1(6);
+	jump_vel_2(6);
 }
 
 player::~player()
@@ -69,86 +77,47 @@ bool player::think()
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 
 	_attack1.think(attacking);
-	_am.think( on_ground, facing_left(), (h_speed() != 0), false );
 
 	if ( _attack1.ready() )
 	{
 		start_attack();
 	}
 
-	if ( v_speed() > 0 && !on_ground )
-	{
-		find_ledge(this);
+	v_accel( gravity_accel(on_ground) );
 
-		if ( found_ledge() )
-		{
-			if ( v_speed() > dist_to_ledge() )
-			{
-				v_speed( dist_to_ledge() );
-			}
-
-			if ( v_speed() == 0 )
-			{
-				on_ground = true;
-
-				if ( h_dist_to_ledge() > 0 )
-				{
-					h_speed(4);
-					move_right(0);
-				}
-				else if ( h_dist_to_ledge() < 0 )
-				{
-					h_speed(-4);
-					move_left(0);
-				}
-			}
-		}
-	}
+	find_ledge(this, on_ground);
 
 	if ( left )
 	{
-		if ( !colliding_left )
-		{
-			let_go();
-			h_speed(move_left(h_speed()));
-		}
-		else if ( v_speed() > 0 )
-		{
-			v_speed(v_speed() - friction_reduction( v_speed()));
-		}
-	}
-	else if ( right )
-	{
-		if ( !colliding_right )
-		{
-			let_go();
-			h_speed(move_right(h_speed()));
-		}
-		else if ( v_speed() > 0 )
-		{
-			v_speed(v_speed() - friction_reduction( v_speed()));
-		}
-	}
-	else if ( on_ground )
-	{
-		h_speed(h_speed() - friction_reduction( h_speed()));
+		h_speed(move_left(h_speed()));
 	}
 
-	if ( down )
+	if ( right )
+	{
+		h_speed(move_right(h_speed()));
+	}
+
+	if ( h_speed() != 0 && on_ground && !left && !right )
+	{
+		h_speed(h_speed() - friction_reduction(h_speed()));
+	}
+
+	short jump_vel = handle_jumping(on_ground || hanging(), up);
+
+	if ( jump_vel )
+	{
+		let_go();
+
+		v_speed( jump_vel );
+	}
+
+	if ( (left && !colliding_left) || (right && !colliding_right) || down || up )
 	{
 		let_go();
 	}
 
-	v_accel( gravity_accel(on_ground) );
-
-	short jump_vel = handle_jumping(on_ground, up);
-
-	if ( jump_vel )
-	{
-		v_speed( jump_vel );
-	}
-
 	handle_speeds(this);
+	_am.think( on_ground, facing_left(), (h_speed() != 0), hanging(), false );
 	_am.draw(this);
 
 	return false;

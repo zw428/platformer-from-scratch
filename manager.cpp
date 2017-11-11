@@ -68,7 +68,7 @@ bool manager::init( bool no_window )
 		return false;
 	}
 
-	SDL_SetRenderDrawColor( _ren, 30, 30, 30, 30);
+	SDL_SetRenderDrawColor( _ren, 155, 155, 155, 155);
 
 	int img_flags = IMG_INIT_PNG;
 
