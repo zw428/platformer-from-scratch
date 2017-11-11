@@ -1,8 +1,11 @@
 slim down player class (think function is too big)
 
-implement attacking animations
-
 more advanced attacks
+	better way to set origin, for when punch/whatever extends hitbox. probably have to do it with coordinates
 	attacks where you can't move
 	charged attacks
 	hold-down attacks
+
+make knockback more interesting; hits things in air
+
+player-player collision shouldn't be possible, or else hitting is lame
