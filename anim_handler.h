@@ -16,6 +16,7 @@ public:
 	void set_jumping_anim( anim a );
 	void set_disabled_anim( anim a );
 	void set_hanging_anim( anim a );
+	void set_override_anim( anim a );
 
 	unsigned short origin() const;
 	void origin( unsigned short origin );
@@ -25,6 +26,7 @@ private:
 	anim _jumping_anim;
 	anim _disabled_anim;
 	anim _hanging_anim;
+	anim _override_anim;
 
 	anim* _current_anim;
 

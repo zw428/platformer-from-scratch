@@ -10,6 +10,12 @@ void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool ha
 {
 	_flipped = facing_left;
 
+	if ( !_override_anim.at_end() )
+	{
+		_current_anim = &_override_anim;
+		return;
+	}
+
 	if ( hanging )
 	{
 		_current_anim = &_hanging_anim;
@@ -117,6 +123,12 @@ void anim_handler::set_disabled_anim( anim a )
 void anim_handler::set_hanging_anim( anim a )
 {
 	_hanging_anim = a;
+}
+
+void anim_handler::set_override_anim( anim a )
+{
+	a.reset();
+	_override_anim = a;
 }
 
 unsigned short anim_handler::origin() const

@@ -18,6 +18,9 @@ public:
 	void add_frame_dur( unsigned short t );
 
 	unsigned short num_frames() const;
+
+	bool at_end() const;
+	void reset();
 private:
 	void handle_frame_count();
 

@@ -88,6 +88,16 @@ unsigned short anim::num_frames() const
 	return tex_store().orig_w / clip_width();
 }
 
+bool anim::at_end() const
+{
+	return _index == num_frames() - 1;
+}
+
+void anim::reset()
+{
+	_index = 0;
+}
+
 void anim::handle_frame_count()
 {
 	if ( num_frames() == 1 )
