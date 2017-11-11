@@ -90,7 +90,7 @@ unsigned short anim::num_frames() const
 
 bool anim::at_end() const
 {
-	return _index == num_frames() - 1;
+	return ( _frame_counter == _frame_durs[_index] - 2 && _index == num_frames() - 1);
 }
 
 void anim::reset()

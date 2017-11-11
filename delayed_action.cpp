@@ -4,7 +4,7 @@ delayed_action::delayed_action()
 	:_delay(20),
 	 _cooldown(20),
 	 _cooldown_counter(0),
-	 _waiting(false),
+	 _acting(false),
 	 _ready(false)
 {
 	 _delay_counter = _delay;
@@ -14,9 +14,9 @@ void delayed_action::think( bool starting )
 {
 	_ready = false;
 
-	if ( starting && !_waiting && _cooldown_counter == 0 )
+	if ( starting && !_acting && _cooldown_counter == 0 )
 	{
-		_waiting = true;
+		_acting = true;
 		_delay_counter = delay();
 		_cooldown_counter = cooldown();
 	}
@@ -26,7 +26,7 @@ void delayed_action::think( bool starting )
 		_cooldown_counter--;
 	}
 
-	if ( !_waiting )
+	if ( !_acting )
 	{
 		return;
 	}
@@ -38,7 +38,7 @@ void delayed_action::think( bool starting )
 
 	if ( _delay_counter == 0 )
 	{
-		_waiting = false;
+		_acting = false;
 		_ready = true;
 	}
 }
@@ -63,9 +63,14 @@ unsigned short delayed_action::cooldown() const
 	return _cooldown;
 }
 
-bool delayed_action::waiting() const
+bool delayed_action::acting() const
 {
-	return _waiting;
+	return _acting;
+}
+
+bool delayed_action::cooling_down() const
+{
+	return _cooldown_counter != 0;
 }
 
 bool delayed_action::ready() const

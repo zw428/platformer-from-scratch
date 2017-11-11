@@ -10,7 +10,8 @@ public:
 	void cooldown( unsigned short cooldown );
 	unsigned short delay() const;
 	unsigned short cooldown() const;
-	bool waiting() const;
+	bool acting() const;
+	bool cooling_down() const;
 	bool ready() const;
 private:
 	unsigned short _delay;
@@ -19,7 +20,7 @@ private:
 	unsigned short _cooldown;
 	unsigned short _cooldown_counter;
 
-	bool _waiting;
+	bool _acting;
 	bool _ready;
 };
 #endif

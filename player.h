@@ -30,6 +30,12 @@ private:
 
 	delayed_action _attack1;
 
+	anim _idle;
+	anim _running;
+	anim _jumping;
+	anim _hanging;
+	anim _punching;
+
 	anim_handler _am;
 };
 

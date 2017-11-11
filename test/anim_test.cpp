@@ -49,6 +49,31 @@ TEST_CASE( "anim draw continues and loops the clip offset", "[anim]" )
 	manager::destroy();
 }
 
+TEST_CASE( "anim can tell us when we reached the end of the animation", "[anim]" )
+{
+	manager::instance()->init(true);
+
+	manager::instance()->add_texture( "sheet.png", "sheet" );
+	anim a;
+	a.texture( manager::instance()->textures("sheet") );
+
+	a.clip_width(100);
+
+	for ( unsigned i=0; i < 5; i++ )
+	{
+		a.add_frame_dur(2);
+	}
+
+	for ( unsigned i=0; i < 8; i++ )
+	{
+		a.draw();
+	}
+
+	CHECK( a.at_end() == true );
+
+	manager::destroy();
+}
+
 TEST_CASE( "anim draw throws an exception if not enough frame_durs", "[anim]" )
 {
 	manager::instance()->init(true);

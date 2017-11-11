@@ -13,46 +13,51 @@ player::player()
 {
 	weightless(false);
 
-	anim running;
-
-	running.texture(manager::instance()->textures("spaceman_running"));
-	running.clip_width(12);
-	running.w(12);
-	running.h(34);
+	_running.texture(manager::instance()->textures("spaceman_running"));
+	_running.clip_width(12);
+	_running.w(12);
+	_running.h(34);
 
 	w(14);
 	h(36);
 
 	for ( unsigned i=0; i < 6; i++ )
 	{
-		running.add_frame_dur(5);
+		_running.add_frame_dur(5);
 	}
 
-	anim idle;
-	idle.texture(manager::instance()->textures("spaceman_standing"));
-	idle.clip_width(15);
-	idle.w(15);
-	idle.h(36);
-	idle.add_frame_dur(90);
-	idle.add_frame_dur(5);
-	idle.add_frame_dur(85);
-	idle.add_frame_dur(4);
+	_idle.texture(manager::instance()->textures("spaceman_standing"));
+	_idle.clip_width(15);
+	_idle.w(15);
+	_idle.h(36);
+	_idle.add_frame_dur(90);
+	_idle.add_frame_dur(5);
+	_idle.add_frame_dur(85);
+	_idle.add_frame_dur(4);
 
-	anim jumping;
-	jumping.texture(manager::instance()->textures("spaceman_jumping"));
-	jumping.w(15);
-	jumping.h(33);
+	_jumping.texture(manager::instance()->textures("spaceman_jumping"));
+	_jumping.w(15);
+	_jumping.h(33);
 
-	anim hanging;
-	hanging.texture(manager::instance()->textures("spaceman_hanging"));
-	hanging.w(15);
-	hanging.h(33);
+	_hanging.texture(manager::instance()->textures("spaceman_hanging"));
+	_hanging.w(15);
+	_hanging.h(33);
 
-	_am.set_running_anim(running);
-	_am.set_disabled_anim(running);
-	_am.set_jumping_anim(jumping);
-	_am.set_hanging_anim(hanging);
-	_am.set_idle_anim(idle);
+	_punching.texture(manager::instance()->textures("spaceman_punching"));
+	_punching.w(12);
+	_punching.clip_width(12);
+	_punching.h(33);
+	_punching.add_frame_dur(3);
+	_punching.add_frame_dur(12);
+	_punching.add_frame_dur(4);
+	_punching.add_frame_dur(18);
+	_attack1.delay(19);
+
+	_am.set_running_anim(_running);
+	_am.set_disabled_anim(_running);
+	_am.set_jumping_anim(_jumping);
+	_am.set_hanging_anim(_hanging);
+	_am.set_idle_anim(_idle);
 
 	h_accel_rate(0.2);
 	h_speed_max(2);
@@ -75,6 +80,11 @@ bool player::think()
 	bool left      = keys::instance()->key_pressed(SDLK_a) && !keys::instance()->key_pressed(SDLK_d);
 	bool right     = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
+
+	if ( attacking && !_attack1.cooling_down() )
+	{
+		_am.set_override_anim(&_punching);
+	}
 
 	_attack1.think(attacking);
 
@@ -135,10 +145,10 @@ void player::start_attack()
 
 	if ( facing_left() )
 	{
-		da.attack_left( att, this, 20, h() );
+		da.attack_left( att, this, 5, h() );
 	}
 	else if ( facing_right() )
 	{
-		da.attack_right( att, this, 20, h() );
+		da.attack_right( att, this, 5, h() );
 	}
 }

@@ -1,7 +1,9 @@
 #include "anim_handler.h"
 
 anim_handler::anim_handler()
-	:_origin(4),
+	:_current_anim(0),
+	 _override_anim_active(false),
+	 _origin(4),
 	 _flipped(false)
 {
 }
@@ -10,10 +12,13 @@ void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool ha
 {
 	_flipped = facing_left;
 
-	if ( !_override_anim.at_end() )
+	if ( _override_anim_active && _current_anim && !_current_anim->at_end() )
 	{
-		_current_anim = &_override_anim;
 		return;
+	}
+	else
+	{
+		_override_anim_active = false;
 	}
 
 	if ( hanging )
@@ -51,6 +56,11 @@ void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool ha
 
 void anim_handler::draw( const box* ref )
 {
+	if ( !_current_anim )
+	{
+		return;
+	}
+
 	_current_anim->x( ref->x() );
 	_current_anim->y( ref->y() );
 	_current_anim->flip_h( _flipped );
@@ -125,10 +135,11 @@ void anim_handler::set_hanging_anim( anim a )
 	_hanging_anim = a;
 }
 
-void anim_handler::set_override_anim( anim a )
+void anim_handler::set_override_anim( anim* a )
 {
-	a.reset();
-	_override_anim = a;
+	_current_anim = a;
+	a->reset();
+	_override_anim_active = true;
 }
 
 unsigned short anim_handler::origin() const

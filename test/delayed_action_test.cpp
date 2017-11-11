@@ -21,7 +21,7 @@ TEST_CASE( "delayed_action is ready after a delay", "[delayed_action]" )
 
 	d.think(false);
 
-	CHECK( d.waiting() == false );
+	CHECK( d.acting() == false );
 
 	for ( unsigned i=0; i < 4; i++ )
 	{
