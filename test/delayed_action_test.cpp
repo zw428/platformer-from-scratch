@@ -1,15 +1,6 @@
 #include "catch.h"
 #include "../delayed_action.h"
 
-TEST_CASE( "delayed_action constructor initializes stuff", "[delayed_action]" )
-{
-	delayed_action d;
-
-	CHECK(d.delay() == 20);
-	CHECK(d.cooldown() == 20);
-	CHECK(d.ready() == false);
-}
-
 TEST_CASE( "delayed_action cooldown/delay minimize at 2", "[delayed_action]" )
 {
 	delayed_action d;

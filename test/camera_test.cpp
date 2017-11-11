@@ -1,16 +1,6 @@
 #include "catch.h"
 #include "../camera.h"
 
-TEST_CASE( "camera constructor initializes", "[camera]" )
-{
-	camera c;
-
-	CHECK( c.camera_rect().x == 0 );
-	CHECK( c.camera_rect().y == 0 );
-	CHECK( c.camera_rect().w == 0 );
-	CHECK( c.camera_rect().h == 0 );
-}
-
 TEST_CASE( "camera can have dimensions set/get", "[camera]" )
 {
 	SECTION( "set_camera(rect)" )

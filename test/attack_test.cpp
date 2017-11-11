@@ -17,29 +17,6 @@ public:
 	}
 };
 
-TEST_CASE( "constructor initializes values", "[attack]" )
-{
-	attack att;
-
-	CHECK( att.damage() == 0 );
-	CHECK( att.knockback() == 0 );
-	CHECK( att.owner() == 0 );
-}
-
-TEST_CASE( "attack setters and getters work", "[attack]" )
-{
-	SECTION( "non-const" )
-	{
-		attack att;
-		att.damage(5);
-		att.knockback(5);
-		att.owner(0);
-		CHECK( att.damage() == 5 );
-		CHECK( att.knockback() == 5 );
-		CHECK( att.owner() == 0 );
-	}
-}
-
 TEST_CASE( "attack=(attack) works", "[attack]" )
 {
 	SECTION( "non-const" )

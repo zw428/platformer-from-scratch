@@ -9,23 +9,6 @@ class attack_box_tmp : public object, public alive, public vel_accel
 	bool think() { return false; };
 };
 
-TEST_CASE( "attack_box setters/getters work", "[attack_box]" )
-{
-	attack_box_tmp t;
-
-	t.health(20);
-
-	attack_box att_b;
-
-	attack att;
-	att.damage(17);
-	att_b.set_attack(att);
-
-	att_b.action( &t );
-
-	CHECK( t.health() == 3 );
-}
-
 TEST_CASE( "attack_box damages object", "[attack_box]" )
 {
 	attack_box_tmp t;

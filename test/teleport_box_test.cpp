@@ -8,14 +8,6 @@ public:
 	bool think() { return false; };
 };
 
-TEST_CASE( "teleport box initializes stuff in constructor", "[teleport_box]" )
-{
-	teleport_box t;
-
-	CHECK( t.lifespan() == 0 );
-	CHECK( t.interval() == 0 );
-}
-
 TEST_CASE( "teleport box teleports objects", "[teleport_box]" )
 {
 	teleport_box t;

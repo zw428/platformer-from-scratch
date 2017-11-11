@@ -1,22 +1,6 @@
 #include "catch.h"
 #include "../friction.h"
 
-TEST_CASE( "friction constructor initializes correctly", "[friction]" )
-{
-	friction f;
-
-	CHECK( f.coefficient() == float(0.3) );
-}
-
-TEST_CASE( "friction setters/getters work", "[friction]" )
-{
-	friction f;
-
-	f.coefficient(3.2);
-
-	CHECK( f.coefficient() == float(3.2) );
-}
-
 TEST_CASE( "friction::friction_reduction gives how much to subtract from h_speed", "[friction]" )
 {
 	friction f;

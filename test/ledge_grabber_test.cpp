@@ -13,12 +13,6 @@ class ledge_grabber_test : public object, public vel_accel
 	}
 };
 
-TEST_CASE("ledge_grabber constructor initializes stuff", "[ledge_grabber]")
-{
-	ledge_grabber l;
-	CHECK( l.found_ledge() == false );
-}
-
 TEST_CASE("ledge_grabber gives correct distances to ledge", "[ledge_grabber]")
 {
 	block* ledge = new block;

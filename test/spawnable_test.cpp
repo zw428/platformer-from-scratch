@@ -8,22 +8,6 @@ public:
 	bool spawned = false;
 };
 
-TEST_CASE( "spawnable constructor initializes stuff", "[spawnable]" )
-{
-	spawnable_tmp s;
-
-	CHECK( s.spawn_delay() == 0 );
-	CHECK( s.spawning() == false );
-
-}
-
-TEST_CASE( "spawnable setters/getters work", "[spawnable]" )
-{
-	spawnable_tmp s;
-	s.spawn_delay(5);
-	CHECK( s.spawn_delay() == 5 );
-}
-
 TEST_CASE( "spawnable knows when it's spawning and triggers the callback", "[spawnable]" )
 {
 	spawnable_tmp s;

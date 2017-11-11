@@ -2,14 +2,6 @@
 #include "../keys.h"
 #include <SDL2/SDL.h>
 
-TEST_CASE( "keys constructor initializes stuff", "[keys]" )
-{
-	keys::reset();
-
-	CHECK( keys::instance()->mouse_pressed(0) == false );
-	CHECK( keys::instance()->mouse_pressed(1) == false );
-}
-
 TEST_CASE( "keys::think picks up keys/mouse", "[keys]" )
 {
 	keys::reset();

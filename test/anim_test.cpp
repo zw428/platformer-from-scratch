@@ -2,30 +2,11 @@
 #include "../manager.h"
 #include "../anim.h"
 
-TEST_CASE( "anim constructor initializes stuff", "[anim]" )
-{
-	anim a;
-
-	CHECK( a.clip_offset() == 0 );
-	CHECK( a.clip_width() == 0 );
-}
-
 TEST_CASE( "anim acts as image when no frames are added", "[anim]" )
 {
 	anim a;
 
 	CHECK( a.num_frames() == 1 );
-}
-
-TEST_CASE( "anim setters/getters work", "[anim]" )
-{
-	anim a;
-
-	a.clip_offset(12);
-	a.clip_width(13);
-
-	CHECK(a.clip_offset() == 12);
-	CHECK(a.clip_width() == 13);
 }
 
 TEST_CASE( "anim draw continues and loops the clip offset", "[anim]" )

@@ -14,23 +14,12 @@ public:
 	bool action( object* obj ) { return false; };
 };
 
-TEST_CASE( "map constructor initializes stuff", "[map]" )
+TEST_CASE( "map( x_size, y_size ) rounds to nearest power of 2", "[map]" )
 {
-	SECTION ( "map()" )
-	{
-		map m;
+	map m(500,500);
 
-		CHECK( m.x_size() == 0 );
-		CHECK( m.y_size() == 0 );
-	}
-
-	SECTION( "map( x_size, y_size )" )
-	{
-		map m(500,500);
-
-		CHECK( m.x_size() == 256 );
-		CHECK( m.y_size() == 256 );
-	}
+	CHECK( m.x_size() == 256 );
+	CHECK( m.y_size() == 256 );
 }
 
 TEST_CASE( "map::init() rounds to nearest multiple of chunk size", "[map]" )
