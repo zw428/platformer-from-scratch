@@ -4,6 +4,7 @@
 #include "sound_player.h"
 
 class attackable;
+class box;
 
 class attack : public sound_player
 {
@@ -20,6 +21,7 @@ public:
 	void owner( attackable* own );
 
 	void perform( attackable* a );
+	void perform( attackable* a, box* source );
 private:
 	unsigned short _damage;
 	unsigned short _knockback;

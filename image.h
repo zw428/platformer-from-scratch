@@ -6,7 +6,7 @@
 #include "box.h"
 #include "texture_store.h"
 
-class image : public box
+class image : virtual public box
 {
 public:
 	image();

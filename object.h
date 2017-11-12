@@ -3,7 +3,7 @@
 
 #include "box.h"
 
-class object : public box
+class object : virtual public box
 {
 public:
 	object();

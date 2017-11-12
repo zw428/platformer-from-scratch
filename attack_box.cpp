@@ -1,6 +1,5 @@
 #include "attack_box.h"
 #include "attackable.h"
-#include "knockback.h"
 #include "object.h"
 
 attack_box::attack_box()
@@ -29,16 +28,7 @@ bool attack_box::action(object* obj)
 		return false;
 	}
 
-	_attack.perform( a );
-
-	box* b = dynamic_cast<box*>(_attack.owner());
-
-	if ( !b )
-	{
-		b = this;
-	}
-
-	knockback( obj, b, _attack );
+	_attack.perform( a, this );
 
 	return false;
 }

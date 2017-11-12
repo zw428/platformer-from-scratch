@@ -1,7 +1,7 @@
 slim down player class (think function is too big)
 
 more advanced attacks
-	better way to set origin, for when punch/whatever extends hitbox. probably have to do it with coordinates
+	bullets - add tests, make not solid
 	attacks where you can't move
 	charged attacks
 	hold-down attacks

@@ -5,7 +5,7 @@
 #include "attack_box.h"
 #include "collider.h"
 #include "directed_attack.h"
-#include <cmath>
+#include "bullet.h"
 
 player::player()
 	 :alive(),
@@ -90,7 +90,7 @@ bool player::think()
 
 	if ( _attack1.ready() )
 	{
-		start_attack();
+		shoot();
 	}
 
 	v_accel( gravity_accel(on_ground) );
@@ -133,7 +133,7 @@ bool player::think()
 	return false;
 }
 
-void player::start_attack()
+void player::punch()
 {
 	attack att;
 	att.sound("test");
@@ -151,4 +151,19 @@ void player::start_attack()
 	{
 		da.attack_right( att, this, 5, h() );
 	}
+}
+
+void player::shoot()
+{
+	bullet* b = new bullet();
+	b->texture( manager::instance()->textures("test") );
+	b->sound("test");
+	b->damage(10);
+	b->knockback(5);
+	b->owner( this );
+
+	b->x(x());
+	b->y(y_center());
+
+	manager::instance()->get_map()->add_object(b);
 }

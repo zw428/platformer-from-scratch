@@ -23,7 +23,8 @@ public:
 	player();
 	~player();
 	bool think();
-	void start_attack();
+	void punch();
+	void shoot();
 private:
 	unsigned short _attack_counter;
 	unsigned short _attack_delay;
