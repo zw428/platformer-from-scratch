@@ -46,7 +46,7 @@ TEST_CASE( "trigger triggers on objects inside it", "[trigger]" )
 	t->w(100);
 	t->h(100);
 
-	manager::instance()->get_map()->add_trigger(t);
+	manager::instance()->get_map()->add_object(t);
 
 	trigger_tmp2* obj = new trigger_tmp2;
 
@@ -75,7 +75,7 @@ TEST_CASE( "trigger doesn't trigger on objects not inside it", "[trigger]" )
 	t->w(100);
 	t->h(100);
 
-	manager::instance()->get_map()->add_trigger(t);
+	manager::instance()->get_map()->add_object(t);
 
 	trigger_tmp2* obj = new trigger_tmp2;
 
@@ -105,7 +105,7 @@ TEST_CASE( "trigger triggers in intervals", "[trigger]" )
 	t->h(100);
 	t->interval(2);
 
-	manager::instance()->get_map()->add_trigger(t);
+	manager::instance()->get_map()->add_object(t);
 
 	trigger_tmp2* obj = new trigger_tmp2;
 
@@ -138,7 +138,7 @@ TEST_CASE( "trigger triggers in intervals on multiple objects", "[trigger]" )
 	t->h(100);
 	t->interval(2);
 
-	manager::instance()->get_map()->add_trigger(t);
+	manager::instance()->get_map()->add_object(t);
 
 	trigger_tmp2* obj = new trigger_tmp2;
 	obj->x(5);

@@ -2,11 +2,9 @@
 #define TRIGGER_H
 
 #include <vector>
-#include "box.h"
+#include "object.h"
 
-class object;
-
-class trigger : public box
+class trigger : public object
 {
 public:
 	trigger();

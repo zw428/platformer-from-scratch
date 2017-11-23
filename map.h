@@ -26,7 +26,6 @@ public:
 	void init( unsigned x_size, unsigned y_size ); //dimensions of map in pixels
 
 	bool add_object( object* obj );
-	bool add_trigger( trigger* tr );
 
 	unsigned object_count() const;
 	unsigned trigger_count() const;
@@ -50,8 +49,6 @@ private:
 	std::vector<std::vector<std::vector<object*>>> _objects_grid;
 
 	std::vector<std::shared_ptr<object>> _objects;
-
-	std::vector<std::shared_ptr<trigger>> _triggers;
 
 	unsigned _x_size;
 	unsigned _y_size;

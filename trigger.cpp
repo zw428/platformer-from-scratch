@@ -10,6 +10,7 @@ trigger::trigger()
 	 _interval(30),
 	 _enabled(true)
 {
+	solid(false);
 }
 
 trigger::~trigger()
@@ -43,7 +44,7 @@ bool trigger::think()
 		}
 	}
 
-	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_in_box(this);
+	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_in_box(this, this);
 
 	for ( unsigned i=0; i < objects_vec.size(); i++ )
 	{

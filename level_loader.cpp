@@ -254,7 +254,7 @@ bool level_loader::process_trigger_str(std::string str)
 	t->w(w_num);
 	t->h(h_num);
 
-	manager::instance()->get_map()->add_trigger( t );
+	manager::instance()->get_map()->add_object( t );
 
 	return true;
 }

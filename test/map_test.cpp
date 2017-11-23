@@ -79,7 +79,7 @@ TEST_CASE( "map::trigger_count works correctly", "[map]" )
 	mt->x(0);
 	mt->y(0);
 
-	m.add_trigger(mt);
+	m.add_object(mt);
 
 	CHECK( m.trigger_count() == 1 );
 	
@@ -88,7 +88,7 @@ TEST_CASE( "map::trigger_count works correctly", "[map]" )
 	CHECK( m.trigger_count() == 0 );
 }
 
-TEST_CASE( "map::add_trigger adds triggers", "[map]" )
+TEST_CASE( "map::add_object adds triggers", "[map]" )
 {
 	map m;
 
@@ -99,7 +99,7 @@ TEST_CASE( "map::add_trigger adds triggers", "[map]" )
 	mt->x(0);
 	mt->y(0);
 
-	CHECK( m.add_trigger(mt) == true );
+	CHECK( m.add_object(mt) == true );
 }
 
 TEST_CASE( "map setters and getters work", "[map]" )

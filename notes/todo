@@ -1,13 +1,11 @@
-turn trigger into a not-solid object to make map->think more easy
-
 slim down player class (think function is too big)
+
+make knockback more interesting; hits things in air
 
 more advanced attacks
 	bullets - add tests, make not solid
 	attacks where you can't move
 	charged attacks
 	hold-down attacks
-
-make knockback more interesting; hits things in air
 
 player-player collision shouldn't be possible, or else hitting is lame

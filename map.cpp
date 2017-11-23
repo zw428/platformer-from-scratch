@@ -47,17 +47,6 @@ bool map::add_object(object* obj)
 	return true;
 }
 
-bool map::add_trigger(trigger* tr)
-{
-	std::shared_ptr<trigger> shared_trigger;
-
-	shared_trigger.reset(tr);
-
-	_triggers.push_back(shared_trigger);
-
-	return true;
-}
-
 unsigned map::object_count() const
 {
 	return _objects.size();
@@ -65,7 +54,16 @@ unsigned map::object_count() const
 
 unsigned map::trigger_count() const
 {
-	return _triggers.size();
+	unsigned count = 0;
+	for ( unsigned i=0; i < _objects.size(); i++ )
+	{
+		if ( dynamic_cast<trigger*>( _objects[i].get() ) )
+		{
+			count++;
+		}
+	}
+
+	return count;
 }
 
 void map::erase_object_from_grid( object* obj )
@@ -101,17 +99,6 @@ void map::think()
 			update_object_chunk( obj );
 		}
 
-	}
-
-	for ( unsigned i=0; i < _triggers.size(); i++ )
-	{
-		std::shared_ptr<trigger> shared_trigger = _triggers[i];
-		trigger* tr = shared_trigger.get();
-
-		if ( tr->think() )
-		{
-			_triggers.erase( _triggers.begin() + i-- );
-		}
 	}
 }
 
@@ -163,7 +150,6 @@ void map::empty()
 {
 	_objects.clear();
 	_objects_grid.clear();
-	_triggers.clear();
 	_x_size = 0;
 	_y_size = 0;
 }
