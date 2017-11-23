@@ -119,7 +119,7 @@ bool level_loader::process_block_str(std::string str)
 	temp->w(std::stoi(w));
 	temp->h(std::stoi(h));
 
-	temp->type( solid );
+	temp->type( block_solid );
 
 	manager::instance()->get_map()->add_object(temp);
 

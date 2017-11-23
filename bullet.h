@@ -11,9 +11,11 @@ class bullet : public object, public image, public vel_accel, public attack
 {
 public:
 	bullet();
+	void reverse();
 	bool think();
 private:
 	unsigned short _speed;
+	bool _reversed;
 	float _theta;
 };
 

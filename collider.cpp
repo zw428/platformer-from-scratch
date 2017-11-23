@@ -4,6 +4,39 @@
 #include "vel_accel.h"
 #include "collide_functions.h"
 
+void adjust_move_coords( box* b, short& x_add, short& y_add )
+{
+	int map_size_x = manager::instance()->get_map()->x_size();
+	int map_size_y = manager::instance()->get_map()->y_size();
+
+	if ( int(b->x()) + x_add < 0 )
+	{
+		x_add = -b->x();
+	}
+
+	if ( int(b->x()) + x_add + b->w() > map_size_x )
+	{
+		x_add = map_size_x - b->x() - b->w();
+	}
+
+	if ( int(b->y()) + y_add < 0 )
+	{
+		y_add = -b->y();
+	}
+
+	if ( int(b->y()) + y_add + b->h() > map_size_y )
+	{
+		y_add = map_size_y - b->y() - b->h();
+	}
+}
+
+void move( object* obj, short x_add, short y_add )
+{
+	adjust_move_coords(obj, x_add, y_add);
+	obj->x(obj->x() + x_add);
+	obj->y(obj->y() + y_add);
+}
+
 bool move_phys( object* obj, short x_add, short y_add )
 {
 	if ( x_add == 0 && y_add == 0 )
@@ -11,34 +44,18 @@ bool move_phys( object* obj, short x_add, short y_add )
 		return false;
 	}
 
-	int map_size_x = manager::instance()->get_map()->x_size();
-	int map_size_y = manager::instance()->get_map()->y_size();
-
-	if ( int(obj->x()) + x_add < 0 )
-	{
-		x_add = -obj->x();
-	}
-
-	if ( int(obj->x()) + x_add + obj->w() > map_size_x )
-	{
-		x_add = map_size_x - obj->x() - obj->w();
-	}
-
-	if ( int(obj->y()) + y_add < 0 )
-	{
-		y_add = -obj->y();
-	}
-
-	if ( int(obj->y()) + y_add + obj->h() > map_size_y )
-	{
-		y_add = map_size_y - obj->y() - obj->h();
-	}
+	adjust_move_coords(obj, x_add, y_add);
 
 	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( obj );
 
 	for ( unsigned i=0; i < objects_vec.size(); i++ )
 	{
 		const object* other_obj = objects_vec.at(i);
+
+		if ( !other_obj->solid() )
+		{
+			continue;
+		}
 
 		bool colliding = true;
 
@@ -209,6 +226,11 @@ std::vector<object*> get_adjacents( object* obj )
 	for ( unsigned i=0; i < objects_vec.size(); i++ )
 	{
 		object* other_obj = objects_vec.at(i);
+
+		if ( !other_obj->solid() )
+		{
+			continue;
+		}
 
 		if ( box_in_box( temp_x, temp_y, temp_w, temp_h, other_obj->x(), other_obj->y(), other_obj->w(), other_obj->h() ) )
 		{

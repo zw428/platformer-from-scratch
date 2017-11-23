@@ -3,7 +3,7 @@
 
 block::block()
 	 :object(),
-	  _type(solid)
+	  _type(block_solid)
 {
 	_img.w(w());
 	_img.h(h());
@@ -15,7 +15,7 @@ block::~block()
 
 bool block::think()
 {
-	if ( _type != empty )
+	if ( _type != block_empty )
 	{
 		_img.x(x());
 		_img.y(y());
@@ -29,7 +29,7 @@ bool block::think()
 
 bool block::is_solid() const
 {
-	return ( _type != block_type::empty );
+	return ( _type != block_type::block_empty );
 }
 
 void block::type( block_type type )
@@ -38,10 +38,10 @@ void block::type( block_type type )
 
 	switch(_type)
 	{
-	case solid:
+	case block_solid:
 		_img.texture(manager::instance()->textures("test"));
 		break;
-	case empty:
+	case block_empty:
 		break;
 	}
 }

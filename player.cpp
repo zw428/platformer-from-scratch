@@ -147,7 +147,7 @@ void player::punch()
 	{
 		da.attack_left( att, this, 5, h() );
 	}
-	else if ( facing_right() )
+	else
 	{
 		da.attack_right( att, this, 5, h() );
 	}
@@ -164,6 +164,16 @@ void player::shoot()
 
 	b->x(x());
 	b->y(y_center());
+
+	if ( facing_left() )
+	{
+		b->reverse();
+		b->x( b->x() - b->w());
+	}
+	else
+	{
+		b->x( b->x() + w());
+	}
 
 	manager::instance()->get_map()->add_object(b);
 }

@@ -5,7 +5,8 @@
 unsigned long object::_id_counter = 0;
 
 object::object()
-	:box()
+	:box(),
+	 _solid(true)
 {
 	_id = _id_counter++;
 }
@@ -27,4 +28,14 @@ bool object::operator!=(const object& obj)
 unsigned long object::id() const
 {
 	return _id;
+}
+
+void object::solid( bool solid )
+{
+	_solid = solid;
+}
+
+bool object::solid() const
+{
+	return _solid;
 }

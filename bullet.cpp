@@ -3,21 +3,37 @@
 #include <vector>
 #include "manager.h"
 #include "collide_functions.h"
+#include "collider.h"
 #include "attackable.h"
 #include "block.h"
 
 bullet::bullet()
-	:_speed(5), _theta(0)
+	:_speed(5),
+	 _reversed(false),
+	 _theta(0)
 {
 	w(5);
 	h(5);
+	solid(false);
 	sound("test");
+}
+
+void bullet::reverse()
+{
+	_reversed = !_reversed;
 }
 
 bool bullet::think()
 {
-	x( x() + _speed*std::cos( _theta * M_PI / 180 ) );
-	y( y() + _speed*std::sin( _theta * M_PI / 180 ) );
+	short x = _speed*std::cos( _theta * M_PI / 180 );
+	short y = _speed*std::sin( _theta * M_PI / 180 );
+
+	if ( _reversed )
+	{
+		x *= -1;
+	}
+
+	move(this,x,y);
 
 	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_considered( this );
 

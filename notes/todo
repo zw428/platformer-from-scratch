@@ -1,3 +1,5 @@
+turn trigger into a not-solid object to make map->think more easy
+
 slim down player class (think function is too big)
 
 more advanced attacks

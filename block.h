@@ -6,7 +6,7 @@
 
 enum block_type
 {
-	empty, solid
+	block_empty, block_solid
 };
 
 class block : public object
