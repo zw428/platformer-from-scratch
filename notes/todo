@@ -1,9 +1,17 @@
 slim down player class (think function is too big)
+	directed_attack doesn't need to be a class, has no state
+	make a class that:
+		has an attack and delayed_action
+		has a box* used for source
+		has w/h for attack and bullet dimens
+		has x/y offset (offset from source, used for attack and bullet pos)
+		make directed_attack a bullet that doesn't move with a lifespan?????? makes things simpler
 
-make knockback more interesting; hits things in air
+make knockback more interesting; hits things in air. might not need after better attacks
+
+make it so you can't start another attack until one of them is over. attack_manager?
 
 more advanced attacks
-	bullets - add tests, make not solid
 	attacks where you can't move
 	charged attacks
 	hold-down attacks
