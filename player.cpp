@@ -157,10 +157,14 @@ void player::shoot()
 {
 	bullet* b = new bullet();
 	b->texture( manager::instance()->textures("test") );
-	b->sound("test");
-	b->damage(10);
-	b->knockback(5);
-	b->owner( this );
+
+	attack a;
+	a.sound("test");
+	a.damage(10);
+	a.knockback(5);
+	a.owner( this );
+
+	b->set_attack(a);
 
 	b->x(x());
 	b->y(y_center());

@@ -14,7 +14,7 @@ public:
 
 	void set_attack( attack att );
 
-	virtual bool action( object* obj );
+	bool action( object* obj );
 private:
 	attack _attack;
 	object* _owner;

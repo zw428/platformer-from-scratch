@@ -2,7 +2,6 @@
 #include "manager.h"
 #include "object.h"
 #include "collide_functions.h"
-#include <SDL2/SDL.h>
 
 trigger::trigger()
 	:_lifespan(0),

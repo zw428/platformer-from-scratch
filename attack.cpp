@@ -41,17 +41,25 @@ void attack::owner( attackable* own )
 	_owner = own;
 }
 
-void attack::perform( attackable* a )
+bool attack::perform( attackable* a )
 {
-	perform( a, 0 );
+	return perform( a, 0 );
 }
 
-void attack::perform( attackable* a, box* source )
+bool attack::perform( attackable* a, box* source )
 {
-	if ( a && a != owner() )
+	bool attacked_owner = false;
+
+	if ( a == owner() )
+	{
+		return false;
+	}
+
+	if ( a )
 	{
 		a->receive_attack( *this );
 		play_sound();
+		attacked_owner = true;
 	}
 
 	if ( !source )
@@ -65,4 +73,6 @@ void attack::perform( attackable* a, box* source )
 	{
 		::knockback(obj, source, *this);
 	}
+
+	return attacked_owner;
 }

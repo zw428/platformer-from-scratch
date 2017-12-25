@@ -20,8 +20,8 @@ public:
 	attackable* owner() const;
 	void owner( attackable* own );
 
-	void perform( attackable* a );
-	void perform( attackable* a, box* source );
+	bool perform( attackable* a );
+	bool perform( attackable* a, box* source );
 private:
 	unsigned short _damage;
 	unsigned short _knockback;

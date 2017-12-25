@@ -30,11 +30,12 @@ void adjust_move_coords( box* b, short& x_add, short& y_add )
 	}
 }
 
-void move( object* obj, short x_add, short y_add )
+std::vector<object*> move( object* obj, short x_add, short y_add )
 {
 	adjust_move_coords(obj, x_add, y_add);
 	obj->x(obj->x() + x_add);
 	obj->y(obj->y() + y_add);
+	return manager::instance()->get_map()->objects_in_box( obj, obj );
 }
 
 bool move_phys( object* obj, short x_add, short y_add )

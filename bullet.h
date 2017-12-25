@@ -1,13 +1,10 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include "object.h"
-#include "image.h"
-#include "vel_accel.h"
-#include "attack.h"
-#include "texture_store.h"
+#include "attack_box.h"
+#include "anim.h"
 
-class bullet : public object, public image, public vel_accel, public attack
+class bullet : public attack_box, public anim
 {
 public:
 	bullet();

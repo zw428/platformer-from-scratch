@@ -1,16 +1,8 @@
-make 1time attack box by deriving from attack box, call attack_box::action, then return true
-	should also make it always be destroyed when hitting a block.
-
-	keep in mind if something is virtual, you can still probably do (in derived class) parent::function.
-		that way you can add to think functions and stuff
+refactor gravity_affected, etc.
+	try to back away from multiple inheritance and just override think()
+	but call parent::think() inside it (you didn't know you could do this)
 
 slim down player class (think function is too big)
-	directed_attack doesn't need to be a class, has no state
-	make a class that:
-		has an attack and delayed_action
-		has a box* used for source
-		has w/h for attack and bullet dimens
-		has x/y offset (offset from source, used for attack and bullet pos)
 
 make it so you can't start another attack until one of them is over. attack_manager?
 
