@@ -1,4 +1,5 @@
 #include "mover.h"
+#include "vel_accel.h"
 
 mover::mover()
 	:_h_speed_max(5),
@@ -27,7 +28,7 @@ void mover::h_accel_rate( float rate )
 	_h_accel_rate = rate;
 }
 
-float mover::move_left( float h_speed )
+void mover::move_left( vel_accel* va, float h_speed )
 {
 	_facing_right = false;
 
@@ -47,10 +48,10 @@ float mover::move_left( float h_speed )
 		}
 	}
 
-	return new_speed;
+	va->h_speed(new_speed);
 }
 
-float mover::move_right( float h_speed )
+void mover::move_right( vel_accel* va, float h_speed )
 {
 	_facing_right = true;
 
@@ -70,7 +71,7 @@ float mover::move_right( float h_speed )
 		}
 	}
 
-	return new_speed;
+	va->h_speed(new_speed);
 }
 
 bool mover::facing_left() const

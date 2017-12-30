@@ -13,11 +13,10 @@
 #include "delayed_action.h"
 #include "anim_handler.h"
 
-#include <SDL2/SDL.h>
 #include <string>
 #include <vector>
 
-class player : public alive, public object, public mover, public friction, public vel_accel
+class player : public alive, public object, public friction, public vel_accel
 {
 public:
 	player();
@@ -26,6 +25,7 @@ public:
 	void punch();
 	void shoot();
 private:
+	mover _m;
 	ledge_grabber _lg;
 	jumper _jumper;
 	gravity_affected _ga;

@@ -57,8 +57,8 @@ player::player()
 	_am.set_hanging_anim(_hanging);
 	_am.set_idle_anim(_idle);
 
-	h_accel_rate(0.2);
-	h_speed_max(2);
+	_m.h_accel_rate(0.2);
+	_m.h_speed_max(2);
 	_jumper.jump_vel_1(6);
 	_jumper.jump_vel_2(6);
 }
@@ -97,12 +97,12 @@ bool player::think()
 
 	if ( left )
 	{
-		h_speed(move_left(h_speed()));
+		_m.move_left(this, h_speed());
 	}
 
 	if ( right )
 	{
-		h_speed(move_right(h_speed()));
+		_m.move_right(this, h_speed());
 	}
 
 	if ( h_speed() != 0 && on_ground && !left && !right )
@@ -125,7 +125,7 @@ bool player::think()
 	}
 
 	handle_speeds(this);
-	_am.think( on_ground, facing_left(), (h_speed() != 0), _lg.hanging(), false );
+	_am.think( on_ground, _m.facing_left(), (h_speed() != 0), _lg.hanging(), false );
 	_am.draw(this);
 
 	return false;
@@ -141,7 +141,7 @@ void player::punch()
 
 	directed_attack da;
 
-	if ( facing_left() )
+	if ( _m.facing_left() )
 	{
 		da.attack_left( att, this, 5, h() );
 	}
@@ -167,7 +167,7 @@ void player::shoot()
 	b->x(x());
 	b->y(y_center());
 
-	if ( facing_left() )
+	if ( _m.facing_left() )
 	{
 		b->reverse();
 		b->x( b->x() - b->w());
