@@ -97,12 +97,12 @@ bool player::think()
 
 	if ( left )
 	{
-		_m.move_left(this, h_speed());
+		_m.move_left(this);
 	}
 
 	if ( right )
 	{
-		_m.move_right(this, h_speed());
+		_m.move_right(this);
 	}
 
 	if ( h_speed() != 0 && on_ground && !left && !right )
