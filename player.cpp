@@ -11,8 +11,6 @@ player::player()
 	 :alive(),
 	  object()
 {
-	weightless(false);
-
 	_running.texture(manager::instance()->textures("spaceman_running"));
 	_running.clip_width(12);
 	_running.w(12);
@@ -93,7 +91,7 @@ bool player::think()
 		shoot();
 	}
 
-	v_accel( gravity_accel(on_ground) );
+	_ga.apply_gravity(this, on_ground);
 
 	_lg.find_ledge(this, on_ground);
 

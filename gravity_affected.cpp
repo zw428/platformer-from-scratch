@@ -1,5 +1,6 @@
 #include "gravity_affected.h"
 #include "consts.h"
+#include "vel_accel.h"
 
 gravity_affected::gravity_affected()
 	:_weightless(false)
@@ -16,12 +17,10 @@ void gravity_affected::weightless(bool weightless)
 	_weightless = weightless;
 }
 
-double gravity_affected::gravity_accel( bool on_ground )
+void gravity_affected::apply_gravity(vel_accel* va, bool on_ground)
 {
 	if ( !weightless() && !on_ground )
 	{
-		return GRAVITY_ACCEL;
+		va->v_accel( GRAVITY_ACCEL );
 	}
-
-	return 0;
 }
