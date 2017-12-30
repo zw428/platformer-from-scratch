@@ -1,4 +1,5 @@
 #include "friction.h"
+#include "vel_accel.h"
 
 friction::friction()
 	:_coeff(0.3)
@@ -15,23 +16,23 @@ float friction::coefficient()
 	return _coeff;
 }
 
-float friction::friction_reduction( float speed )
+void friction::apply_friction( vel_accel* va )
 {
-	float target_speed = speed;
+	float target_speed = va->h_speed();
 
-	if ( speed > 0 )
+	if ( va->h_speed() > 0 )
 	{
 		target_speed -= coefficient();
 	}
-	else if ( speed < 0 )
+	else if ( va->h_speed() < 0 )
 	{
 		target_speed += coefficient();
 	}
 
-	if ( target_speed * speed < 0 )
+	if ( target_speed * va->h_speed() < 0 )
 	{
 		target_speed = 0;
 	}
 
-	return speed - target_speed;
+	va->h_speed(target_speed);
 }

@@ -10,7 +10,7 @@
 #include "gravity_affected.h"
 #include "image.h"
 
-class npc : public knockback_mult, public object, public death, public disabled, public friction, public vel_accel
+class npc : public knockback_mult, public object, public death, public disabled, public vel_accel
 {
 public:
 	npc();
@@ -18,6 +18,7 @@ public:
 	bool think();
 	bool on_death();
 private:
+	friction _f;
 	gravity_affected _ga;
 	image _img;
 };

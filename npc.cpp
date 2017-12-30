@@ -28,7 +28,7 @@ bool npc::think()
 
 	if ( on_ground )
 	{
-		h_speed( h_speed() - friction_reduction( h_speed() ) );
+		_f.apply_friction(this);
 	}
 
 	_img.x(x());

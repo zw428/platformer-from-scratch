@@ -1,6 +1,8 @@
 #ifndef FRICTION_H
 #define FRICTION_H
 
+class vel_accel;
+
 class friction
 {
 public:
@@ -9,7 +11,7 @@ public:
 	void coefficient( float coeff );
 	float coefficient();
 
-	float friction_reduction( float speed );
+	void apply_friction( vel_accel* va);
 private:
 	float _coeff;
 };

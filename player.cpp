@@ -107,7 +107,7 @@ bool player::think()
 
 	if ( h_speed() != 0 && on_ground && !left && !right )
 	{
-		h_speed(h_speed() - friction_reduction(h_speed()));
+		_f.apply_friction(this);
 	}
 
 	short jump_vel = _jumper.handle_jumping(on_ground || _lg.hanging(), up);
