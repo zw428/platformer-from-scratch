@@ -95,7 +95,7 @@ bool player::think()
 
 	v_accel( gravity_accel(on_ground) );
 
-	find_ledge(this, on_ground);
+	_lg.find_ledge(this, on_ground);
 
 	if ( left )
 	{
@@ -112,22 +112,22 @@ bool player::think()
 		h_speed(h_speed() - friction_reduction(h_speed()));
 	}
 
-	short jump_vel = handle_jumping(on_ground || hanging(), up);
+	short jump_vel = handle_jumping(on_ground || _lg.hanging(), up);
 
 	if ( jump_vel )
 	{
-		let_go();
+		_lg.let_go();
 
 		v_speed( jump_vel );
 	}
 
 	if ( (left && !colliding_left) || (right && !colliding_right) || down || up )
 	{
-		let_go();
+		_lg.let_go();
 	}
 
 	handle_speeds(this);
-	_am.think( on_ground, facing_left(), (h_speed() != 0), hanging(), false );
+	_am.think( on_ground, facing_left(), (h_speed() != 0), _lg.hanging(), false );
 	_am.draw(this);
 
 	return false;
