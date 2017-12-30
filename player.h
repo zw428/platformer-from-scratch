@@ -17,7 +17,7 @@
 #include <string>
 #include <vector>
 
-class player : public alive, public object, public jumper, public gravity_affected, public mover, public friction, public vel_accel
+class player : public alive, public object, public gravity_affected, public mover, public friction, public vel_accel
 {
 public:
 	player();
@@ -27,6 +27,7 @@ public:
 	void shoot();
 private:
 	ledge_grabber _lg;
+	jumper _jumper;
 	unsigned short _attack_counter;
 	unsigned short _attack_delay;
 

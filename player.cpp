@@ -61,8 +61,8 @@ player::player()
 
 	h_accel_rate(0.2);
 	h_speed_max(2);
-	jump_vel_1(6);
-	jump_vel_2(6);
+	_jumper.jump_vel_1(6);
+	_jumper.jump_vel_2(6);
 }
 
 player::~player()
@@ -112,7 +112,7 @@ bool player::think()
 		h_speed(h_speed() - friction_reduction(h_speed()));
 	}
 
-	short jump_vel = handle_jumping(on_ground || _lg.hanging(), up);
+	short jump_vel = _jumper.handle_jumping(on_ground || _lg.hanging(), up);
 
 	if ( jump_vel )
 	{
