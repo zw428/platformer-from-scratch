@@ -1,6 +1,6 @@
-refactor gravity_affected, etc.
-	try to back away from multiple inheritance and just override think()
-	but call parent::think() inside it (you didn't know you could do this)
+call parent::think() inside stuff instead of multiple inheritance
+
+remove pointers where possible, replace with references
 
 slim down player class (think function is too big)
 
