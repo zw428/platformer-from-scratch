@@ -1,14 +1,14 @@
 #ifndef NPC_H
 #define NPC_H
 
-#include "box_object.h"
+#include "knockback_mult.h"
 #include "disabled.h"
 #include "friction.h"
 #include "vel_accel.h"
 #include "gravity_affected.h"
 #include "image.h"
 
-class npc : public box_object
+class npc : public knockback_mult
 {
 public:
 	npc();

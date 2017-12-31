@@ -18,6 +18,8 @@ trigger::~trigger()
 
 bool trigger::think()
 {
+	box_object::think();
+
 	if ( !enabled() )
 	{
 		return false;
