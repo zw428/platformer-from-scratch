@@ -16,14 +16,16 @@ unknown: $(BASE_OBJS)
 test: $(TEST_OBJS) $(filter-out build/main.o,$(BASE_OBJS))
 	g++ $^ $(LIBS) -o build/test
 
+clean:
+	rm build/*
+
 build/%.d_src: %.cpp
 	./get_dependencies.sh $< > build/$*.d_src
 
 build/%.d_test: test/%.cpp
 	./get_dependencies.sh $< > build/$*.d_test
 
-include $(BASE_DEPS)
-include $(TEST_DEPS)
-
-clean:
-	rm build/*
+ifneq ($(MAKECMDGOALS),clean)
+  include $(BASE_DEPS)
+  include $(TEST_DEPS)
+endif
