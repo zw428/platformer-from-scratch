@@ -25,7 +25,7 @@ TEST_CASE("ledge_grabber gives correct distances to ledge", "[ledge_grabber]")
 	grabber.speeds.v_speed( 5 );
 
 	ledge_grabber l;
-	l.find_ledge( &grabber.speeds, grabber.dimens, false );
+	l.find_ledge( grabber.speeds, grabber.dimens, false );
 
 	SECTION( "vertical" )
 	{
@@ -42,7 +42,7 @@ TEST_CASE("ledge_grabber gives correct distances to ledge", "[ledge_grabber]")
 		SECTION( "right" )
 		{
 			grabber.dimens.x( 175 );
-			l.find_ledge( &grabber.speeds, grabber.dimens, false );
+			l.find_ledge( grabber.speeds, grabber.dimens, false );
 			CHECK( l.h_dist_to_ledge() == 5 );
 		}
 	}
@@ -68,7 +68,7 @@ TEST_CASE("ledge_grabber finds ledge", "[ledge_grabber]")
 	grabber.speeds.v_speed( 5 );
 
 	ledge_grabber l;
-	l.find_ledge( &grabber.speeds, grabber.dimens, false );
+	l.find_ledge( grabber.speeds, grabber.dimens, false );
 
 	CHECK( l.found_ledge() == true );
 }

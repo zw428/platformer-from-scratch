@@ -14,8 +14,8 @@ public:
 	float h_accel_rate() const;
 	void h_accel_rate( float rate );
 
-	void move_left( vel_accel* va );
-	void move_right( vel_accel* va );
+	void move_left( vel_accel& va );
+	void move_right( vel_accel& va );
 
 	bool facing_left() const;
 	bool facing_right() const;

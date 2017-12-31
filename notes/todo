@@ -1,8 +1,3 @@
-call parent::think() inside stuff instead of multiple inheritance
-	do this for image/anim
-
-remove pointers where possible, replace with references (lots of vel_accel do this)
-
 slim down player class (think function is too big)
 
 make it so you can't start another attack until one of them is over. attack_manager?

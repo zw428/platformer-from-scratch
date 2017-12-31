@@ -23,11 +23,11 @@ bool npc::think()
 
 	bool on_ground = colliding(this, 2);
 
-	_ga.apply_gravity(&speeds, on_ground);
+	_ga.apply_gravity(speeds, on_ground);
 
 	if ( on_ground )
 	{
-		_f.apply_friction(&speeds);
+		_f.apply_friction(speeds);
 	}
 
 	_img.x(dimens.x());

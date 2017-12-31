@@ -11,7 +11,7 @@ TEST_CASE( "friction::friction_reduction gives how much to subtract from h_speed
 	friction f;
 	f.coefficient(0.5);
 
-	f.apply_friction(&va);
+	f.apply_friction(va);
 
 	CHECK( va.h_speed() == 4.5 );
 }

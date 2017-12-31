@@ -89,23 +89,23 @@ bool player::think()
 		shoot();
 	}
 
-	_ga.apply_gravity(&speeds, on_ground);
+	_ga.apply_gravity(speeds, on_ground);
 
-	_lg.find_ledge(&speeds, dimens, on_ground);
+	_lg.find_ledge(speeds, dimens, on_ground);
 
 	if ( left )
 	{
-		_m.move_left(&speeds);
+		_m.move_left(speeds);
 	}
 
 	if ( right )
 	{
-		_m.move_right(&speeds);
+		_m.move_right(speeds);
 	}
 
 	if ( speeds.h_speed() != 0 && on_ground && !left && !right )
 	{
-		_f.apply_friction(&speeds);
+		_f.apply_friction(speeds);
 	}
 
 	short jump_vel = _jumper.handle_jumping(on_ground || _lg.hanging(), up);

@@ -9,11 +9,11 @@ TEST_CASE( "gravity_affected accelerates if not weightless and not on ground", "
 
 	gravity_affected g;
 
-	g.apply_gravity(&va, true);
+	g.apply_gravity(va, true);
 
 	CHECK( va.v_speed() == 0 );
 
-	g.apply_gravity(&va, false);
+	g.apply_gravity(va, false);
 
 	CHECK( float(va.v_accel()) == float(GRAVITY_ACCEL) );
 }

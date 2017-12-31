@@ -2,7 +2,6 @@
 #include "box.h"
 #include "block.h"
 #include "manager.h"
-#include "vel_accel.h"
 #include "box_object.h"
 #include <vector>
 
@@ -47,9 +46,9 @@ bool ledge_grabber::hanging() const
 	return _hanging;
 }
 
-void ledge_grabber::find_ledge( vel_accel* v, box b, bool on_ground )
+void ledge_grabber::find_ledge( vel_accel& va, box b, bool on_ground )
 {
-	if ( !v || v->v_speed() <= 0 || on_ground )
+	if ( va.v_speed() <= 0 || on_ground )
 	{
 		return;
 	}
@@ -98,7 +97,7 @@ void ledge_grabber::find_ledge( vel_accel* v, box b, bool on_ground )
 
 	if ( found_ledge() && dist_to_ledge() < 10 )
 	{
-		attach_to_ledge( v );
+		attach_to_ledge( va );
 	}
 }
 
@@ -110,25 +109,25 @@ void ledge_grabber::let_go()
 	_hanging = false;
 }
 
-void ledge_grabber::attach_to_ledge( vel_accel* va )
+void ledge_grabber::attach_to_ledge( vel_accel& va )
 {
-	va->v_accel(0);
-	va->h_accel(0);
+	va.v_accel(0);
+	va.h_accel(0);
 
-	if ( va->v_speed() > dist_to_ledge() )
+	if ( va.v_speed() > dist_to_ledge() )
 	{
-		va->v_speed( dist_to_ledge() );
+		va.v_speed( dist_to_ledge() );
 	}
 
-	if ( va->v_speed() == 0 )
+	if ( va.v_speed() == 0 )
 	{
 		if ( h_dist_to_ledge() > 0 )
 		{
-			va->h_speed(4);
+			va.h_speed(4);
 		}
 		else if ( h_dist_to_ledge() < 0 )
 		{
-			va->h_speed(-4);
+			va.h_speed(-4);
 		}
 	}
 

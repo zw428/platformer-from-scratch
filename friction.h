@@ -11,7 +11,7 @@ public:
 	void coefficient( float coeff );
 	float coefficient();
 
-	void apply_friction( vel_accel* va);
+	void apply_friction( vel_accel& va);
 private:
 	float _coeff;
 };

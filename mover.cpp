@@ -28,9 +28,9 @@ void mover::h_accel_rate( float rate )
 	_h_accel_rate = rate;
 }
 
-void mover::move_left( vel_accel* va )
+void mover::move_left( vel_accel& va )
 {
-	float h_speed = va->h_speed();
+	float h_speed = va.h_speed();
 	_facing_right = false;
 
 	float new_speed = h_speed;
@@ -49,12 +49,12 @@ void mover::move_left( vel_accel* va )
 		}
 	}
 
-	va->h_speed(new_speed);
+	va.h_speed(new_speed);
 }
 
-void mover::move_right( vel_accel* va )
+void mover::move_right( vel_accel& va )
 {
-	float h_speed = va->h_speed();
+	float h_speed = va.h_speed();
 	_facing_right = true;
 
 	float new_speed = h_speed;
@@ -73,7 +73,7 @@ void mover::move_right( vel_accel* va )
 		}
 	}
 
-	va->h_speed(new_speed);
+	va.h_speed(new_speed);
 }
 
 bool mover::facing_left() const
