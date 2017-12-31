@@ -12,7 +12,7 @@ bullet::bullet()
 	dimens.h(5);
 	solid(false);
 	lifespan(0);
-	_anim.texture(manager::instance()->textures("test"));
+	_anim.texture(manager::instance()->resources.textures("test"));
 }
 
 void bullet::reverse()

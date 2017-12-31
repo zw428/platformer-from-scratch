@@ -112,16 +112,11 @@ SDL_Renderer* manager::renderer()
 	return _ren;
 }
 
-map* manager::get_map()
-{
-	return &_map;
-}
-
 bool manager::main_loop()
 {
 	bool quit = false;
 
-	load_level("level0");
+	loader.load_level("level0");
 
 	while( !quit )
 	{
@@ -142,15 +137,15 @@ bool manager::main_loop()
 
 		//objects think
 
-		_map.think();
+		the_map.think();
 
 		SDL_RenderPresent( _ren );
 	}
 
-	destroy_textures();
-	destroy_musics();
-	destroy_sounds();
-	destroy_fonts();
+	resources.destroy_textures();
+	resources.destroy_musics();
+	resources.destroy_sounds();
+	resources.destroy_fonts();
 
 	SDL_DestroyRenderer( _ren );
 	SDL_DestroyWindow( _win );

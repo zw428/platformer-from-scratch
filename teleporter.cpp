@@ -5,7 +5,7 @@
 
 bool teleport( box_object* bo, int x, int y )
 {
-	std::vector<box_object*> bo_vec = manager::instance()->get_map()->box_objects_considered( bo );
+	std::vector<box_object*> bo_vec = manager::instance()->the_map.box_objects_considered( bo );
 
 	for ( unsigned i=0; i < bo_vec.size(); i++ )
 	{

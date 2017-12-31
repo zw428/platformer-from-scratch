@@ -13,9 +13,9 @@ TEST_CASE( "anim draw continues and loops the clip offset", "[anim]" )
 {
 	manager::instance()->init(true);
 
-	manager::instance()->add_texture( "sheet.png", "sheet" );
+	manager::instance()->resources.add_texture( "sheet.png", "sheet" );
 	anim a;
-	a.texture( manager::instance()->textures("sheet") );
+	a.texture( manager::instance()->resources.textures("sheet") );
 	CHECK(a.tex_store().orig_w == 500 );
 
 	a.clip_width(100);
@@ -53,9 +53,9 @@ TEST_CASE( "anim can tell us when we reached the end of the animation", "[anim]"
 {
 	manager::instance()->init(true);
 
-	manager::instance()->add_texture( "sheet.png", "sheet" );
+	manager::instance()->resources.add_texture( "sheet.png", "sheet" );
 	anim a;
-	a.texture( manager::instance()->textures("sheet") );
+	a.texture( manager::instance()->resources.textures("sheet") );
 
 	a.clip_width(100);
 
@@ -78,9 +78,9 @@ TEST_CASE( "anim draw throws an exception if not enough frame_durs", "[anim]" )
 {
 	manager::instance()->init(true);
 
-	manager::instance()->add_texture( "sheet.png", "sheet" );
+	manager::instance()->resources.add_texture( "sheet.png", "sheet" );
 	anim a;
-	a.texture( manager::instance()->textures("sheet") );
+	a.texture( manager::instance()->resources.textures("sheet") );
 
 	a.clip_width(100);
 

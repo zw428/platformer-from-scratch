@@ -21,9 +21,9 @@ TEST_CASE( "collider::move_phys collides with stuff", "[collider]" )
 	moving->dimens.w(10);
 	moving->dimens.h(10);
 
-	manager::instance()->get_map()->init(1000,1000);
-	manager::instance()->get_map()->add_object(still);
-	manager::instance()->get_map()->add_object(moving);
+	manager::instance()->the_map.init(1000,1000);
+	manager::instance()->the_map.add_object(still);
+	manager::instance()->the_map.add_object(moving);
 
 	move_phys(moving,20,20);
 
@@ -47,10 +47,10 @@ TEST_CASE( "collider::move_phys doesn't collide with stuff not in the way", "[co
 	moving->dimens.w(10);
 	moving->dimens.h(10);
 
-	manager::instance()->get_map()->empty();
-	manager::instance()->get_map()->init(1000,1000);
-	manager::instance()->get_map()->add_object(still);
-	manager::instance()->get_map()->add_object(moving);
+	manager::instance()->the_map.empty();
+	manager::instance()->the_map.init(1000,1000);
+	manager::instance()->the_map.add_object(still);
+	manager::instance()->the_map.add_object(moving);
 
 	move_phys(moving,20,20);
 
@@ -74,9 +74,9 @@ TEST_CASE( "collider::colliding() tells if colliding in direction", "[collider]"
 	moving->dimens.w(20);
 	moving->dimens.h(20);
 
-	manager::instance()->get_map()->init(1000,1000);
-	manager::instance()->get_map()->add_object(still);
-	manager::instance()->get_map()->add_object(moving);
+	manager::instance()->the_map.init(1000,1000);
+	manager::instance()->the_map.add_object(still);
+	manager::instance()->the_map.add_object(moving);
 
 	move_phys(moving,0,-1);
 
@@ -111,8 +111,8 @@ TEST_CASE( "collider::handle_speeds moves the collider", "[collider]" )
 	test->dimens.w(20);
 	test->dimens.h(20);
 
-	manager::instance()->get_map()->init(1000,1000);
-	manager::instance()->get_map()->add_object(test);
+	manager::instance()->the_map.init(1000,1000);
+	manager::instance()->the_map.add_object(test);
 
 	test->speeds.h_speed(5);
 	test->speeds.v_speed(5);
@@ -132,8 +132,8 @@ TEST_CASE( "collider::handle_speeds handles acceleration", "[collider]" )
 	test->dimens.w(20);
 	test->dimens.h(20);
 
-	manager::instance()->get_map()->init(1000,1000);
-	manager::instance()->get_map()->add_object(test);
+	manager::instance()->the_map.init(1000,1000);
+	manager::instance()->the_map.add_object(test);
 
 	test->speeds.h_accel(5);
 	test->speeds.v_accel(5);

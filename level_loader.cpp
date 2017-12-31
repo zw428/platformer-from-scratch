@@ -82,7 +82,7 @@ bool level_loader::process_texture_str(std::string str)
 	ss >> name;
 	ss >> path;
 
-	manager::instance()->add_texture(path.c_str(),name.c_str());
+	manager::instance()->resources.add_texture(path.c_str(),name.c_str());
 
 	return true;
 }
@@ -95,7 +95,7 @@ bool level_loader::process_sound_str(std::string str)
 	ss >> name;
 	ss >> path;
 
-	manager::instance()->add_sound(path.c_str(),name.c_str());
+	manager::instance()->resources.add_sound(path.c_str(),name.c_str());
 
 	return true;
 }
@@ -120,7 +120,7 @@ bool level_loader::process_block_str(std::string str)
 
 	temp->type( block_solid );
 
-	manager::instance()->get_map()->add_object(temp);
+	manager::instance()->the_map.add_object(temp);
 
 	return true;
 }
@@ -133,7 +133,7 @@ bool level_loader::process_font_str(std::string str)
 	ss >> name;
 	ss >> path;
 
-	manager::instance()->add_font( path.c_str(), name.c_str() );
+	manager::instance()->resources.add_font( path.c_str(), name.c_str() );
 
 	return true;
 }
@@ -155,14 +155,14 @@ bool level_loader::process_character_str(std::string str)
 		player* temp = new player;
 		temp->dimens.x(x_num);
 		temp->dimens.y(y_num);
-		manager::instance()->get_map()->add_object(temp);
+		manager::instance()->the_map.add_object(temp);
 	}
 	else if ( type == "npc" )
 	{
 		npc* temp = new npc;
 		temp->dimens.x(x_num);
 		temp->dimens.y(y_num);
-		manager::instance()->get_map()->add_object(temp);
+		manager::instance()->the_map.add_object(temp);
 	}
 
 
@@ -180,7 +180,7 @@ bool level_loader::process_map_str(std::string str)
 	unsigned x_num = std::stoi(x);
 	unsigned y_num = std::stoi(y);
 
-	manager::instance()->get_map()->init(x_num,y_num);
+	manager::instance()->the_map.init(x_num,y_num);
 
 
 	return true;
@@ -203,7 +203,7 @@ bool level_loader::process_camera_str(std::string str)
 	r.w = std::stoi(w);
 	r.h = std::stoi(h);
 
-	manager::instance()->set_camera( r );
+	manager::instance()->cam.set_camera( r );
 
 
 	return true;
@@ -253,7 +253,7 @@ bool level_loader::process_trigger_str(std::string str)
 	t->dimens.w(w_num);
 	t->dimens.h(h_num);
 
-	manager::instance()->get_map()->add_object( t );
+	manager::instance()->the_map.add_object( t );
 
 	return true;
 }

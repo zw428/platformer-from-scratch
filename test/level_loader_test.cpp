@@ -12,7 +12,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 		level_loader l;
 		l.process_texture_str( "test test.png" );
 
-		CHECK( manager::instance()->textures("test").tex != 0 );
+		CHECK( manager::instance()->resources.textures("test").tex != 0 );
 	}
 
 	SECTION( "sound" )
@@ -20,7 +20,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 		level_loader l;
 		l.process_sound_str( "test test.ogg" );
 
-		CHECK( manager::instance()->sounds("test") != 0 );
+		CHECK( manager::instance()->resources.sounds("test") != 0 );
 	}
 
 	SECTION( "character" )
@@ -28,7 +28,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 		SECTION( "player" )
 		{
 			level_loader l;
-			manager::instance()->get_map()->init( 500, 500 );
+			manager::instance()->the_map.init( 500, 500 );
 
 			l.process_character_str( "player 0 0");
 
@@ -36,13 +36,13 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			tmp.x = 0;
 			tmp.y = 0;
 
-			CHECK( manager::instance()->get_map()->box_objects_in_chunk( tmp ).size() == 1 );
+			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
 		}
 
 		SECTION( "npc" )
 		{
 			level_loader l;
-			manager::instance()->get_map()->init( 500, 500 );
+			manager::instance()->the_map.init( 500, 500 );
 
 			l.process_character_str( "npc 0 0");
 
@@ -50,14 +50,14 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			tmp.x = 0;
 			tmp.y = 0;
 
-			CHECK( manager::instance()->get_map()->box_objects_in_chunk( tmp ).size() == 1 );
+			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
 		}
 	}
 
 	SECTION( "block" )
 	{
 			level_loader l;
-			manager::instance()->get_map()->init( 500, 500 );
+			manager::instance()->the_map.init( 500, 500 );
 
 			l.process_texture_str( "test test.png" );
 			l.process_block_str( "test 0 0 16 16");
@@ -66,7 +66,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			tmp.x = 0;
 			tmp.y = 0;
 
-			CHECK( manager::instance()->get_map()->box_objects_in_chunk( tmp ).size() == 1 );
+			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
 	}
 
 	SECTION( "font" )
@@ -74,7 +74,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 		level_loader l;
 		l.process_font_str( "test boo-city.ttf" );
 
-		CHECK( manager::instance()->fonts("test") != 0 );
+		CHECK( manager::instance()->resources.fonts("test") != 0 );
 	}
 
 	SECTION( "map" )
@@ -83,8 +83,8 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 
 		l.process_map_str( "2048 2048" );
 
-		CHECK( manager::instance()->get_map()->x_size() == 2048 );
-		CHECK( manager::instance()->get_map()->y_size() == 2048 );
+		CHECK( manager::instance()->the_map.x_size() == 2048 );
+		CHECK( manager::instance()->the_map.y_size() == 2048 );
 	}
 
 	SECTION( "camera" )
@@ -93,16 +93,16 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 
 		l.process_camera_str( "100 101 102 103" );
 
-		CHECK( manager::instance()->camera_rect().x == 100 );
-		CHECK( manager::instance()->camera_rect().y == 101 );
-		CHECK( manager::instance()->camera_rect().w == 102 );
-		CHECK( manager::instance()->camera_rect().h == 103 );
+		CHECK( manager::instance()->cam.camera_rect().x == 100 );
+		CHECK( manager::instance()->cam.camera_rect().y == 101 );
+		CHECK( manager::instance()->cam.camera_rect().w == 102 );
+		CHECK( manager::instance()->cam.camera_rect().h == 103 );
 	}
 
 	SECTION( "trigger" )
 	{
 		level_loader l;
-		manager::instance()->get_map()->init( 500, 500 );
+		manager::instance()->the_map.init( 500, 500 );
 
 		SECTION( "teleporter" )
 		{

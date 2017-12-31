@@ -13,7 +13,7 @@ image::image()
 
 void image::draw()
 {
-	if ( !manager::instance()->should_draw( x(), y(), w(), h() ) )
+	if ( !manager::instance()->cam.should_draw( x(), y(), w(), h() ) )
 	{
 		return;
 	}
@@ -60,7 +60,7 @@ void image::tiled( bool tiled )
 
 void image::draw_stretched()
 {
-	SDL_Point adjusted_coords = manager::instance()->camera_coords( x(), y() );
+	SDL_Point adjusted_coords = manager::instance()->cam.camera_coords( x(), y() );
 	SDL_RendererFlip f = (flip_h()) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 
 	SDL_Rect rect;
@@ -74,7 +74,7 @@ void image::draw_stretched()
 
 void image::draw_tiled()
 {
-	SDL_Point adjusted_coords = manager::instance()->camera_coords( x(), y() );
+	SDL_Point adjusted_coords = manager::instance()->cam.camera_coords( x(), y() );
 
 	SDL_Rect rect;
 	rect.x = adjusted_coords.x;

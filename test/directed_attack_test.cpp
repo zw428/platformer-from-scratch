@@ -14,11 +14,11 @@ public:
 
 TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 {
-	manager::instance()->get_map()->init(1000,1000);
+	manager::instance()->the_map.init(1000,1000);
 
 	directed_attack_tmp* attacked = new directed_attack_tmp;
 
-	manager::instance()->get_map()->add_object(attacked);
+	manager::instance()->the_map.add_object(attacked);
 
 	attack tmp_attack;
 
@@ -38,7 +38,7 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 		attacked->dimens.w(50);
 		attacked->dimens.h(50);
 		d.attack_up( tmp_attack, b, 20, 20 );
-		manager::instance()->get_map()->think();
+		manager::instance()->the_map.think();
 
 		CHECK( attacked->attacked == true );
 	}
@@ -51,7 +51,7 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 		attacked->dimens.h(50);
 		attacked->attacked = false;
 		d.attack_down( tmp_attack, b, 20, 20 );
-		manager::instance()->get_map()->think();
+		manager::instance()->the_map.think();
 
 		CHECK( attacked->attacked == true );
 	}
@@ -64,7 +64,7 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 		attacked->dimens.h(50);
 		attacked->attacked = false;
 		d.attack_left( tmp_attack, b, 20, 20 );
-		manager::instance()->get_map()->think();
+		manager::instance()->the_map.think();
 
 		CHECK( attacked->attacked == true );
 	}
@@ -77,7 +77,7 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 		attacked->dimens.h(50);
 		attacked->attacked = false;
 		d.attack_right( tmp_attack, b, 20, 20 );
-		manager::instance()->get_map()->think();
+		manager::instance()->the_map.think();
 
 		CHECK( attacked->attacked == true );
 	}

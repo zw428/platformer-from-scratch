@@ -38,7 +38,7 @@ void block::type( block_type type )
 	switch(_type)
 	{
 	case block_solid:
-		_img.texture(manager::instance()->textures("test"));
+		_img.texture(manager::instance()->resources.textures("test"));
 		break;
 	case block_empty:
 		break;

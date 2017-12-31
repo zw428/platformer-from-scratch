@@ -70,8 +70,8 @@ void ledge_grabber::find_ledge( vel_accel* v, box b, bool on_ground )
 	right.w( 10 );
 	right.h( b.h()*2 );
 
-	std::vector<box_object*> tmp = manager::instance()->get_map()->box_objects_in_box( left );
-	std::vector<box_object*> right_objects = manager::instance()->get_map()->box_objects_in_box( right );
+	std::vector<box_object*> tmp = manager::instance()->the_map.box_objects_in_box( left );
+	std::vector<box_object*> right_objects = manager::instance()->the_map.box_objects_in_box( right );
 	tmp.insert( tmp.end(), right_objects.begin(), right_objects.end() );
 
 	unsigned short smallest_dist = -1;

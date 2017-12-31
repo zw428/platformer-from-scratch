@@ -5,7 +5,7 @@
 
 npc::npc()
 {
-	_img.texture(manager::instance()->textures("test"));
+	_img.texture(manager::instance()->resources.textures("test"));
 	_img.w(dimens.w());
 	_img.h(dimens.h());
 }

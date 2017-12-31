@@ -9,7 +9,7 @@ bool text::set_text( const char* str )
 {
 	SDL_Color color = { 255, 255, 255 };
 
-	SDL_Surface* surface = TTF_RenderText_Solid( manager::instance()->fonts("test"), str, color );
+	SDL_Surface* surface = TTF_RenderText_Solid( manager::instance()->resources.fonts("test"), str, color );
 
 	if ( !surface )
 	{

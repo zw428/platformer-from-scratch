@@ -13,9 +13,9 @@ TEST_CASE("ledge_grabber gives correct distances to ledge", "[ledge_grabber]")
 	ledge->dimens.w(40);
 	ledge->dimens.h(20);
 
-	manager::instance()->get_map()->empty();
-	manager::instance()->get_map()->init(1000,1000);
-	manager::instance()->get_map()->add_object(ledge);
+	manager::instance()->the_map.empty();
+	manager::instance()->the_map.init(1000,1000);
+	manager::instance()->the_map.add_object(ledge);
 
 	box_object grabber;
 	grabber.dimens.x( 245 );
@@ -56,9 +56,9 @@ TEST_CASE("ledge_grabber finds ledge", "[ledge_grabber]")
 	ledge->dimens.w(40);
 	ledge->dimens.h(20);
 
-	manager::instance()->get_map()->empty();
-	manager::instance()->get_map()->init(1000,1000);
-	manager::instance()->get_map()->add_object(ledge);
+	manager::instance()->the_map.empty();
+	manager::instance()->the_map.init(1000,1000);
+	manager::instance()->the_map.add_object(ledge);
 
 	box_object grabber;
 	grabber.dimens.x( 245 );

@@ -6,14 +6,14 @@
 TEST_CASE( "teleporter teleports things when nothing is in the way", "[teleporter]" )
 {
 	manager::instance()->init( true );
-	manager::instance()->get_map()->init(1024,1024);
+	manager::instance()->the_map.init(1024,1024);
 
 	box_object* obj = new box_object;
 
 	obj->dimens.x(5);
 	obj->dimens.y(5);
 
-	manager::instance()->get_map()->add_object(obj);
+	manager::instance()->the_map.add_object(obj);
 
 	teleport(obj,12,12);
 
@@ -26,7 +26,7 @@ TEST_CASE( "teleporter teleports things when nothing is in the way", "[teleporte
 TEST_CASE( "teleporter doesn't teleports things when something is in the way", "[teleporter]" )
 {
 	manager::instance()->init( true );
-	manager::instance()->get_map()->init(1024,1024);
+	manager::instance()->the_map.init(1024,1024);
 
 	box_object* obj = new box_object;
 
@@ -35,7 +35,7 @@ TEST_CASE( "teleporter doesn't teleports things when something is in the way", "
 	obj->dimens.w(5);
 	obj->dimens.h(5);
 
-	manager::instance()->get_map()->add_object(obj);
+	manager::instance()->the_map.add_object(obj);
 
 	box_object* obj2 = new box_object;
 
@@ -44,7 +44,7 @@ TEST_CASE( "teleporter doesn't teleports things when something is in the way", "
 	obj2->dimens.w(100);
 	obj2->dimens.h(100);
 
-	manager::instance()->get_map()->add_object(obj2);
+	manager::instance()->the_map.add_object(obj2);
 
 	teleport(obj,100,100);
 

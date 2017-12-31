@@ -6,8 +6,8 @@
 
 void adjust_move_coords( box b, short& x_add, short& y_add )
 {
-	int map_size_x = manager::instance()->get_map()->x_size();
-	int map_size_y = manager::instance()->get_map()->y_size();
+	int map_size_x = manager::instance()->the_map.x_size();
+	int map_size_y = manager::instance()->the_map.y_size();
 
 	if ( int(b.x()) + x_add < 0 )
 	{
@@ -35,7 +35,7 @@ std::vector<box_object*> move( box_object* bo, short x_add, short y_add )
 	adjust_move_coords(bo->dimens, x_add, y_add);
 	bo->dimens.x(bo->dimens.x() + x_add);
 	bo->dimens.y(bo->dimens.y() + y_add);
-	return manager::instance()->get_map()->box_objects_in_box( bo->dimens, bo );
+	return manager::instance()->the_map.box_objects_in_box( bo->dimens, bo );
 }
 
 bool move_phys( box_object* bo, short x_add, short y_add )
@@ -47,7 +47,7 @@ bool move_phys( box_object* bo, short x_add, short y_add )
 
 	adjust_move_coords(bo->dimens, x_add, y_add);
 
-	std::vector<box_object*> bo_vec = manager::instance()->get_map()->box_objects_considered( bo );
+	std::vector<box_object*> bo_vec = manager::instance()->the_map.box_objects_considered( bo );
 
 	for ( unsigned i=0; i < bo_vec.size(); i++ )
 	{
@@ -195,7 +195,7 @@ void handle_speeds( vel_accel& va, box_object* bo )
 std::vector<box_object*> get_adjacents( box_object* bo )
 {
 	std::vector<box_object*> ret;
-	std::vector<box_object*> bo_vec = manager::instance()->get_map()->box_objects_considered( bo );
+	std::vector<box_object*> bo_vec = manager::instance()->the_map.box_objects_considered( bo );
 
 	unsigned temp_x = bo->dimens.x();
 	unsigned temp_y = bo->dimens.y();

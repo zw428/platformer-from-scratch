@@ -54,5 +54,5 @@ void directed_attack::attack_in_dir( const attack& att, box source, unsigned sho
 		break;
 	}
 
-	manager::instance()->get_map()->add_object( b );
+	manager::instance()->the_map.add_object( b );
 }

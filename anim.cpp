@@ -14,7 +14,7 @@ void anim::draw()
 {
 	SDL_Rect rect;
 
-	SDL_Point adjusted_coords = manager::instance()->camera_coords( x(), y() );
+	SDL_Point adjusted_coords = manager::instance()->cam.camera_coords( x(), y() );
 
 	rect.x = adjusted_coords.x;
 	rect.y = adjusted_coords.y;
@@ -23,7 +23,7 @@ void anim::draw()
 
 	handle_frame_count();
 
-	if ( !manager::instance()->should_draw( x(), y(), w(), h() ) )
+	if ( !manager::instance()->cam.should_draw( x(), y(), w(), h() ) )
 	{
 		return;
 	}

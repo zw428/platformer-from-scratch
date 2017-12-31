@@ -9,7 +9,7 @@
 
 class object;
 
-class manager : public resource_manager, public level_loader, public camera
+class manager
 {
 public:
 	bool init( bool no_window = false );
@@ -20,8 +20,12 @@ public:
 	std::string data_path() const;
 	void data_path( std::string path );
 
+	resource_manager resources;
+	level_loader loader;
+	camera cam;
+
 	SDL_Renderer* renderer();
-	map* get_map();
+	map the_map;
 private:
 	manager();
 
@@ -35,8 +39,6 @@ private:
 	const unsigned short _window_w;
 	const unsigned short _window_h;
 	unsigned char _draw_color[4];
-
-	map _map;
 
 	static manager* _instance;
 };

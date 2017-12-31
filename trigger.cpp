@@ -45,7 +45,7 @@ bool trigger::think()
 		}
 	}
 
-	std::vector<box_object*> box_objects_vec = manager::instance()->get_map()->box_objects_in_box(dimens, this);
+	std::vector<box_object*> box_objects_vec = manager::instance()->the_map.box_objects_in_box(dimens, this);
 
 	for ( unsigned i=0; i < box_objects_vec.size(); i++ )
 	{

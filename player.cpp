@@ -9,7 +9,7 @@
 
 player::player()
 {
-	_running.texture(manager::instance()->textures("spaceman_running"));
+	_running.texture(manager::instance()->resources.textures("spaceman_running"));
 	_running.clip_width(12);
 	_running.w(12);
 	_running.h(34);
@@ -22,7 +22,7 @@ player::player()
 		_running.add_frame_dur(5);
 	}
 
-	_idle.texture(manager::instance()->textures("spaceman_standing"));
+	_idle.texture(manager::instance()->resources.textures("spaceman_standing"));
 	_idle.clip_width(15);
 	_idle.w(15);
 	_idle.h(36);
@@ -31,15 +31,15 @@ player::player()
 	_idle.add_frame_dur(85);
 	_idle.add_frame_dur(4);
 
-	_jumping.texture(manager::instance()->textures("spaceman_jumping"));
+	_jumping.texture(manager::instance()->resources.textures("spaceman_jumping"));
 	_jumping.w(15);
 	_jumping.h(33);
 
-	_hanging.texture(manager::instance()->textures("spaceman_hanging"));
+	_hanging.texture(manager::instance()->resources.textures("spaceman_hanging"));
 	_hanging.w(15);
 	_hanging.h(33);
 
-	_punching.texture(manager::instance()->textures("spaceman_punching"));
+	_punching.texture(manager::instance()->resources.textures("spaceman_punching"));
 	_punching.w(12);
 	_punching.clip_width(12);
 	_punching.h(33);
@@ -178,5 +178,5 @@ void player::shoot()
 		b->dimens.x( b->dimens.x() + dimens.w());
 	}
 
-	manager::instance()->get_map()->add_object(b);
+	manager::instance()->the_map.add_object(b);
 }
