@@ -1,6 +1,6 @@
 #include "trigger.h"
 #include "manager.h"
-#include "object.h"
+#include "box_object.h"
 #include "collide_functions.h"
 
 trigger::trigger()
@@ -43,17 +43,17 @@ bool trigger::think()
 		}
 	}
 
-	std::vector<object*> objects_vec = manager::instance()->get_map()->objects_in_box(this, this);
+	std::vector<box_object*> box_objects_vec = manager::instance()->get_map()->box_objects_in_box(dimens, this);
 
-	for ( unsigned i=0; i < objects_vec.size(); i++ )
+	for ( unsigned i=0; i < box_objects_vec.size(); i++ )
 	{
 		bool will_continue = false;
 
-		object* obj = objects_vec.at(i);
+		box_object* bo = box_objects_vec.at(i);
 
 		for ( unsigned j=0; j < _ignores.size(); j++ )
 		{
-			if ( _ignores[j].obj == obj )
+			if ( _ignores[j].bo == bo )
 			{
 				will_continue = true;
 				break;
@@ -65,9 +65,9 @@ bool trigger::think()
 			continue;
 		}
 
-		if ( box_in_box( x(), y(), w(), h(), obj->x(), obj->y(), obj->w(), obj->h() ) )
+		if ( box_in_box( dimens, bo->dimens ) )
 		{
-			if ( action(objects_vec[i]) )
+			if ( action(box_objects_vec[i]) )
 			{
 				return true;
 			}
@@ -84,7 +84,7 @@ bool trigger::think()
 				}
 
 				tmp.counter = tmp_interval;
-				tmp.obj = objects_vec[i];
+				tmp.bo = box_objects_vec[i];
 
 				_ignores.push_back(tmp);
 			}

@@ -3,7 +3,3 @@
 attackable::attackable()
 {
 }
-
-attackable::~attackable()
-{
-}

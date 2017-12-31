@@ -54,55 +54,55 @@ void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool ha
 	_current_anim = &_idle_anim;
 }
 
-void anim_handler::draw( const box* ref )
+void anim_handler::draw( const box& ref )
 {
 	if ( !_current_anim )
 	{
 		return;
 	}
 
-	_current_anim->x( ref->x() );
-	_current_anim->y( ref->y() );
+	_current_anim->x( ref.x() );
+	_current_anim->y( ref.y() );
 	_current_anim->flip_h( _flipped );
 
-	if ( _current_anim->w() != ref->w() )
+	if ( _current_anim->w() != ref.w() )
 	{
 		switch( _origin )
 		{
 		case 0:
 		case 4:
-			_current_anim->x( ref->x_center() - _current_anim->w() / 2 );
+			_current_anim->x( ref.x_center() - _current_anim->w() / 2 );
 			break;
 		case 1:
 		case 2:
 		case 3:
-			_current_anim->x( ref->right() - _current_anim->w() );
+			_current_anim->x( ref.right() - _current_anim->w() );
 			break;
 		case 5:
 		case 6:
 		case 7:
-			_current_anim->x( ref->left() );
+			_current_anim->x( ref.left() );
 			break;
 		}
 	}
 
-	if ( _current_anim->h() != ref->h() )
+	if ( _current_anim->h() != ref.h() )
 	{
 		switch( _origin )
 		{
 		case 0:
 		case 1:
 		case 7:
-			_current_anim->y( ref->top() );
+			_current_anim->y( ref.top() );
 			break;
 		case 2:
 		case 6:
-			_current_anim->y( ref->y_center() - _current_anim->h() / 2 );
+			_current_anim->y( ref.y_center() - _current_anim->h() / 2 );
 			break;
 		case 3:
 		case 4:
 		case 5:
-			_current_anim->y( ref->bottom() - _current_anim->h() );
+			_current_anim->y( ref.bottom() - _current_anim->h() );
 			break;
 		}
 	}

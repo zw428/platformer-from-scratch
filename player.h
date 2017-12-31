@@ -2,7 +2,6 @@
 #define PLAYER_H
 
 #include "alive.h"
-#include "object.h"
 #include "jumper.h"
 #include "gravity_affected.h"
 #include "mover.h"
@@ -16,7 +15,7 @@
 #include <string>
 #include <vector>
 
-class player : public alive, public object, public vel_accel
+class player : public alive
 {
 public:
 	player();

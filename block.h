@@ -1,7 +1,7 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#include "object.h"
+#include "box_object.h"
 #include "image.h"
 
 enum block_type
@@ -9,7 +9,7 @@ enum block_type
 	block_empty, block_solid
 };
 
-class block : public object
+class block : public box_object
 {
 public:
 	block();

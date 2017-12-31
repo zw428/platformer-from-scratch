@@ -1,19 +1,12 @@
 #include "catch.h"
 #include "../trigger.h"
-#include "../object.h"
 #include "../manager.h"
 
 class trigger_tmp : public trigger
 {
 public:
-	bool action( object* obj ) { times_acted++; return false; };
+	bool action( box_object* bo ) { times_acted++; return false; };
 	int times_acted = 0;
-};
-
-class trigger_tmp2 : public object
-{
-public:
-	bool think() { return false; };
 };
 
 TEST_CASE( "trigger dies (returns true) when lifespan is over", "[trigger]" )
@@ -41,19 +34,19 @@ TEST_CASE( "trigger triggers on objects inside it", "[trigger]" )
 	manager::instance()->get_map()->init(1024,1024);
 
 	trigger_tmp* t = new trigger_tmp;
-	t->x(0);
-	t->y(0);
-	t->w(100);
-	t->h(100);
+	t->dimens.x(0);
+	t->dimens.y(0);
+	t->dimens.w(100);
+	t->dimens.h(100);
 
 	manager::instance()->get_map()->add_object(t);
 
-	trigger_tmp2* obj = new trigger_tmp2;
+	box_object* obj = new box_object;
 
-	obj->x(5);
-	obj->y(5);
-	obj->w(5);
-	obj->h(5);
+	obj->dimens.x(5);
+	obj->dimens.y(5);
+	obj->dimens.w(5);
+	obj->dimens.h(5);
 
 	manager::instance()->get_map()->add_object(obj);
 
@@ -70,19 +63,19 @@ TEST_CASE( "trigger doesn't trigger on objects not inside it", "[trigger]" )
 	manager::instance()->get_map()->init(1024,1024);
 
 	trigger_tmp* t = new trigger_tmp;
-	t->x(0);
-	t->y(0);
-	t->w(100);
-	t->h(100);
+	t->dimens.x(0);
+	t->dimens.y(0);
+	t->dimens.w(100);
+	t->dimens.h(100);
 
 	manager::instance()->get_map()->add_object(t);
 
-	trigger_tmp2* obj = new trigger_tmp2;
+	box_object* obj = new box_object;
 
-	obj->x(200);
-	obj->y(200);
-	obj->w(5);
-	obj->h(5);
+	obj->dimens.x(200);
+	obj->dimens.y(200);
+	obj->dimens.w(5);
+	obj->dimens.h(5);
 
 	manager::instance()->get_map()->add_object(obj);
 
@@ -99,20 +92,20 @@ TEST_CASE( "trigger triggers in intervals", "[trigger]" )
 	manager::instance()->get_map()->init(1024,1024);
 
 	trigger_tmp* t = new trigger_tmp;
-	t->x(0);
-	t->y(0);
-	t->w(100);
-	t->h(100);
+	t->dimens.x(0);
+	t->dimens.y(0);
+	t->dimens.w(100);
+	t->dimens.h(100);
 	t->interval(2);
 
 	manager::instance()->get_map()->add_object(t);
 
-	trigger_tmp2* obj = new trigger_tmp2;
+	box_object* obj = new box_object;
 
-	obj->x(5);
-	obj->y(5);
-	obj->w(5);
-	obj->h(5);
+	obj->dimens.x(5);
+	obj->dimens.y(5);
+	obj->dimens.w(5);
+	obj->dimens.h(5);
 
 	manager::instance()->get_map()->add_object(obj);
 
@@ -132,26 +125,26 @@ TEST_CASE( "trigger triggers in intervals on multiple objects", "[trigger]" )
 	manager::instance()->get_map()->init(1024,1024);
 
 	trigger_tmp* t = new trigger_tmp;
-	t->x(0);
-	t->y(0);
-	t->w(100);
-	t->h(100);
+	t->dimens.x(0);
+	t->dimens.y(0);
+	t->dimens.w(100);
+	t->dimens.h(100);
 	t->interval(2);
 
 	manager::instance()->get_map()->add_object(t);
 
-	trigger_tmp2* obj = new trigger_tmp2;
-	obj->x(5);
-	obj->y(5);
-	obj->w(5);
-	obj->h(5);
+	box_object* obj = new box_object;
+	obj->dimens.x(5);
+	obj->dimens.y(5);
+	obj->dimens.w(5);
+	obj->dimens.h(5);
 	manager::instance()->get_map()->add_object(obj);
 
-	trigger_tmp2* obj2 = new trigger_tmp2;
-	obj2->x(5);
-	obj2->y(5);
-	obj2->w(5);
-	obj2->h(5);
+	box_object* obj2 = new box_object;
+	obj2->dimens.x(5);
+	obj2->dimens.y(5);
+	obj2->dimens.w(5);
+	obj2->dimens.h(5);
 	manager::instance()->get_map()->add_object(obj2);
 
 	for ( unsigned i=0; i < 10; i++ )

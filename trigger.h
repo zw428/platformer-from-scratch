@@ -2,9 +2,9 @@
 #define TRIGGER_H
 
 #include <vector>
-#include "object.h"
+#include "box_object.h"
 
-class trigger : public object
+class trigger : public box_object
 {
 public:
 	trigger();
@@ -12,7 +12,7 @@ public:
 
 	bool think();
 
-	virtual bool action( object* ) = 0;
+	virtual bool action( box_object* ) = 0;
 
 	const std::vector<object*> ignores();
 
@@ -33,7 +33,7 @@ private:
 
 	struct object_interval {
 		unsigned short counter;
-		object* obj;
+		box_object* bo;
 	};
 
 	std::vector<object_interval> _ignores;

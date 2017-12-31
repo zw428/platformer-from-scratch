@@ -8,7 +8,7 @@ class anim_handler
 public:
 	anim_handler();
 	void think( bool on_ground, bool facing_left, bool moving, bool hanging, bool disabled );
-	void draw( const box* ref );
+	void draw( const box& ref );
 	anim* current_anim();
 
 	void set_running_anim( anim a );

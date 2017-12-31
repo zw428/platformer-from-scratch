@@ -6,7 +6,6 @@
 #include "player.h"
 #include "npc.h"
 #include "teleport_box.h"
-#include "death_box.h"
 
 level_loader::level_loader()
 {
@@ -114,10 +113,10 @@ bool level_loader::process_block_str(std::string str)
 
 	block* temp = new block;
 
-	temp->x(std::stoi(x));
-	temp->y(std::stoi(y));
-	temp->w(std::stoi(w));
-	temp->h(std::stoi(h));
+	temp->dimens.x(std::stoi(x));
+	temp->dimens.y(std::stoi(y));
+	temp->dimens.w(std::stoi(w));
+	temp->dimens.h(std::stoi(h));
 
 	temp->type( block_solid );
 
@@ -154,15 +153,15 @@ bool level_loader::process_character_str(std::string str)
 	if ( type == "player" )
 	{
 		player* temp = new player;
-		temp->x(x_num);
-		temp->y(y_num);
+		temp->dimens.x(x_num);
+		temp->dimens.y(y_num);
 		manager::instance()->get_map()->add_object(temp);
 	}
 	else if ( type == "npc" )
 	{
 		npc* temp = new npc;
-		temp->x(x_num);
-		temp->y(y_num);
+		temp->dimens.x(x_num);
+		temp->dimens.y(y_num);
 		manager::instance()->get_map()->add_object(temp);
 	}
 
@@ -237,22 +236,22 @@ bool level_loader::process_trigger_str(std::string str)
 		int x_dest_num = std::stoi(x_dest);
 		int y_dest_num = std::stoi(y_dest);
 
-		t = new teleport_box;
+		t = new teleport_box();
 		dynamic_cast<teleport_box*>(t)->set_dest( x_dest_num, y_dest_num );
 	}
-	else if ( type == "death" )
+	/*else if ( type == "death" )
 	{
 		t = new death_box;
-	}
+	}*/
 	else
 	{
 		return false;
 	}
 
-	t->x(x_num);
-	t->y(y_num);
-	t->w(w_num);
-	t->h(h_num);
+	t->dimens.x(x_num);
+	t->dimens.y(y_num);
+	t->dimens.w(w_num);
+	t->dimens.h(h_num);
 
 	manager::instance()->get_map()->add_object( t );
 

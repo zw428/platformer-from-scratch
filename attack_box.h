@@ -14,7 +14,7 @@ public:
 
 	void set_attack( attack att );
 
-	bool action( object* obj );
+	bool action( box_object* bo );
 private:
 	attack _attack;
 	object* _owner;

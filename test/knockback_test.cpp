@@ -1,153 +1,146 @@
 #include "catch.h"
 #include "../attack_box.h"
-#include "../object.h"
-#include "../alive.h"
+#include "../box_object.h"
 #include "../vel_accel.h"
 #include "../knockback.h"
-
-class knockback_tmp : public object, public vel_accel, public attackable
-{
-public:
-	bool think() { return false; };
-	void receive_attack( const attack& att ) { };
-};
+#include "../alive.h"
 
 TEST_CASE( "knockback() will move object", "[knockback]" )
 {
-	knockback_tmp t;
+	box_object t;
 
-	t.h_speed(0);
-	t.v_speed(0);
+	t.speeds.h_speed(0);
+	t.speeds.v_speed(0);
 
 	attack a;
 	a.knockback(5);
 
 	box b;
 
-	b.x( t.x() + 1 );
-	b.y( t.y() + 1 );
-	b.w( t.w() + 1 );
-	b.h( t.h() + 1 );
+	b.x( t.dimens.x() + 1 );
+	b.y( t.dimens.y() + 1 );
+	b.w( t.dimens.w() + 1 );
+	b.h( t.dimens.h() + 1 );
 
-	knockback( dynamic_cast<object*>(&t), &b, a );
+	knockback( dynamic_cast<box_object*>(&t), b, a );
 
-	CHECK( t.h_speed() != 0 );
-	CHECK( t.v_speed() != 0 );
+	CHECK( t.speeds.h_speed() != 0 );
+	CHECK( t.speeds.v_speed() != 0 );
 }
 
 TEST_CASE( "knockback() will knockback object in a certain direction", "[knockback]" )
 {
 	SECTION( "from left" )
 	{
-		knockback_tmp t;
+		box_object t;
 
-		t.h_speed(0);
-		t.v_speed(0);
-		t.x(200);
-		t.y(200);
-		t.w(50);
-		t.h(50);
+		t.speeds.h_speed(0);
+		t.speeds.v_speed(0);
+		t.dimens.x(200);
+		t.dimens.y(200);
+		t.dimens.w(50);
+		t.dimens.h(50);
 
 		attack a;
 		a.knockback(5);
 
 		box b;
 
-		b.x( t.x() - b.w() );
-		b.y( t.y() );
+		b.x( t.dimens.x() - b.w() );
+		b.y( t.dimens.y() );
 		b.w( 50 );
 		b.h( 50 );
 
-		knockback( dynamic_cast<object*>(&t), &b, a );
+		knockback( dynamic_cast<box_object*>(&t), b, a );
 
-		CHECK( t.h_speed() > 0 );
+		CHECK( t.speeds.h_speed() > 0 );
 	}
 
 	SECTION( "from right" )
 	{
-		knockback_tmp t;
+		box_object t;
 
-		t.h_speed(0);
-		t.v_speed(0);
-		t.x(200);
-		t.y(200);
-		t.w(50);
-		t.h(50);
+		t.speeds.h_speed(0);
+		t.speeds.v_speed(0);
+		t.dimens.x(200);
+		t.dimens.y(200);
+		t.dimens.w(50);
+		t.dimens.h(50);
 
 		attack a;
 		a.knockback(5);
 
 		box b;
 
-		b.x( t.right() );
-		b.y( t.y() );
+		b.x( t.dimens.right() );
+		b.y( t.dimens.y() );
 		b.w( 50 );
 		b.h( 50 );
 
-		knockback( dynamic_cast<object*>(&t), &b, a );
+		knockback( dynamic_cast<box_object*>(&t), b, a );
 
-		CHECK( t.h_speed() < 0 );
+		CHECK( t.speeds.h_speed() < 0 );
 	}
 
 	SECTION( "from top" )
 	{
-		knockback_tmp t;
+		box_object t;
 
-		t.h_speed(0);
-		t.v_speed(0);
-		t.x(200);
-		t.y(200);
-		t.w(50);
-		t.h(50);
+		t.speeds.h_speed(0);
+		t.speeds.v_speed(0);
+		t.dimens.x(200);
+		t.dimens.y(200);
+		t.dimens.w(50);
+		t.dimens.h(50);
 
 		attack a;
 		a.knockback(5);
 
 		box b;
 
-		b.x( t.x() );
-		b.y( t.y() - b.h() );
+		b.x( t.dimens.x() );
+		b.y( t.dimens.y() - b.h() );
 		b.w(  50 );
 		b.h(  50 );
 
-		knockback( dynamic_cast<object*>(&t), &b, a );
+		knockback( dynamic_cast<box_object*>(&t), b, a );
 
-		CHECK( t.v_speed() > 0 );
+		CHECK( t.speeds.v_speed() > 0 );
 	}
 
 	SECTION( "from bottom" )
 	{
-		knockback_tmp t;
+		box_object t;
 
-		t.h_speed(0);
-		t.v_speed(0);
-		t.x(200);
-		t.y(200);
-		t.w(50);
-		t.h(50);
+		t.speeds.h_speed(0);
+		t.speeds.v_speed(0);
+		t.dimens.x(200);
+		t.dimens.y(200);
+		t.dimens.w(50);
+		t.dimens.h(50);
 
 		attack a;
 		a.knockback(5);
 
 		box b;
 
-		b.x( t.x() );
-		b.y( t.bottom() );
+		b.x( t.dimens.x() );
+		b.y( t.dimens.bottom() );
 		b.w(  50 );
 		b.h(  50 );
 
-		knockback( dynamic_cast<object*>(&t), &b, a );
+		knockback( dynamic_cast<box_object*>(&t), b, a );
 
-		CHECK( t.v_speed() < 0 );
+		CHECK( t.speeds.v_speed() < 0 );
 	}
 }
 
 TEST_CASE( "knockback() will not affect owner", "[knockback]" )
 {
-	knockback_tmp t;
+	alive t;
 
-	t.h_speed(3);
-	t.v_speed(3);
+	t.speeds.h_speed(3);
+	t.speeds.v_speed(3);
 
 	attack a;
 	a.owner(&t);
@@ -155,13 +148,13 @@ TEST_CASE( "knockback() will not affect owner", "[knockback]" )
 
 	box b;
 
-	b.x( t.x() + 1 );
-	b.y( t.y() + 1 );
-	b.w( t.w() + 1 );
-	b.h( t.h() + 1 );
+	b.x( t.dimens.x() + 1 );
+	b.y( t.dimens.y() + 1 );
+	b.w( t.dimens.w() + 1 );
+	b.h( t.dimens.h() + 1 );
 
-	knockback( dynamic_cast<object*>(&t), &b, a );
+	knockback( dynamic_cast<box_object*>(&t), b, a );
 
-	CHECK( t.h_speed() == 3 );
-	CHECK( t.v_speed() == 3 );
+	CHECK( t.speeds.h_speed() == 3 );
+	CHECK( t.speeds.v_speed() == 3 );
 }

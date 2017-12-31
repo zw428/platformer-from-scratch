@@ -1,6 +1,5 @@
 #include "teleport_box.h"
 #include "teleporter.h"
-#include "object.h"
 
 teleport_box::teleport_box()
 	:trigger(),
@@ -21,8 +20,8 @@ void teleport_box::set_dest( int x, int y )
 	_y_dest = y;
 }
 
-bool teleport_box::action( object* obj )
+bool teleport_box::action( box_object* bo )
 {
-	teleport( obj, _x_dest, _y_dest );
+	teleport( bo, _x_dest, _y_dest );
 	return false;
 }

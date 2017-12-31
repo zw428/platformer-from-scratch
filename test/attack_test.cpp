@@ -4,7 +4,7 @@
 #include "../attackable.h"
 #include "../object.h"
 
-class attack_test_tmp : public attackable, public object
+class attack_test_tmp : public attackable
 {
 public:
 	bool received = false;

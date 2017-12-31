@@ -2,13 +2,14 @@
 #define COLLIDER_H
 
 #include <vector>
+class vel_accel;
 
-class object;
+class box_object;
 
-bool colliding(object* obj, unsigned short dir);
-std::vector<object*> move( object* obj, short x_add, short y_add );
-bool move_phys( object* obj, short x_add, short y_add );
-void handle_speeds( object* obj );
-std::vector<object*> get_adjacents( object* obj );
+bool colliding(box_object* bo, unsigned short dir);
+std::vector<box_object*> move( box_object* bo, short x_add, short y_add );
+bool move_phys( box_object* bo, short x_add, short y_add );
+void handle_speeds( vel_accel& va, box_object* bo );
+std::vector<box_object*> get_adjacents( box_object* bo );
 
 #endif

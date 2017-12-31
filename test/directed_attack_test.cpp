@@ -4,11 +4,10 @@
 #include "../attackable.h"
 #include "../manager.h"
 
-class directed_attack_tmp : public object, public attackable
+class directed_attack_tmp : public attackable
 {
 public:
-	directed_attack_tmp() :object() {};
-	bool think() { return false; };
+	directed_attack_tmp() {};
 	void receive_attack( const attack& att ) { attacked = true; };
 	bool attacked = false;
 };
@@ -34,11 +33,11 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 
 	SECTION("up")
 	{
-		attacked->x(200);
-		attacked->y(140);
-		attacked->w(50);
-		attacked->h(50);
-		d.attack_up( tmp_attack, &b, 20, 20 );
+		attacked->dimens.x(200);
+		attacked->dimens.y(140);
+		attacked->dimens.w(50);
+		attacked->dimens.h(50);
+		d.attack_up( tmp_attack, b, 20, 20 );
 		manager::instance()->get_map()->think();
 
 		CHECK( attacked->attacked == true );
@@ -46,12 +45,12 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 
 	SECTION("down")
 	{
-		attacked->x(200);
-		attacked->y(260);
-		attacked->w(50);
-		attacked->h(50);
+		attacked->dimens.x(200);
+		attacked->dimens.y(260);
+		attacked->dimens.w(50);
+		attacked->dimens.h(50);
 		attacked->attacked = false;
-		d.attack_down( tmp_attack, &b, 20, 20 );
+		d.attack_down( tmp_attack, b, 20, 20 );
 		manager::instance()->get_map()->think();
 
 		CHECK( attacked->attacked == true );
@@ -59,12 +58,12 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 
 	SECTION("left")
 	{
-		attacked->x(140);
-		attacked->y(200);
-		attacked->w(50);
-		attacked->h(50);
+		attacked->dimens.x(140);
+		attacked->dimens.y(200);
+		attacked->dimens.w(50);
+		attacked->dimens.h(50);
 		attacked->attacked = false;
-		d.attack_left( tmp_attack, &b, 20, 20 );
+		d.attack_left( tmp_attack, b, 20, 20 );
 		manager::instance()->get_map()->think();
 
 		CHECK( attacked->attacked == true );
@@ -72,12 +71,12 @@ TEST_CASE("directed_attack attacks in a given direction", "[directed_attack]")
 
 	SECTION("right")
 	{
-		attacked->x(260);
-		attacked->y(200);
-		attacked->w(50);
-		attacked->h(50);
+		attacked->dimens.x(260);
+		attacked->dimens.y(200);
+		attacked->dimens.w(50);
+		attacked->dimens.h(50);
 		attacked->attacked = false;
-		d.attack_right( tmp_attack, &b, 20, 20 );
+		d.attack_right( tmp_attack, b, 20, 20 );
 		manager::instance()->get_map()->think();
 
 		CHECK( attacked->attacked == true );

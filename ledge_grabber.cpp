@@ -3,23 +3,18 @@
 #include "block.h"
 #include "manager.h"
 #include "vel_accel.h"
-#include "object.h"
+#include "box_object.h"
 #include <vector>
 
-short h_dist_between_boxes( box* source, box* b )
+short h_dist_between_boxes( box source, box b )
 {
-	if ( !source || !b )
+	if ( source.x() < b.x() )
 	{
-		throw("tried to get distance between a null box");
-	}
-
-	if ( source->x() < b->x() )
-	{
-		return ( b->left() - source->right() );
+		return ( b.left() - source.right() );
 	}
 	else
 	{
-		return ( b->right() - source->left() );
+		return ( b.right() - source.left() );
 	}
 }
 
@@ -52,12 +47,9 @@ bool ledge_grabber::hanging() const
 	return _hanging;
 }
 
-void ledge_grabber::find_ledge( object* obj, bool on_ground )
+void ledge_grabber::find_ledge( vel_accel* v, box b, bool on_ground )
 {
-	vel_accel* v = dynamic_cast<vel_accel*>(obj);
-	box* b = dynamic_cast<box*>(obj);
-
-	if ( !v || !b || v->v_speed() <= 0 || on_ground )
+	if ( !v || v->v_speed() <= 0 || on_ground )
 	{
 		return;
 	}
@@ -68,18 +60,18 @@ void ledge_grabber::find_ledge( object* obj, bool on_ground )
 		return;
 	}
 
-	box left = *b;
+	box left = b;
 	left.w( 10 );
-	left.x( b->x() - 10 );
-	left.h( b->h()*2 );
+	left.x( b.x() - 10 );
+	left.h( b.h()*2 );
 
-	box right = *b;
-	right.x( b->right() + 1 );
+	box right = b;
+	right.x( b.right() + 1 );
 	right.w( 10 );
-	right.h( b->h()*2 );
+	right.h( b.h()*2 );
 
-	std::vector<object*> tmp = manager::instance()->get_map()->objects_in_box( &left );
-	std::vector<object*> right_objects = manager::instance()->get_map()->objects_in_box( &right );
+	std::vector<box_object*> tmp = manager::instance()->get_map()->box_objects_in_box( left );
+	std::vector<box_object*> right_objects = manager::instance()->get_map()->box_objects_in_box( right );
 	tmp.insert( tmp.end(), right_objects.begin(), right_objects.end() );
 
 	unsigned short smallest_dist = -1;
@@ -90,12 +82,12 @@ void ledge_grabber::find_ledge( object* obj, bool on_ground )
 	{
 		if ( dynamic_cast<block*>(tmp[i]) )
 		{
-			unsigned short dist = tmp[i]->top() - b->top();
+			unsigned short dist = tmp[i]->dimens.top() - b.top();
 
 			if ( dist < smallest_dist )
 			{
 				smallest_dist = dist;
-				_h_dist_to_ledge = h_dist_between_boxes( b, tmp[i] );
+				_h_dist_to_ledge = h_dist_between_boxes( b, tmp[i]->dimens );
 			}
 
 			_found_ledge = true;

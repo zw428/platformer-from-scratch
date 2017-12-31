@@ -1,6 +1,6 @@
 #include "attack.h"
 #include "attackable.h"
-#include "object.h"
+#include "box_object.h"
 #include "box.h"
 #include "knockback.h"
 
@@ -60,19 +60,13 @@ bool attack::perform( attackable* a, box* source )
 		a->receive_attack( *this );
 		play_sound();
 		attacked_owner = true;
+
+		if ( source )
+		{
+			::knockback(a, *source, *this);
+		}
 	}
 
-	if ( !source )
-	{
-		source = dynamic_cast<box*>(owner());
-	}
-
-	object* obj = dynamic_cast<object*>(a);
-
-	if ( source && obj )
-	{
-		::knockback(obj, source, *this);
-	}
 
 	return attacked_owner;
 }

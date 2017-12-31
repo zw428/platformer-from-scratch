@@ -1,8 +1,8 @@
 #ifndef TELEPORTER_H
 #define TELEPORTER_H
 
-class object;
+class box_object;
 
-bool teleport( object* obj, int x, int y );
+bool teleport( box_object* bo, int x, int y );
 
 #endif

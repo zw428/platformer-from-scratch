@@ -2,10 +2,10 @@
 #define KNOCKBACK_H
 
 #include "attack.h"
+#include "box.h"
 
-class object;
-class box;
+class box_object;
 
-void knockback( object* obj, box* source, const attack& att );
+void knockback( box_object* mbo, box source, const attack& att );
 
 #endif

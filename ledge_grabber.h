@@ -1,7 +1,7 @@
 #ifndef LEDGE_GRABBER_H
 #define LEDGE_GRABBER_H
 
-class box;
+#include "box.h"
 class vel_accel;
 class object;
 
@@ -13,7 +13,7 @@ public:
 	short h_dist_to_ledge() const;
 	bool found_ledge() const;
 	bool hanging() const;
-	void find_ledge( object* obj, bool on_ground );
+	void find_ledge( vel_accel* v, box b, bool on_ground );
 	void let_go();
 private:
 	void attach_to_ledge( vel_accel* va );

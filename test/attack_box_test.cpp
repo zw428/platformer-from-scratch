@@ -1,19 +1,12 @@
 #include "catch.h"
 #include "../attack_box.h"
-#include "../object.h"
 #include "../alive.h"
-#include "../vel_accel.h"
-
-class attack_box_tmp : public object, public alive, public vel_accel
-{
-	bool think() { return false; };
-};
 
 TEST_CASE( "attack_box damages object", "[attack_box]" )
 {
-	attack_box_tmp t;
+	alive a;
 
-	t.health(5);
+	a.health(5);
 
 	attack_box att_b;
 
@@ -21,17 +14,17 @@ TEST_CASE( "attack_box damages object", "[attack_box]" )
 	att.damage(1);
 	att_b.set_attack(att);
 
-	att_b.action( &t );
+	att_b.action( &a );
 
-	CHECK( t.health() < 5 );
+	CHECK( a.health() < 5 );
 }
 
 TEST_CASE( "attack_box knocks back object", "[attack_box]" )
 {
-	attack_box_tmp t;
+	alive a;
 
-	t.h_speed(0);
-	t.v_speed(0);
+	a.speeds.h_speed(0);
+	a.speeds.v_speed(0);
 
 	attack_box att_b;
 
@@ -39,8 +32,8 @@ TEST_CASE( "attack_box knocks back object", "[attack_box]" )
 	att.knockback(1);
 	att_b.set_attack(att);
 
-	att_b.action( &t );
+	att_b.action( &a );
 
-	CHECK( t.h_speed() != 0 );
-	CHECK( t.v_speed() != 0 );
+	CHECK( a.speeds.h_speed() != 0 );
+	CHECK( a.speeds.v_speed() != 0 );
 }

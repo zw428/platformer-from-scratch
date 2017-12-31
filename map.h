@@ -11,11 +11,8 @@
 #include "chunk_prop.h"
 #include "consts.h"
 #include "trigger.h"
-
-class object;
-class block;
-
-typedef std::vector<std::shared_ptr<object>> shared_obj_vec;
+#include "box.h"
+#include "box_object.h"
 
 class map
 {
@@ -39,21 +36,21 @@ public:
 
 	void empty();
 
-        std::vector<object*> objects_in_box( box* b, object* ignore = 0 );
-        std::vector<object*> objects_in_chunk( chunk_prop cp, object* ignore = 0 );
-	std::vector<object*> objects_considered( object* obj );
+        std::vector<box_object*> box_objects_in_box( box b, box_object* ignore = 0 );
+        std::vector<box_object*> box_objects_in_chunk( chunk_prop cp, box_object* ignore = 0 );
+	std::vector<box_object*> box_objects_considered( box_object* b );
 private:
-	void erase_object_from_grid( object* obj );
-	void update_object_chunk( object* obj );
+	void erase_box_object_from_grid( box_object* bo );
+	void update_box_object_chunk( box_object* bo );
 
-	std::vector<std::vector<std::vector<object*>>> _objects_grid;
+	std::vector<std::vector<std::vector<box_object*>>> _objects_grid;
 
 	std::vector<std::shared_ptr<object>> _objects;
 
 	unsigned _x_size;
 	unsigned _y_size;
 
-	chunk_prop obj_chunk_prop( object* obj );
+	chunk_prop box_chunk_prop( box b );
 	std::map<unsigned long, chunk_prop> _chunk_props;
 };
 

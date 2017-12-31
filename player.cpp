@@ -8,16 +8,14 @@
 #include "bullet.h"
 
 player::player()
-	 :alive(),
-	  object()
 {
 	_running.texture(manager::instance()->textures("spaceman_running"));
 	_running.clip_width(12);
 	_running.w(12);
 	_running.h(34);
 
-	w(14);
-	h(36);
+	dimens.w(14);
+	dimens.h(36);
 
 	for ( unsigned i=0; i < 6; i++ )
 	{
@@ -91,23 +89,23 @@ bool player::think()
 		shoot();
 	}
 
-	_ga.apply_gravity(this, on_ground);
+	_ga.apply_gravity(&speeds, on_ground);
 
-	_lg.find_ledge(this, on_ground);
+	_lg.find_ledge(&speeds, dimens, on_ground);
 
 	if ( left )
 	{
-		_m.move_left(this);
+		_m.move_left(&speeds);
 	}
 
 	if ( right )
 	{
-		_m.move_right(this);
+		_m.move_right(&speeds);
 	}
 
-	if ( h_speed() != 0 && on_ground && !left && !right )
+	if ( speeds.h_speed() != 0 && on_ground && !left && !right )
 	{
-		_f.apply_friction(this);
+		_f.apply_friction(&speeds);
 	}
 
 	short jump_vel = _jumper.handle_jumping(on_ground || _lg.hanging(), up);
@@ -116,7 +114,7 @@ bool player::think()
 	{
 		_lg.let_go();
 
-		v_speed( jump_vel );
+		speeds.v_speed( jump_vel );
 	}
 
 	if ( (left && !colliding_left) || (right && !colliding_right) || down || up )
@@ -124,9 +122,13 @@ bool player::think()
 		_lg.let_go();
 	}
 
-	handle_speeds(this);
-	_am.think( on_ground, _m.facing_left(), (h_speed() != 0), _lg.hanging(), false );
-	_am.draw(this);
+	_am.think( on_ground, _m.facing_left(), (speeds.h_speed() != 0), _lg.hanging(), false );
+	_am.draw(dimens);
+
+	if ( box_object::think() )
+	{
+		return true;
+	}
 
 	return false;
 }
@@ -143,18 +145,17 @@ void player::punch()
 
 	if ( _m.facing_left() )
 	{
-		da.attack_left( att, this, 5, h() );
+		da.attack_left( att, dimens, 5, dimens.h() );
 	}
 	else
 	{
-		da.attack_right( att, this, 5, h() );
+		da.attack_right( att, dimens, 5, dimens.h() );
 	}
 }
 
 void player::shoot()
 {
 	bullet* b = new bullet();
-	b->texture( manager::instance()->textures("test") );
 
 	attack a;
 	a.sound("test");
@@ -164,17 +165,17 @@ void player::shoot()
 
 	b->set_attack(a);
 
-	b->x(x());
-	b->y(y_center());
+	b->dimens.x(dimens.x());
+	b->dimens.y(dimens.y_center());
 
 	if ( _m.facing_left() )
 	{
 		b->reverse();
-		b->x( b->x() - b->w());
+		b->dimens.x( b->dimens.x() - b->dimens.w());
 	}
 	else
 	{
-		b->x( b->x() + w());
+		b->dimens.x( b->dimens.x() + dimens.w());
 	}
 
 	manager::instance()->get_map()->add_object(b);

@@ -1,4 +1,10 @@
+redo how attacks work
+	make attackable derive from object... receive_attack remains virtual till you define it from something eriving from moving_box_object
+
+remove manager multiple inheritance
+
 call parent::think() inside stuff instead of multiple inheritance
+	do this for image/anim
 
 remove pointers where possible, replace with references
 

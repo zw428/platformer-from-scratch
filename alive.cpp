@@ -33,3 +33,8 @@ unsigned short alive::health() const
 {
 	return _health;
 }
+
+bool on_death()
+{
+	return false;
+}

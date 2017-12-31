@@ -42,7 +42,12 @@ bool map::add_object(object* obj)
 
 	_objects.push_back(shared_obj);
 
-	update_object_chunk( obj );
+	box_object* bo = dynamic_cast<box_object*>(obj);
+
+	if ( bo )
+	{
+		update_box_object_chunk( bo );
+	}
 
 	return true;
 }
@@ -66,15 +71,15 @@ unsigned map::trigger_count() const
 	return count;
 }
 
-void map::erase_object_from_grid( object* obj )
+void map::erase_box_object_from_grid( box_object* bo )
 {
-	chunk_prop cp = _chunk_props[ obj->id() ];
+	chunk_prop cp = _chunk_props[ bo->id() ];
 
-	std::vector<object*>& vec = _objects_grid[cp.x][cp.y];
+	std::vector<box_object*>& vec = _objects_grid[cp.x][cp.y];
 
 	for ( unsigned i=0; i < vec.size(); i++ )
 	{
-		if ( vec[i] == obj )
+		if ( vec[i] == bo )
 		{
 			vec.erase( vec.begin() + i );
 			break;
@@ -88,41 +93,48 @@ void map::think()
 	{
 		std::shared_ptr<object> shared_obj = _objects[i];
 		object* obj = shared_obj.get();
+		box_object* bo = dynamic_cast<box_object*>(obj);
 
 		if ( obj->think() )
 		{
 			_objects.erase( _objects.begin() + i-- );
-			erase_object_from_grid( obj );
+
+			if ( bo )
+			{
+				erase_box_object_from_grid( bo );
+			}
 		}
-		else
+		else if ( bo )
 		{
-			update_object_chunk( obj );
+			update_box_object_chunk( bo );
 		}
 
 	}
 }
 
-void map::update_object_chunk( object* obj )
+void map::update_box_object_chunk( box_object* bo )
 {
-	bool new_obj = ( _chunk_props.find( obj->id() ) == _chunk_props.end() );
+	bool new_obj = ( _chunk_props.find( bo->id() ) == _chunk_props.end() );
 
 	bool need_obj_update = false;
 
-	chunk_prop cp = obj_chunk_prop( obj );
-	chunk_prop old_cp = _chunk_props[ obj->id() ];
+	box b = bo->dimens;
+
+	chunk_prop cp = box_chunk_prop( b );
+	chunk_prop old_cp = _chunk_props[ bo->id() ];
 
 	need_obj_update = ( old_cp != cp );
 
 	if ( need_obj_update )
 	{
-		erase_object_from_grid(obj);
+		erase_box_object_from_grid(bo);
 	}
 
 	if ( new_obj || need_obj_update )
 	{
-		std::vector<object*>& vec = _objects_grid[cp.x][cp.y];
-		vec.push_back(obj);
-		_chunk_props[ obj->id() ] = cp;
+		std::vector<box_object*>& vec = _objects_grid[cp.x][cp.y];
+		vec.push_back(bo);
+		_chunk_props[ bo->id() ] = cp;
 	}
 }
 
@@ -154,29 +166,24 @@ void map::empty()
 	_y_size = 0;
 }
 
-std::vector<object*> map::objects_in_box( box* b, object* ignore )
+std::vector<box_object*> map::box_objects_in_box( box b, box_object* ignore )
 {
-	std::vector<object*> ret;
-
-	if ( !b )
-	{
-		return ret;
-	}
+	std::vector<box_object*> ret;
 
 	chunk_prop cp;
 
-	for ( unsigned i = b->left() / CHUNK_SIZE; i <= b->right() / CHUNK_SIZE; i++ )
+	for ( unsigned i = b.left() / CHUNK_SIZE; i <= b.right() / CHUNK_SIZE; i++ )
 	{
 		cp.x = i;
 
-		for ( unsigned j = b->top() / CHUNK_SIZE; j <= b->bottom() / CHUNK_SIZE; j++ )
+		for ( unsigned j = b.top() / CHUNK_SIZE; j <= b.bottom() / CHUNK_SIZE; j++ )
 		{
 			cp.y = j;
-			std::vector<object*> tmp = objects_in_chunk( cp );
+			std::vector<box_object*> tmp = box_objects_in_chunk( cp );
 
 			for ( unsigned k=0; k < tmp.size(); k++ )
 			{
-				if ( box_in_box( tmp[k], b ) && tmp[k] != ignore )
+				if ( box_in_box( tmp[k]->dimens, b ) && tmp[k] != ignore )
 				{
 					ret.push_back(tmp[k]);
 				}
@@ -187,16 +194,16 @@ std::vector<object*> map::objects_in_box( box* b, object* ignore )
 	return ret;
 }
 
-std::vector<object*> map::objects_in_chunk( chunk_prop cp, object* ignore )
+std::vector<box_object*> map::box_objects_in_chunk( chunk_prop cp, box_object* ignore )
 {
-	std::vector<object*> ret;
+	std::vector<box_object*> ret;
 
 	if ( cp.x >= chunk_x_size() || cp.y >= chunk_y_size() )
 	{
 		return ret;
 	}
 
-	std::vector<object*>& vec = _objects_grid[cp.x][cp.y];
+	std::vector<box_object*>& vec = _objects_grid[cp.x][cp.y];
 
 	for ( unsigned i=0; i < vec.size(); i++ )
 	{
@@ -209,9 +216,9 @@ std::vector<object*> map::objects_in_chunk( chunk_prop cp, object* ignore )
 	return ret;
 }
 
-std::vector<object*> map::objects_considered( object* obj )
+std::vector<box_object*> map::box_objects_considered( box_object* bo )
 {
-	chunk_prop cp = obj_chunk_prop(obj);
+	chunk_prop cp = box_chunk_prop(bo->dimens);
 
 	if ( cp.x >= chunk_x_size() )
 	{
@@ -223,7 +230,7 @@ std::vector<object*> map::objects_considered( object* obj )
 		cp.y = chunk_y_size() - 1;
 	}
 
-	std::vector<object*> ret;
+	std::vector<box_object*> ret;
 
 	chunk_prop temp_cp = cp;
 
@@ -236,7 +243,7 @@ std::vector<object*> map::objects_considered( object* obj )
 
 			if ( temp_cp.x >= 0 && temp_cp.x < chunk_x_size() && temp_cp.y >= 0 && temp_cp.y < chunk_y_size() )
 			{
-				std::vector<object*> tmp = objects_in_chunk( temp_cp, obj );
+				std::vector<box_object*> tmp = box_objects_in_chunk( temp_cp, bo );
 				ret.insert( ret.end(), tmp.begin(), tmp.end() );
 			}
 
@@ -247,12 +254,12 @@ std::vector<object*> map::objects_considered( object* obj )
 	return ret;
 }
 
-chunk_prop map::obj_chunk_prop( object* obj )
+chunk_prop map::box_chunk_prop( box b )
 {
 	chunk_prop ret;
 
-	ret.x = obj->x()/CHUNK_SIZE;
-	ret.y = obj->y()/CHUNK_SIZE;
+	ret.x = b.x()/CHUNK_SIZE;
+	ret.y = b.y()/CHUNK_SIZE;
 
 	return ret;
 }

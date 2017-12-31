@@ -4,13 +4,10 @@
 #include "collider.h"
 
 npc::npc()
-	 :knockback_mult(),
-	  object(),
-	  death()
 {
 	_img.texture(manager::instance()->textures("test"));
-	_img.w(w());
-	_img.h(h());
+	_img.w(dimens.w());
+	_img.h(dimens.h());
 }
 
 npc::~npc()
@@ -19,28 +16,23 @@ npc::~npc()
 
 bool npc::think()
 {
-	handle_speeds(this);
-	handle_disabled();
+	if ( box_object::think() )
+	{
+		return true;
+	}
 
-	bool on_ground = colliding(this,2);
+	bool on_ground = colliding(this, 2);
 
-	_ga.apply_gravity(this, on_ground);
+	_ga.apply_gravity(&speeds, on_ground);
 
 	if ( on_ground )
 	{
-		_f.apply_friction(this);
+		_f.apply_friction(&speeds);
 	}
 
-	_img.x(x());
-	_img.y(y());
+	_img.x(dimens.x());
+	_img.y(dimens.y());
 	_img.draw();
-
-	return false;
-}
-
-bool npc::on_death()
-{
-	teleport(this,500,300);
 
 	return false;
 }

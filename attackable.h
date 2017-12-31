@@ -1,16 +1,15 @@
 #ifndef ATTACKABLE_H
 #define ATTACKABLE_H
 
+#include "box_object.h"
+
 class attack;
 
-class attackable
+class attackable : public box_object
 {
 public:
 	attackable();
-	~attackable();
 	virtual void receive_attack( const attack& att ) = 0;
-private:
 };
-
 
 #endif

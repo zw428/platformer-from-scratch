@@ -2,8 +2,7 @@
 #include "../map.h"
 #include "../object.h"
 
-class map_tmp : public object
-{
+class map_tmp : public object {
 public:
 	bool think() { return false; };
 };
@@ -11,7 +10,7 @@ public:
 class map_tmp2 : public trigger
 {
 public:
-	bool action( object* obj ) { return false; };
+	bool action( box_object* bo ) { return false; };
 };
 
 TEST_CASE( "map( x_size, y_size ) rounds to nearest power of 2", "[map]" )
@@ -37,9 +36,9 @@ TEST_CASE( "map::add_object adds objects", "[map]" )
 	map m;
 	m.init(512,512);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(0);
-	mt->y(0);
+	box_object* mt = new box_object;
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
 	m.add_object(mt);
 
@@ -47,7 +46,7 @@ TEST_CASE( "map::add_object adds objects", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_in_chunk( cp ).size() == 1 );
+	CHECK( m.box_objects_in_chunk( cp ).size() == 1 );
 }
 
 TEST_CASE( "map::object_count works correctly", "[map]" )
@@ -55,9 +54,9 @@ TEST_CASE( "map::object_count works correctly", "[map]" )
 	map m;
 	m.init(512,512);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(0);
-	mt->y(0);
+	box_object* mt = new box_object;
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
 	m.add_object(mt);
 
@@ -76,8 +75,8 @@ TEST_CASE( "map::trigger_count works correctly", "[map]" )
 
 	map_tmp2* mt = new map_tmp2;
 
-	mt->x(0);
-	mt->y(0);
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
 	m.add_object(mt);
 
@@ -96,8 +95,8 @@ TEST_CASE( "map::add_object adds triggers", "[map]" )
 
 	map_tmp2* mt = new map_tmp2;
 
-	mt->x(0);
-	mt->y(0);
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
 	CHECK( m.add_object(mt) == true );
 }
@@ -120,9 +119,9 @@ TEST_CASE( "map::empty empties everything", "[map]" )
 	map m;
 	m.init(512,512);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(0);
-	mt->y(0);
+	box_object* mt = new box_object;
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
 	m.add_object(mt);
 
@@ -130,25 +129,25 @@ TEST_CASE( "map::empty empties everything", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_in_chunk( cp ).size() == 1 );
+	CHECK( m.box_objects_in_chunk( cp ).size() == 1 );
 
 	m.empty();
 
-	CHECK( m.objects_in_chunk( cp ).size() == 0 );
+	CHECK( m.box_objects_in_chunk( cp ).size() == 0 );
 }
 
-TEST_CASE( "map::objects_in_chunk gives all objects in a chunk", "[map]" )
+TEST_CASE( "map::box_objects_in_chunk gives all objects in a chunk", "[map]" )
 {
 	map m;
 	m.init(512,512);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(0);
-	mt->y(0);
+	box_object* mt = new box_object;
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
-	map_tmp* mt2 = new map_tmp;
-	mt2->x(0);
-	mt2->y(0);
+	box_object* mt2 = new box_object;
+	mt2->dimens.x(0);
+	mt2->dimens.y(0);
 
 	m.add_object( mt );
 	m.add_object( mt2 );
@@ -157,21 +156,21 @@ TEST_CASE( "map::objects_in_chunk gives all objects in a chunk", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_in_chunk( cp ).size() == 2 );
+	CHECK( m.box_objects_in_chunk( cp ).size() == 2 );
 }
 
-TEST_CASE( "map::objects_in_chunk doesn't give objects from different chunks", "[map]" )
+TEST_CASE( "map::box_objects_in_chunk doesn't give objects from different chunks", "[map]" )
 {
 	map m;
 	m.init(1024,1024);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(0);
-	mt->y(0);
+	box_object* mt = new box_object;
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
-	map_tmp* mt2 = new map_tmp;
-	mt2->x(300);
-	mt2->y(300);
+	box_object* mt2 = new box_object;
+	mt2->dimens.x(300);
+	mt2->dimens.y(300);
 
 	m.add_object( mt );
 	m.add_object( mt2 );
@@ -179,25 +178,25 @@ TEST_CASE( "map::objects_in_chunk doesn't give objects from different chunks", "
 	chunk_prop cp;
 	cp.x = 0;
 	cp.y = 0;
-	CHECK( m.objects_in_chunk( cp ).size() == 1 );
+	CHECK( m.box_objects_in_chunk( cp ).size() == 1 );
 
 	cp.x = 1;
 	cp.y = 1;
-	CHECK( m.objects_in_chunk( cp ).size() == 1 );
+	CHECK( m.box_objects_in_chunk( cp ).size() == 1 );
 
 	cp.x = 2;
 	cp.y = 2;
-	CHECK( m.objects_in_chunk( cp ).size() == 0 );
+	CHECK( m.box_objects_in_chunk( cp ).size() == 0 );
 }
 
-TEST_CASE( "map::objects_in_chunk ignores the ignore", "[map]" )
+TEST_CASE( "map::box_objects_in_chunk ignores the ignore", "[map]" )
 {
 	map m;
 	m.init(1024,1024);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(0);
-	mt->y(0);
+	box_object* mt = new box_object;
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
 	m.add_object( mt );
 
@@ -205,17 +204,17 @@ TEST_CASE( "map::objects_in_chunk ignores the ignore", "[map]" )
 	cp.x = 0;
 	cp.y = 0;
 
-	CHECK( m.objects_in_chunk( cp, mt ).size() == 0 );
+	CHECK( m.box_objects_in_chunk( cp, mt ).size() == 0 );
 }
 
-TEST_CASE( "map::objects_in_box gives objects in the given box", "[map]" )
+TEST_CASE( "map::box_objects_in_box gives objects in the given box", "[map]" )
 {
 	map m;
 	m.init(1024,1024);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(400);
-	mt->y(400);
+	box_object* mt = new box_object;
+	mt->dimens.x(400);
+	mt->dimens.y(400);
 
 	m.add_object( mt );
 
@@ -227,23 +226,23 @@ TEST_CASE( "map::objects_in_box gives objects in the given box", "[map]" )
 	b.w(30);
 	b.h(30);
 
-	CHECK( m.objects_in_box(&b).size() == 1 );
+	CHECK( m.box_objects_in_box(b).size() == 1 );
 }
 
-TEST_CASE( "map::objects_in_box can span multiple chunks", "[map]" )
+TEST_CASE( "map::box_objects_in_box can span multiple chunks", "[map]" )
 {
 	map m;
 	m.init(2048,2048);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(100);
-	mt->y(100);
+	box_object* mt = new box_object;
+	mt->dimens.x(100);
+	mt->dimens.y(100);
 
 	m.add_object( mt );
 
-	map_tmp* mt2 = new map_tmp;
-	mt->x(1500);
-	mt->y(1500);
+	box_object* mt2 = new box_object;
+	mt->dimens.x(1500);
+	mt->dimens.y(1500);
 
 	m.add_object( mt2 );
 
@@ -257,25 +256,25 @@ TEST_CASE( "map::objects_in_box can span multiple chunks", "[map]" )
 
 	CHECK(1500 > CHUNK_SIZE);
 
-	CHECK( m.objects_in_box(&b).size() == 2 );
+	CHECK( m.box_objects_in_box(b).size() == 2 );
 }
 
-TEST_CASE( "map::objects_considered gets objects in and around chunk", "[map]" )
+TEST_CASE( "map::box_objects_considered gets objects in and around chunk", "[map]" )
 {
 	map m;
 	m.init(1024,1024);
 
-	map_tmp* mt = new map_tmp;
-	mt->x(0);
-	mt->y(0);
+	box_object* mt = new box_object;
+	mt->dimens.x(0);
+	mt->dimens.y(0);
 
-	map_tmp* mt2 = new map_tmp;
-	mt2->x(300);
-	mt2->y(300);
+	box_object* mt2 = new box_object;
+	mt2->dimens.x(300);
+	mt2->dimens.y(300);
 
 	m.add_object( mt );
 	m.add_object( mt2 );
 
-	CHECK( m.objects_considered( mt ).size() == 1 );
-	CHECK( m.objects_considered( mt )[0] == mt2 );
+	CHECK( m.box_objects_considered( mt ).size() == 1 );
+	CHECK( m.box_objects_considered( mt )[0] == mt2 );
 }

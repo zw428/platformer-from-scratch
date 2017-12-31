@@ -19,16 +19,16 @@ void attack_box::set_attack( attack att )
 	_attack = att;
 }
 
-bool attack_box::action(object* obj)
+bool attack_box::action(box_object* bo)
 {
-	attackable* a = dynamic_cast<attackable*>(obj);
+	attackable* a = dynamic_cast<attackable*>(bo);
 
 	if ( !a )
 	{
 		return false;
 	}
 
-	if ( _attack.perform( a, this ) )
+	if ( _attack.perform( a, &dimens ) )
 	{
 		return true;
 	}

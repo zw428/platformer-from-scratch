@@ -2,11 +2,10 @@
 #include "manager.h"
 
 block::block()
-	 :object(),
-	  _type(block_solid)
+	  :_type(block_solid)
 {
-	_img.w(w());
-	_img.h(h());
+	_img.w(dimens.w());
+	_img.h(dimens.h());
 }
 
 block::~block()
@@ -17,10 +16,10 @@ bool block::think()
 {
 	if ( _type != block_empty )
 	{
-		_img.x(x());
-		_img.y(y());
-		_img.w(w());
-		_img.h(h());
+		_img.x(dimens.x());
+		_img.y(dimens.y());
+		_img.w(dimens.w());
+		_img.h(dimens.h());
 		_img.draw();
 	}
 

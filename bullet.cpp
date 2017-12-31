@@ -1,16 +1,18 @@
 #include "bullet.h"
 #include "collider.h"
 #include "block.h"
+#include "manager.h"
 
 bullet::bullet()
 	:_speed(5),
 	 _reversed(false),
 	 _theta(0)
 {
-	w(5);
-	h(5);
+	dimens.w(5);
+	dimens.h(5);
 	solid(false);
 	lifespan(0);
+	_anim.texture(manager::instance()->textures("test"));
 }
 
 void bullet::reverse()
@@ -30,9 +32,7 @@ bool bullet::think()
 		x *= -1;
 	}
 
-	std::vector<object*> vec = move(this,x,y);
-
-	draw();
+	std::vector<box_object*> vec = move(this, x, y);
 
 	for ( unsigned i=0; i < vec.size(); i++ )
 	{
@@ -41,6 +41,12 @@ bool bullet::think()
 			return true;
 		}
 	}
+
+	_anim.x(dimens.x());
+	_anim.y(dimens.y());
+	_anim.w(dimens.w());
+	_anim.h(dimens.h());
+	_anim.draw();
 
 	return ret;
 }

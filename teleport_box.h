@@ -11,7 +11,7 @@ public:
 
 	void set_dest( int x, int y );
 
-	bool action(object* obj);
+	bool action(box_object* bo);
 private:
 	int _x_dest;
 	int _y_dest;
