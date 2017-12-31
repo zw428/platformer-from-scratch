@@ -48,7 +48,7 @@ bool attack::perform( attackable* a )
 
 bool attack::perform( attackable* a, box* source )
 {
-	bool attacked_owner = false;
+	bool attacked_target = false;
 
 	if ( a == owner() )
 	{
@@ -59,7 +59,7 @@ bool attack::perform( attackable* a, box* source )
 	{
 		a->receive_attack( *this );
 		play_sound();
-		attacked_owner = true;
+		attacked_target = true;
 
 		if ( source )
 		{
@@ -68,5 +68,5 @@ bool attack::perform( attackable* a, box* source )
 	}
 
 
-	return attacked_owner;
+	return attacked_target;
 }

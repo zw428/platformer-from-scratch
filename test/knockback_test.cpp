@@ -134,27 +134,3 @@ TEST_CASE( "knockback() will knockback object in a certain direction", "[knockba
 		CHECK( t.speeds.v_speed() < 0 );
 	}
 }
-
-TEST_CASE( "knockback() will not affect owner", "[knockback]" )
-{
-	alive t;
-
-	t.speeds.h_speed(3);
-	t.speeds.v_speed(3);
-
-	attack a;
-	a.owner(&t);
-	a.knockback(5);
-
-	box b;
-
-	b.x( t.dimens.x() + 1 );
-	b.y( t.dimens.y() + 1 );
-	b.w( t.dimens.w() + 1 );
-	b.h( t.dimens.h() + 1 );
-
-	knockback( dynamic_cast<box_object*>(&t), b, a );
-
-	CHECK( t.speeds.h_speed() == 3 );
-	CHECK( t.speeds.v_speed() == 3 );
-}

@@ -97,7 +97,7 @@ bool move_phys( box_object* bo, short x_add, short y_add )
 		}
 	}
 
-	bo->dimens.x(bo->dimens.x() + + x_add);
+	bo->dimens.x(bo->dimens.x() + x_add);
 	bo->dimens.y(bo->dimens.y() + y_add);
 
 	return true;

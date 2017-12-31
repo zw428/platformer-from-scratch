@@ -109,10 +109,10 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			CHECK( l.process_trigger_str( "teleporter 0 0 100 100 200 200" ) == true );
 		}
 
-		SECTION( "death" )
+		/*SECTION( "death" )
 		{
 			CHECK( l.process_trigger_str( "death 0 0 100 100" ) == true );
-		}
+		}*/
 
 		SECTION( "fail" )
 		{

@@ -12,5 +12,5 @@ TEST_CASE( "knockback_mult receive_attack modifies mult", "[knockback_mult]" )
 
 	k.receive_attack( a );
 
-	CHECK( k.get_knockback_mult() == float(10.1) );
+	CHECK( k.get_knockback_mult() == float(11) );
 }

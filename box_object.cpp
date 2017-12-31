@@ -2,6 +2,7 @@
 #include "collider.h"
 
 box_object::box_object()
+	:_solid(true)
 {
 }
 
