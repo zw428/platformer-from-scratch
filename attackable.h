@@ -15,6 +15,7 @@ public:
 	attackable();
 	~attackable();
 	virtual void receive_attack( const attack& att );
+	virtual bool think();
 
 	void health( unsigned short health );
 	unsigned short health() const;

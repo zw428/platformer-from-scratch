@@ -1,4 +1,5 @@
 #include "attackable.h"
+#include <SDL2/SDL.h>
 
 attackable::attackable()
 	 :_at(attackable_health),
@@ -24,6 +25,11 @@ void attackable::receive_attack( const attack& att )
 			attacked_knockback_multiplier( att );
 			break;
 	}
+}
+
+bool attackable::think()
+{
+	return box_object::think();
 }
 
 void attackable::health( unsigned short health )

@@ -23,14 +23,14 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 		CHECK( manager::instance()->resources.sounds("test") != 0 );
 	}
 
-	SECTION( "character" )
+	SECTION( "creature" )
 	{
 		SECTION( "player" )
 		{
 			level_loader l;
 			manager::instance()->the_map.init( 500, 500 );
 
-			l.process_character_str( "player 0 0");
+			l.process_creature_str( "player 0 0");
 
 			chunk_prop tmp;
 			tmp.x = 0;
@@ -39,19 +39,19 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
 		}
 
-		SECTION( "npc" )
+		/*SECTION( "npc" )
 		{
 			level_loader l;
 			manager::instance()->the_map.init( 500, 500 );
 
-			l.process_character_str( "npc 0 0");
+			l.process_creature_str( "npc 0 0");
 
 			chunk_prop tmp;
 			tmp.x = 0;
 			tmp.y = 0;
 
 			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
-		}
+		}*/
 	}
 
 	SECTION( "block" )

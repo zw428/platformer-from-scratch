@@ -4,7 +4,7 @@
 #include <sstream>
 #include "block.h"
 #include "player.h"
-#include "npc.h"
+//#include "npc.h"
 #include "teleport_box.h"
 
 level_loader::level_loader()
@@ -32,10 +32,10 @@ bool level_loader::load_level(std::string path)
 			process_sound_str(buf.c_str());
 		}
 
-		if ( buf == "character" )
+		if ( buf == "creature" )
 		{
 			std::getline(ifs,buf);
-			process_character_str(buf.c_str());
+			process_creature_str(buf.c_str());
 		}
 
 		if ( buf == "block" )
@@ -138,7 +138,7 @@ bool level_loader::process_font_str(std::string str)
 	return true;
 }
 
-bool level_loader::process_character_str(std::string str)
+bool level_loader::process_creature_str(std::string str)
 {
 	std::stringstream ss(str);
 	std::string type, image_name, x, y;
@@ -157,13 +157,13 @@ bool level_loader::process_character_str(std::string str)
 		temp->dimens.y(y_num);
 		manager::instance()->the_map.add_object(temp);
 	}
-	else if ( type == "npc" )
+	/*else if ( type == "npc" )
 	{
 		npc* temp = new npc;
 		temp->dimens.x(x_num);
 		temp->dimens.y(y_num);
 		manager::instance()->the_map.add_object(temp);
-	}
+	}*/
 
 
 	return true;
