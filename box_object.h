@@ -14,8 +14,11 @@ public:
 	vel_accel speeds;
 	bool solid() const;
 	void solid( bool solid );
+	bool movable() const;
+	void movable( bool movable );
 private:
 	bool _solid;
+	bool _movable;
 };
 
 #endif

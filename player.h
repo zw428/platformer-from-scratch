@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "alive.h"
+#include "attackable.h"
 #include "jumper.h"
 #include "gravity_affected.h"
 #include "mover.h"
@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 
-class player : public alive
+class player : public attackable
 {
 public:
 	player();

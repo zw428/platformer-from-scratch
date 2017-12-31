@@ -1,10 +1,9 @@
 #include "catch.h"
-#include "../attack.h"
-#include "../alive.h"
+#include "../attackable.h"
 
-TEST_CASE( "alive health doesn't drop below 0", "[alive]" )
+TEST_CASE( "attackable health doesn't drop below 0", "[attackable]" )
 {
-	alive a;
+	attackable a;
 	a.health(10);
 
 	attack att;

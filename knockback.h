@@ -4,8 +4,8 @@
 #include "attack.h"
 #include "box.h"
 
-class box_object;
+class attackable;
 
-void knockback( box_object* mbo, box source, const attack& att );
+void knockback( attackable* atbl, box source, const attack& att );
 
 #endif

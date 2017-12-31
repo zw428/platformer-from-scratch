@@ -1,11 +1,12 @@
 #include "knockback.h"
 #include "box.h"
 #include "box_object.h"
+#include "attackable.h"
 
-void knockback( box_object* mbo, box source, const attack& att )
+void knockback( attackable* atbl, box source, const attack& att )
 {
-	vel_accel& va = mbo->speeds;
-	box& dimens = mbo->dimens;
+	vel_accel& va = atbl->speeds;
+	box& dimens = atbl->dimens;
 
 	float x_diff = dimens.x_center() - source.x_center();
 	float y_diff = dimens.y_center() - source.y_center();
@@ -24,6 +25,11 @@ void knockback( box_object* mbo, box source, const attack& att )
 	}
 
 	float mult = 1;
+
+	if ( atbl->type() == attackable_knockback_multiplier )
+	{
+		mult = 1 + atbl->health() / 20;
+	}
 
 	va.h_speed( float(att.knockback()) * x_frac * mult );
 	va.v_speed( float(att.knockback()) * y_frac * mult );

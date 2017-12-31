@@ -1,10 +1,10 @@
 #include "catch.h"
 #include "../attack_box.h"
-#include "../alive.h"
+#include "../attackable.h"
 
 TEST_CASE( "attack_box damages object", "[attack_box]" )
 {
-	alive a;
+	attackable a;
 
 	a.health(5);
 
@@ -21,7 +21,7 @@ TEST_CASE( "attack_box damages object", "[attack_box]" )
 
 TEST_CASE( "attack_box knocks back object", "[attack_box]" )
 {
-	alive a;
+	attackable a;
 
 	a.speeds.h_speed(0);
 	a.speeds.v_speed(0);

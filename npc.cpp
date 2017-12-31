@@ -5,6 +5,7 @@
 
 npc::npc()
 {
+	type(attackable_knockback_multiplier);
 	_img.texture(manager::instance()->resources.textures("test"));
 	_img.w(dimens.w());
 	_img.h(dimens.h());

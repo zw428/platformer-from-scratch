@@ -57,7 +57,6 @@ bool attack::perform( attackable* a, box* source )
 
 	if ( a )
 	{
-		a->receive_attack( *this );
 		play_sound();
 		attacked_target = true;
 
@@ -65,6 +64,8 @@ bool attack::perform( attackable* a, box* source )
 		{
 			::knockback(a, *source, *this);
 		}
+
+		a->receive_attack( *this );
 	}
 
 

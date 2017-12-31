@@ -1,14 +1,14 @@
 #ifndef NPC_H
 #define NPC_H
 
-#include "knockback_mult.h"
+#include "attackable.h"
 #include "disabled.h"
 #include "friction.h"
 #include "vel_accel.h"
 #include "gravity_affected.h"
 #include "image.h"
 
-class npc : public knockback_mult
+class npc : public attackable
 {
 public:
 	npc();
