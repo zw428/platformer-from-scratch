@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "box_object.h"
+#include "anim.h"
 
 class trigger : public box_object
 {
@@ -24,6 +25,8 @@ public:
 
 	bool enabled() const;
 	void enabled( bool enabled );
+
+	anim animation;
 private:
 	unsigned short _lifespan;
 	unsigned short _time_left;

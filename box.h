@@ -1,18 +1,16 @@
 #ifndef BOX_H
 #define BOX_H
 
-class box
+#include "coords.h"
+
+class box : public coords
 {
 public:
 	box();
 
-	void x( unsigned short x);
-	void y( unsigned short y);
 	void w( unsigned short w);
 	void h( unsigned short h);
 
-	unsigned short x() const;
-	unsigned short y() const;
 	unsigned short w() const;
 	unsigned short h() const;
 
@@ -24,8 +22,6 @@ public:
 	unsigned short left() const;
 	unsigned short right() const;
 private:
-	unsigned short _x;
-	unsigned short _y;
 	unsigned short _w;
 	unsigned short _h;
 };

@@ -1,10 +1,13 @@
 #include "image.h"
 #include "camera.h"
 #include "manager.h"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 image::image()
 	:_flip_h(false),
-	 _tiled(false)
+	 _tiled(false),
+	 _hidden(false)
 {
 	_tex_store.tex = 0;
 	_tex_store.orig_w = 0;
@@ -13,7 +16,7 @@ image::image()
 
 void image::draw()
 {
-	if ( !manager::instance()->cam.should_draw( x(), y(), w(), h() ) )
+	if ( !manager::instance()->cam.should_draw( x(), y(), w(), h() ) || hidden() )
 	{
 		return;
 	}
@@ -56,6 +59,21 @@ bool image::tiled() const
 void image::tiled( bool tiled )
 {
 	_tiled = tiled;
+}
+
+bool image::hidden() const
+{
+	return _hidden;
+}
+
+void image::hide()
+{
+	_hidden = true;
+}
+
+void image::show()
+{
+	_hidden = false;
 }
 
 void image::draw_stretched()

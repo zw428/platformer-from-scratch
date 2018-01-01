@@ -12,6 +12,12 @@ anim::anim()
 
 void anim::draw()
 {
+
+	if ( !manager::instance()->cam.should_draw( x(), y(), w(), h() ) || hidden() )
+	{
+		return;
+	}
+
 	SDL_Rect rect;
 
 	SDL_Point adjusted_coords = manager::instance()->cam.camera_coords( x(), y() );
@@ -22,11 +28,6 @@ void anim::draw()
 	rect.h = h();
 
 	handle_frame_count();
-
-	if ( !manager::instance()->cam.should_draw( x(), y(), w(), h() ) )
-	{
-		return;
-	}
 
 	SDL_RendererFlip f = (flip_h()) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
 

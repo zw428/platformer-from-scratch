@@ -1,8 +1,6 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "box.h"
 #include "texture_store.h"
 
@@ -20,6 +18,9 @@ public:
 
 	bool tiled() const;
 	void tiled( bool tiled );
+	bool hidden() const;
+	void hide();
+	void show();
 private:
 	texture_store _tex_store;
 
@@ -28,6 +29,7 @@ private:
 
 	bool _flip_h;
 	bool _tiled;
+	bool _hidden;
 };
 
 #endif

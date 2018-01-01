@@ -19,6 +19,7 @@ trigger::~trigger()
 bool trigger::think()
 {
 	box_object::think();
+	animation.draw();
 
 	if ( !enabled() )
 	{

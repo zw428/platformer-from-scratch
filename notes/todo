@@ -1,3 +1,7 @@
+make delayed_attack_box able to go left/right/up/down
+
+add delayed_attack_bullet
+
 add attacks to creature (probably part of task below)
 
 make it so you can't start another attack until one of them is over. attack_manager?

@@ -17,7 +17,6 @@ public:
 	bool action( box_object* bo );
 private:
 	attack _attack;
-	object* _owner;
 };
 
 #endif

@@ -12,7 +12,7 @@ bullet::bullet()
 	dimens.h(5);
 	solid(false);
 	lifespan(0);
-	_anim.texture(manager::instance()->resources.textures("test"));
+	animation.texture(manager::instance()->resources.textures("test"));
 }
 
 void bullet::reverse()
@@ -42,11 +42,11 @@ bool bullet::think()
 		}
 	}
 
-	_anim.x(dimens.x());
-	_anim.y(dimens.y());
-	_anim.w(dimens.w());
-	_anim.h(dimens.h());
-	_anim.draw();
+	animation.x(dimens.x());
+	animation.y(dimens.y());
+	animation.w(dimens.w());
+	animation.h(dimens.h());
+	animation.draw();
 
 	return ret;
 }

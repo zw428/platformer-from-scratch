@@ -53,6 +53,14 @@ player::player()
 	anims.set_jumping_anim(_jumping);
 	anims.set_hanging_anim(_hanging);
 	anims.set_idle_anim(_idle);
+
+	_dab.att.owner(this);
+	_dab.att.sound("test");
+	_dab.animation = _running;
+	_dab.att.damage(10);
+	_dab.att.knockback(10);
+	_dab.offset.x(dimens.w());
+	_dab.dimens.h(36);
 }
 
 player::~player()
@@ -65,6 +73,10 @@ bool player::think()
 	down_pressed      = keys::instance()->key_pressed(SDLK_s) && !keys::instance()->key_pressed(SDLK_w);
 	left_pressed      = keys::instance()->key_pressed(SDLK_a) && !keys::instance()->key_pressed(SDLK_d);
 	right_pressed     = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
+
+	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
+	
+	_dab.think(attacking);
 
 	return creature::think();
 }
