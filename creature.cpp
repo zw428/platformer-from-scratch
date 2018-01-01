@@ -2,6 +2,10 @@
 #include "collider.h"
 
 creature::creature()
+	:up_pressed(false),
+	 down_pressed(false),
+	 left_pressed(false),
+	 right_pressed(false)
 {
 }
 
