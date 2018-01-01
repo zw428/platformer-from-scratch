@@ -4,7 +4,7 @@
 #include <sstream>
 #include "block.h"
 #include "player.h"
-//#include "npc.h"
+#include "npc.h"
 #include "teleport_box.h"
 
 level_loader::level_loader()
@@ -157,14 +157,13 @@ bool level_loader::process_creature_str(std::string str)
 		temp->dimens.y(y_num);
 		manager::instance()->the_map.add_object(temp);
 	}
-	/*else if ( type == "npc" )
+	else if ( type == "npc" )
 	{
 		npc* temp = new npc;
 		temp->dimens.x(x_num);
 		temp->dimens.y(y_num);
 		manager::instance()->the_map.add_object(temp);
-	}*/
-
+	}
 
 	return true;
 }

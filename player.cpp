@@ -1,11 +1,6 @@
 #include "player.h"
 #include "manager.h"
 #include "keys.h"
-#include "attackable.h"
-#include "attack_box.h"
-#include "collider.h"
-#include "directed_attack.h"
-#include "bullet.h"
 
 player::player()
 {

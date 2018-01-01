@@ -39,7 +39,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
 		}
 
-		/*SECTION( "npc" )
+		SECTION( "npc" )
 		{
 			level_loader l;
 			manager::instance()->the_map.init( 500, 500 );
@@ -51,7 +51,7 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			tmp.y = 0;
 
 			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
-		}*/
+		}
 	}
 
 	SECTION( "block" )
