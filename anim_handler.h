@@ -2,6 +2,7 @@
 #define ANIM_HANDLER_H
 
 #include "anim.h"
+#include "origin.h"
 
 class anim_handler
 {
@@ -18,8 +19,7 @@ public:
 	void set_hanging_anim( anim a );
 	void set_override_anim( anim* a );
 
-	unsigned short origin() const;
-	void origin( unsigned short origin );
+	origin the_origin;
 private:
 	anim _running_anim;
 	anim _idle_anim;

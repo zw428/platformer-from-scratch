@@ -6,7 +6,7 @@
 enum origins 
 {
 	origin_top, origin_tr, origin_right, origin_br, origin_bottom,
-	origin_bl, origin_left, origin_tl
+	origin_bl, origin_left, origin_tl, origin_center
 };
 
 class origin

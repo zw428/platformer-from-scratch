@@ -1,9 +1,8 @@
-make anim use origin class
+add attack_box::die_on_attack
 
-add tests for origin class
-add tests for box object die out of bounds
+add way for bullet to die on collide
 
-make delayed_attack_box able to go left/right/up/down
+make delayed_attack_(box/bullet) able to go left/right/up/down
 
 add attacks to creature (probably part of task below)
 

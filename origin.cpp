@@ -23,6 +23,7 @@ void origin::apply( box& child, box parent )
 		{
 		case origin_top:
 		case origin_bottom:
+		case origin_center:
 			child.x( parent.x_center() - child.w() / 2 );
 			break;
 		case origin_tr:
@@ -49,6 +50,7 @@ void origin::apply( box& child, box parent )
 			break;
 		case origin_right:
 		case origin_left:
+		case origin_center:
 			child.y( parent.y_center() - child.h() / 2 );
 			break;
 		case origin_br:

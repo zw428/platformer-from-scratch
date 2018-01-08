@@ -3,9 +3,9 @@
 anim_handler::anim_handler()
 	:_current_anim(0),
 	 _override_anim_active(false),
-	 _origin(4),
 	 _flipped(false)
 {
+	the_origin.set_dir(origin_bottom);
 }
 
 void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool hanging, bool disabled )
@@ -65,47 +65,7 @@ void anim_handler::draw( const box& ref )
 	_current_anim->y( ref.y() );
 	_current_anim->flip_h( _flipped );
 
-	if ( _current_anim->w() != ref.w() )
-	{
-		switch( _origin )
-		{
-		case 0:
-		case 4:
-			_current_anim->x( ref.x_center() - _current_anim->w() / 2 );
-			break;
-		case 1:
-		case 2:
-		case 3:
-			_current_anim->x( ref.right() - _current_anim->w() );
-			break;
-		case 5:
-		case 6:
-		case 7:
-			_current_anim->x( ref.left() );
-			break;
-		}
-	}
-
-	if ( _current_anim->h() != ref.h() )
-	{
-		switch( _origin )
-		{
-		case 0:
-		case 1:
-		case 7:
-			_current_anim->y( ref.top() );
-			break;
-		case 2:
-		case 6:
-			_current_anim->y( ref.y_center() - _current_anim->h() / 2 );
-			break;
-		case 3:
-		case 4:
-		case 5:
-			_current_anim->y( ref.bottom() - _current_anim->h() );
-			break;
-		}
-	}
+	the_origin.apply( *_current_anim, ref );
 
 	_current_anim->draw();
 }
@@ -140,17 +100,4 @@ void anim_handler::set_override_anim( anim* a )
 	_current_anim = a;
 	a->reset();
 	_override_anim_active = true;
-}
-
-unsigned short anim_handler::origin() const
-{
-	return _origin;
-}
-
-void anim_handler::origin( unsigned short origin )
-{
-	if ( origin < 9 )
-	{
-		_origin = origin;
-	}
 }
