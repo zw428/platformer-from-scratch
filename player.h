@@ -3,6 +3,7 @@
 
 #include "creature.h"
 #include "delayed_attack_box.h"
+#include "delayed_attack_bullet.h"
 
 class player : public creature
 {
@@ -12,6 +13,7 @@ public:
 	bool think();
 private:
 	delayed_attack_box _dab;
+	delayed_attack_bullet _dab2;
 	anim _idle;
 	anim _running;
 	anim _jumping;

@@ -1,6 +1,9 @@
-make delayed_attack_box able to go left/right/up/down
+make anim use origin class
 
-add delayed_attack_bullet
+add tests for origin class
+add tests for box object die out of bounds
+
+make delayed_attack_box able to go left/right/up/down
 
 add attacks to creature (probably part of task below)
 

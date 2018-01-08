@@ -68,6 +68,5 @@ bool attack::perform( attackable* a, box* source )
 		a->receive_attack( *this );
 	}
 
-
 	return attacked_target;
 }

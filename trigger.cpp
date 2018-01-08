@@ -18,7 +18,13 @@ trigger::~trigger()
 
 bool trigger::think()
 {
-	box_object::think();
+	if ( box_object::think() )
+	{
+		return true;
+	}
+
+	animation.x( dimens.x() );
+	animation.y( dimens.y() );
 	animation.draw();
 
 	if ( !enabled() )

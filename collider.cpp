@@ -4,6 +4,22 @@
 #include "vel_accel.h"
 #include "collide_functions.h"
 
+bool on_map_edge(box b)
+{
+	int map_size_x = manager::instance()->the_map.x_size();
+	int map_size_y = manager::instance()->the_map.y_size();
+
+	if ( b.x() == 0 ||
+	     b.x() + b.w() == map_size_x ||
+	     b.y() == 0 ||
+	     b.y() + b.h() == map_size_y )
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void adjust_move_coords( box b, short& x_add, short& y_add )
 {
 	int map_size_x = manager::instance()->the_map.x_size();
@@ -157,6 +173,12 @@ void handle_speeds( vel_accel& va, box_object* bo )
 {
 	if ( !bo )
 	{
+		return;
+	}
+
+	if ( !bo->solid() )
+	{
+		move( bo, va.h_speed(), va.v_speed() );
 		return;
 	}
 

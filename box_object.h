@@ -16,9 +16,12 @@ public:
 	void solid( bool solid );
 	bool movable() const;
 	void movable( bool movable );
+	bool die_oob() const;
+	void die_oob( bool d_o );
 private:
 	bool _solid;
 	bool _movable;
+	bool _die_oob;
 };
 
 #endif
