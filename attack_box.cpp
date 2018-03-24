@@ -28,10 +28,7 @@ bool attack_box::action(box_object* bo)
 		return false;
 	}
 
-	if ( _attack.perform( a, &dimens ) )
-	{
-		return true;
-	}
+	_attack.perform( a, &dimens );
 
 	return false;
 }
