@@ -4,7 +4,8 @@
 box_object::box_object()
 	:_solid(true),
 	 _movable(true),
-	 _die_oob(false)
+	 _die_oob(false),
+	 _die_on_collide(false)
 {
 }
 
@@ -12,7 +13,10 @@ bool box_object::think()
 {
 	if ( movable() )
 	{
-		handle_speeds(speeds, this);
+		if ( !handle_speeds(speeds, this) && die_on_collide() )
+		{
+			return true;
+		}
 	}
 
 	if ( die_oob() && on_map_edge(dimens) )
@@ -51,4 +55,14 @@ bool box_object::die_oob() const
 void box_object::die_oob( bool d_o )
 {
 	_die_oob = d_o;
+}
+
+bool box_object::die_on_collide() const
+{
+	return _die_on_collide;
+}
+
+void box_object::die_on_collide( bool doc )
+{
+	_die_on_collide = doc;
 }

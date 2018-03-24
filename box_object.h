@@ -18,10 +18,13 @@ public:
 	void movable( bool movable );
 	bool die_oob() const;
 	void die_oob( bool d_o );
+	bool die_on_collide() const;
+	void die_on_collide( bool doc );
 private:
 	bool _solid;
 	bool _movable;
 	bool _die_oob;
+	bool _die_on_collide;
 };
 
 #endif
