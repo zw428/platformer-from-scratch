@@ -169,18 +169,28 @@ bool colliding( box_object* bo, unsigned short dir)
 	return false;
 }
 
-void handle_speeds( vel_accel& va, box_object* bo )
+bool handle_speeds( vel_accel& va, box_object* bo )
 {
 	if ( !bo )
 	{
-		return;
+		return true;
 	}
 
 	if ( !bo->solid() )
 	{
 		move( bo, va.h_speed(), va.v_speed() );
-		return;
+		std::vector<box_object*> in_box = manager::instance()->the_map.box_objects_in_box( bo->dimens, bo );
+
+		if ( in_box.size() != 0 )
+		{
+			return false;
+		}
+
+		return true;
 	}
+
+	unsigned predicted_x = bo->dimens.x() + va.h_speed();
+	unsigned predicted_y = bo->dimens.y() + va.v_speed();
 
 	if ( !move_phys(bo, va.h_speed(), va.v_speed()) )
 	{
@@ -212,6 +222,13 @@ void handle_speeds( vel_accel& va, box_object* bo )
 	{
 		va.h_speed(0);
 	}
+
+	if ( bo->dimens.x() != predicted_x || bo->dimens.y() != predicted_y )
+	{
+		return false;
+	}
+
+	return true;
 }
 
 std::vector<box_object*> get_adjacents( box_object* bo )
