@@ -26,11 +26,17 @@ public:
 	bool enabled() const;
 	void enabled( bool enabled );
 
+	unsigned short max_triggers() const;
+	void max_triggers(unsigned short num);
+
 	anim animation;
 private:
 	unsigned short _lifespan;
 	unsigned short _time_left;
 	unsigned short _interval;
+
+	unsigned short _max_triggers;
+	unsigned short _trigger_counter;
 
 	bool _enabled;
 

@@ -23,6 +23,7 @@ void delayed_attack_bullet::perform()
 	ab->lifespan(0);
 	ab->speeds = speeds;
 	ab->die_oob(true);
+	ab->die_on_collide(true);
 	ab->dimens = dimens;
 	ab->animation = animation;
 

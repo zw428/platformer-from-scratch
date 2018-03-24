@@ -1,7 +1,3 @@
-add attack_box::die_on_attack
-
-add way for bullet to die on collide
-
 make delayed_attack_(box/bullet) able to go left/right/up/down
 
 add attacks to creature (probably part of task below)
@@ -14,3 +10,5 @@ more advanced attacks
 	hold-down attacks
 
 player-player collision shouldn't be possible, or else hitting is lame
+
+level_loader: make it so you add invisible collision boxes and not-invisible images

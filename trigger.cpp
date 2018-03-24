@@ -7,6 +7,8 @@ trigger::trigger()
 	:_lifespan(0),
 	 _time_left(1),
 	 _interval(30),
+	 _max_triggers(0),
+	 _trigger_counter(1),
 	 _enabled(true)
 {
 	solid(false);
@@ -18,11 +20,6 @@ trigger::~trigger()
 
 bool trigger::think()
 {
-	if ( box_object::think() )
-	{
-		return true;
-	}
-
 	animation.x( dimens.x() );
 	animation.y( dimens.y() );
 	animation.draw();
@@ -30,6 +27,13 @@ bool trigger::think()
 	if ( !enabled() )
 	{
 		return false;
+	}
+
+	bool die_at_end = false;
+
+	if ( box_object::think() && die_on_collide() )
+	{
+		die_at_end = true;
 	}
 
 	if ( _lifespan )
@@ -81,6 +85,11 @@ bool trigger::think()
 				return true;
 			}
 
+			if ( max_triggers() != 0 )
+			{
+				_trigger_counter--;
+			}
+
 			if ( interval() )
 			{
 				object_interval tmp;
@@ -100,7 +109,7 @@ bool trigger::think()
 		}
 	}
 
-	if ( _time_left == 0 )
+	if ( _time_left == 0 || _trigger_counter == 0 || die_at_end )
 	{
 		return true;
 	}
@@ -136,4 +145,15 @@ bool trigger::enabled() const
 void trigger::enabled( bool enabled )
 {
 	_enabled = enabled;
+}
+
+unsigned short trigger::max_triggers() const
+{
+	return _max_triggers;
+}
+
+void trigger::max_triggers(unsigned short num)
+{
+	_trigger_counter = num;
+	_max_triggers = num;
 }

@@ -1,6 +1,7 @@
 #include "catch.h"
 #include "../map.h"
 #include "../object.h"
+#include "../trigger.h"
 
 class map_tmp : public object {
 public:
