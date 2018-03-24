@@ -10,7 +10,6 @@
 
 #include "chunk_prop.h"
 #include "consts.h"
-#include "trigger.h"
 #include "box.h"
 #include "box_object.h"
 

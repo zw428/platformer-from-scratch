@@ -4,6 +4,7 @@
 #include "manager.h"
 #include "object.h"
 #include "collide_functions.h"
+#include "trigger.h"
 
 map::map()
 	:_x_size(0),
