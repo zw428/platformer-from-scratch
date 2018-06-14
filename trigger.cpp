@@ -124,7 +124,7 @@ unsigned short trigger::lifespan() const
 
 void trigger::lifespan( unsigned short lifespan )
 {
-	_lifespan = lifespan;
+	_lifespan = _time_left = lifespan;
 }
 
 unsigned short trigger::interval() const
