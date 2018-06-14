@@ -55,13 +55,11 @@ player::player()
 	anims.set_idle_anim(_idle);
 
 	_dab2.att.owner(this);
-	_dab2.offset.x(dimens.w());
 	_dab2.att.knockback(5);
 
 	_dab.att.owner(this);
 	_dab.offset.x(dimens.w());
 	_dab.att.sound("test");
-	_dab.animation = _running;
 	_dab.att.damage(10);
 	_dab.att.knockback(10);
 	_dab.offset.x(dimens.w());
@@ -81,8 +79,8 @@ bool player::think()
 
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 	
-	//_dab.think(attacking);
-	_dab2.think(attacking);
+	_dab.think(attacking);
+	//_dab2.think(attacking);
 
 	return creature::think();
 }

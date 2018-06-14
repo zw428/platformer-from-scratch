@@ -2,6 +2,7 @@
 #include "../map.h"
 #include "../object.h"
 #include "../trigger.h"
+#include "../manager.h"
 
 class map_tmp : public object {
 public:
@@ -64,7 +65,7 @@ TEST_CASE( "map::object_count works correctly", "[map]" )
 	CHECK( m.object_count() == 1 );
 
 	m.empty();
-	
+
 	CHECK( m.object_count() == 0 );
 }
 
@@ -82,10 +83,36 @@ TEST_CASE( "map::trigger_count works correctly", "[map]" )
 	m.add_object(mt);
 
 	CHECK( m.trigger_count() == 1 );
-	
+
 	m.empty();
-	
+
 	CHECK( m.trigger_count() == 0 );
+}
+
+TEST_CASE( "map erases triggers when lifespan over", "[map]" )
+{
+	manager::instance()->init(true);
+	manager::instance()->the_map.init(512,512);
+
+	map_tmp2* mt = new map_tmp2;
+
+	mt->lifespan(2);
+
+	mt->dimens.x(30);
+	mt->dimens.y(30);
+	mt->dimens.w(5);
+	mt->dimens.h(5);
+
+	manager::instance()->the_map.add_object(mt);
+
+	CHECK( manager::instance()->the_map.trigger_count() == 1 );
+
+	for ( unsigned i=0; i < 2; i++ )
+	{
+		manager::instance()->the_map.think();
+	}
+
+	CHECK( manager::instance()->the_map.trigger_count() == 0 );
 }
 
 TEST_CASE( "map::add_object adds triggers", "[map]" )

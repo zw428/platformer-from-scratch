@@ -5,7 +5,8 @@ creature::creature()
 	:up_pressed(false),
 	 down_pressed(false),
 	 left_pressed(false),
-	 right_pressed(false)
+	 right_pressed(false),
+	 _facing_left(false)
 {
 }
 
@@ -23,14 +24,16 @@ bool creature::think()
 
 	_lg.find_ledge(speeds, dimens, on_ground);
 
-	if ( left_pressed )
+	if ( left_pressed && !right_pressed )
 	{
 		m.move_left(speeds);
+		_facing_left = true;
 	}
 
-	if ( right_pressed )
+	if ( right_pressed && !left_pressed )
 	{
 		m.move_right(speeds);
+		_facing_left = false;
 	}
 
 	if ( speeds.h_speed() != 0 && on_ground && !left_pressed && !right_pressed )
@@ -61,4 +64,9 @@ bool creature::think()
 	}
 
 	return false;
+}
+
+bool creature::facing_left() const
+{
+	return _facing_left;
 }

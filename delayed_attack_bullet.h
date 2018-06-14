@@ -10,9 +10,6 @@ public:
 	delayed_attack_bullet();
 	~delayed_attack_bullet();
 	void perform();
-	box dimens;
-	vel_accel speeds;
-	coords offset;
 };
 
 #endif

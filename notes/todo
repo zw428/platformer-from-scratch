@@ -1,8 +1,6 @@
-make delayed_attack_(box/bullet) able to go left/right/up/down
-
 add attacks to creature (probably part of task below)
-
-make it so you can't start another attack until one of them is over. attack_manager?
+	make it so you can't start another attack until one of them is over. attack_manager?
+		make different attacks for if holding a direction
 
 more advanced attacks
 	attacks where you can't move

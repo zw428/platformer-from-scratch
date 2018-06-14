@@ -20,6 +20,8 @@ public:
 	bool left_pressed;
 	bool right_pressed;
 
+	bool facing_left() const;
+
 	anim_handler anims;
 	mover m;
 	jumper jump_handler;
@@ -27,6 +29,7 @@ private:
 	ledge_grabber _lg;
 	gravity_affected _ga;
 	friction _f;
+	bool _facing_left;
 };
 
 #endif
