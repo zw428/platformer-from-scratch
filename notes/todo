@@ -2,6 +2,8 @@ add attacks to creature (probably part of task below)
 	make it so you can't start another attack until one of them is over. attack_manager?
 		make different attacks for if holding a direction
 
+make attacks hit in a static direction (not based on player to player angle)
+
 more advanced attacks
 	attacks where you can't move
 	charged attacks
