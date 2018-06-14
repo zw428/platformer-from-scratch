@@ -109,7 +109,7 @@ bool trigger::think()
 		}
 	}
 
-	if ( _time_left == 0 || _trigger_counter == 0 || die_at_end )
+	if ( (_time_left == 0 && _lifespan != 0) || _trigger_counter == 0 || die_at_end )
 	{
 		return true;
 	}
