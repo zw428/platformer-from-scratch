@@ -37,11 +37,7 @@ void map::init( unsigned x_size, unsigned y_size )
 
 bool map::add_object(object* obj)
 {
-	std::shared_ptr<object> shared_obj;
-
-	shared_obj.reset(obj);
-
-	_objects.push_back(shared_obj);
+	_root.add_child(obj);
 
 	box_object* bo = dynamic_cast<box_object*>(obj);
 
@@ -51,25 +47,6 @@ bool map::add_object(object* obj)
 	}
 
 	return true;
-}
-
-unsigned map::object_count() const
-{
-	return _objects.size();
-}
-
-unsigned map::trigger_count() const
-{
-	unsigned count = 0;
-	for ( unsigned i=0; i < _objects.size(); i++ )
-	{
-		if ( dynamic_cast<trigger*>( _objects[i].get() ) )
-		{
-			count++;
-		}
-	}
-
-	return count;
 }
 
 void map::erase_box_object_from_grid( box_object* bo )
@@ -90,27 +67,7 @@ void map::erase_box_object_from_grid( box_object* bo )
 
 void map::think()
 {
-	for ( unsigned i=0; i < _objects.size(); i++ )
-	{
-		std::shared_ptr<object> shared_obj = _objects[i];
-		object* obj = shared_obj.get();
-		box_object* bo = dynamic_cast<box_object*>(obj);
-
-		if ( obj->think() )
-		{
-			_objects.erase( _objects.begin() + i-- );
-
-			if ( bo )
-			{
-				erase_box_object_from_grid( bo );
-			}
-		}
-		else if ( bo )
-		{
-			update_box_object_chunk( bo );
-		}
-
-	}
+	_root.think();
 }
 
 void map::update_box_object_chunk( box_object* bo )
@@ -161,7 +118,7 @@ unsigned map::y_size() const
 
 void map::empty()
 {
-	_objects.clear();
+	_root.empty();
 	_objects_grid.clear();
 	_x_size = 0;
 	_y_size = 0;

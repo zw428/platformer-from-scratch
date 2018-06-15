@@ -46,11 +46,8 @@ TEST_CASE( "trigger dies when it has a trigger limit set", "[trigger]" )
 
 	manager::instance()->the_map.add_object(obj);
 
-	CHECK( manager::instance()->the_map.trigger_count() == 1 );
-	manager::instance()->the_map.think();
-	CHECK( manager::instance()->the_map.trigger_count() == 1 );
-	manager::instance()->the_map.think();
-	CHECK( manager::instance()->the_map.trigger_count() == 0 );
+	CHECK( t->think() == false );
+	CHECK( t->think() == true );
 
 	manager::destroy();
 }

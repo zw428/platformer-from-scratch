@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <stack>
-#include <memory>
 #include <map>
 
 #include <SDL2/SDL.h>
@@ -23,9 +22,6 @@ public:
 
 	bool add_object( object* obj );
 
-	unsigned object_count() const;
-	unsigned trigger_count() const;
-
 	void think();
 
 	unsigned short chunk_x_size() const;
@@ -35,16 +31,16 @@ public:
 
 	void empty();
 
+	void erase_box_object_from_grid( box_object* bo );
+	void update_box_object_chunk( box_object* bo );
+
         std::vector<box_object*> box_objects_in_box( box b, box_object* ignore = 0 );
         std::vector<box_object*> box_objects_in_chunk( chunk_prop cp, box_object* ignore = 0 );
 	std::vector<box_object*> box_objects_considered( box_object* b );
 private:
-	void erase_box_object_from_grid( box_object* bo );
-	void update_box_object_chunk( box_object* bo );
+	object _root;
 
 	std::vector<std::vector<std::vector<box_object*>>> _objects_grid;
-
-	std::vector<std::shared_ptr<object>> _objects;
 
 	unsigned _x_size;
 	unsigned _y_size;

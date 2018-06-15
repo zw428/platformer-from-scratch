@@ -12,7 +12,7 @@ block::~block()
 {
 }
 
-bool block::think()
+bool block::think_more()
 {
 	if ( _type != block_empty )
 	{

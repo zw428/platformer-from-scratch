@@ -18,7 +18,7 @@ trigger::~trigger()
 {
 }
 
-bool trigger::think()
+bool trigger::think_more()
 {
 	animation.x( dimens.x() );
 	animation.y( dimens.y() );
@@ -31,7 +31,7 @@ bool trigger::think()
 
 	bool die_at_end = false;
 
-	if ( box_object::think() && die_on_collide() )
+	if ( box_object::think_more() && die_on_collide() )
 	{
 		die_at_end = true;
 	}

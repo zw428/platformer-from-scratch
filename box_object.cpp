@@ -9,7 +9,7 @@ box_object::box_object()
 {
 }
 
-bool box_object::think()
+bool box_object::think_more()
 {
 	if ( movable() )
 	{

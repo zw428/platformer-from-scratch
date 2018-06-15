@@ -51,84 +51,6 @@ TEST_CASE( "map::add_object adds objects", "[map]" )
 	CHECK( m.box_objects_in_chunk( cp ).size() == 1 );
 }
 
-TEST_CASE( "map::object_count works correctly", "[map]" )
-{
-	map m;
-	m.init(512,512);
-
-	box_object* mt = new box_object;
-	mt->dimens.x(0);
-	mt->dimens.y(0);
-
-	m.add_object(mt);
-
-	CHECK( m.object_count() == 1 );
-
-	m.empty();
-
-	CHECK( m.object_count() == 0 );
-}
-
-TEST_CASE( "map::trigger_count works correctly", "[map]" )
-{
-	map m;
-
-	m.init(1000,1000);
-
-	map_tmp2* mt = new map_tmp2;
-
-	mt->dimens.x(0);
-	mt->dimens.y(0);
-
-	m.add_object(mt);
-
-	CHECK( m.trigger_count() == 1 );
-
-	m.empty();
-
-	CHECK( m.trigger_count() == 0 );
-}
-
-TEST_CASE( "map erases triggers when lifespan over", "[map]" )
-{
-	manager::instance()->init(true);
-	manager::instance()->the_map.init(512,512);
-
-	map_tmp2* mt = new map_tmp2;
-
-	mt->lifespan(2);
-
-	mt->dimens.x(30);
-	mt->dimens.y(30);
-	mt->dimens.w(5);
-	mt->dimens.h(5);
-
-	manager::instance()->the_map.add_object(mt);
-
-	CHECK( manager::instance()->the_map.trigger_count() == 1 );
-
-	for ( unsigned i=0; i < 2; i++ )
-	{
-		manager::instance()->the_map.think();
-	}
-
-	CHECK( manager::instance()->the_map.trigger_count() == 0 );
-}
-
-TEST_CASE( "map::add_object adds triggers", "[map]" )
-{
-	map m;
-
-	m.init(1000,1000);
-
-	map_tmp2* mt = new map_tmp2;
-
-	mt->dimens.x(0);
-	mt->dimens.y(0);
-
-	CHECK( m.add_object(mt) == true );
-}
-
 TEST_CASE( "map setters and getters work", "[map]" )
 {
 	map m;
@@ -140,28 +62,6 @@ TEST_CASE( "map setters and getters work", "[map]" )
 
 	CHECK( m.chunk_x_size() == 2 );
 	CHECK( m.chunk_y_size() == 2 );
-}
-
-TEST_CASE( "map::empty empties everything", "[map]" )
-{
-	map m;
-	m.init(512,512);
-
-	box_object* mt = new box_object;
-	mt->dimens.x(0);
-	mt->dimens.y(0);
-
-	m.add_object(mt);
-
-	chunk_prop cp;
-	cp.x = 0;
-	cp.y = 0;
-
-	CHECK( m.box_objects_in_chunk( cp ).size() == 1 );
-
-	m.empty();
-
-	CHECK( m.box_objects_in_chunk( cp ).size() == 0 );
 }
 
 TEST_CASE( "map::box_objects_in_chunk gives all objects in a chunk", "[map]" )

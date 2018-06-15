@@ -9,7 +9,7 @@ class box_object : public object
 {
 public:
 	box_object();
-	virtual bool think();
+	virtual bool think_more();
 	box dimens;
 	vel_accel speeds;
 	bool solid() const;

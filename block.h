@@ -14,7 +14,7 @@ class block : public box_object
 public:
 	block();
 	~block();
-	bool think();
+	bool think_more();
 
 	bool is_solid() const;
 

@@ -10,7 +10,7 @@ class player : public creature
 public:
 	player();
 	~player();
-	bool think();
+	bool think_more();
 private:
 	delayed_attack_box _dab;
 	delayed_attack_bullet _dab2;

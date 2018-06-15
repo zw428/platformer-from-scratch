@@ -70,7 +70,7 @@ player::~player()
 {
 }
 
-bool player::think()
+bool player::think_more()
 {
 	up_pressed        = keys::instance()->key_pressed(SDLK_w) && !keys::instance()->key_pressed(SDLK_s);
 	down_pressed      = keys::instance()->key_pressed(SDLK_s) && !keys::instance()->key_pressed(SDLK_w);
@@ -82,5 +82,5 @@ bool player::think()
 	_dab.think(attacking);
 	//_dab2.think(attacking);
 
-	return creature::think();
+	return creature::think_more();
 }

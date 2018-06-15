@@ -14,7 +14,7 @@ creature::~creature()
 {
 }
 
-bool creature::think()
+bool creature::think_more()
 {
 	bool on_ground       = colliding(this,2);
 	bool colliding_left  = colliding(this,3);
@@ -58,7 +58,7 @@ bool creature::think()
 	anims.think( on_ground, m.facing_left(), (speeds.h_speed() != 0), _lg.hanging(), false );
 	anims.draw(dimens);
 
-	if ( attackable::think() )
+	if ( attackable::think_more() )
 	{
 		return true;
 	}

@@ -1,4 +1,4 @@
-Make objects hierarchical
+Make object children have coords relative to parent
 
 add attacks to creature (probably part of task below)
 	make it so you can't start another attack until one of them is over. attack_manager?

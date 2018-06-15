@@ -11,7 +11,7 @@ public:
 	trigger();
 	virtual ~trigger();
 
-	bool think();
+	bool think_more();
 
 	virtual bool action( box_object* ) = 0;
 

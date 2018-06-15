@@ -14,7 +14,7 @@ class creature : public attackable
 public:
 	creature();
 	~creature();
-	virtual bool think();
+	virtual bool think_more();
 	bool up_pressed;
 	bool down_pressed;
 	bool left_pressed;
