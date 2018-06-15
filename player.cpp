@@ -64,6 +64,7 @@ player::player()
 	_dab.att.knockback(10);
 	_dab.offset.x(dimens.w());
 	_dab.dimens.h(36);
+	_dab.add_as_child = true;
 }
 
 player::~player()

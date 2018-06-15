@@ -78,6 +78,22 @@ bool object::remove_child(object* obj)
 	return false;
 }
 
+object* object::child_at_index(unsigned i)
+{
+	if ( i > _children.size() - 1 )
+	{
+		SDL_Log("invalid object child index");
+		exit(1);
+	}
+
+	return _children[i];
+}
+
+unsigned object::children_size() const
+{
+	return _children.size();
+}
+
 bool object::operator==(const object& obj)
 {
 	return _id == obj._id;

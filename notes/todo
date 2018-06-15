@@ -1,5 +1,3 @@
-Make object children have coords relative to parent
-
 add attacks to creature (probably part of task below)
 	make it so you can't start another attack until one of them is over. attack_manager?
 		make different attacks for if holding a direction

@@ -11,6 +11,18 @@ box_object::box_object()
 
 bool box_object::think_more()
 {
+	for ( unsigned i=0; i < children_size(); i++ )
+	{
+		box_object* bo = dynamic_cast<box_object*>(child_at_index(i));
+
+		if ( bo )
+		{
+			bo->speeds = speeds;
+			bo->speeds.h_accel(0);
+			bo->speeds.v_accel(0);
+		}
+	}
+
 	if ( movable() )
 	{
 		if ( !handle_speeds(speeds, this) && die_on_collide() )

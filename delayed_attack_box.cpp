@@ -5,6 +5,7 @@
 #include "creature.h"
 
 delayed_attack_box::delayed_attack_box()
+	:add_as_child(false)
 {
 	animation.texture(manager::instance()->resources.textures("test"));
 }
@@ -39,5 +40,12 @@ void delayed_attack_box::perform()
 
 	ab->dimens = dimens;
 
-	manager::instance()->the_map.add_object(ab);
+	if ( add_as_child && c )
+	{
+		c->add_child(ab);
+	}
+	else
+	{
+		manager::instance()->the_map.add_object(ab);
+	}
 }

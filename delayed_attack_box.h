@@ -11,6 +11,7 @@ public:
 	void perform();
 	box dimens;
 	coords offset;
+	bool add_as_child;
 };
 
 #endif

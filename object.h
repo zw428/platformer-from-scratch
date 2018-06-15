@@ -8,8 +8,11 @@ class object
 public:
 	object();
 	virtual ~object();
+
 	void add_child(object* obj);
 	bool remove_child(object* obj);
+	object* child_at_index(unsigned i);
+	unsigned children_size() const;
 
 	bool operator==(const object& obj);
 	bool operator!=(const object& obj);
