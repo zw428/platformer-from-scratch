@@ -13,6 +13,7 @@ object::object()
 
 object::~object()
 {
+	empty();
 }
 
 bool object::think()
@@ -29,11 +30,6 @@ bool object::think()
 		if ( _children[i]->think() )
 		{
 			remove_child_by_index(i);
-
-			if ( bo )
-			{
-				manager::instance()->the_map.erase_box_object_from_grid( bo );
-			}
 		}
 		else if ( bo )
 		{
@@ -54,6 +50,13 @@ bool object::think_more()
 void object::add_child(object* obj)
 {
 	_children.push_back(obj);
+
+	box_object* bo = dynamic_cast<box_object*>(obj);
+
+	if ( bo )
+	{
+		manager::instance()->the_map.update_box_object_chunk(bo);
+	}
 }
 
 bool object::remove_child(object* obj)
@@ -119,6 +122,15 @@ void object::empty()
 
 void object::remove_child_by_index(unsigned& i)
 {
+	box_object* bo = dynamic_cast<box_object*>(_children[i]);
+
+	if ( bo )
+	{
+		manager::instance()->the_map.erase_box_object_from_grid( bo );
+	}
+
+	_children[i]->empty();
 	delete _children[i];
 	_children.erase( _children.begin() + i-- );
+
 }

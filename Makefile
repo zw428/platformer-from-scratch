@@ -11,7 +11,7 @@ TEST_OBJS:=$(patsubst build/test/%,build/%,$(TEST_OBJS))
 TEST_DEPS=$(TEST_OBJS:.o=.d_test)
 
 unknown: $(BASE_OBJS)
-	g++ $^ $(LIBS) -o build/unknown
+	g++ -g $^ $(LIBS) -o build/unknown
 
 test: $(TEST_OBJS) $(filter-out build/main.o,$(BASE_OBJS))
 	g++ $^ $(LIBS) -o build/test

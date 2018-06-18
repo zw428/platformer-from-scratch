@@ -19,7 +19,8 @@ map::map( unsigned x_size, unsigned y_size )
 
 void map::init( unsigned x_size, unsigned y_size )
 {
-	empty();
+	_objects_grid.clear();
+	_root.empty();
 
 	x_size -= x_size % CHUNK_SIZE;
 	y_size -= y_size % CHUNK_SIZE;
@@ -59,7 +60,7 @@ void map::erase_box_object_from_grid( box_object* bo )
 	{
 		if ( vec[i] == bo )
 		{
-			_root.remove_child(bo);
+			_objects_grid[cp.x][cp.y].erase( _objects_grid[cp.x][cp.y].begin() + i);
 			break;
 		}
 	}
@@ -118,10 +119,7 @@ unsigned map::y_size() const
 
 void map::empty()
 {
-	_root.empty();
-	_objects_grid.clear();
-	_x_size = 0;
-	_y_size = 0;
+	init(_x_size, _y_size);
 }
 
 std::vector<box_object*> map::box_objects_in_box( box b, box_object* ignore )

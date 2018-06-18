@@ -2,7 +2,6 @@
 #define MAP_H
 
 #include <vector>
-#include <stack>
 #include <map>
 
 #include <SDL2/SDL.h>
