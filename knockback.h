@@ -6,6 +6,8 @@
 
 class attackable;
 
-void knockback( attackable* atbl, box source, const attack& att );
+//hit angle = where hit went according to attacker; like a bullet going right's hit angle would typically be 0
+//set hit angle assuming the attack is facing right
+void knockback( attackable* atbl, double hit_angle, const attack& att );
 
 #endif

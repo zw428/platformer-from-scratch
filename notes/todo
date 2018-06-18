@@ -1,3 +1,6 @@
+fix: without shared ptr, box objects don't get called delete on from grid erase (so if it doesn't exist anywhere on grid, it doesn't get erased)
+	figure out what's going on with the grid now that there's no shared ptr
+
 add attacks to creature (probably part of task below)
 	make it so you can't start another attack until one of them is over. attack_manager?
 		make different attacks for if holding a direction

@@ -59,7 +59,7 @@ void map::erase_box_object_from_grid( box_object* bo )
 	{
 		if ( vec[i] == bo )
 		{
-			vec.erase( vec.begin() + i );
+			_root.remove_child(bo);
 			break;
 		}
 	}

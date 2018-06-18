@@ -7,6 +7,7 @@
 attack::attack()
 	:_damage(0),
 	 _knockback(0),
+	 _hit_angle(0),
 	 _owner(0)
 {
 }
@@ -36,17 +37,22 @@ attackable* attack::owner() const
 	return _owner;
 }
 
+double attack::hit_angle() const
+{
+	return _hit_angle;
+}
+
+void attack::hit_angle(double ang)
+{
+	_hit_angle = ang;
+}
+
 void attack::owner( attackable* own )
 {
 	_owner = own;
 }
 
-bool attack::perform( attackable* a )
-{
-	return perform( a, 0 );
-}
-
-bool attack::perform( attackable* a, box* source )
+bool attack::perform( attackable* a, double hit_angle )
 {
 	bool attacked_target = false;
 
@@ -60,10 +66,7 @@ bool attack::perform( attackable* a, box* source )
 		play_sound();
 		attacked_target = true;
 
-		if ( source )
-		{
-			::knockback(a, *source, *this);
-		}
+		::knockback(a, hit_angle, *this);
 
 		a->receive_attack( *this );
 	}

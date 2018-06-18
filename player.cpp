@@ -58,6 +58,7 @@ player::player()
 	_dab2.att.knockback(5);
 
 	_dab.att.owner(this);
+	_dab.att.hit_angle(-90);
 	_dab.offset.x(dimens.w());
 	_dab.att.sound("test");
 	_dab.att.damage(10);

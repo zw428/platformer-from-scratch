@@ -17,14 +17,18 @@ public:
 	void knockback( unsigned short knockback );
 	unsigned short knockback() const;
 
+	double hit_angle() const;
+	void hit_angle(double ang);
+
 	attackable* owner() const;
 	void owner( attackable* own );
 
-	bool perform( attackable* a );
-	bool perform( attackable* a, box* source );
+	bool perform( attackable* a, double hit_angle );
 private:
 	unsigned short _damage;
 	unsigned short _knockback;
+
+	double _hit_angle;
 
 	attackable* _owner;
 };

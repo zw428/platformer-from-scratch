@@ -1,6 +1,7 @@
 #include "attack_box.h"
 #include "attackable.h"
 #include "object.h"
+#include "creature.h"
 
 attack_box::attack_box()
 	:trigger()
@@ -29,7 +30,16 @@ bool attack_box::action(box_object* bo)
 		return false;
 	}
 
-	_attack.perform( a, &dimens );
+	double hit_angle = _attack.hit_angle();
+
+	creature* c = dynamic_cast<creature*>(_attack.owner());
+
+	if ( c && c->facing_left() )
+	{
+		hit_angle += 180 - hit_angle*2;
+	}
+
+	_attack.perform( a, hit_angle );
 
 	return false;
 }
