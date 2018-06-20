@@ -1,6 +1,4 @@
-add attacks to creature (probably part of task below)
-	make it so you can't start another attack until one of them is over. attack_manager?
-		make different attacks for if holding a direction
+test out attack manager by finishing move set for player
 
 more advanced attacks
 	delay after attack (not cooldown) (like after a punch, need to recover, still can't move)
