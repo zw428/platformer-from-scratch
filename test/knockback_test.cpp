@@ -15,14 +15,7 @@ TEST_CASE( "knockback() will move object", "[knockback]" )
 	attack a;
 	a.knockback(5);
 
-	box b;
-
-	b.x( t.dimens.x() + 1 );
-	b.y( t.dimens.y() + 1 );
-	b.w( t.dimens.w() + 1 );
-	b.h( t.dimens.h() + 1 );
-
-	knockback( &t, b, a );
+	knockback( &t, 0, a );
 
 	CHECK( t.speeds.h_speed() != 0 );
 	CHECK( t.speeds.v_speed() != 0 );
@@ -44,14 +37,7 @@ TEST_CASE( "knockback() will knockback object in a certain direction", "[knockba
 		attack a;
 		a.knockback(5);
 
-		box b;
-
-		b.x( t.dimens.x() - b.w() );
-		b.y( t.dimens.y() );
-		b.w( 50 );
-		b.h( 50 );
-
-		knockback( &t, b, a );
+		knockback( &t, 0, a );
 
 		CHECK( t.speeds.h_speed() > 0 );
 	}
@@ -70,14 +56,7 @@ TEST_CASE( "knockback() will knockback object in a certain direction", "[knockba
 		attack a;
 		a.knockback(5);
 
-		box b;
-
-		b.x( t.dimens.right() );
-		b.y( t.dimens.y() );
-		b.w( 50 );
-		b.h( 50 );
-
-		knockback( &t, b, a );
+		knockback( &t, 180, a );
 
 		CHECK( t.speeds.h_speed() < 0 );
 	}
@@ -96,14 +75,7 @@ TEST_CASE( "knockback() will knockback object in a certain direction", "[knockba
 		attack a;
 		a.knockback(5);
 
-		box b;
-
-		b.x( t.dimens.x() );
-		b.y( t.dimens.y() - b.h() );
-		b.w(  50 );
-		b.h(  50 );
-
-		knockback( &t, b, a );
+		knockback( &t, 90, a );
 
 		CHECK( t.speeds.v_speed() > 0 );
 	}
@@ -129,7 +101,7 @@ TEST_CASE( "knockback() will knockback object in a certain direction", "[knockba
 		b.w(  50 );
 		b.h(  50 );
 
-		knockback( &t, b, a );
+		knockback( &t, -90, a );
 
 		CHECK( t.speeds.v_speed() < 0 );
 	}
