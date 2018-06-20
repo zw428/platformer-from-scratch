@@ -15,7 +15,7 @@ TEST_CASE( "knockback() will move object", "[knockback]" )
 	attack a;
 	a.knockback(5);
 
-	knockback( &t, 0, a );
+	knockback( &t, 45, a );
 
 	CHECK( t.speeds.h_speed() != 0 );
 	CHECK( t.speeds.v_speed() != 0 );

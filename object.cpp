@@ -29,7 +29,7 @@ bool object::think()
 
 		if ( _children[i]->think() )
 		{
-			remove_child_by_index(i);
+			remove_child_by_index(i--);
 		}
 		else if ( bo )
 		{
@@ -116,12 +116,17 @@ void object::empty()
 {
 	for ( unsigned i=0; i < _children.size(); i++ )
 	{
-		remove_child_by_index(i);
+		_children[i]->empty();
+		delete _children[i];
 	}
+
+	_children.clear();
 }
 
-void object::remove_child_by_index(unsigned& i)
+void object::remove_child_by_index(unsigned i)
 {
+	_children[i]->empty();
+
 	box_object* bo = dynamic_cast<box_object*>(_children[i]);
 
 	if ( bo )
@@ -129,8 +134,7 @@ void object::remove_child_by_index(unsigned& i)
 		manager::instance()->the_map.erase_box_object_from_grid( bo );
 	}
 
-	_children[i]->empty();
 	delete _children[i];
-	_children.erase( _children.begin() + i-- );
+	_children.erase( _children.begin() + i );
 
 }

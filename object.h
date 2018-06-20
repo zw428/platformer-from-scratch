@@ -29,7 +29,7 @@ private:
 	static unsigned long _id_counter;
 	std::vector<object*> _children;
 
-	void remove_child_by_index(unsigned& i);
+	void remove_child_by_index(unsigned i);
 };
 
 #endif

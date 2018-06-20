@@ -40,13 +40,6 @@ bool map::add_object(object* obj)
 {
 	_root.add_child(obj);
 
-	box_object* bo = dynamic_cast<box_object*>(obj);
-
-	if ( bo )
-	{
-		update_box_object_chunk( bo );
-	}
-
 	return true;
 }
 
@@ -60,7 +53,7 @@ void map::erase_box_object_from_grid( box_object* bo )
 	{
 		if ( vec[i] == bo )
 		{
-			_objects_grid[cp.x][cp.y].erase( _objects_grid[cp.x][cp.y].begin() + i);
+			vec.erase( vec.begin() + i);
 			break;
 		}
 	}
@@ -74,26 +67,26 @@ void map::think()
 void map::update_box_object_chunk( box_object* bo )
 {
 	bool new_obj = ( _chunk_props.find( bo->id() ) == _chunk_props.end() );
-
-	bool need_obj_update = false;
-
 	box b = bo->dimens;
-
 	chunk_prop cp = box_chunk_prop( b );
-	chunk_prop old_cp = _chunk_props[ bo->id() ];
 
-	need_obj_update = ( old_cp != cp );
-
-	if ( need_obj_update )
-	{
-		erase_box_object_from_grid(bo);
-	}
-
-	if ( new_obj || need_obj_update )
+	if ( new_obj )
 	{
 		std::vector<box_object*>& vec = _objects_grid[cp.x][cp.y];
 		vec.push_back(bo);
 		_chunk_props[ bo->id() ] = cp;
+	}
+	else
+	{
+		chunk_prop old_cp = _chunk_props[ bo->id() ];
+
+		if ( old_cp != cp )
+		{
+			erase_box_object_from_grid(bo);
+			std::vector<box_object*>& vec = _objects_grid[cp.x][cp.y];
+			vec.push_back(bo);
+			_chunk_props[ bo->id() ] = cp;
+		}
 	}
 }
 

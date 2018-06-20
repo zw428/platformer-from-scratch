@@ -3,6 +3,7 @@ add attacks to creature (probably part of task below)
 		make different attacks for if holding a direction
 
 more advanced attacks
+	delay after attack (not cooldown) (like after a punch, need to recover, still can't move)
 	attacks where you can't move
 	charged attacks
 	hold-down attacks

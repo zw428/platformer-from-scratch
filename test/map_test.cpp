@@ -4,17 +4,6 @@
 #include "../trigger.h"
 #include "../manager.h"
 
-class map_tmp : public object {
-public:
-	bool think() { return false; };
-};
-
-class map_tmp2 : public trigger
-{
-public:
-	bool action( box_object* bo ) { return false; };
-};
-
 TEST_CASE( "map( x_size, y_size ) rounds to nearest power of 2", "[map]" )
 {
 	map m(500,500);
@@ -35,8 +24,14 @@ TEST_CASE( "map::init() rounds to nearest multiple of chunk size", "[map]" )
 
 TEST_CASE( "map::add_object adds objects", "[map]" )
 {
-	map m;
+	map& m = manager::instance()->the_map;
 	m.init(512,512);
+
+	CHECK( m.x_size() == 512 );
+	CHECK( m.y_size() == 512 );
+
+	CHECK( m.chunk_x_size() == 2 );
+	CHECK( m.chunk_y_size() == 2 );
 
 	box_object* mt = new box_object;
 	mt->dimens.x(0);
@@ -66,7 +61,7 @@ TEST_CASE( "map setters and getters work", "[map]" )
 
 TEST_CASE( "map::box_objects_in_chunk gives all objects in a chunk", "[map]" )
 {
-	map m;
+	map& m = manager::instance()->the_map;
 	m.init(512,512);
 
 	box_object* mt = new box_object;
@@ -89,7 +84,7 @@ TEST_CASE( "map::box_objects_in_chunk gives all objects in a chunk", "[map]" )
 
 TEST_CASE( "map::box_objects_in_chunk doesn't give objects from different chunks", "[map]" )
 {
-	map m;
+	map& m = manager::instance()->the_map;
 	m.init(1024,1024);
 
 	box_object* mt = new box_object;
@@ -119,7 +114,7 @@ TEST_CASE( "map::box_objects_in_chunk doesn't give objects from different chunks
 
 TEST_CASE( "map::box_objects_in_chunk ignores the ignore", "[map]" )
 {
-	map m;
+	map& m = manager::instance()->the_map;
 	m.init(1024,1024);
 
 	box_object* mt = new box_object;
@@ -137,7 +132,7 @@ TEST_CASE( "map::box_objects_in_chunk ignores the ignore", "[map]" )
 
 TEST_CASE( "map::box_objects_in_box gives objects in the given box", "[map]" )
 {
-	map m;
+	map& m = manager::instance()->the_map;
 	m.init(1024,1024);
 
 	box_object* mt = new box_object;
@@ -159,7 +154,7 @@ TEST_CASE( "map::box_objects_in_box gives objects in the given box", "[map]" )
 
 TEST_CASE( "map::box_objects_in_box can span multiple chunks", "[map]" )
 {
-	map m;
+	map& m = manager::instance()->the_map;
 	m.init(2048,2048);
 
 	box_object* mt = new box_object;
@@ -189,7 +184,7 @@ TEST_CASE( "map::box_objects_in_box can span multiple chunks", "[map]" )
 
 TEST_CASE( "map::box_objects_considered gets objects in and around chunk", "[map]" )
 {
-	map m;
+	map& m = manager::instance()->the_map;
 	m.init(1024,1024);
 
 	box_object* mt = new box_object;

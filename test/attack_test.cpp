@@ -40,7 +40,7 @@ TEST_CASE( "attack can perform on something", "[attack]" )
 
 	attack_test_tmp tmp;
 
-	att.perform(&tmp);
+	att.perform(&tmp, 0);
 
 	REQUIRE( tmp.received == true );
 }
@@ -54,7 +54,7 @@ TEST_CASE( "attack will not perform on owner", "[attack]" )
 
 	att.owner(&tmp);
 
-	att.perform(&tmp);
+	att.perform(&tmp, 0);
 
 	REQUIRE( tmp.received == false );
 }
