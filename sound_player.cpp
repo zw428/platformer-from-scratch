@@ -14,7 +14,7 @@ void sound_player::play_sound()
 	}
 }
 
-void sound_player::sound( const char* sound_name )
+void sound_player::sound( std::string sound_name )
 {
-	_sound = manager::instance()->resources.sounds(sound_name);
+	_sound = manager::instance()->resources.sounds(sound_name.c_str());
 }

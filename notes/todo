@@ -1,5 +1,4 @@
 test out attack manager by finishing move set for player
-	make attacks and player stats load from file (jump height, friction, moving stats, etc)
 
 make consts load from file
 

@@ -21,21 +21,14 @@ player::player()
 
 	load_consts_from_file("spaceman.info");
 
-	delayed_attack_bullet dab2 = new delayed_attack_bullet;
-	delayed_attack_box dab = new delayed_attack_box;
+	delayed_attack_bullet* dab2 = new delayed_attack_bullet;
+	delayed_attack_box* dab = new delayed_attack_box;
 
-	dab2.t.owner(this);
-	dab2.t.knockback(5);
+	dab2->att.owner(this);
+	dab2->load_data_from_file("spaceman_special_side.info");
 
 	dab->att.owner(this);
-	dab->att.hit_angle(-90);
-	dab->offset.x(dimens.w());
-	dab->att.sound("test");
-	dab->att.damage(10);
-	dab->att.knockback(10);
-	dab->offset.x(dimens.w());
-	dab->dimens.h(36);
-	dab->add_as_child = true;
+	dab->load_data_from_file("spaceman_neutral_side.info");
 
 	_am.set_up_attack(dab2);
 	_am.set_up_air_attack(dab);
