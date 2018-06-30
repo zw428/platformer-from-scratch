@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef CHUNK_PROP_H
 #define CHUNK_PROP_H
 

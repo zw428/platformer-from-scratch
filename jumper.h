@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef JUMPER_H
 #define JUMPER_H
 

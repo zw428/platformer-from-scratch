@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef DELAYED_ACTION
 #define DELAYED_ACTION
 

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef VEL_ACCEL_H
 #define VEL_ACCEL_H
 

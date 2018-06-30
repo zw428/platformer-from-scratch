@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef TEXTURE_STORE_H
 #define TEXTURE_STORE_H
 

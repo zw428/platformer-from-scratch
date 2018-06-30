@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef TELEPORTER_H
 #define TELEPORTER_H
 

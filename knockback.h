@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef KNOCKBACK_H
 #define KNOCKBACK_H
 

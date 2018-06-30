@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef COLLIDE_FUNCTIONS_H
 #define COLLIDE_FUNCTIONS_H
 

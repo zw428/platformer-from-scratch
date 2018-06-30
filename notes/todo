@@ -1,4 +1,5 @@
 test out attack manager by finishing move set for player
+	make attacks/anims load from file
 
 more advanced attacks
 	delay after attack (not cooldown) (like after a punch, need to recover, still can't move)

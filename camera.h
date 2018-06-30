@@ -1,3 +1,7 @@
+#pragma once
+
+#pragma once
+
 #ifndef CAMERA_H
 #define CAMERA_H
 

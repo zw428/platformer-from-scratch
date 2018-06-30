@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef DISABLED_H
 #define DISABLED_H
 

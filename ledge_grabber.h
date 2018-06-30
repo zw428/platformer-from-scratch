@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef LEDGE_GRABBER_H
 #define LEDGE_GRABBER_H
 

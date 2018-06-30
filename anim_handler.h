@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ANIM_HANDLER_H
 #define ANIM_HANDLER_H
 

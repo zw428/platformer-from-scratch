@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ATTACKABLE_H
 #define ATTACKABLE_H
 

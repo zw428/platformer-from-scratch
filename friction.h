@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef FRICTION_H
 #define FRICTION_H
 

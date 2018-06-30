@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef TRIGGER_H
 #define TRIGGER_H
 

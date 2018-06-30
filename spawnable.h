@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef SPAWNABLE_H
 #define SPAWNABLE_H
 

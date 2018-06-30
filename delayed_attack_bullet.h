@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef DELAYED_ATTACK_BULLET_H
 #define DELAYED_ATTACK_BULLET_H
 

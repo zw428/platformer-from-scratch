@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef MOVER_H
 #define MOVER_H
 

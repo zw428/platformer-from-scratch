@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef SOUND_PLAYER_H
 #define SOUND_PLAYER_H
 

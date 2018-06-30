@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ATTACK_MANAGER_H
 #define ATTACK_MANAGER_H
 

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ATTACK_BOX_H
 #define ATTACK_BOX_H
 

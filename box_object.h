@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef BOX_OBJECT_H
 #define BOX_OBJECT_H
 

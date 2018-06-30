@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef ORIGIN_H
 #define ORIGIN_H
 

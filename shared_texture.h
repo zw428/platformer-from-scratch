@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef SHARED_TEXTURE_H
 #define SHARED_TEXTURE_H
 
