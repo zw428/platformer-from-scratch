@@ -23,8 +23,6 @@ TEST_CASE( "can move after attack is over", "[attack_manager]" )
 {
 	delayed_attack_tmp* da = new delayed_attack_tmp;
 
-	SDL_Log("%p",da);
-
 	da->action.delay(2);
 
 	attack_manager am;

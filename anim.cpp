@@ -109,7 +109,7 @@ void anim::handle_frame_count()
 	if ( _frame_durs.size() != num_frames() )
 	{
 		SDL_Log("not enough frames for image");
-		exit(1);
+		throw("not enough frames for image");
 	}
 
 	if ( _frame_counter < _frame_durs[_index] - 1 )

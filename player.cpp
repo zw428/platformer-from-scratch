@@ -19,16 +19,13 @@ player::player()
 	anims.set_hanging_anim(_hanging);
 	anims.set_idle_anim(_idle);
 
-	m.h_accel_rate(0.2);
-	m.h_speed_max(2);
-	jump_handler.jump_vel_1(6);
-	jump_handler.jump_vel_2(6);
+	load_consts_from_file("spaceman.info");
 
-	delayed_attack_bullet* dab2 = new delayed_attack_bullet;
-	delayed_attack_box* dab = new delayed_attack_box;
+	delayed_attack_bullet dab2 = new delayed_attack_bullet;
+	delayed_attack_box dab = new delayed_attack_box;
 
-	dab2->att.owner(this);
-	dab2->att.knockback(5);
+	dab2.t.owner(this);
+	dab2.t.knockback(5);
 
 	dab->att.owner(this);
 	dab->att.hit_angle(-90);

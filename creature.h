@@ -3,6 +3,8 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
+#include <string>
+
 #include "attackable.h"
 #include "mover.h"
 #include "ledge_grabber.h"
@@ -24,13 +26,15 @@ public:
 
 	bool facing_left() const;
 
+	void load_consts_from_file(std::string path);
+
 	anim_handler anims;
 	mover m;
 	jumper jump_handler;
+	friction f;
 private:
 	ledge_grabber _lg;
 	gravity_affected _ga;
-	friction _f;
 	bool _facing_left;
 };
 

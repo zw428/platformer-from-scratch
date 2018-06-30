@@ -9,22 +9,22 @@ jumper::jumper()
 {
 }
 
-void jumper::jump_vel_1( unsigned short speed )
+void jumper::jump_vel_1( float speed )
 {
 	_jump_vel_1 = speed;
 }
 
-void jumper::jump_vel_2( unsigned short speed )
+void jumper::jump_vel_2( float speed )
 {
 	_jump_vel_2 = speed;
 }
 
-unsigned short jumper::jump_vel_1() const
+float jumper::jump_vel_1() const
 {
 	return _jump_vel_1;
 }
 
-unsigned short jumper::jump_vel_2() const
+float jumper::jump_vel_2() const
 {
 	return _jump_vel_2;
 }

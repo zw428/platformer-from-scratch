@@ -13,7 +13,7 @@ unsigned short mover::h_speed_max() const
 	return _h_speed_max;
 }
 
-void mover::h_speed_max( unsigned short speed )
+void mover::h_speed_max( float speed )
 {
 	_h_speed_max = speed;
 }

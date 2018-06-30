@@ -11,7 +11,7 @@ public:
 	mover();
 
 	unsigned short h_speed_max() const;
-	void h_speed_max( unsigned short speed );
+	void h_speed_max( float speed );
 
 	float h_accel_rate() const;
 	void h_accel_rate( float rate );
@@ -22,7 +22,7 @@ public:
 	bool facing_left() const;
 	bool facing_right() const;
 private:
-	unsigned short _h_speed_max;
+	float _h_speed_max;
 	float _h_accel_rate;
 	bool _facing_right;
 };

@@ -1,5 +1,7 @@
 #include "creature.h"
 #include "collider.h"
+#include "manager.h"
+#include <fstream>
 
 creature::creature()
 	:up_pressed(false),
@@ -38,7 +40,7 @@ bool creature::think_more()
 
 	if ( speeds.h_speed() != 0 && on_ground && !left_pressed && !right_pressed )
 	{
-		_f.apply_friction(speeds);
+		f.apply_friction(speeds);
 	}
 
 	short jump_vel = jump_handler.handle_jumping(on_ground || _lg.hanging(), up_pressed);
@@ -69,4 +71,48 @@ bool creature::think_more()
 bool creature::facing_left() const
 {
 	return _facing_left;
+}
+
+void creature::load_consts_from_file(std::string path)
+{
+	std::string full_path = manager::instance()->data_path() + "character-info/" + path;
+
+	std::string buf;
+	double tmp_d;
+	std::ifstream ifs(full_path);
+
+	while ( ifs >> buf )
+	{
+		if ( buf == "h_accel_rate" )
+		{
+			ifs >> tmp_d;
+			m.h_accel_rate(tmp_d);
+		}
+		else if ( buf == "h_speed_max" )
+		{
+			ifs >> tmp_d;
+			m.h_speed_max(tmp_d);
+		}
+		else if ( buf == "jump_vel_1" )
+		{
+			ifs >> tmp_d;
+			jump_handler.jump_vel_1(tmp_d);
+		}
+		else if ( buf == "jump_vel_2" )
+		{
+			ifs >> tmp_d;
+			jump_handler.jump_vel_2(tmp_d);
+		}
+		else if ( buf == "friction" )
+		{
+			ifs >> tmp_d;
+			f.coefficient(tmp_d);
+		}
+		else
+		{
+			std::string msg = "invalid character-info for '" + full_path + "'";
+			SDL_Log(msg.c_str());
+			exit(1);
+		}
+	}
 }
