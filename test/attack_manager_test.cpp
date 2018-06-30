@@ -14,7 +14,7 @@ TEST_CASE( "can't move while attacking", "[attack_manager]" )
 
 	am.set_up_attack(da);
 
-	am.think(true, 0, false, false);
+	am.think(true, 0, false, false, false);
 
 	CHECK(am.can_move() == 0);
 }
@@ -29,15 +29,15 @@ TEST_CASE( "can move after attack is over", "[attack_manager]" )
 
 	am.set_up_attack(da);
 
-	am.think(true, 0, false, false);
+	am.think(true, 0, false, false, false);
 
 	CHECK(am.can_move() == 0);
 
-	am.think(false, 0, false, false);
+	am.think(false, 0, false, false, false);
 
 	CHECK(am.can_move() == 0);
 
-	am.think(false, 0, false, false);
+	am.think(false, 0, false, false, false);
 
 	CHECK(am.can_move() == true);
 }

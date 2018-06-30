@@ -21,6 +21,7 @@ private:
 	anim _jumping;
 	anim _hanging;
 	anim _punching;
+	anim _crouching;
 };
 
 #endif

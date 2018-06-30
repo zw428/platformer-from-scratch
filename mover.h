@@ -19,6 +19,9 @@ public:
 	void move_left( vel_accel& va );
 	void move_right( vel_accel& va );
 
+	void face_left();
+	void face_right();
+
 	bool facing_left() const;
 	bool facing_right() const;
 private:

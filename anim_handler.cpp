@@ -8,7 +8,7 @@ anim_handler::anim_handler()
 	the_origin.set_dir(origin_bottom);
 }
 
-void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool hanging, bool disabled )
+void anim_handler::think( bool on_ground, bool crouching, bool facing_left, bool moving, bool hanging, bool disabled )
 {
 	_flipped = facing_left;
 
@@ -19,6 +19,12 @@ void anim_handler::think( bool on_ground, bool facing_left, bool moving, bool ha
 	else
 	{
 		_override_anim_active = false;
+	}
+
+	if ( crouching )
+	{
+		_current_anim = &_crouching_anim;
+		return;
 	}
 
 	if ( hanging )
@@ -100,4 +106,9 @@ void anim_handler::set_override_anim( anim* a )
 	_current_anim = a;
 	a->reset();
 	_override_anim_active = true;
+}
+
+void anim_handler::set_crouching_anim( anim a )
+{
+	_crouching_anim = a;
 }

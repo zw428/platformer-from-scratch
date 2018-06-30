@@ -25,6 +25,13 @@ public:
 	bool right_pressed;
 
 	bool facing_left() const;
+	bool crouching() const;
+	bool on_ground() const;
+	bool colliding_left() const;
+	bool colliding_right() const;
+
+	unsigned short crouch_height() const;
+	void crouch_height(unsigned short height);
 
 	unsigned short attack_dir() const;
 
@@ -38,6 +45,13 @@ private:
 	ledge_grabber _lg;
 	gravity_affected _ga;
 	bool _facing_left;
+	bool _on_ground;
+	bool _colliding_left;
+	bool _colliding_right;
+
+	unsigned short _crouch_height;
+	unsigned short _orig_height;
+	bool _was_crouching;
 };
 
 #endif

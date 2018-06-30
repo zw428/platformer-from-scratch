@@ -10,7 +10,7 @@ class anim_handler
 {
 public:
 	anim_handler();
-	void think( bool on_ground, bool facing_left, bool moving, bool hanging, bool disabled );
+	void think( bool on_ground, bool crouching, bool facing_left, bool moving, bool hanging, bool disabled );
 	void draw( const box& ref );
 	anim* current_anim();
 
@@ -19,6 +19,7 @@ public:
 	void set_jumping_anim( anim a );
 	void set_disabled_anim( anim a );
 	void set_hanging_anim( anim a );
+	void set_crouching_anim( anim a );
 	void set_override_anim( anim* a );
 
 	origin the_origin;
@@ -28,6 +29,7 @@ private:
 	anim _jumping_anim;
 	anim _disabled_anim;
 	anim _hanging_anim;
+	anim _crouching_anim;
 
 	anim* _current_anim;
 

@@ -11,7 +11,7 @@ class attack_manager
 public:
 	attack_manager();
 
-	void think(bool attacking, unsigned short direction, bool special, bool in_air);
+	void think(bool attacking, unsigned short direction, bool special, bool in_air, bool crouching);
 
 	void set_up_attack(delayed_attack* da);
 	void set_down_attack(delayed_attack* da);
@@ -24,6 +24,8 @@ public:
 	void set_up_special_attack(delayed_attack* da);
 	void set_down_special_attack(delayed_attack* da);
 	void set_right_special_attack(delayed_attack* da);
+
+	void set_crouching_attack(delayed_attack* da);
 
 	bool can_move() const;
 private:
@@ -43,6 +45,8 @@ private:
 	std::shared_ptr<delayed_attack> _up_special_attack;
 	std::shared_ptr<delayed_attack> _down_special_attack;
 	std::shared_ptr<delayed_attack> _right_special_attack;
+
+	std::shared_ptr<delayed_attack> _crouching_attack;
 };
 
 #endif

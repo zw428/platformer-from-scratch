@@ -1,3 +1,5 @@
+make attacks/anims for player load from file
+
 test out attack manager by finishing move set for player
 
 make consts load from file

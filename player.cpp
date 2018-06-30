@@ -4,19 +4,19 @@
 
 player::player()
 {
-	dimens.w(14);
-	dimens.h(36);
-
 	_running.load_data_from_file("spaceman_running.frames");
 	_idle.load_data_from_file("spaceman_idle.frames");
 	_jumping.load_data_from_file("spaceman_jumping.frames");
 	_hanging.load_data_from_file("spaceman_hanging.frames");
+	_crouching.load_data_from_file("spaceman_crouching.frames");
 	_punching.load_data_from_file("spaceman_punching.frames");
+	_crouching.load_data_from_file("spaceman_crouching.frames");
 
 	anims.set_running_anim(_running);
 	anims.set_disabled_anim(_running);
 	anims.set_jumping_anim(_jumping);
 	anims.set_hanging_anim(_hanging);
+	anims.set_crouching_anim(_crouching);
 	anims.set_idle_anim(_idle);
 
 	load_consts_from_file("spaceman.info");
@@ -53,7 +53,7 @@ bool player::think_more()
 
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 	
-	_am.think(attacking, attack_dir(), special_pressed, speeds.v_speed() != 0);
+	_am.think(attacking, attack_dir(), special_pressed, on_ground(), crouching());
 
 	return creature::think_more();
 }

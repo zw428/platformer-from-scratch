@@ -76,6 +76,16 @@ void mover::move_right( vel_accel& va )
 	va.h_speed(new_speed);
 }
 
+void mover::face_left()
+{
+	_facing_right = false;
+}
+
+void mover::face_right()
+{
+	_facing_right = true;
+}
+
 bool mover::facing_left() const
 {
 	return !_facing_right;

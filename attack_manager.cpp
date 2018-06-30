@@ -6,7 +6,7 @@ attack_manager::attack_manager()
 {
 }
 
-void attack_manager::think(bool attacking, unsigned short direction, bool special, bool in_air)
+void attack_manager::think(bool attacking, unsigned short direction, bool special, bool in_air, bool crouching)
 {
 	if ( _current_attack )
 	{
@@ -53,6 +53,14 @@ void attack_manager::think(bool attacking, unsigned short direction, bool specia
 		else if ( direction == 3 && in_air )
 		{
 			_current_attack = _right_air_attack.get();
+		}
+		else if ( direction == 1 && crouching )
+		{
+			_current_attack = _crouching_attack.get();
+		}
+		else if ( direction == 3 && crouching )
+		{
+			_current_attack = _crouching_attack.get();
 		}
 		else if ( direction == 0 )
 		{
@@ -126,6 +134,12 @@ void attack_manager::think(bool attacking, unsigned short direction, bool specia
 	{
 		_right_special_attack->think(false);
 	}
+
+	if ( _crouching_attack.get() != 0 && _crouching_attack.get() != _current_attack )
+	{
+		_crouching_attack->think(false);
+	}
+
 }
 
 void attack_manager::set_up_attack(delayed_attack* da)
