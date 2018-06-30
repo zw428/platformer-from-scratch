@@ -73,6 +73,30 @@ bool creature::facing_left() const
 	return _facing_left;
 }
 
+unsigned short creature::attack_dir() const
+{
+	if ( up_pressed )
+	{
+		return 0;
+	}
+	else if ( down_pressed )
+	{
+		return 2;
+	}
+	else if ( left_pressed )
+	{
+		return 3;
+	}
+	else if ( right_pressed )
+	{
+		return 1;
+	}
+
+	return ( (facing_left()) ? 3 : 1 );
+}
+
+
+
 void creature::load_consts_from_file(std::string path)
 {
 	std::string full_path = manager::instance()->data_path() + "character-info/" + path;

@@ -22,11 +22,13 @@ public:
 	bool down_was_pressed() const;
 	bool left_was_pressed() const;
 	bool right_was_pressed() const;
+	bool was_facing_left() const;
 private:
 	bool _up_was_pressed;
 	bool _down_was_pressed;
 	bool _left_was_pressed;
 	bool _right_was_pressed;
+	bool _was_facing_left;
 
 	bool _can_change_attack_dir;
 };

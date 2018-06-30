@@ -26,6 +26,8 @@ public:
 
 	bool facing_left() const;
 
+	unsigned short attack_dir() const;
+
 	void load_consts_from_file(std::string path);
 
 	anim_handler anims;

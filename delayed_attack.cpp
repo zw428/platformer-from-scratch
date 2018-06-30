@@ -6,6 +6,7 @@ delayed_attack::delayed_attack()
 	 _down_was_pressed(false),
 	 _left_was_pressed(false),
 	 _right_was_pressed(false),
+	 _was_facing_left(false),
 	 _can_change_attack_dir(true)
 {
 }
@@ -22,10 +23,12 @@ void delayed_attack::think( bool start_attack )
 
 	if ( c && _can_change_attack_dir && start_attack )
 	{
-		_up_was_pressed = c->up_pressed;
-		_down_was_pressed = c->down_pressed;
-		_left_was_pressed = c->left_pressed;
+		_up_was_pressed    = c->up_pressed;
+		_down_was_pressed  = c->down_pressed;
+		_left_was_pressed  = c->left_pressed;
 		_right_was_pressed = c->right_pressed;
+		_was_facing_left   = c->facing_left();
+
 		_can_change_attack_dir = false;
 	}
 
@@ -54,4 +57,9 @@ bool delayed_attack::left_was_pressed() const
 bool delayed_attack::right_was_pressed() const
 {
 	return _right_was_pressed;
+}
+
+bool delayed_attack::was_facing_left() const
+{
+	return _was_facing_left;
 }

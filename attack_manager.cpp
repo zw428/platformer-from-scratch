@@ -74,9 +74,12 @@ void attack_manager::think(bool attacking, unsigned short direction, bool specia
 		if ( _current_attack )
 		{
 			_current_attack->think(attacking);
+			_can_move = false;
 		}
-
-		_can_move = false;
+	}
+	else
+	{
+		_can_move = true;
 	}
 
 	if ( _up_attack.get() != 0 && _up_attack.get() != _current_attack )

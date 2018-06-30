@@ -30,8 +30,8 @@ player::player()
 	dab->att.owner(this);
 	dab->load_data_from_file("spaceman_neutral_side.info");
 
-	_am.set_up_attack(dab2);
-	_am.set_up_air_attack(dab);
+	_am.set_right_attack(dab2);
+	_am.set_right_special_attack(dab);
 }
 
 player::~player()
@@ -40,17 +40,20 @@ player::~player()
 
 bool player::think_more()
 {
+	bool special_pressed = false;
+
 	if ( _am.can_move() )
 	{
-		up_pressed        = keys::instance()->key_pressed(SDLK_w) && !keys::instance()->key_pressed(SDLK_s);
-		down_pressed      = keys::instance()->key_pressed(SDLK_s) && !keys::instance()->key_pressed(SDLK_w);
-		left_pressed      = keys::instance()->key_pressed(SDLK_a) && !keys::instance()->key_pressed(SDLK_d);
-		right_pressed     = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
+		up_pressed      = keys::instance()->key_pressed(SDLK_w) && !keys::instance()->key_pressed(SDLK_s);
+		down_pressed    = keys::instance()->key_pressed(SDLK_s) && !keys::instance()->key_pressed(SDLK_w);
+		left_pressed    = keys::instance()->key_pressed(SDLK_a) && !keys::instance()->key_pressed(SDLK_d);
+		right_pressed   = keys::instance()->key_pressed(SDLK_d) && !keys::instance()->key_pressed(SDLK_a);
+		special_pressed = keys::instance()->key_pressed(SDLK_LSHIFT);
 	}
 
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 	
-	_am.think(attacking, 0, false, speeds.v_speed() != 0);
+	_am.think(attacking, attack_dir(), special_pressed, speeds.v_speed() != 0);
 
 	return creature::think_more();
 }

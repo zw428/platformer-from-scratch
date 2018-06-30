@@ -23,7 +23,7 @@ void delayed_attack_box::perform()
 	
 	creature* c = dynamic_cast<creature*>(att.owner());
 
-	if ( left_was_pressed() )
+	if ( was_facing_left() )
 	{
 		dimens.x( att.owner()->dimens.x() - offset.x() );
 	}
