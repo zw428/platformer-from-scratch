@@ -1,4 +1,7 @@
 make attacks/anims for player load from file
+	probably remove anim_handler origin stuff and just have
+	offset for each type of image, so player image size for
+	attacks doesn't matter
 
 test out attack manager by finishing move set for player
 
