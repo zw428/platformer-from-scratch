@@ -1,5 +1,6 @@
 #include "anim.h"
 #include "manager.h"
+#include <fstream>
 
 anim::anim()
 	:image(),
@@ -12,7 +13,6 @@ anim::anim()
 
 void anim::draw()
 {
-
 	if ( !manager::instance()->cam.should_draw( x(), y(), w(), h() ) || hidden() )
 	{
 		return;
@@ -108,7 +108,8 @@ void anim::handle_frame_count()
 
 	if ( _frame_durs.size() != num_frames() )
 	{
-		throw( "not enough frames for animation" );
+		SDL_Log("not enough frames for image");
+		exit(1);
 	}
 
 	if ( _frame_counter < _frame_durs[_index] - 1 )
@@ -126,4 +127,50 @@ void anim::handle_frame_count()
 	}
 
 	clip_offset( ( _index )*clip_width() );
+}
+
+void anim::load_data_from_file(std::string path)
+{
+
+	std::string full_path = manager::instance()->data_path() + "frame-info/" + path;
+
+	std::string buf;
+	int tmp_val;
+	std::ifstream ifs(full_path);
+
+	while ( ifs >> buf )
+	{
+		if ( buf == "texture" )
+		{
+			ifs >> buf;
+			texture(manager::instance()->resources.textures(buf));
+		}
+		else if ( buf == "clip_width" )
+		{
+			ifs >> tmp_val;
+			clip_width(tmp_val);
+		}
+		else if ( buf == "width" )
+		{
+			ifs >> tmp_val;
+			w(tmp_val);
+		}
+		else if ( buf == "height" )
+		{
+			ifs >> tmp_val;
+			h(tmp_val);
+		}
+		else if ( buf == "framedur" )
+		{
+			ifs >> tmp_val;
+			std::string tmp = "framedur ";
+			add_frame_dur(tmp_val);
+		}
+		else
+		{
+			std::string msg = "invalid frame-info for '" + full_path + "'";
+			SDL_Log(msg.c_str());
+			exit(1);
+		}
+	}
 }

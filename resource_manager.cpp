@@ -10,7 +10,7 @@ bool resource_manager::add_texture(std::string path, std::string name)
 {
 	SDL_Texture* tex = NULL;
 
-	std::string full_path = manager::instance()->data_path() + path;
+	std::string full_path = manager::instance()->data_path() + "images/" + path;
 
 	SDL_Surface* surface = IMG_Load( full_path.c_str() );
 
@@ -44,7 +44,7 @@ bool resource_manager::add_texture(std::string path, std::string name)
 
 bool resource_manager::add_sound(std::string path, std::string name)
 {
-	std::string full_path = manager::instance()->data_path() + path;
+	std::string full_path = manager::instance()->data_path() + "sounds/" + path;
 
 	Mix_Chunk* chunk = Mix_LoadWAV( full_path.c_str() );
 
@@ -61,7 +61,7 @@ bool resource_manager::add_sound(std::string path, std::string name)
 
 bool resource_manager::add_font(std::string path, std::string name)
 {
-	std::string full_path = manager::instance()->data_path() + path;
+	std::string full_path = manager::instance()->data_path() + "fonts/" + path;
 
 	TTF_Font* font = TTF_OpenFont( full_path.c_str(), 64 );
 

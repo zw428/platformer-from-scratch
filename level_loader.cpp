@@ -13,7 +13,7 @@ level_loader::level_loader()
 
 bool level_loader::load_level(std::string path)
 {
-	std::string full_path = manager::instance()->data_path() + path;;
+	std::string full_path = manager::instance()->data_path() + "levels/" + path;
 
 	std::string buf;
 	std::ifstream ifs(full_path);

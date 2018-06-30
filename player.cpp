@@ -4,55 +4,25 @@
 
 player::player()
 {
-	_running.texture(manager::instance()->resources.textures("spaceman_running"));
-	_running.clip_width(12);
-	_running.w(12);
-	_running.h(34);
-
 	dimens.w(14);
 	dimens.h(36);
 
-	for ( unsigned i=0; i < 6; i++ )
-	{
-		_running.add_frame_dur(5);
-	}
-
-	_idle.texture(manager::instance()->resources.textures("spaceman_standing"));
-	_idle.clip_width(15);
-	_idle.w(15);
-	_idle.h(36);
-	_idle.add_frame_dur(90);
-	_idle.add_frame_dur(5);
-	_idle.add_frame_dur(85);
-	_idle.add_frame_dur(4);
-
-	_jumping.texture(manager::instance()->resources.textures("spaceman_jumping"));
-	_jumping.w(15);
-	_jumping.h(33);
-
-	_hanging.texture(manager::instance()->resources.textures("spaceman_hanging"));
-	_hanging.w(15);
-	_hanging.h(33);
-
-	_punching.texture(manager::instance()->resources.textures("spaceman_punching"));
-	_punching.w(12);
-	_punching.clip_width(12);
-	_punching.h(33);
-	_punching.add_frame_dur(3);
-	_punching.add_frame_dur(12);
-	_punching.add_frame_dur(4);
-	_punching.add_frame_dur(18);
-
-	m.h_accel_rate(0.2);
-	m.h_speed_max(2);
-	jump_handler.jump_vel_1(6);
-	jump_handler.jump_vel_2(6);
+	_running.load_data_from_file("spaceman_running.frames");
+	_idle.load_data_from_file("spaceman_idle.frames");
+	_jumping.load_data_from_file("spaceman_jumping.frames");
+	_hanging.load_data_from_file("spaceman_hanging.frames");
+	_punching.load_data_from_file("spaceman_punching.frames");
 
 	anims.set_running_anim(_running);
 	anims.set_disabled_anim(_running);
 	anims.set_jumping_anim(_jumping);
 	anims.set_hanging_anim(_hanging);
 	anims.set_idle_anim(_idle);
+
+	m.h_accel_rate(0.2);
+	m.h_speed_max(2);
+	jump_handler.jump_vel_1(6);
+	jump_handler.jump_vel_2(6);
 
 	delayed_attack_bullet* dab2 = new delayed_attack_bullet;
 	delayed_attack_box* dab = new delayed_attack_box;

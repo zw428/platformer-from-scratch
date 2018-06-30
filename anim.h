@@ -5,6 +5,7 @@
 
 #include "image.h"
 #include <vector>
+#include <string>
 
 class anim : public image
 {
@@ -23,6 +24,8 @@ public:
 
 	bool at_end() const;
 	void reset();
+
+	void load_data_from_file(std::string path);
 private:
 	void handle_frame_count();
 

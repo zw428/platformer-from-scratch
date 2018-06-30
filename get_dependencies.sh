@@ -29,4 +29,4 @@ for i in $sources; do
 done
 
 echo
-echo -e \\t g++ -g -Wall -c -o build/$objname_no_colon $targetname
+echo -e \\t g++ -Wall -c -o build/$objname_no_colon $targetname
