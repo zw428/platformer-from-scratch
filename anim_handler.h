@@ -4,7 +4,6 @@
 #define ANIM_HANDLER_H
 
 #include "anim.h"
-#include "origin.h"
 
 class anim_handler
 {
@@ -21,8 +20,6 @@ public:
 	void set_hanging_anim( anim a );
 	void set_crouching_anim( anim a );
 	void set_override_anim( anim* a );
-
-	origin the_origin;
 private:
 	anim _running_anim;
 	anim _idle_anim;
@@ -34,7 +31,6 @@ private:
 	anim* _current_anim;
 
 	bool _override_anim_active;
-	unsigned short _origin;
 	bool _flipped;
 };
 

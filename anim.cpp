@@ -155,6 +155,16 @@ void anim::load_data_from_file(std::string path)
 			ifs >> tmp_val;
 			clip_width(tmp_val);
 		}
+		else if ( buf == "offsetX" )
+		{
+			ifs >> tmp_val;
+			offset.x(tmp_val);
+		}
+		else if ( buf == "offsetY" )
+		{
+			ifs >> tmp_val;
+			offset.y(tmp_val);
+		}
 		else if ( buf == "width" )
 		{
 			ifs >> tmp_val;

@@ -1,5 +1,6 @@
 #include "catch.h"
 #include "../attack_manager.h"
+#include "../anim_handler.h"
 
 class delayed_attack_tmp : public delayed_attack
 {
@@ -12,9 +13,13 @@ TEST_CASE( "can't move while attacking", "[attack_manager]" )
 
 	attack_manager am;
 
-	am.set_up_attack(da);
+	anim a;
 
-	am.think(true, 0, false, false, false);
+	am.set_up_attack(da, a);
+
+	anim_handler ah;
+
+	am.think(ah, true, 0, false, false, false);
 
 	CHECK(am.can_move() == 0);
 }
@@ -27,17 +32,21 @@ TEST_CASE( "can move after attack is over", "[attack_manager]" )
 
 	attack_manager am;
 
-	am.set_up_attack(da);
+	anim a;
 
-	am.think(true, 0, false, false, false);
+	am.set_up_attack(da, a);
+
+	anim_handler ah;
+
+	am.think(ah, true, 0, false, false, false);
 
 	CHECK(am.can_move() == 0);
 
-	am.think(false, 0, false, false, false);
+	am.think(ah, false, 0, false, false, false);
 
 	CHECK(am.can_move() == 0);
 
-	am.think(false, 0, false, false, false);
+	am.think(ah, false, 0, false, false, false);
 
 	CHECK(am.can_move() == true);
 }

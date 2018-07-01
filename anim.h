@@ -25,6 +25,8 @@ public:
 	bool at_end() const;
 	void reset();
 
+	coords offset;
+
 	void load_data_from_file(std::string path);
 private:
 	void handle_frame_count();

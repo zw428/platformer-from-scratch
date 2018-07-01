@@ -5,7 +5,6 @@ anim_handler::anim_handler()
 	 _override_anim_active(false),
 	 _flipped(false)
 {
-	the_origin.set_dir(origin_bottom);
 }
 
 void anim_handler::think( bool on_ground, bool crouching, bool facing_left, bool moving, bool hanging, bool disabled )
@@ -67,11 +66,16 @@ void anim_handler::draw( const box& ref )
 		return;
 	}
 
-	_current_anim->x( ref.x() );
-	_current_anim->y( ref.y() );
-	_current_anim->flip_h( _flipped );
+	coords tmp_offset = _current_anim->offset;
 
-	the_origin.apply( *_current_anim, ref );
+	if ( _flipped )
+	{
+		tmp_offset.x( tmp_offset.x() * -1 );
+	}
+
+	_current_anim->x( ref.x() + tmp_offset.x() );
+	_current_anim->y( ref.y() + tmp_offset.y() );
+	_current_anim->flip_h( _flipped );
 
 	_current_anim->draw();
 }
