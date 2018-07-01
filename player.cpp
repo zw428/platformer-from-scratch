@@ -1,23 +1,33 @@
 #include "player.h"
 #include "manager.h"
 #include "keys.h"
+#include <fstream>
 
 player::player()
 {
-	_running.load_data_from_file("spaceman_running.frames");
-	_idle.load_data_from_file("spaceman_idle.frames");
-	_jumping.load_data_from_file("spaceman_jumping.frames");
-	_hanging.load_data_from_file("spaceman_hanging.frames");
-	_crouching.load_data_from_file("spaceman_crouching.frames");
-	_punching.load_data_from_file("spaceman_punching.frames");
-	_crouching.load_data_from_file("spaceman_crouching.frames");
+	anim idle;
+	anim running;
+	anim jumping;
+	anim hanging;
+	anim punching;
+	anim crouching;
+	anim shooting;
 
-	anims.set_running_anim(_running);
-	anims.set_disabled_anim(_running);
-	anims.set_jumping_anim(_jumping);
-	anims.set_hanging_anim(_hanging);
-	anims.set_crouching_anim(_crouching);
-	anims.set_idle_anim(_idle);
+	running.load_data_from_file("spaceman_running.frames");
+	idle.load_data_from_file("spaceman_idle.frames");
+	jumping.load_data_from_file("spaceman_jumping.frames");
+	hanging.load_data_from_file("spaceman_hanging.frames");
+	crouching.load_data_from_file("spaceman_crouching.frames");
+	punching.load_data_from_file("spaceman_punching.frames");
+	shooting.load_data_from_file("spaceman_shooting.frames");
+	crouching.load_data_from_file("spaceman_crouching.frames");
+
+	anims.set_running_anim(running);
+	anims.set_disabled_anim(running);
+	anims.set_jumping_anim(jumping);
+	anims.set_hanging_anim(hanging);
+	anims.set_crouching_anim(crouching);
+	anims.set_idle_anim(idle);
 
 	load_consts_from_file("spaceman.info");
 
@@ -30,8 +40,8 @@ player::player()
 	dab->att.owner(this);
 	dab->load_data_from_file("spaceman_neutral_side.info");
 
-	_am.set_right_attack(dab2);
-	_am.set_right_special_attack(dab);
+	_am.set_right_attack(dab, punching);
+	_am.set_right_special_attack(dab2, shooting);
 }
 
 player::~player()
@@ -53,7 +63,11 @@ bool player::think_more()
 
 	bool attacking = keys::instance()->key_pressed(SDLK_SPACE);
 	
-	_am.think(attacking, attack_dir(), special_pressed, on_ground(), crouching());
+	_am.think(anims, attacking, attack_dir(), special_pressed, !on_ground(), crouching());
 
 	return creature::think_more();
+}
+
+void load_data_from_file()
+{
 }

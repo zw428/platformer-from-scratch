@@ -9,7 +9,11 @@
 delayed_attack_bullet::delayed_attack_bullet()
 	:_speed(5)
 {
-	animation.texture(manager::instance()->resources.textures("test"));
+	dimens.w(24);
+	dimens.h(24);
+	animation.texture(manager::instance()->resources.textures("laser_bullet"));
+	animation.w(24);
+	animation.h(3);
 }
 
 delayed_attack_bullet::~delayed_attack_bullet()

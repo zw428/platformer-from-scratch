@@ -14,14 +14,9 @@ public:
 	player();
 	~player();
 	bool think_more();
+	void load_data_from_file();
 private:
 	attack_manager _am;
-	anim _idle;
-	anim _running;
-	anim _jumping;
-	anim _hanging;
-	anim _punching;
-	anim _crouching;
 };
 
 #endif
