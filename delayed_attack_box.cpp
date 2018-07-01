@@ -19,18 +19,14 @@ delayed_attack_box::~delayed_attack_box()
 
 void delayed_attack_box::perform()
 {
-	dimens.y( att.owner()->dimens.y() + offset.y() );
-	
-	creature* c = dynamic_cast<creature*>(att.owner());
-
+	coords tmp_offset = offset;
 	if ( was_facing_left() )
 	{
-		dimens.x( att.owner()->dimens.x() - offset.x() );
+		tmp_offset.x(offset.x() * -1 );
 	}
-	else
-	{
-		dimens.x( att.owner()->dimens.x() + offset.x() );
-	}
+
+	dimens.y( att.owner()->dimens.y() + tmp_offset.y() );
+	dimens.x( att.owner()->dimens.x() + tmp_offset.x() );
 
 	attack_box* ab = new attack_box();
 	ab->set_attack(att);
@@ -44,9 +40,9 @@ void delayed_attack_box::perform()
 
 	ab->dimens = dimens;
 
-	if ( add_as_child && c )
+	if ( add_as_child )
 	{
-		c->add_child(ab);
+		att.owner()->add_child(ab);
 	}
 	else
 	{

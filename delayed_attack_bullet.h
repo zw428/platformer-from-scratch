@@ -19,6 +19,7 @@ public:
 	void load_data_from_file(std::string path);
 
 	box dimens;
+	coords offset;
 private:
 	float _speed;
 };

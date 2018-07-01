@@ -9,11 +9,6 @@
 delayed_attack_bullet::delayed_attack_bullet()
 	:_speed(5)
 {
-	dimens.w(24);
-	dimens.h(24);
-	animation.texture(manager::instance()->resources.textures("laser_bullet"));
-	animation.w(24);
-	animation.h(3);
 }
 
 delayed_attack_bullet::~delayed_attack_bullet()
@@ -33,59 +28,26 @@ float delayed_attack_bullet::speed() const
 void delayed_attack_bullet::perform()
 {
 	vel_accel speeds;
-	coords offset;
+	coords tmp_offset = offset;
 
-	offset.x(att.owner()->dimens.w());
-	offset.y(att.owner()->dimens.h());
-
-	dimens.x( att.owner()->dimens.x() );
-
-	if ( down_was_pressed() || up_was_pressed() )
+	if ( was_facing_left() )
 	{
-		dimens.x( 1.5*att.owner()->dimens.x() - dimens.x() / 2);
-
-		if ( down_was_pressed() )
-		{
-			dimens.y( att.owner()->dimens.y() + offset.y() );
-			speeds.v_speed(speed() + att.owner()->speeds.v_speed());
-		}
-		else
-		{
-			dimens.y( att.owner()->dimens.y() - offset.y() );
-			speeds.v_speed(-speed() - att.owner()->speeds.v_speed());
-		}
+		speeds.h_speed(-speed() + att.owner()->speeds.h_speed());
+		tmp_offset.x(offset.x() * -1);
 	}
 	else
 	{
-		bool facing_left = false;
-
-		creature* c = dynamic_cast<creature*>(att.owner());
-
-		if ( c )
-		{
-			facing_left = c->facing_left();
-		}
-
-		if ( facing_left )
-		{
-			speeds.h_speed(-speed() - att.owner()->speeds.h_speed());
-			dimens.x( att.owner()->dimens.x() - offset.x() );
-			dimens.y( att.owner()->dimens.y() );
-		}
-		else
-		{
-			speeds.h_speed(speed() + att.owner()->speeds.h_speed());
-			dimens.x( att.owner()->dimens.x() + offset.x() );
-			dimens.y( att.owner()->dimens.y() );
-		}
+		speeds.h_speed(speed() + att.owner()->speeds.h_speed());
 	}
+
+	dimens.x( att.owner()->dimens.x() + tmp_offset.x() );
+	dimens.y( att.owner()->dimens.y() + tmp_offset.y() );
 
 	attack_box* ab = new attack_box();
 	ab->set_attack(att);
 	ab->lifespan(0);
 	ab->speeds = speeds;
-	ab->die_oob(true);
-	ab->die_on_collide(true);
+	ab->die_oob(true); ab->die_on_collide(true);
 	ab->dimens = dimens;
 	ab->animation = animation;
 
@@ -112,15 +74,27 @@ void delayed_attack_bullet::load_data_from_file(std::string path)
 			ifs >> buf;
 			att.sound(buf);
 		}
+		else if ( buf == "offsetX" )
+		{
+			ifs >> tmp_i;
+			offset.x(tmp_i);
+		}
+		else if ( buf == "offsetY" )
+		{
+			ifs >> tmp_i;
+			offset.y(tmp_i);
+		}
 		else if ( buf == "width" )
 		{
 			ifs >> tmp_i;
 			dimens.w(tmp_i);
+			animation.w(tmp_i);
 		}
 		else if ( buf == "height" )
 		{
 			ifs >> tmp_i;
 			dimens.h(tmp_i);
+			animation.h(tmp_i);
 		}
 		else if ( buf == "damage" )
 		{
