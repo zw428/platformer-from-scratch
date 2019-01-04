@@ -1,6 +1,7 @@
 My untitled open source game!
 
 # Instructions
+- download boo-city.ttf from somewhere and move it into `data/fonts/`
 - `make`
 - `build/unknown`
 
