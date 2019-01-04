@@ -1,0 +1,11 @@
+texture    spaceman_running
+clip_width 12
+width      12
+height     34
+offsetY     2
+framedur    5
+framedur    5
+framedur    5
+framedur    5
+framedur    5
+framedur    5

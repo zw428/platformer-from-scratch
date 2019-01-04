@@ -1,0 +1,28 @@
+map 2048 2048
+camera 256 200 1024 768
+
+font    test boo-city.ttf
+texture test metal.png
+texture sheet sheet.png
+texture laser_bullet laser-bullet.png
+texture spaceman_shooting spaceman_shooting.png
+texture spaceman_running spaceman_running.png
+texture spaceman_standing spaceman_standing.png
+texture spaceman_jumping spaceman_jumping.png
+texture spaceman_hanging spaceman_hanging.png
+texture spaceman_punching spaceman_punching.png
+texture spaceman_crouching spaceman_crouching.png
+sound   test test.ogg
+
+creature player 450 300
+
+creature npc 700 300
+
+block test 512 700 256 64
+block test 300 752 256 16
+block test 512 752 256 16
+block test 768 752 256 16
+block test 1024 752 200 16
+block test 1200 652 24 100
+
+trigger teleporter 0 1000 2047 400 300 300

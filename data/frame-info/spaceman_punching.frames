@@ -1,0 +1,9 @@
+texture    spaceman_punching
+clip_width 12
+width      12
+height     33
+offsetY     3
+framedur    3
+framedur   12
+framedur    4
+framedur   18

@@ -1,0 +1,7 @@
+knockback  5
+speed     10
+offsetX   30
+offsetY   20
+width     24
+height     3
+animation laser_bullet

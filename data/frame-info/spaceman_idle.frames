@@ -1,0 +1,8 @@
+texture    spaceman_standing
+clip_width 15
+width      15
+height     36
+framedur   90
+framedur    5
+framedur   85
+framedur    4

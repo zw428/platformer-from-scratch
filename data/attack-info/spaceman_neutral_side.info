@@ -1,0 +1,10 @@
+animation    test
+sound        test
+hitAngle     -90
+xOffset       14
+damage        10
+knockback     10
+width         14
+height        36
+addAsChild     1
+lifespan      20
