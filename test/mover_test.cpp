@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../mover.h"
-#include "../vel_accel.h"
+#include <catch2/catch.hpp>
+#include "mover.h"
+#include "vel_accel.h"
 
 TEST_CASE( "mover::move_* limited by h_speed_max", "[mover]" )
 {

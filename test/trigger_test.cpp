@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../trigger.h"
-#include "../manager.h"
+#include <catch2/catch.hpp>
+#include "trigger.h"
+#include "manager.h"
 
 class trigger_tmp : public trigger
 {

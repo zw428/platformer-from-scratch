@@ -1,7 +1,7 @@
-#include "catch.h"
-#include "../gravity_affected.h"
-#include "../vel_accel.h"
-#include "../consts.h"
+#include <catch2/catch.hpp>
+#include "gravity_affected.h"
+#include "vel_accel.h"
+#include "consts.h"
 
 TEST_CASE( "gravity_affected accelerates if not weightless and not on ground", "[gravity_affected]" )
 {

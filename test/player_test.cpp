@@ -1,4 +1,4 @@
-#include "catch.h"
-#include "../player.h"
+#include <catch2/catch.hpp>
+#include "player.h"
 
 //do nothing

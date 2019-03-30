@@ -1,8 +1,8 @@
-#include "catch.h"
+#include <catch2/catch.hpp>
 
-#include "../attack.h"
-#include "../attackable.h"
-#include "../object.h"
+#include "attack.h"
+#include "attackable.h"
+#include "object.h"
 
 class attack_test_tmp : public attackable
 {

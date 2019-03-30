@@ -1,9 +1,9 @@
-#include "catch.h"
-#include "../ledge_grabber.h"
-#include "../manager.h"
-#include "../block.h"
-#include "../object.h"
-#include "../vel_accel.h"
+#include <catch2/catch.hpp>
+#include "ledge_grabber.h"
+#include "manager.h"
+#include "block.h"
+#include "object.h"
+#include "vel_accel.h"
 
 TEST_CASE("ledge_grabber gives correct distances to ledge", "[ledge_grabber]")
 {

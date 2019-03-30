@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../jumper.h"
+#include <catch2/catch.hpp>
+#include "jumper.h"
 
 TEST_CASE( "jumper correctly handles jumping from the ground", "[jumper]" )
 {

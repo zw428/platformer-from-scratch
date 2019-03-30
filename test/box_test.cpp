@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../box.h"
+#include <catch2/catch.hpp>
+#include "box.h"
 
 TEST_CASE( "box position helpers work", "[box]" )
 {

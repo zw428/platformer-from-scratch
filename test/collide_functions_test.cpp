@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../collide_functions.h"
+#include <catch2/catch.hpp>
+#include "collide_functions.h"
 
 TEST_CASE( "two apart boxes don't collide", "[collide_functions]" )
 {

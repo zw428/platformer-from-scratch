@@ -1,9 +1,9 @@
-#include "catch.h"
-#include "../attack_box.h"
-#include "../box_object.h"
-#include "../vel_accel.h"
-#include "../knockback.h"
-#include "../attackable.h"
+#include <catch2/catch.hpp>
+#include "attack_box.h"
+#include "box_object.h"
+#include "vel_accel.h"
+#include "knockback.h"
+#include "attackable.h"
 
 TEST_CASE( "knockback() will move object", "[knockback]" )
 {

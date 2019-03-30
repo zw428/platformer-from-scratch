@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../box_object.h"
-#include "../manager.h"
+#include <catch2/catch.hpp>
+#include "box_object.h"
+#include "manager.h"
 
 TEST_CASE( "box_object moves children with it", "[box]" )
 {

@@ -97,12 +97,12 @@ unsigned object::children_size() const
 	return _children.size();
 }
 
-bool object::operator==(const object& obj)
+bool object::operator==(const object& obj) const
 {
 	return _id == obj._id;
 }
 
-bool object::operator!=(const object& obj)
+bool object::operator!=(const object& obj) const
 {
 	return _id != obj._id;
 }

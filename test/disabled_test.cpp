@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../disabled.h"
+#include <catch2/catch.hpp>
+#include "disabled.h"
 
 TEST_CASE( "disabled can be disabled for a set amount of time", "[disabled]" )
 {

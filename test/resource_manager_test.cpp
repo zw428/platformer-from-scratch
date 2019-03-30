@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../resource_manager.h"
-#include "../manager.h"
+#include <catch2/catch.hpp>
+#include "resource_manager.h"
+#include "manager.h"
 
 TEST_CASE( "resource manager can add/remove stuff", "[resource_manager]" )
 {

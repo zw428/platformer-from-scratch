@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../manager.h"
-#include "../anim.h"
+#include <catch2/catch.hpp>
+#include "manager.h"
+#include "anim.h"
 
 TEST_CASE( "anim acts as image when no frames are added", "[anim]" )
 {

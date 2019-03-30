@@ -1,7 +1,7 @@
-#include "catch.h"
-#include "../level_loader.h"
-#include "../manager.h"
-#include "../chunk_prop.h"
+#include <catch2/catch.hpp>
+#include "level_loader.h"
+#include "manager.h"
+#include "chunk_prop.h"
 
 TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 {

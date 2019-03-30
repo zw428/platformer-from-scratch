@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../friction.h"
-#include "../vel_accel.h"
+#include <catch2/catch.hpp>
+#include "friction.h"
+#include "vel_accel.h"
 
 TEST_CASE( "friction::friction_reduction gives how much to subtract from h_speed", "[friction]" )
 {

@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../delayed_action.h"
+#include <catch2/catch.hpp>
+#include "delayed_action.h"
 
 TEST_CASE( "delayed_action cooldown/delay minimize at 2", "[delayed_action]" )
 {

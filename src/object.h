@@ -16,8 +16,8 @@ public:
 	object* child_at_index(unsigned i);
 	unsigned children_size() const;
 
-	bool operator==(const object& obj);
-	bool operator!=(const object& obj);
+	bool operator==(const object& obj) const;
+	bool operator!=(const object& obj) const;
 
 	bool think();
 

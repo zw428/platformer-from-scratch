@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../image.h"
+#include <catch2/catch.hpp>
+#include "image.h"
 
 TEST_CASE( "image setters and getters work", "[image]" )
 {

@@ -1,4 +1,4 @@
-#include "catch.h"
-#include "../text.h"
+#include <catch2/catch.hpp>
+#include "text.h"
 
 //do nothing

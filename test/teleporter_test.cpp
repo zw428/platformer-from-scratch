@@ -1,7 +1,7 @@
-#include "catch.h"
-#include "../teleporter.h"
-#include "../object.h"
-#include "../manager.h"
+#include <catch2/catch.hpp>
+#include "teleporter.h"
+#include "object.h"
+#include "manager.h"
 
 TEST_CASE( "teleporter teleports things when nothing is in the way", "[teleporter]" )
 {

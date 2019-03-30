@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../attack_box.h"
-#include "../attackable.h"
+#include <catch2/catch.hpp>
+#include "attack_box.h"
+#include "attackable.h"
 
 TEST_CASE( "attack_box damages object", "[attack_box]" )
 {
