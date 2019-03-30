@@ -1,19 +1,9 @@
-make attacks/anims for player load from file
-	ex: right_air_attack spaceman_special_side.info
-	    running_anim spaceman_running.frames
+change attack_manager to just have a couple of attacks (diverting away from smash bros style moveset)
 
-test out attack manager by finishing move set for player
+change health system to just have some health (again, diverting away from smash bros behavior)
 
 make consts load from file
 
 add zooming/panning
-
-more advanced attacks
-	add recovery time
-	attacks where you can't move
-	charged attacks
-	hold-down attacks
-
-player-player collision shouldn't be possible, or else hitting is lame
 
 level_loader: make it so you add invisible collision boxes and not-invisible images

@@ -1,2 +1,2 @@
-#include "catch.h"
-#include "../manager.h"
+#include <catch2/catch.hpp>
+#include "manager.h"

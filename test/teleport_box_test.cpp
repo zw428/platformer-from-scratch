@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../teleport_box.h"
-#include "../object.h"
+#include <catch2/catch.hpp>
+#include "teleport_box.h"
+#include "object.h"
 
 TEST_CASE( "teleport box teleports objects", "[teleport_box]" )
 {

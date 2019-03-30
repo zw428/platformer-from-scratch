@@ -1,6 +1,6 @@
-#include "catch.h"
-#include "../attack_manager.h"
-#include "../anim_handler.h"
+#include <catch2/catch.hpp>
+#include "attack_manager.h"
+#include "anim_handler.h"
 
 class delayed_attack_tmp : public delayed_attack
 {

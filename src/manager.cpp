@@ -8,7 +8,7 @@ manager::manager()
 	 _window_w(1024),
 	 _window_h(768)
 {
-	data_path("./data/");
+	data_path("../data/");
 }
 
 manager* manager::instance()

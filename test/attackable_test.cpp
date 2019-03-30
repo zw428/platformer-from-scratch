@@ -1,4 +1,4 @@
-#include "catch.h"
-#include "../attackable.h"
+#include <catch2/catch.hpp>
+#include "attackable.h"
 
 //doesn't do anything yet

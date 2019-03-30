@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../chunk_prop.h"
+#include <catch2/catch.hpp>
+#include "chunk_prop.h"
 
 TEST_CASE( "chunk_prop x and y can be set", "[chunk_prop]" )
 {

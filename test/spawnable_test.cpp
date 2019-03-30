@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../spawnable.h"
+#include <catch2/catch.hpp>
+#include "spawnable.h"
 
 class spawnable_tmp : public spawnable
 {

@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../attackable.h"
+#include <catch2/catch.hpp>
+#include "attackable.h"
 
 TEST_CASE( "attackable health doesn't drop below 0", "[attackable]" )
 {

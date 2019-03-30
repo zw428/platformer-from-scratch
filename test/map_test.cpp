@@ -1,8 +1,8 @@
-#include "catch.h"
-#include "../map.h"
-#include "../object.h"
-#include "../trigger.h"
-#include "../manager.h"
+#include <catch2/catch.hpp>
+#include "map.h"
+#include "object.h"
+#include "trigger.h"
+#include "manager.h"
 
 TEST_CASE( "map( x_size, y_size ) rounds to nearest power of 2", "[map]" )
 {

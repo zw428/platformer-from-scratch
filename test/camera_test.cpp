@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../camera.h"
+#include <catch2/catch.hpp>
+#include "camera.h"
 
 TEST_CASE( "camera can have dimensions set/get", "[camera]" )
 {

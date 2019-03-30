@@ -1,9 +1,9 @@
-#include "catch.h"
-#include "../collider.h"
-#include "../object.h"
-#include "../manager.h"
-#include "../teleporter.h"
-#include "../vel_accel.h"
+#include <catch2/catch.hpp>
+#include "collider.h"
+#include "object.h"
+#include "manager.h"
+#include "teleporter.h"
+#include "vel_accel.h"
 
 TEST_CASE( "collider::move_phys collides with stuff", "[collider]" )
 {

@@ -9,8 +9,8 @@ public:
 	short x;
 	short y;
 
-	bool operator==( const chunk_prop& cp );
-	bool operator!=( const chunk_prop& cp );
+	bool operator==( const chunk_prop& cp ) const;
+	bool operator!=( const chunk_prop& cp ) const;
 };
 
 #endif

@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../object.h"
+#include <catch2/catch.hpp>
+#include "object.h"
 
 class object_tmp : public object
 {

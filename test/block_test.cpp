@@ -1,3 +1,3 @@
-#include "catch.h"
-#include "../block.h"
+#include <catch2/catch.hpp>
+#include "block.h"
 

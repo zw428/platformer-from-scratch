@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../vel_accel.h"
+#include <catch2/catch.hpp>
+#include "vel_accel.h"
 
 TEST_CASE( "vel_accel limits speed", "[vel_accel]" )
 {

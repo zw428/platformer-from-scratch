@@ -1,5 +1,5 @@
-#include "catch.h"
-#include "../keys.h"
+#include <catch2/catch.hpp>
+#include "keys.h"
 #include <SDL2/SDL.h>
 
 TEST_CASE( "keys::think picks up keys/mouse", "[keys]" )
