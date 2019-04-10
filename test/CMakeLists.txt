@@ -43,7 +43,4 @@ add_executable(tests
 	vel_accel_test.cpp
 )
 
-include(Catch)
-
 target_link_libraries(tests Catch2::Catch2 base ${SDL_LIBS})
-catch_discover_tests(tests)
