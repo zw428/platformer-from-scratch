@@ -7,14 +7,14 @@ class coords
 {
 public:
 	coords();
-	void x( unsigned short x);
-	void y( unsigned short y);
+	void x( int x);
+	void y( int y);
 
-	unsigned short x() const;
-	unsigned short y() const;
+	int x() const;
+	int y() const;
 private:
-	unsigned short _x;
-	unsigned short _y;
+	int _x;
+	int _y;
 };
 
 #endif

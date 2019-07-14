@@ -70,7 +70,7 @@ void anim_handler::draw( const box& ref )
 
 	if ( _flipped )
 	{
-		tmp_offset.x( tmp_offset.x() * -1 );
+		tmp_offset.x( ref.w() - _current_anim->w() - tmp_offset.x() );
 	}
 
 	_current_anim->x( ref.x() + tmp_offset.x() );

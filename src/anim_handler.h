@@ -10,6 +10,9 @@ class anim_handler
 public:
 	anim_handler();
 	void think( bool on_ground, bool crouching, bool facing_left, bool moving, bool hanging, bool disabled );
+
+	// ref is what this is being drawn relative to, in order to calculate
+	// offsets. (usually the hitbox of whatever's being drawn)
 	void draw( const box& ref );
 	anim* current_anim();
 

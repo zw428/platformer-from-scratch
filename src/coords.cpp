@@ -6,23 +6,23 @@ coords::coords()
 {
 }
 
-void coords::x( unsigned short x)
+void coords::x( int x)
 {
 	_x = x;
 }
 
-void coords::y( unsigned short y)
+void coords::y( int y)
 {
 	_y = y;
 }
 
 
-unsigned short coords::x() const
+int coords::x() const
 {
 	return _x;
 }
 
-unsigned short coords::y() const
+int coords::y() const
 {
 	return _y;
 }
