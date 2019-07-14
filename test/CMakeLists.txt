@@ -3,7 +3,6 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 add_executable(tests
-	alive_test.cpp
 	anim_handler_test.cpp
 	anim_test.cpp
 	attackable_test.cpp

@@ -36,9 +36,11 @@ player::player()
 
 	dab_ground->att.owner(this);
 	dab_ground->load_data_from_file("spaceman_special_side.info");
+	dab_ground->att.damage(1);
 
 	dab_air->att.owner(this);
 	dab_air->load_data_from_file("spaceman_special_side.info");
+	dab_air->att.damage(1);
 
 	_am.set_right_attack(dab_ground, shooting);
 	_am.set_right_air_attack(dab_air, shooting);

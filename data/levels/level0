@@ -16,7 +16,7 @@ sound   test test.ogg
 
 creature player 450 300
 
-creature npc 700 300
+creature enemy_basic 700 300
 
 block test 512 700 256 64
 block test 300 752 256 16

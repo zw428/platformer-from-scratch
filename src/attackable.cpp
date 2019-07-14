@@ -29,7 +29,7 @@ void attackable::receive_attack( const attack& att )
 
 bool attackable::think_more()
 {
-	return box_object::think_more();
+	return box_object::think_more() || health() == 0;
 }
 
 void attackable::health( unsigned short health )

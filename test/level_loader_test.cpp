@@ -39,12 +39,12 @@ TEST_CASE( "process_*_str loads into the manager", "[level_loader]" )
 			CHECK( manager::instance()->the_map.box_objects_in_chunk( tmp ).size() == 1 );
 		}
 
-		SECTION( "npc" )
+		SECTION( "enemy_basic" )
 		{
 			level_loader l;
 			manager::instance()->the_map.init( 500, 500 );
 
-			l.process_creature_str( "npc 0 0");
+			l.process_creature_str( "enemy_basic 0 0");
 
 			chunk_prop tmp;
 			tmp.x = 0;

@@ -22,6 +22,7 @@ add_library(base STATIC
 	delayed_attack_bullet.cpp
 	delayed_attack.cpp
 	disabled.cpp
+	enemy_basic.cpp
 	friction.cpp
 	gravity_affected.cpp
 	image.cpp
@@ -33,7 +34,6 @@ add_library(base STATIC
 	manager.cpp
 	map.cpp
 	mover.cpp
-	npc.cpp
 	object.cpp
 	player.cpp
 	resource_manager.cpp
