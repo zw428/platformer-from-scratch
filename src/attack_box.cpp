@@ -32,9 +32,7 @@ bool attack_box::action(box_object* bo)
 
 	double hit_angle = _attack.hit_angle();
 
-	creature* c = dynamic_cast<creature*>(_attack.owner());
-
-	if ( c && c->facing_left() )
+	if ( speeds.h_speed() < 0 )
 	{
 		hit_angle += 180 - hit_angle*2;
 	}

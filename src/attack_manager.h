@@ -30,8 +30,6 @@ public:
 
 	bool can_move() const;
 private:
-	void attack(unsigned short direction, bool special, bool in_air);
-
 	delayed_attack* _current_attack;
 	bool _can_move;
 

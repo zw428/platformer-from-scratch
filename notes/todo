@@ -1,6 +1,4 @@
-change attack_manager to just have a couple of attacks (diverting away from smash bros style moveset)
-
-change health system to just have some health (again, diverting away from smash bros behavior)
+add enemies
 
 make consts load from file
 

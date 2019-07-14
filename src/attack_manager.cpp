@@ -220,10 +220,3 @@ bool attack_manager::can_move() const
 {
 	return _can_move;
 }
-
-void attack_manager::attack(unsigned short direction, bool special, bool in_air)
-{
-	if ( direction == 0 )
-	{
-	}
-}
